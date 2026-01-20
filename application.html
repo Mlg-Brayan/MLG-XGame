@@ -164,6 +164,30 @@ footer {
   font-size: 14px;
   color: white; 
   }
+  #categoryGames {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px;
+}
+
+.scroll-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.scroll-group::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-line {
+  display: flex;
+  gap: 12px;
+}
+
 </style>
 </head>
 <body>
@@ -193,7 +217,20 @@ footer {
 </div>
 
 <h2>📦 Toutes les applications</h2>
-<div class="app-cadre" id="categoryApps"></div>
+<div id="categoryGames">
+
+  <div class="scroll-group">
+    <div class="scroll-line"></div>
+    <div class="scroll-line"></div>
+  </div>
+
+  <div class="scroll-group">
+    <div class="scroll-line"></div>
+    <div class="scroll-line"></div>
+  </div>
+
+</div>
+
 
 <h2>🎯 Applications de la catégorie sélectionnée</h2>
 <div class="app-cadre" id="filteredCategory"></div>
@@ -1895,20 +1932,33 @@ function toggleDownloads(button){
 }
 
 // Générer les mini-cadres
-const categoryAppsContainer = document.getElementById("categoryApps");
-const popularAppsContainer = document.getElementById("popularApps");
+const groups = document.querySelectorAll(".scroll-group");
+let index = 0;
 
-apps.forEach(app => {
+games.forEach(game => {
   const div = document.createElement("div");
-  div.className = "category-app";
-  div.innerHTML = `<img src="${app.img}" alt="${app.nom}">
-                   <div class="app-info-mini">
-                     <h4>${app.nom}</h4>
-                     <p>${app.desc}</p>
-                     ${createDownloadButtons(app)}
-                   </div>`;
-  categoryAppsContainer.appendChild(div);
+  div.className = "category-game";
+  div.innerHTML = `
+    <img src="${game.img}" alt="${game.nom}">
+    <div class="game-info-mini">
+      <h4>${game.nom}</h4>
+      <p>${game.description}</p>
+      <div class="btn-telecharger" onclick="toggleDownload(this)">📥 Télécharger</div>
+      <div class="download-options">
+        ${game.playstore ? `<a href="${game.playstore}" target="_blank">📥 Play Store</a>` : ""}
+        ${game.appstore ? `<a href="${game.appstore}" target="_blank">🍎 App Store</a>` : ""}
+        ${game.apk ? `<a href="${game.apk}" target="_blank">⬇️ APK</a>` : ""}
+      </div>
+    </div>
+  `;
+
+  const group = groups[Math.floor(index / 8) % 2]; 
+  const lines = group.querySelectorAll(".scroll-line");
+  lines[index % 2].appendChild(div);
+
+  index++;
 });
+
 
 // Applications populaires : les 6 premières
 apps.slice(0,6).forEach(app => {
@@ -2019,3 +2069,4 @@ function createDownloadButtons(app) {
     </footer>
 </body>
 </html>
+
