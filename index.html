@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> MLG-XGame </title>
+  <style>
+ body {
+  font-family: Arial, sans-serif;
+  background-color: black; 
+  color: #9900ff;
+  margin: 0;
+}
+
+/* TITRES */
+h1, h2, h3 {
+  text-align: left;
+  color: white;
+  margin: 10px ;
+}
+
+h1 {
+  font-size: 35px;
+  background: linear-gradient(360deg,#9900ff,#5500ff);
+  text-shadow: 0 0 10px #9900ff;
+  padding: 20px;
+  margin:0px;
+}
+p {
+  text-align: center;
+  margin: 0;
+}
+/* CADRE JEUX POPULAIRE / NOUVEAUX */
+.game-cadre {
+  display: grid;
+  grid-auto-flow: column;       /* scroll horizontal */
+  grid-template-rows: repeat(2, 1fr); /* ✅ 2 lignes */
+  gap: 15px;
+  padding: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.game {
+  position: relative;
+  border-radius: 15px;
+  background: #1a0a3a;
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-width: 320px;
+  height: 150px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.game:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00ff;
+}
+
+.game img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* INFO JEU grands cadres */
+.game-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4));
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.game-info h4{
+  font-size: 11px;
+  margin: 0;
+  color: #00f0ff;
+}
+
+.game-info p{
+  font-size: 9px;
+  margin: 2px 0;
+  color: #ddd;
+  text-align: left;
+}
+
+/* BOUTON TELECHARGER */
+.btn-telecharger {
+  display: block;
+  text-align: center;
+  background: linear-gradient(90deg,#9900ff,#00ff);
+  color: white;
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.btn-telecharger:active {
+  transform: scale(0.95);
+}
+/* cacher scrollbar - Chrome, Edge, Safari */
+.game-cadre::-webkit-scrollbar {
+  display: none;
+}
+
+/* cacher scrollbar - Firefox */
+.game-cadre {
+  scrollbar-width: none;
+}
+/* Scroll horizontal actif mais barre invisible */
+.game-cadre,
+.bouton-cadre {
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE / Edge */
+}
+
+.game-cadre::-webkit-scrollbar,
+.bouton-cadre::-webkit-scrollbar {
+  display: none;              /* Chrome / Safari */
+}
+/* Grands cadres (populaires / nouveaux) */
+.game-cadre{
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.game-cadre::-webkit-scrollbar {
+  display: none;          /* cacher scrollbar */
+}
+.game {
+  position: relative;
+  border-radius: 15px;
+  background: #1a0a3a;
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-width: 300px;      /* largeur fixe pour le scroll horizontal */
+  height: 140px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.recgame {
+  position: relative;
+  border-radius: 15px;
+  background: #1a0a3a;
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-width: 120px;      /* largeur fixe pour le scroll horizontal */
+  height: 120px;
+  overflow: hidden;
+  cursor: pointer;
+}
+    .jeux-cadre { text-decoration: none;}
+    .jeux { display: flex; align-items: center; font-weight: bold;
+      margin: 5px; text-decoration: none; color: #00f0ff; font-size: 13px;
+    }
+    .jeux:hover { transform: scale(1.05); color: #9900ff; }
+    span { border-radius: 50%; background: #00f0ff; color: black;
+      padding: 4px 7px; margin: 0px 10px; font-size: 10px; font-weight: bold;
+    }
+    .bouton-cadre { display: flex; gap: 20px;
+      margin: 15px; justify-content: center; color: white; padding: 6px; border-radius: 8px; font-size: 12px; font-weight: bold; text-decoration: none;
+    }
+    .bouton { border-radius: 10px; background: #9900ff; color: white;
+      text-align: center; font-size: 12px; padding: 10px;
+      cursor: pointer; text-decoration: none;
+    }
+    .bouton:hover { transform: scale(1.05); color: #00f; box-shadow: 0 0 20px #00f; }
+    .mini-jeux-cadre { color: white; display: flex;
+      justify-content: center; gap: 20px; align-items: center; padding: 10px;
+    }
+    .mini-jeux { background: #111; font-size: 16px;
+      border-radius: 10px; height: 90px; width: 90px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid white;
+    }
+    .ligne { background: #9900ff; padding: 1px; margin: 15px;}
+    .dropdown-jeux{
+  position: relative;
+}
+.dropdown-content-jeux{
+  display: none;
+  position: absolute;
+  top: 55px;
+  left: 0;
+  background: #1a0a3a;
+  border-radius: 10px;
+  min-width: 220px;
+  box-shadow: 0 0 20px #9900ff;
+  z-index: 100;
+}
+.dropdown-content-jeux a{
+  display: block;
+  padding: 10px;
+  color: #ccc;
+  text-decoration: none;
+}
+.dropdown-content-jeux a:hover{
+  background: #9900ff;
+  color: black;
+}
+.download-box{
+  position: relative;
+  display: inline-block;
+  min-width: 290px;
+  font-size: 13px;
+}
+.download-options{
+  display:none;
+  position:absolute;
+  bottom:110%;
+  left:0;
+  background:#000;
+  border-radius:10px;
+  box-shadow:0 0 20px #9900ff;
+  overflow:hidden;
+  min-width:180px;
+  z-index:20;
+  font-size: 13px;
+}
+
+.download-options a{
+  text-decoration:none;
+  font-weight: bold;
+  display: block;
+  font-size: 12px;        /* 🔽 taille réduite */
+  padding: 6px 7px;       /* 🔽 moins de hauteur */
+  margin-bottom: 2px;
+  border-radius: 6px;
+  text-align: center;
+  background: #2b2b2b;
+  color: #fff;
+}
+
+.download-options a:hover{
+  background:#9900ff;
+  color:black;
+}
+ footer {
+      text-align: center;
+      background-color: #111;
+      padding: 20px;
+      font-size: 14px;
+      color: white;
+    }
+
+
+  </style>
+</head>
+<body>
+  <h1>MLG-XGame </h1>
+
+  <h2>. Top des jeux</h2>
+  <div class="game-cadre" id="popularGames">
+
+  <!-- FC Mobile -->
+  <div class="game">
+    <img src="c:\Users\Admin\Downloads\_956f852a-9810-43d5-83ec-4999c196a9f0.jfif" alt="FC Mobile">
+    <div class="game-info">
+      <h4>FC Mobile</h4>
+      <p>Football réaliste avec équipes officielles.</p>
+      <div class="download-box">
+        <div class="btn-telecharger" onclick="toggleDownload(this)">📥 Télécharger</div>
+        <div class="download-options">
+          <a href="https://play.google.com/store/apps/details?id=com.ea.gp.fifamobile" target="_blank">📥 Play Store</a>
+          <a href="https://apkpure.com/fr/fc-mobile/com.ea.gp.fifamobile" target="_blank">⬇️ APK</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Minecraft -->
+  <div class="game">
+    <img src="_24d23639-a4b2-44ce-9737-5eba834d0a69.jpg" alt="Minecraft">
+    <div class="game-info">
+      <h4>Minecraft</h4>
+      <p>Jeu créatif et survie multijoueur.</p>
+      <div class="download-box">
+        <div class="btn-telecharger" onclick="toggleDownload(this)">📥 Télécharger</div>
+        <div class="download-options">
+          <a href="https://play.google.com/store/apps/details?id=com.mojang.minecraftpe" target="_blank">📥 Play Store</a>
+          <a href="https://apps.apple.com/app/id479516143" target="_blank">🍎 App Store</a>
+          <a href="https://mcpedl.org/downloading/minecraft-pe-1-21/" target="_blank">⬇️ APK</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Asphalt Nitro -->
+  <div class="game">
+    <img src="c:\Users\Admin\Downloads\_44a5eee9-69fe-43c7-bfed-7dec95d946ad.jfif" alt="Asphalt Nitro">
+    <div class="game-info">
+      <h4>Asphalt Nitro</h4>
+      <p>Course intense avec voitures de luxe.</p>
+      <div class="download-box">
+        <div class="btn-telecharger" onclick="toggleDownload(this)">📥 Télécharger</div>
+        <div class="download-options">
+          <a href="https://play.google.com/store/apps/details?id=com.gameloft.android.ANMP.GloftA8HM" target="_blank">📥 Play Store</a>
+          <a href="https://asphalt-nitro.fr.malavida.com/android/download" target="_blank">⬇️ APK</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Talking Tom Hero Dash -->
+  <div class="game">
+    <img src="c:\Users\Admin\Downloads\_cd2f5c71-8b43-435f-a538-0a1918a96d46.jfif" alt="Talking Tom Hero Dash">
+    <div class="game-info">
+      <h4>Talking Tom Hero Dash</h4>
+      <p>Parcours les niveaux avec Tom et ses amis.</p>
+      <div class="download-box">
+        <div class="btn-telecharger" onclick="toggleDownload(this)">📥 Télécharger</div>
+        <div class="download-options">
+          <a href="https://play.google.com/store/apps/details?id=com.outfit7.herodash" target="_blank">📥 Play Store</a>
+          <a href="https://apps.apple.com/us/app/talking-tom-hero-dash/id1434807653" target="_blank">🍎 App Store</a>
+          <a href="" target="_blank">⬇️ APK</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Among Us -->
+  <div class="game">
+    <img src="_fb954ae5-5e4a-409e-ae2e-02ba410a517b.jpg" alt="Among Us">
+    <div class="game-info">
+      <h4>Among Us</h4>
+      <p>Trouve l'imposteur, ne fais confiance à personne.</p>
+      <div class="download-box">
+        <div class="btn-telecharger" onclick="toggleDownload(this)">📥 Télécharger</div>
+        <div class="download-options">
+          <a href="https://play.google.com/store/apps/details?id=com.innersloth.spacemafia" target="_blank">📥 Play Store</a>
+          <a href="https://apps.apple.com/app/id1351168404" target="_blank">🍎 App Store</a>
+          <a href="https://apkpure.com/fr/among-us/com.innersloth.spacemafia" target="_blank">⬇️ APK</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="game">
+  <img src="c:\Users\Admin\Downloads\_579d713a-3d55-4224-b59f-230d405fe288.jfif" alt="Genshin Impact">
+  <div class="game-info">
+    <h4>Genshin Impact</h4>
+    <p>RPG monde ouvert spectaculaire action, aventure et exploration.</p>
+
+    <div class="download-box">
+      <div class="btn-telecharger" onclick="toggleDownload(this)">📥 Télécharger</div>
+
+      <div class="download-options">
+        <!-- Play Store -->
+        <a href="https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact"
+           target="_blank">📥 Play Store</a>
+
+        <!-- App Store -->
+        <a href="https://apps.apple.com/app/id1517783697"
+           target="_blank">🍎 App Store</a>
+
+        <!-- APK -->
+        <a href="https://apkpure.com/genshin-impact/com.miHoYo.GenshinImpact"
+           target="_blank">⬇️ APK</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+</div>
+
+
+  <h3>🔥 Jeux populaires</h3>
+  <div class="jeux-cadre">
+    <a href="https://play.google.com/store/apps/details?id=com.firsttouchgames.dls7&hl=en" target="_blank" class="jeux"><span>1</span> Dream League Soccer 2026</a>
+    <a href="https://play.google.com/store/apps/details?id=com.supercell.clashofclans&hl=en" target="_blank" class="jeux"><span>2</span> Clash of Clans</a>
+    <a href="https://play.google.com/store/apps/details?id=com.roblox.client" target="_blank" class="jeux"><span>3</span> Roblox</a>
+    <a href="https://play.google.com/store/apps/details?hl=en&id=com.kiloo.subwaysurf&utm_source=chatgpt.com" target="_blank" class="jeux"><span>4</span> Subway surfer</a>
+  </div>
+ 
+  <div class="bouton-cadre">
+  <a href="jouer.html" class="bouton">Play a game</a>
+
+  <!-- Bouton Jeux avec menu -->
+  <div class="dropdown-jeux">
+    <div class="bouton" onclick="toggleJeux()">Download game ▾</div>
+    <div class="dropdown-content-jeux" id="menuJeux">
+      <a href="android.html">📱 Jeux Mobile (Android & iOS)</a>
+      <a href="PC.html">🖥️ Jeux PC</a>
+      <a href="ppsspp.html">🎮 Jeux PPSSPP</a>
+      <a href="ds.html">🕹️ Jeux Nintendo DS</a>
+    </div>
+  </div>
+
+  <a href="application.html" class="bouton">Application</a>
+</div>
+
+
+
+<div class="careaux">
+  <h2 style="text-align: center; color: ; padding:10px; font-size: 25px; margin:0px">
+    Notre Mission
+  </h2>
+ <p>Proposer les meilleurs jeux et application sur toutes les platformes. Ce site un univers de rêve pour chaque Gamers car ici tu peux jouer et aussi téléchager différents jeux et applications. Ici tout est fait pour le confort du gaming </p>
+  <div class="ligne"></div>
+  <footer style="background-color: #0a0a1a; margin: 0; padding: 2px">Créé par un passionné de jeux vidéos : {MLG} <strong style="color:#9900ff">Malonga - Brayan </strong>
+</div>
+
+  <h2>🎮 Play a game</h2>
+<!-- VIGNETTES DES JEUX -->
+<div class="game-cadre" id="popularGames">
+ <div class="game">
+    <img src="https://business.gamezop.com/img/gamezop/H1Wzaf1wqyQ/cover.jpg?w=300&q=50" alt="Hipster Tennis">
+    <div class="game-info">
+      <h4>Hipster Tennis</h4>
+      <p>Raquettes en main et sourire aux lèvres, Hipster Tennis est l'endroit idéal.</p>
+      <a class="btn-telecharger" onclick="openIframeGame(6)">🎮 Jouer</a>
+    </div>
+  </div>
+ 
+<div class="game">
+    <img src="https://business.gamezop.com/img/gamezop/Skz4pzkDqyX/cover.jpg?w=300&q=50" alt="Escape Run">
+    <div class="game-info">
+      <h4>Escape Run</h4>
+      <p>Aidez le montagnard à échapper aux médias pendant qu'il court paisiblement dans le froid.</p>
+      <a class="btn-telecharger" onclick="openIframeGame(3)">🎮 Jouer</a>
+    </div>
+</div>
+ 
+  <div class="game">
+    <img src="https://business.gamezop.com/img/gamezop/SkhljT2fdgb/cover.jpg?w=300&q=50" alt="Ludo With Friends">
+     <div class="game-info">
+      <h4>Ludo With Friends</h4>
+      <p>Jouez avec vos amis ou avec des milliers d'autres joueurs en ligne.</p>
+      <a class="btn-telecharger" onclick="openIframeGame(1)">🎮 Jouer</a>
+    </div>
+  </div>
+
+ <div class="game">
+    <img src="https://business.gamezop.com/img/gamezop/BkdJhTX50B/cover.jpg?w=300&q=50" alt="Stars du bowling">
+    <div class="game-info">
+      <h4>Stars du bowling</h4>
+      <p>Profitez du meilleur jeu de bowling en ligne et voyez combien de quilles vous réussirez à renverser.</p>
+      <a class="btn-telecharger" onclick="openIframeGame(7)">🎮 Jouer</a>
+    </div>
+  </div>
+
+  <div class="game">
+    <img src="https://zv1y2i8p.play.gamezop.com/_next/image?url=https%3A%2F%2Fstatic.gamezop.com%2FhgempP8Sc%2Fbrick.png&w=384&q=75" alt="Pool Master">
+    <div class="game-info">
+      <h4>Pool Master</h4>
+      <p>Préparez-vous à jouer au jeu de billard le plus palpitant de tous les temps.</p>
+      <a class="btn-telecharger" onclick="openIframeGame(5)">🎮 Jouer</a>
+    </div>
+  </div>
+ 
+  <div class="game">
+    <img src="https://business.gamezop.com/img/gamezop/UCS62KJ8c/cover.jpg?w=300&q=50" alt="Blocks Adventure Jungle Saga">
+    <div class="game-info">
+      <h4>Blocks Adventure Jungle Saga</h4>
+      <p>faites glisser et déposez des blocs dans un mouvement fluide et coloré</p>
+      <a class="btn-telecharger" onclick="openIframeGame(2)">🎮 Jouer</a>
+    </div>
+  </div>
+
+  <div class="game">
+    <img src="https://business.gamezop.com/img/gamezop/yVywAGBQ6/cover.jpg?w=300&q=50" alt="Bubble Shooter Classique">
+     <div class="game-info">
+      <h4>Bubble Shooter Classique</h4>
+      <p>Associez les couleurs, faites-les éclater</p>
+      <a class="btn-telecharger" onclick="openIframeGame(4)">🎮 Jouer</a>
+    </div>
+  </div>
+</div>
+<!-- POPUP IFRAME -->
+<div id="iframeOverlay">
+  <div class="iframePanel">
+    <button class="closeIframe" onclick="closeIframeGame()">✖</button>
+    <iframe id="iframeViewer" allowfullscreen></iframe>
+  </div>
+</div>
+
+    <a href="jouer.html" style="text-align: right; margin:0;">Plus de jeux ></a>
+
+  <h2>. Good game</h2>
+  <div class="game-cadre">
+    <a href="https://asphalt-nitro.fr.download.it/android"target="_blank" class="recgame">
+      <img src="image3.jpg" alt="Asphalt nitro">
+      <div class="game-titre">Asphalt nitro</div>
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=com.king.candycrushsaga" target="_blank" class="recgame">
+      <img src="image2.jpg" alt="Candy Crush Saga">
+      <div class="game-titre">Candy Crush Saga</div>
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=com.mojang.minecraftpe" target="_blank" class="recgame">
+      <img src="image1.jpg" alt="Minecraft">
+      <div class="game-titre">Minecraft</div>
+    </a>
+    <a href="https://play.google.com/store/apps/details?hl=en&id=com.vectorunit.yellow&utm_source=chatgpt.com" target="_blank" class="recgame">
+      <img src="image1.jpg" alt="Beach Buggy">
+      <div class="game-titre">Beach Buggy</div>
+    </a>
+    <!-- Tu peux ajouter d'autres jeux ici -->
+  </div>
+  
+   <script>
+function toggleJeux(){
+  const menu = document.getElementById("menuJeux");
+  menu.style.display = (menu.style.display === "block") ? "none" : "block";
+}
+
+// Fermer si on clique ailleurs
+document.addEventListener("click", function(e){
+  if(!e.target.closest(".dropdown-jeux")){
+    document.getElementById("menuJeux").style.display = "none";
+  }
+});
+</script>
+
+<div class="cadre">
+  <h2 style="text-align: center; padding:10px;">
+    Mini jeux
+  </h2>
+
+<style>
+body {margin:0;font-family:Arial,sans-serif;background:black;color:#fff;}
+h1{text-align:center;margin:10px 0;}
+.games-grid{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:15px;}
+.game-card{width:150px;height:90px;background:#111;display:flex;align-items:center;justify-content:center;border-radius:10px;cursor:pointer;border:1px solid #333;transition:0.2s;}
+.game-card:hover{transform:scale(1.05);background:#222;}
+#overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:999;align-items:center;justify-content:center;padding:10px;}
+.panel{width:100%;height:100%;max-width:1200px;max-height:900px;background:#070707;border-radius:10px;padding:10px;position:relative;display:flex;flex-direction:column;}
+.close-btn{position:absolute;right:10px;top:10px;background:#e74c3c;color:#fff;border:none;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:18px;}
+.reload-btn{background:#222;border:none;color:#fff;padding:8px 12px;border-radius:8px;cursor:pointer;}
+.toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+.title{font-size:18px;}
+.game-area{flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-radius:6px;}
+.game-box{display:none;width:100%;height:100%;position:relative;}
+.status{text-align:center;color:#ccc;margin-top:6px;}
+/* Tic Tac Toe */
+#tt-board{width:360px;max-width:90%;margin:12px auto;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.tt-cell{background:#111;height:110px;display:flex;align-items:center;justify-content:center;font-size:56px;cursor:pointer;border-radius:8px;}
+.tt-info{display:flex;justify-content:space-between;margin:5px 10px;font-size:16px;}
+/* Memory */
+#memoryGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;width:100%;max-width:920px;margin:10px auto;}
+.mem-card{background:#111;height:100px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:40px;cursor:pointer;user-select:none;transition:0.2s;}
+@media (max-width:920px){#memoryGrid{grid-template-columns:repeat(4,1fr)}.tt-cell{height:84px;font-size:40px;}}
+.careaux {border: 1px solid #9900ff; border-radius: 15px; background: #0a0a1a; padding: 2px; font-size: 13px; margin:0px; align-items:center;}
+.cadre {border: 1px solid white; border-radius: 15px; padding: 2px; margin:50px 50px;}
+#iframeOverlay {
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.95);
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+  padding:10px;
+}
+
+.iframePanel {
+  width:100%; height:100%;
+  max-width:1200px; max-height:900px;
+  background:#000;
+  border-radius:12px;
+  position:relative;
+  overflow:hidden;
+}
+
+.closeIframe {
+  position:absolute; top:10px; right:10px;
+  width:45px; height:45px;
+  background:#e74c3c;
+  border:none; border-radius:50%;
+  color:white; font-size:20px;
+  cursor:pointer;
+}
+
+#iframeViewer {
+  width:100%; height:100%;
+  border:0;
+}
+</style>
+
+<div class="mini-jeux-cadre">
+  <div class="mini-jeux" onclick="openGame('tictactoe')">Tic Tac Toe</div>
+  <div class="mini-jeux" onclick="openGame('pong')">Pong</div>
+</div>
+<div class="mini-jeux-cadre">
+  <div class="mini-jeux" onclick="openGame('snake')">Snake</div>
+  <div class="mini-jeux" onclick="openGame('memory')">Memory cartes</div>
+</div>
+
+<div id="overlay">
+  <div class="panel">
+    <button class="close-btn" onclick="closeGame()">✖</button>
+    <div class="toolbar">
+      <div class="title" id="gameTitle">—</div>
+      <button class="reload-btn" onclick="restartCurrent()">🔄 Recommencer</button>
+    </div>
+    <div class="game-area">
+      <!-- Tic Tac Toe -->
+      <div id="tictactoe" class="game-box"></div>
+      <!-- Pong -->
+      <div id="pong" class="game-box" style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
+        <canvas id="pongCanvas" style="background:#000;border-radius:6px;max-width:100%;"></canvas>
+        <div style="display:flex;justify-content:space-between;width:100%;max-width:720px;margin-top:6px;color:#ddd;">
+          <div>Toi: <span id="pong-score-player">0</span></div>
+          <div id="pong-status">Premier à 5 gagne</div>
+          <div>IA: <span id="pong-score-ai">0</span></div>
+        </div>
+      </div>
+      <!-- Snake -->
+      <div id="snake" class="game-box" style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
+        <canvas id="snakeCanvas" style="border-radius:6px;max-width:100%;"></canvas>
+        <div style="margin-top:8px;color:#ddd;">Score: <span id="snake-score">0</span></div>
+      </div>
+      <!-- Memory -->
+      <div id="memory" class="game-box" style="padding:8px 12px;overflow:auto">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;color:#ddd">
+          <div>Essais: <span id="mem-attempts">0</span></div>
+          <div>Paires: <span id="mem-matches">0</span>/10</div>
+        </div>
+        <div id="memoryGrid"></div>
+        <div class="status" id="mem-status"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- UTIL ---------- */
+const overlay = document.getElementById('overlay');
+let currentGame=null;
+function openGame(name){
+  stopAll();
+  currentGame=name;
+  document.getElementById('gameTitle').textContent=name.toUpperCase();
+  document.querySelectorAll('.game-box').forEach(b=>b.style.display='none');
+  document.getElementById(name).style.display='block';
+  overlay.style.display='flex';
+  setTimeout(()=>{
+    if(name==='tictactoe') initTic();
+    if(name==='pong') initPong();
+    if(name==='snake') initSnake();
+    if(name==='memory') initMemory();
+  },50);
+}
+function closeGame(){overlay.style.display='none';stopAll();currentGame=null;}
+function restartCurrent(){if(!currentGame) return; if(currentGame==='tictactoe') initTic(true); if(currentGame==='pong') initPong(true); if(currentGame==='snake') initSnake(true); if(currentGame==='memory') initMemory(true);}
+function stopAll(){if(window._pongRAF) cancelAnimationFrame(window._pongRAF);if(window._snakeInterval) clearInterval(window._snakeInterval);document.onmousemove=null;document.onclick=null;document.ontouchstart=null;document.onkeydown=null;pongRunning=false;snakeRunning=false;}
+
+/* ---------------- TIC TAC TOE ---------------- */
+let tt={scoreX:0,scoreO:0,turn:'X',locked:false,cells:[]};
+function initTic(resetScores=false){
+  if(resetScores){tt.scoreX=0;tt.scoreO=0;}
+  tt.turn='X';tt.locked=false;
+  document.getElementById('tictactoe').innerHTML='';
+  const board=document.getElementById('tictactoe');
+  board.innerHTML=`<div class="tt-info">
+    <div>X: <span id="tt-score-x">${tt.scoreX}</span></div>
+    <div id="tt-turn">Tour: X</div>
+    <div>O: <span id="tt-score-o">${tt.scoreO}</span></div>
+  </div>
+  <div id="tt-board"></div>
+  <div class="status" id="tt-status"></div>`;
+  tt.cells=[];
+  const ttboard=document.getElementById('tt-board');
+  for(let i=0;i<9;i++){
+    const c=document.createElement('div');c.className='tt-cell';c.textContent='';
+    c.onclick=()=>{if(tt.locked || c.textContent!=='') return;c.textContent=tt.turn;if(checkTic()){tt.locked=true;if(tt.turn==='X'){tt.scoreX++;document.getElementById('tt-score-x').textContent=tt.scoreX;}else{tt.scoreO++;document.getElementById('tt-score-o').textContent=tt.scoreO;}document.getElementById('tt-status').textContent=`🎉 ${tt.turn} a gagné !`;} else if(tt.cells.every(x=>x.textContent!=='')){tt.locked=true;document.getElementById('tt-status').textContent='Match nul.';}else{tt.turn=tt.turn==='X'?'O':'X';document.getElementById('tt-turn').textContent='Tour: '+tt.turn;}};ttboard.appendChild(c);tt.cells.push(c);}
+}
+function checkTic(){const s=tt.cells.map(c=>c.textContent||'');const wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];return wins.some(([a,b,c])=>s[a]&&s[a]===s[b]&&s[b]===s[c]);}
+
+/* ---------------- PONG ---------------- */
+let pong={},pongRunning=false;
+function initPong(reset=false){
+  stopAll();
+  if(reset||!pong.initialized){pong={playerScore:0,aiScore:0,maxScore:5,paddleY:160,aiY:160,ballX:360,ballY:210,vx:6,vy:3,speedInc:0.1};pong.initialized=true;}
+  updatePongUI();
+  const canvas=document.getElementById('pongCanvas');fitCanvas(canvas,0.92,0.7);
+  canvas.onmousemove=e=>{const r=canvas.getBoundingClientRect();pong.paddleY=e.clientY-r.top-40;}
+  pongRunning=true;requestAnimationFrame(pongLoop);
+}
+function updatePongUI(){document.getElementById('pong-score-player').textContent=pong.playerScore;document.getElementById('pong-score-ai').textContent=pong.aiScore;document.getElementById('pong-status').textContent=`Premier à ${pong.maxScore} gagne`;}
+function resetBall(towardsAI){const canvas=document.getElementById('pongCanvas');pong.ballX=canvas.width/2;pong.ballY=canvas.height/2;pong.vx=(towardsAI?6:-6)*(Math.random()>0.5?1:-1);pong.vy=(Math.random()*2-1)*3;}
+function pongLoop(){
+  if(!pongRunning) return;
+  const canvas=document.getElementById('pongCanvas');const ctx=canvas.getContext('2d');ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle='#111';ctx.fillRect(canvas.width/2-2,0,4,canvas.height);
+  ctx.fillStyle='#fff';
+  ctx.fillRect(20,clamp(pong.paddleY,0,canvas.height-80),12,80);
+  ctx.fillRect(canvas.width-32,clamp(pong.aiY,0,canvas.height-80),12,80);
+  ctx.beginPath();ctx.arc(pong.ballX,pong.ballY,9,0,Math.PI*2);ctx.fill();
+  pong.ballX+=pong.vx;pong.ballY+=pong.vy;
+  if(pong.ballY<9||pong.ballY>canvas.height-9)pong.vy*=-1;
+  if(pong.ballX<40&&pong.ballX>20){if(pong.ballY>pong.paddleY&&pong.ballY<pong.paddleY+80){pong.vx=Math.abs(pong.vx)+pong.speedInc;pong.ballX=40;}}
+  if(pong.ballX>canvas.width-40&&pong.ballX<canvas.width-20){if(pong.ballY>pong.aiY&&pong.ballY<pong.aiY+80){pong.vx=-Math.abs(pong.vx)-pong.speedInc;pong.ballX=canvas.width-40;}}
+  if(pong.ballX<0){pong.aiScore++;updatePongUI();resetBall(true);} else if(pong.ballX>canvas.width){pong.playerScore++;updatePongUI();resetBall(false);}
+  const aiCenter=pong.aiY+40;const diff=pong.ballY-aiCenter;const maxAI=clamp(2+pong.playerScore*0.1,1,4);if(Math.abs(diff)>5){pong.aiY+=Math.sign(diff)*Math.min(maxAI,Math.abs(diff));}
+  if(pong.playerScore>=pong.maxScore||pong.aiScore>=pong.maxScore){const winner=pong.playerScore>=pong.maxScore?'Toi':'IA';document.getElementById('pong-status').textContent=`${winner} a gagné ! (${pong.playerScore}-${pong.aiScore})`;pongRunning=false;return;}
+  window._pongRAF=requestAnimationFrame(pongLoop);
+}
+
+/* ---------------- SNAKE ---------------- */
+let snake={},snakeRunning=false;
+function initSnake(reset=false){
+  stopAll();
+  const canvas=document.getElementById('snakeCanvas');
+  fitCanvas(canvas,0.9,0.9);
+  const ctx=canvas.getContext('2d');
+
+  if(reset||!snake.initialized){
+    snake={cells:[{x:5,y:5}],dir:'right',nextDir:'right',score:0,food:{x:0,y:0},cellSize:20,rows:Math.floor(canvas.height/20),cols:Math.floor(canvas.width/20),speed:150,initialized:true}; // vitesse réglable ici
+    placeFood();
+  }
+
+  snakeRunning=true;
+  document.getElementById('snake-score').textContent=snake.score;
+
+  document.onkeydown=e=>{
+    if(e.key==='ArrowUp'&&snake.dir!=='down')snake.nextDir='up';
+    if(e.key==='ArrowDown'&&snake.dir!=='up')snake.nextDir='down';
+    if(e.key==='ArrowLeft'&&snake.dir!=='right')snake.nextDir='left';
+    if(e.key==='ArrowRight'&&snake.dir!=='left')snake.nextDir='right';
+  };
+
+  function gameStep(){
+    if(!snakeRunning) return;
+    snake.dir=snake.nextDir;
+    const head={...snake.cells[0]};
+    if(snake.dir==='up') head.y--;
+    if(snake.dir==='down') head.y++;
+    if(snake.dir==='left') head.x--;
+    if(snake.dir==='right') head.x++;
+    if(head.x<0||head.x>=snake.cols||head.y<0||head.y>=snake.rows||snake.cells.some(c=>c.x===head.x&&c.y===head.y)){snakeRunning=false;return;}
+    snake.cells.unshift(head);
+    if(head.x===snake.food.x && head.y===snake.food.y){snake.score++;document.getElementById('snake-score').textContent=snake.score;placeFood();}
+    else snake.cells.pop();
+    ctx.fillStyle='#111';ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='#0f0';snake.cells.forEach(c=>ctx.fillRect(c.x*snake.cellSize,c.y*snake.cellSize,snake.cellSize,snake.cellSize));
+    ctx.fillStyle='#f00';ctx.fillRect(snake.food.x*snake.cellSize,snake.food.y*snake.cellSize,snake.cellSize,snake.cellSize);
+  }
+
+  window._snakeInterval=setInterval(gameStep,snake.speed);
+}
+function placeFood(){let x=Math.floor(Math.random()*snake.cols);let y=Math.floor(Math.random()*snake.rows);while(snake.cells.some(c=>c.x===x&&c.y===y)){x=Math.floor(Math.random()*snake.cols);y=Math.floor(Math.random()*snake.rows);}snake.food={x,y};}
+
+/* ---------------- MEMORY ---------------- */
+let memory={};
+function initMemory(reset=false){
+  stopAll();memory={attempts:0,matches:0,first:null,second:null,lock:false};
+  document.getElementById('mem-attempts').textContent=0;document.getElementById('mem-matches').textContent=0;document.getElementById('mem-status').textContent='';
+  const grid=document.getElementById('memoryGrid');grid.innerHTML='';
+  const base=['🍎','🍌','🍇','🍓','🍒','🍑','🍍','🥝','🥥','🍉']; let arr=base.concat(base);arr.sort(()=>Math.random()-0.5);
+  arr.forEach(sym=>{
+    const card=document.createElement('div');card.className='mem-card';card.dataset.sym=sym;card.textContent='';
+    card.onclick=()=>{
+      if(memory.lock||card.textContent!==''||card===memory.first) return;
+      card.textContent=sym;
+      if(!memory.first){memory.first=card;}else{memory.second=card;memory.lock=true;memory.attempts++;document.getElementById('mem-attempts').textContent=memory.attempts;
+        if(memory.first.dataset.sym===memory.second.dataset.sym){memory.matches++;document.getElementById('mem-matches').textContent=memory.matches;memory.first=null;memory.second=null;memory.lock=false;if(memory.matches===10){document.getElementById('mem-status').textContent='🎉 Vous avez gagné !';}}
+        else{setTimeout(()=>{memory.first.textContent='';memory.second.textContent='';memory.first=null;memory.second=null;memory.lock=false;},800);}
+      }
+    };
+    grid.appendChild(card);
+  });
+}
+
+/* ---------------- UTIL FUNCTIONS ---------------- */
+function clamp(v,min,max){return v<min?min:v>max?max:v;}
+function fitCanvas(canvas,w,h){canvas.width=window.innerWidth*w;canvas.height=window.innerHeight*h;}
+</script>
+
+
+    <script>
+const iframeLinks = {
+  1: "https://zv1y2i8p.play.gamezop.com/g/SkhljT2fdgb",
+  2: "https://zv1y2i8p.play.gamezop.com/g/UCS62KJ8c",
+  3: "https://zv1y2i8p.play.gamezop.com/g/Skz4pzkDqyX",
+  4: "https://zv1y2i8p.play.gamezop.com/g/yVywAGBQ6",
+  5: "https://zv1y2i8p.play.gamezop.com/g/hgempP8Sc",
+  6: "https://zv1y2i8p.play.gamezop.com/g/H1Wzaf1wqyQ",
+  7: "https://zv1y2i8p.play.gamezop.com/g/BkdJhTX50B"
+};
+
+function openIframeGame(id) {
+  document.getElementById("iframeViewer").src = iframeLinks[id];
+  document.getElementById("iframeOverlay").style.display = "flex";
+}
+
+function closeIframeGame() {
+  document.getElementById("iframeOverlay").style.display = "none";
+  document.getElementById("iframeViewer").src = "";
+}
+
+function toggleDownload(btn){
+  const box = btn.parentElement;
+  const menu = box.querySelector('.download-options');
+  menu.style.display = (menu.style.display === "block") ? "none" : "block";
+}
+
+// Fermer si on clique ailleurs
+document.addEventListener("click", function(e){
+  document.querySelectorAll('.download-options').forEach(menu=>{
+    if(!menu.parentElement.contains(e.target)){
+      menu.style.display="none";
+    }
+  });
+});
+</script>
+</div>
+<footer>
+    <p>&copy; 2026 MLG-XGame by MLG-Xtech - Tous droits réservés</p>
+  </footer>
+
+</body>
+  </html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeux en ligne | MLG BN GameZone</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#111;
+  color:#fff;
+}
+
+h1{
+  text-align:center;
+  padding:20px;
+  font-size:32px;
+  background:linear-gradient(90deg,#9900ff,#00d8ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 10px #9900ff;
+}
+
+.search-box{
+  text-align:center;
+  margin:10px;
+}
+.search-box input{
+  width:90%;
+  max-width:400px;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  outline:none;
+}
+
+.categories{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding:10px;
+}
+.categories button{
+  background:#9900ff;
+  color:white;
+  border:none;
+  border-radius:10px;
+  padding:8px 18px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.categories button:hover{
+  background:#00d8ff;
+}
+
+.games{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:15px;
+  padding:15px;
+}
+
+.game-card{
+  background:#1a1a2e;
+  border-radius:12px;
+  overflow:hidden;
+  text-align:center;
+}
+.game-card img{
+  width:100%;
+  height:100px;
+  object-fit:cover;
+}
+.game-card h4{
+  margin:5px;
+  font-size:14px;
+}
+.game-card button{
+  margin:8px;
+  padding:6px;
+  width:80%;
+  border:none;
+  border-radius:8px;
+  background:linear-gradient(90deg,#9900ff,#00d8ff);
+  color:white;
+  cursor:pointer;
+}
+
+/* PLAYER */
+#player{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000;
+  z-index:999;
+}
+#player iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+#closePlayer{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:red;
+  color:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎮 Jeux en ligne – MLG BN GameZone</h1>
+
+<div class="search-box">
+  <input type="text" id="search" placeholder="🔍 Rechercher un jeu..." onkeyup="searchGame()">
+</div>
+
+<div class="categories">
+  <button onclick="filter('Tous')">🔥 Tous</button>
+  <button onclick="filter('Populaires')">🔥 Populaires</button>
+  <button onclick="filter('Fun')">😄 Fun</button>
+  <button onclick="filter('Course')">🏎 Course</button>
+  <button onclick="filter('Sport')">⚽ Sport</button>
+  <button onclick="filter('Puzzle')">🧠 Puzzle</button>
+  <button onclick="filter('Arcade')">🕹 Arcade</button>
+  <button onclick="filter('Reflexion')">🎯 Réflexion</button>
+  <button onclick="filter('Casual')">👶 Casual</button>
+</div>
+
+<div class="games" id="games"></div>
+
+<!-- PLAYER -->
+<div id="player">
+  <button id="closePlayer" onclick="closeGame()">❌ Fermer</button>
+  <iframe id="gameFrame"></iframe>
+</div>
+
+<script>
+const games = [
+ {name:"Jeu 1",cat:"Fun",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/0c89181b9cfe4897afa41b0f94385da9/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 2",cat:"Arcade",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/0ea7b7e7316a47c38ac5c98ddd42ec4a/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 3",cat:"Sport",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/cd71a6d56b514239b279f07f7cb7694f/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 4",cat:"Puzzle",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/0b18452cd7844e308b726bf05034fac2/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 5",cat:"Casual",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/d0b8e5ba257d4f888738a7ec722443f1/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 6",cat:"Fun",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/5ca38504001d4177bce9e5651d267a5d/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 7",cat:"Arcade",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/4625c660923c42b8a5c8e4d2fbdc98ee/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 8",cat:"Sport",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/57de0fa8b9fb4df783e7eb8248ac5e5a/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 9",cat:"Puzzle",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/c13ee9c06edc4f0a8d7f6f291a7c13d8/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 10",cat:"Casual",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/fbd63068e7fe4c7b8d2f977390db446f/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 11",cat:"Fun",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/1b392a6ff2514ce48a70c90b349e5de5/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 12",cat:"Arcade",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/1135d8c4c0ee453895b0b0eeececbb92/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 13",cat:"Sport",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/63d4d52b56da44b1acaf2c957ee3d04f/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 14",cat:"Puzzle",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/e5dcd09e91004a5c8d1b7d473a572bcf/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 15",cat:"Casual",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/761169e0288b433f8f8ddcd27da627e5/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 16",cat:"Fun",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/80ddf44c832b44d69d72392d9453ca00/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 17",cat:"Arcade",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/212dcfed3c2b4568b0069fcc346ad421/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 18",cat:"Sport",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/ba08d794f5c84775b848781e70497849/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 19",cat:"Puzzle",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/60cc69e078184c63bf3568d975c348a4/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 20",cat:"Casual",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/7a83d41c26c54898892c807492494f21/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 21",cat:"Fun",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/ee57ac72ac07468cbefcfdde8ed90f12/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 22",cat:"Arcade",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/f618546bbe6a42b4850156aebb8c202e/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 23",cat:"Sport",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/b44c79264a104857b02063703691ec58/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 24",cat:"Puzzle",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/015cc016b4f04be28f8593e14c70ccef/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"},
+ {name:"Jeu 25",cat:"Casual",img:"https://img.icons8.com/emoji/256/video-game-emoji.png",url:"https://html5.gamedistribution.com/b51341f2f9ab4bc09b23312b5bff30cb/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}"}
+];
+
+
+const container = document.getElementById("games");
+
+function render(list){
+  container.innerHTML="";
+  list.forEach(g=>{
+    container.innerHTML += `
+      <div class="game-card">
+        <img src="${g.img}">
+        <h4>${g.name}</h4>
+        <button onclick="play('${g.url}')">▶️ Jouer</button>
+      </div>`;
+  });
+}
+render(games);
+
+function filter(cat){
+  if(cat==="Tous") render(games);
+  else render(games.filter(g=>g.cat===cat));
+}
+
+function searchGame(){
+  const v = search.value.toLowerCase();
+  render(games.filter(g=>g.name.toLowerCase().includes(v)));
+}
+
+function play(url){
+  document.getElementById("player").style.display="block";
+  document.getElementById("gameFrame").src=url;
+}
+function closeGame(){
+  document.getElementById("player").style.display="none";
+  document.getElementById("gameFrame").src="";
+}
+</script>
+
+</body>
+</html>

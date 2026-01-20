@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Applications | MLG-XGame</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: #00d8ff;
+  margin: 0;
+}
+
+/* TITRES */
+h1, h2, h3 { text-align: center; margin: 10px 0; color: #ffffff; }
+h1 {
+  font-size: 30px;
+  text-shadow: 0 0 10px #9900ff;
+  color: #9900ff;
+}
+
+/* BOUTONS CATEGORIES */
+.bouton-cadre{
+  display: flex;
+  font-weight: bold;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px;
+}
+.bouton {
+  border-radius: 10px;
+  background: #9900ff;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px 25px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s;
+}
+.bouton:hover {
+  transform: scale(1.05);
+  color: #00d8ff;
+  box-shadow: 0 0 15px #00d8ff;
+}
+
+/* GRANDS CADRES APPLICATIONS POPULAIRES */
+.app-cadre {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 15px;
+  padding: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.app {
+  position: relative;
+  border-radius: 15px;
+  background: #1a0a3e;
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-width: 300px;
+  height: 140px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.app:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #9900ff;
+}
+.app img { width: 100%; height: 100%; object-fit: cover; }
+
+/* INFO APP grands cadres */
+.app-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(10,10,26,0.9);
+  padding: 8px;
+  box-sizing: border-box;
+}
+.app-info h4 { margin: 2px 0; font-size: 14px; color: #9900ff; }
+.app-info p { margin: 2px 0 6px; font-size: 11px; color: #ddd; }
+
+/* BOUTON TELECHARGER */
+.btn-telecharger {
+  display: block;
+  text-align: center;
+  background: linear-gradient(90deg,#9900ff,#00d8ff);
+  color: white;
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-telecharger:active { transform: scale(0.95); }
+
+/* MINI-CADRES APPLICATIONS PAR CATEGORIE */
+.category-app {
+  position: relative;
+  border-radius: 10px;
+  background: #1a1a2e;
+  width: 120px;
+  height: 150px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+  color: #00d8ff;
+  font-size: 11px;
+}
+.category-app img { width: 100%; height: 100%; object-fit: cover; }
+.category-app .app-info-mini {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(10,10,26,0.8);
+  padding: 5px;
+  box-sizing: border-box;
+}
+.category-app .app-info-mini h4 { margin: 2px 0; font-size: 12px; color: #9900ff; }
+.category-app .app-info-mini p { margin: 2px 0 4px; font-size: 9px; color: #ddd; }
+.category-app .download-options a.btn-telecharger {
+  font-size: 10px;
+  padding: 4px 5px;
+  display: block;
+  text-align: center;
+  background:#00ff;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-top: 2px;
+}
+
+/* cacher scrollbar horizontal */
+.app-cadre::-webkit-scrollbar,
+.bouton-cadre::-webkit-scrollbar { display: none; }
+.app-cadre { scrollbar-width: none; -ms-overflow-style: none; }
+
+#categoryApps {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 12px;
+  padding: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.download-options {
+  display: none;
+  margin-top: 5px;
+}
+
+.download-options.show {
+  display: block;
+}
+footer {
+  text-align: center;
+  background-color: #111;
+  padding: 10px;
+  font-size: 14px;
+  color: white; 
+  }
+</style>
+</head>
+<body>
+
+<h1>📱 Applications MLG-XGame</h1>
+
+<h2>🔥 Applications Populaires</h2>
+
+<div class="app-cadre" id="popularApps"></div>
+
+<h3>🔍 Rechercher une application</h3>
+<div style="text-align:center; margin-bottom:15px;">
+  <input type="text" id="searchInput" placeholder="Tapez le nom de l'application..." 
+         style="width:80%; max-width:400px; padding:8px; border-radius:8px; border:none; font-size:14px;">
+</div>
+
+<h3>Nos Catégories</h3>
+<div class="bouton-cadre">
+  <div class="bouton" onclick="filterCategory('Gaming')">🎮 Gaming</div>
+  <div class="bouton" onclick="filterCategory('Utilitaire')">🛠 Utilitaires</div>
+  <div class="bouton" onclick="filterCategory('Internet')">🌐 Internet</div>
+  <div class="bouton" onclick="filterCategory('Musique')">🎵 Musique</div>
+  <div class="bouton" onclick="filterCategory('Education')">📚 Education</div>
+  <div class="bouton" onclick="filterCategory('Communication')">💬 Communication</div>
+  <div class="bouton" onclick="filterCategory('Productivité')">🧠 Productivité</div>
+  <div class="bouton" onclick="filterCategory('Divertissement')">🎭 Divertissement</div>
+</div>
+
+<h2>📦 Toutes les applications</h2>
+<div class="app-cadre" id="categoryApps"></div>
+
+<h2>🎯 Applications de la catégorie sélectionnée</h2>
+<div class="app-cadre" id="filteredCategory"></div>
+
+<script>
+// Liste des applications
+const apps = [
+
+/* 🎮 GAMING */
+{
+  nom:"PPSSPP Gold",
+  categorie:"Gaming",
+  desc:"Émulateur PSP performant.",
+  img:"https://via.placeholder.com/120x150/9900ff/ffffff?text=PPSSPP",
+  playstore:"https://play.google.com/store/apps/details?id=org.ppsspp.ppssppgold",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/ppsspp/download"
+},
+{
+  nom:"DraStic DS",
+  categorie:"Gaming",
+  desc:"Émulateur Nintendo DS.",
+  img:"https://via.placeholder.com/120x150/9900ff/ffffff?text=DraStic",
+  playstore:"https://play.google.com/store/apps/details?id=com.dsemu.drastic",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/drastic-ds-emulator/download"
+},
+{
+  nom:"Game Booster",
+  categorie:"Gaming",
+  desc:"Optimisation des performances gaming.",
+  img:"https://via.placeholder.com/120x150/9900ff/ffffff?text=Booster",
+  playstore:"https://play.google.com/store/apps/details?id=com.g19mobile.gamebooster",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/game-booster/download"
+},
+{
+  nom:"Discord",
+  categorie:"Gaming",
+  desc:"Chat vocal et texte pour gamers.",
+  img:"https://via.placeholder.com/120x150/5865f2/ffffff?text=Discord",
+  playstore:"https://play.google.com/store/apps/details?id=com.discord",
+  appstore:"https://apps.apple.com/app/discord-chat-talk-hangout/id985746746",
+  apk:"https://www.malavida.com/fr/soft/discord/download"
+},
+
+/* 🛠 UTILITAIRE */
+{
+  nom:"ZArchiver",
+  categorie:"Utilitaire",
+  desc:"Gestionnaire d’archives ZIP, RAR, etc.",
+  img:"https://via.placeholder.com/120x150/00d8ff/ffffff?text=ZArchiver",
+  playstore:"https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/zarchiver/download"
+},
+{
+  nom:"Files by Google",
+  categorie:"Utilitaire",
+  desc:"Nettoyage et gestion de fichiers.",
+  img:"https://via.placeholder.com/120x150/00d8ff/ffffff?text=Files",
+  playstore:"https://play.google.com/store/apps/details?id=com.google.android.apps.nbu.files",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/files-by-google/download"
+},
+{
+  nom:"CPU-Z",
+  categorie:"Utilitaire",
+  desc:"Infos complètes sur le téléphone.",
+  img:"https://via.placeholder.com/120x150/00d8ff/ffffff?text=CPU-Z",
+  playstore:"https://play.google.com/store/apps/details?id=com.cpuid.cpu_z",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/cpu-z-android/download"
+},
+
+/* 🌐 INTERNET */
+{
+  nom:"Google Chrome",
+  categorie:"Internet",
+  desc:"Navigateur rapide et sécurisé.",
+  img:"https://via.placeholder.com/120x150/ffcc00/ffffff?text=Chrome",
+  playstore:"https://play.google.com/store/apps/details?id=com.android.chrome",
+  appstore:"https://apps.apple.com/app/google-chrome/id535886823",
+  apk:"https://www.malavida.com/fr/soft/google-chrome/download"
+},
+{
+  nom:"Firefox",
+  categorie:"Internet",
+  desc:"Navigateur open-source.",
+  img:"https://via.placeholder.com/120x150/ff6600/ffffff?text=Firefox",
+  playstore:"https://play.google.com/store/apps/details?id=org.mozilla.firefox",
+  appstore:"https://apps.apple.com/app/firefox-private-safe-browser/id989804926",
+  apk:"https://www.malavida.com/fr/soft/firefox-android/download"
+},
+
+/* 🎵 MUSIQUE */
+{
+  nom:"Spotify Lite",
+  categorie:"Musique",
+  desc:"Musique légère et rapide.",
+  img:"https://via.placeholder.com/120x150/1db954/ffffff?text=Spotify",
+  playstore:"https://play.google.com/store/apps/details?id=com.spotify.lite",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/spotify-lite/download"
+},
+{
+  nom:"SoundCloud",
+  categorie:"Musique",
+  desc:"Découvrir et partager de la musique.",
+  img:"https://via.placeholder.com/120x150/ff5500/ffffff?text=SoundCloud",
+  playstore:"https://play.google.com/store/apps/details?id=com.soundcloud.android",
+  appstore:"https://apps.apple.com/app/soundcloud-music-audio/id336353151",
+  apk:"https://www.malavida.com/fr/soft/soundcloud/download"
+},
+
+/* 📚 ÉDUCATION */
+{
+  nom:"Duolingo",
+  categorie:"Education",
+  desc:"Apprendre les langues facilement.",
+  img:"https://via.placeholder.com/120x150/58cc02/ffffff?text=Duolingo",
+  playstore:"https://play.google.com/store/apps/details?id=com.duolingo",
+  appstore:"https://apps.apple.com/app/duolingo-language-lessons/id570060128",
+  apk:"https://www.malavida.com/fr/soft/duolingo/download"
+},
+{
+  nom:"Khan Academy",
+  categorie:"Education",
+  desc:"Apprentissage gratuit.",
+  img:"https://via.placeholder.com/120x150/14bf96/ffffff?text=Khan",
+  playstore:"https://play.google.com/store/apps/details?id=org.khanacademy.android",
+  appstore:"https://apps.apple.com/app/khan-academy/id469863705",
+  apk:"https://www.malavida.com/fr/soft/khan-academy/download"
+},
+
+/* 🎭 DIVERTISSEMENT */
+{
+  nom:"YouTube",
+  categorie:"Divertissement",
+  desc:"Regarder et partager des vidéos.",
+  img:"https://via.placeholder.com/120x150/ff0000/ffffff?text=YouTube",
+  playstore:"https://play.google.com/store/apps/details?id=com.google.android.youtube",
+  appstore:"https://apps.apple.com/app/youtube/id544007664",
+  apk:"https://www.malavida.com/fr/soft/youtube/download"
+},
+{
+  nom:"TikTok",
+  categorie:"Divertissement",
+  desc:"Vidéos courtes tendances.",
+  img:"https://via.placeholder.com/120x150/000000/ffffff?text=TikTok",
+  playstore:"https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically",
+  appstore:"https://apps.apple.com/app/tiktok/id835599320",
+  apk:"https://www.malavida.com/fr/soft/tiktok/download"
+},
+{
+  nom:"Netflix",
+  categorie:"Divertissement",
+  desc:"Films et séries en streaming.",
+  img:"https://via.placeholder.com/120x150/e50914/ffffff?text=Netflix",
+  playstore:"https://play.google.com/store/apps/details?id=com.netflix.mediaclient",
+  appstore:"https://apps.apple.com/app/netflix/id363590051",
+  apk:"https://www.malavida.com/fr/soft/netflix/download"
+},
+
+/* 💬 COMMUNICATION */
+{
+  nom:"WhatsApp",
+  categorie:"Communication",
+  desc:"Messagerie rapide.",
+  img:"https://via.placeholder.com/120x150/25d366/ffffff?text=WhatsApp",
+  playstore:"https://play.google.com/store/apps/details?id=com.whatsapp",
+  appstore:"https://apps.apple.com/app/whatsapp-messenger/id310633997",
+  apk:"https://www.malavida.com/fr/soft/whatsapp/download"
+},
+{
+  nom:"Telegram",
+  categorie:"Communication",
+  desc:"Messagerie sécurisée.",
+  img:"https://via.placeholder.com/120x150/0088cc/ffffff?text=Telegram",
+  playstore:"https://play.google.com/store/apps/details?id=org.telegram.messenger",
+  appstore:"https://apps.apple.com/app/telegram-messenger/id686449807",
+  apk:"https://www.malavida.com/fr/soft/telegram/download"
+},
+{
+  nom:"Messenger",
+  categorie:"Communication",
+  desc:"Messagerie Facebook.",
+  img:"https://via.placeholder.com/120x150/006aff/ffffff?text=Messenger",
+  playstore:"https://play.google.com/store/apps/details?id=com.facebook.orca",
+  appstore:"https://apps.apple.com/app/messenger/id454951937",
+  apk:"https://www.malavida.com/fr/soft/facebook-messenger/download"
+},
+
+/* 🧠 PRODUCTIVITÉ */
+{
+  nom:"Canva",
+  categorie:"Productivité",
+  desc:"Créer des designs facilement.",
+  img:"https://via.placeholder.com/120x150/00c4cc/ffffff?text=Canva",
+  playstore:"https://play.google.com/store/apps/details?id=com.canva.editor",
+  appstore:"https://apps.apple.com/app/canva/id897446215",
+  apk:"https://www.malavida.com/fr/soft/canva/download"
+},
+{
+  nom:"Google Docs",
+  categorie:"Productivité",
+  desc:"Éditeur de documents.",
+  img:"https://via.placeholder.com/120x150/4285f4/ffffff?text=Docs",
+  playstore:"https://play.google.com/store/apps/details?id=com.google.android.apps.docs.editors.docs",
+  appstore:"https://apps.apple.com/app/google-docs/id842842640",
+  apk:"https://www.malavida.com/fr/soft/google-docs/download"
+},
+/* ===== LOT 2 : 30 NOUVELLES APPLIS ===== */
+
+{
+  nom:"RetroArch",
+  categorie:"Gaming",
+  desc:"Émulateur multi-consoles.",
+  img:"https://via.placeholder.com/120x150/9900ff/ffffff?text=RetroArch",
+  playstore:"https://play.google.com/store/apps/details?id=com.retroarch",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/retroarch/download"
+},
+{
+  nom:"HappyMod",
+  categorie:"Gaming",
+  desc:"Mods pour jeux Android.",
+  img:"https://via.placeholder.com/120x150/9900ff/ffffff?text=HappyMod",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/happymod/download"
+},
+{
+  nom:"Steam",
+  categorie:"Gaming",
+  desc:"Plateforme gaming officielle.",
+  img:"https://via.placeholder.com/120x150/1b2838/ffffff?text=Steam",
+  playstore:"https://play.google.com/store/apps/details?id=com.valvesoftware.android.steam.community",
+  appstore:"https://apps.apple.com/app/steam-mobile/id495369748",
+  apk:"https://www.malavida.com/fr/soft/steam-android/download"
+},
+
+{
+  nom:"RAR",
+  categorie:"Utilitaire",
+  desc:"Compression et extraction.",
+  img:"https://via.placeholder.com/120x150/cc0000/ffffff?text=RAR",
+  playstore:"https://play.google.com/store/apps/details?id=com.rarlab.rar",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/rar-android/download"
+},
+{
+  nom:"SD Maid",
+  categorie:"Utilitaire",
+  desc:"Nettoyage avancé.",
+  img:"https://via.placeholder.com/120x150/00d8ff/ffffff?text=SD+Maid",
+  playstore:"https://play.google.com/store/apps/details?id=eu.thedarken.sdm",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/sd-maid/download"
+},
+{
+  nom:"AVG Cleaner",
+  categorie:"Utilitaire",
+  desc:"Optimisation du téléphone.",
+  img:"https://via.placeholder.com/120x150/00d8ff/ffffff?text=AVG",
+  playstore:"https://play.google.com/store/apps/details?id=com.avg.cleaner",
+  appstore:"https://apps.apple.com/app/avg-cleaner/id1292119639",
+  apk:"https://www.malavida.com/fr/soft/avg-cleaner/download"
+},
+
+{
+  nom:"Brave Browser",
+  categorie:"Internet",
+  desc:"Navigateur rapide et privé.",
+  img:"https://via.placeholder.com/120x150/fb542b/ffffff?text=Brave",
+  playstore:"https://play.google.com/store/apps/details?id=com.brave.browser",
+  appstore:"https://apps.apple.com/app/brave-private-browser/id1052879175",
+  apk:"https://www.malavida.com/fr/soft/brave-browser/download"
+},
+{
+  nom:"UC Browser",
+  categorie:"Internet",
+  desc:"Navigateur léger.",
+  img:"https://via.placeholder.com/120x150/ff8800/ffffff?text=UC",
+  playstore:"https://play.google.com/store/apps/details?id=com.UCMobile.intl",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/uc-browser/download"
+},
+{
+  nom:"Tor Browser",
+  categorie:"Internet",
+  desc:"Navigation anonyme.",
+  img:"https://via.placeholder.com/120x150/7d4698/ffffff?text=Tor",
+  playstore:"https://play.google.com/store/apps/details?id=org.torproject.torbrowser",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/tor-browser-android/download"
+},
+
+{
+  nom:"Shazam",
+  categorie:"Musique",
+  desc:"Identifier la musique.",
+  img:"https://via.placeholder.com/120x150/0088ff/ffffff?text=Shazam",
+  playstore:"https://play.google.com/store/apps/details?id=com.shazam.android",
+  appstore:"https://apps.apple.com/app/shazam/id284993459",
+  apk:"https://www.malavida.com/fr/soft/shazam/download"
+},
+{
+  nom:"Deezer",
+  categorie:"Musique",
+  desc:"Streaming musical.",
+  img:"https://via.placeholder.com/120x150/feaa2d/ffffff?text=Deezer",
+  playstore:"https://play.google.com/store/apps/details?id=deezer.android.app",
+  appstore:"https://apps.apple.com/app/deezer/id292738169",
+  apk:"https://www.malavida.com/fr/soft/deezer/download"
+},
+{
+  nom:"Poweramp",
+  categorie:"Musique",
+  desc:"Lecteur audio puissant.",
+  img:"https://via.placeholder.com/120x150/ff0055/ffffff?text=Poweramp",
+  playstore:"https://play.google.com/store/apps/details?id=com.maxmpz.audioplayer",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/poweramp/download"
+},
+
+{
+  nom:"Coursera",
+  categorie:"Education",
+  desc:"Cours en ligne certifiés.",
+  img:"https://via.placeholder.com/120x150/0056d2/ffffff?text=Coursera",
+  playstore:"https://play.google.com/store/apps/details?id=org.coursera.android",
+  appstore:"https://apps.apple.com/app/coursera/id736535961",
+  apk:"https://www.malavida.com/fr/soft/coursera/download"
+},
+{
+  nom:"Photomath",
+  categorie:"Education",
+  desc:"Résolution de maths.",
+  img:"https://via.placeholder.com/120x150/00c853/ffffff?text=Photomath",
+  playstore:"https://play.google.com/store/apps/details?id=com.microblink.photomath",
+  appstore:"https://apps.apple.com/app/photomath/id919087726",
+  apk:"https://www.malavida.com/fr/soft/photomath/download"
+},
+{
+  nom:"Wikipedia",
+  categorie:"Education",
+  desc:"Encyclopédie libre.",
+  img:"https://via.placeholder.com/120x150/000000/ffffff?text=Wiki",
+  playstore:"https://play.google.com/store/apps/details?id=org.wikipedia",
+  appstore:"https://apps.apple.com/app/wikipedia/id324715238",
+  apk:"https://www.malavida.com/fr/soft/wikipedia/download"
+},
+
+{
+  nom:"MX Player",
+  categorie:"Divertissement",
+  desc:"Lecteur vidéo populaire.",
+  img:"https://via.placeholder.com/120x150/007aff/ffffff?text=MX",
+  playstore:"https://play.google.com/store/apps/details?id=com.mxtech.videoplayer.ad",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/mx-player/download"
+},
+{
+  nom:"Prime Video",
+  categorie:"Divertissement",
+  desc:"Films et séries Amazon.",
+  img:"https://via.placeholder.com/120x150/00a8e1/ffffff?text=Prime",
+  playstore:"https://play.google.com/store/apps/details?id=com.amazon.avod.thirdpartyclient",
+  appstore:"https://apps.apple.com/app/amazon-prime-video/id545519333",
+  apk:"https://www.malavida.com/fr/soft/amazon-prime-video/download"
+},
+{
+  nom:"Twitch",
+  categorie:"Divertissement",
+  desc:"Streams gaming.",
+  img:"https://via.placeholder.com/120x150/9146ff/ffffff?text=Twitch",
+  playstore:"https://play.google.com/store/apps/details?id=tv.twitch.android.app",
+  appstore:"https://apps.apple.com/app/twitch/id460177396",
+  apk:"https://www.malavida.com/fr/soft/twitch/download"
+},
+
+{
+  nom:"Signal",
+  categorie:"Communication",
+  desc:"Messagerie sécurisée.",
+  img:"https://via.placeholder.com/120x150/3a76f0/ffffff?text=Signal",
+  playstore:"https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms",
+  appstore:"https://apps.apple.com/app/signal-private-messenger/id874139669",
+  apk:"https://www.malavida.com/fr/soft/signal/download"
+},
+{
+  nom:"Zoom",
+  categorie:"Communication",
+  desc:"Visioconférence.",
+  img:"https://via.placeholder.com/120x150/2d8cff/ffffff?text=Zoom",
+  playstore:"https://play.google.com/store/apps/details?id=us.zoom.videomeetings",
+  appstore:"https://apps.apple.com/app/zoom-one-platform/id546505307",
+  apk:"https://www.malavida.com/fr/soft/zoom/download"
+},
+{
+  nom:"Skype",
+  categorie:"Communication",
+  desc:"Appels vidéo.",
+  img:"https://via.placeholder.com/120x150/00aff0/ffffff?text=Skype",
+  playstore:"https://play.google.com/store/apps/details?id=com.skype.raider",
+  appstore:"https://apps.apple.com/app/skype-for-iphone/id304878510",
+  apk:"https://www.malavida.com/fr/soft/skype/download"
+},
+
+{
+  nom:"Microsoft Word",
+  categorie:"Productivité",
+  desc:"Traitement de texte.",
+  img:"https://via.placeholder.com/120x150/185abd/ffffff?text=Word",
+  playstore:"https://play.google.com/store/apps/details?id=com.microsoft.office.word",
+  appstore:"https://apps.apple.com/app/microsoft-word/id586447913",
+  apk:"https://www.malavida.com/fr/soft/microsoft-word/download"
+},
+{
+  nom:"Google Drive",
+  categorie:"Productivité",
+  desc:"Stockage cloud.",
+  img:"https://via.placeholder.com/120x150/0f9d58/ffffff?text=Drive",
+  playstore:"https://play.google.com/store/apps/details?id=com.google.android.apps.docs",
+  appstore:"https://apps.apple.com/app/google-drive/id507874739",
+  apk:"https://www.malavida.com/fr/soft/google-drive/download"
+},
+{
+  nom:"Evernote",
+  categorie:"Productivité",
+  desc:"Notes et organisation.",
+  img:"https://via.placeholder.com/120x150/2dbe60/ffffff?text=Evernote",
+  playstore:"https://play.google.com/store/apps/details?id=com.evernote",
+  appstore:"https://apps.apple.com/app/evernote-notes-organizer/id281796108",
+  apk:"https://www.malavida.com/fr/soft/evernote/download"
+},
+{
+  nom:"Discord",
+  categorie:"Communication",
+  desc:"Chat et appels pour gamers.",
+  img:"https://via.placeholder.com/120x150/7289da/ffffff?text=Discord",
+  playstore:"https://play.google.com/store/apps/details?id=com.discord",
+  appstore:"https://apps.apple.com/app/discord/id985746746",
+  apk:"https://www.malavida.com/fr/soft/discord/download"
+},
+{
+  nom:"Notion",
+  categorie:"Productivité",
+  desc:"Organisation et gestion.",
+  img:"https://via.placeholder.com/120x150/000000/ffffff?text=Notion",
+  playstore:"https://play.google.com/store/apps/details?id=notion.id",
+  appstore:"https://apps.apple.com/app/notion-notes-docs-tasks/id1232780281",
+  apk:"https://www.malavida.com/fr/soft/notion/download"
+},
+{
+  nom:"Adobe Acrobat Reader",
+  categorie:"Productivité",
+  desc:"Lire et éditer PDF.",
+  img:"https://via.placeholder.com/120x150/ff0000/ffffff?text=Acrobat",
+  playstore:"https://play.google.com/store/apps/details?id=com.adobe.reader",
+  appstore:"https://apps.apple.com/app/adobe-acrobat-reader-pdf/id469337564",
+  apk:"https://www.malavida.com/fr/soft/adobe-acrobat-reader/download"
+},
+{
+  nom:"Snapseed",
+  categorie:"Divertissement",
+  desc:"Éditeur photo pro.",
+  img:"https://via.placeholder.com/120x150/4285f4/ffffff?text=Snapseed",
+  playstore:"https://play.google.com/store/apps/details?id=com.niksoftware.snapseed",
+  appstore:"https://apps.apple.com/app/snapseed/id439438619",
+  apk:"https://www.malavida.com/fr/soft/snapseed/download"
+},
+{
+  nom:"PicsArt",
+  categorie:"Divertissement",
+  desc:"Retouche photo et vidéos.",
+  img:"https://via.placeholder.com/120x150/ff5c00/ffffff?text=PicsArt",
+  playstore:"https://play.google.com/store/apps/details?id=com.picsart.studio",
+  appstore:"https://apps.apple.com/app/picsart-photo-editor-video/id587366035",
+  apk:"https://www.malavida.com/fr/soft/picsart/download"
+},
+{
+  nom:"VSCO",
+  categorie:"Divertissement",
+  desc:"Filtre photo et caméra pro.",
+  img:"https://via.placeholder.com/120x150/000000/ffffff?text=VSCO",
+  playstore:"https://play.google.com/store/apps/details?id=com.vsco.cam",
+  appstore:"https://apps.apple.com/app/vsco/id588013838",
+  apk:"https://www.malavida.com/fr/soft/vsco/download"
+},
+{
+  nom:"Pocket",
+  categorie:"Education",
+  desc:"Lire plus tard les articles.",
+  img:"https://via.placeholder.com/120x150/ef4056/ffffff?text=Pocket",
+  playstore:"https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro",
+  appstore:"https://apps.apple.com/app/pocket-save-read-grow/id309601447",
+  apk:"https://www.malavida.com/fr/soft/pocket/download"
+},
+{
+  nom:"Kahoot!",
+  categorie:"Education",
+  desc:"Quiz et apprentissage ludique.",
+  img:"https://via.placeholder.com/120x150/ffcd00/ffffff?text=Kahoot",
+  playstore:"https://play.google.com/store/apps/details?id=no.mobitroll.kahoot.android",
+  appstore:"https://apps.apple.com/app/kahoot/id1131203560",
+  apk:"https://www.malavida.com/fr/soft/kahoot/download"
+},
+{
+  nom:"Feedly",
+  categorie:"Education",
+  desc:"Lecteur flux RSS.",
+  img:"https://via.placeholder.com/120x150/2bba55/ffffff?text=Feedly",
+  playstore:"https://play.google.com/store/apps/details?id=com.devhd.feedly",
+  appstore:"https://apps.apple.com/app/feedly/id396069556",
+  apk:"https://www.malavida.com/fr/soft/feedly/download"
+},
+{
+  nom:"Audible",
+  categorie:"Musique",
+  desc:"Livres audio.",
+  img:"https://via.placeholder.com/120x150/ff9900/ffffff?text=Audible",
+  playstore:"https://play.google.com/store/apps/details?id=com.audible.application",
+  appstore:"https://apps.apple.com/app/audible-audiobooks-podcasts/id379693831",
+  apk:"https://www.malavida.com/fr/soft/audible/download"
+},
+{
+  nom:"BandLab",
+  categorie:"Musique",
+  desc:"Créer et mixer de la musique.",
+  img:"https://via.placeholder.com/120x150/6a1b9a/ffffff?text=BandLab",
+  playstore:"https://play.google.com/store/apps/details?id=com.bandlab.bandlab",
+  appstore:"https://apps.apple.com/app/bandlab/id968585775",
+  apk:"https://www.malavida.com/fr/soft/bandlab/download"
+},
+{
+  nom:"WPS Office",
+  categorie:"Productivité",
+  desc:"Suite bureautique complète.",
+  img:"https://via.placeholder.com/120x150/f7b600/ffffff?text=WPS",
+  playstore:"https://play.google.com/store/apps/details?id=cn.wps.moffice_eng",
+  appstore:"https://apps.apple.com/app/wps-office/id1493131167",
+  apk:"https://www.malavida.com/fr/soft/wps-office/download"
+},
+{
+  nom:"Bitwarden",
+  categorie:"Utilitaire",
+  desc:"Gestionnaire de mots de passe.",
+  img:"https://via.placeholder.com/120x150/0d6efd/ffffff?text=Bitwarden",
+  playstore:"https://play.google.com/store/apps/details?id=com.bitwarden.mobile",
+  appstore:"https://apps.apple.com/app/bitwarden-password-manager/id1137397744",
+  apk:"https://www.malavida.com/fr/soft/bitwarden/download"
+},
+{
+  nom:"LastPass",
+  categorie:"Utilitaire",
+  desc:"Mots de passe sécurisés.",
+  img:"https://via.placeholder.com/120x150/f28b00/ffffff?text=LastPass",
+  playstore:"https://play.google.com/store/apps/details?id=com.lastpass.lpandroid",
+  appstore:"https://apps.apple.com/app/lastpass-password-manager/id324613447",
+  apk:"https://www.malavida.com/fr/soft/lastpass/download"
+},
+{
+  nom:"ProtonVPN",
+  categorie:"Internet",
+  desc:"VPN sécurisé gratuit.",
+  img:"https://via.placeholder.com/120x150/00bfff/ffffff?text=ProtonVPN",
+  playstore:"https://play.google.com/store/apps/details?id=ch.protonvpn.android",
+  appstore:"https://apps.apple.com/app/proton-vpn-fast-secure/id1437005085",
+  apk:"https://www.malavida.com/fr/soft/protonvpn/download"
+},
+{
+  nom:"NordVPN",
+  categorie:"Internet",
+  desc:"VPN premium sécurisé.",
+  img:"https://via.placeholder.com/120x150/0072ff/ffffff?text=NordVPN",
+  playstore:"https://play.google.com/store/apps/details?id=com.nordvpn.android",
+  appstore:"https://apps.apple.com/app/nordvpn-fast-secure-vpn/id905953485",
+  apk:"https://www.malavida.com/fr/soft/nordvpn/download"
+},
+{
+  nom:"Pocket Casts",
+  categorie:"Musique",
+  desc:"Podcast manager.",
+  img:"https://via.placeholder.com/120x150/ff6f00/ffffff?text=Pocket+Casts",
+  playstore:"https://play.google.com/store/apps/details?id=au.com.shiftyjelly.pocketcasts",
+  appstore:"https://apps.apple.com/app/pocket-casts/id414834813",
+  apk:"https://www.malavida.com/fr/soft/pocket-casts/download"
+},
+{
+  nom:"TuneIn Radio",
+  categorie:"Musique",
+  desc:"Écoute radio du monde entier.",
+  img:"https://via.placeholder.com/120x150/007a99/ffffff?text=TuneIn",
+  playstore:"https://play.google.com/store/apps/details?id=com.tunein.player",
+  appstore:"https://apps.apple.com/app/tunein-radio/id418987775",
+  apk:"https://www.malavida.com/fr/soft/tunein-radio/download"
+},
+{
+  nom:"Figma",
+  categorie:"Productivité",
+  desc:"Design collaboratif.",
+  img:"https://via.placeholder.com/120x150/0acf83/ffffff?text=Figma",
+  playstore:"https://play.google.com/store/apps/details?id=com.figma.Desktop",
+  appstore:"https://apps.apple.com/app/figma/id1480812858",
+  apk:"https://www.malavida.com/fr/soft/figma/download"
+},
+{
+  nom:"Canva",
+  categorie:"Divertissement",
+  desc:"Graphisme et design facile.",
+  img:"https://via.placeholder.com/120x150/3f51b5/ffffff?text=Canva",
+  playstore:"https://play.google.com/store/apps/details?id=com.canva.editor",
+  appstore:"https://apps.apple.com/app/canva-graphic-design-video/id897446215",
+  apk:"https://www.malavida.com/fr/soft/canva/download"
+},
+{
+  nom:"TikTok",
+  categorie:"Divertissement",
+  desc:"Vidéos courtes et tendances.",
+  img:"https://via.placeholder.com/120x150/010101/ffffff?text=TikTok",
+  playstore:"https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically",
+  appstore:"https://apps.apple.com/app/tiktok/id835599320",
+  apk:"https://www.malavida.com/fr/soft/tiktok/download"
+},
+{
+  nom:"Netflix",
+  categorie:"Divertissement",
+  desc:"Films et séries en streaming.",
+  img:"https://via.placeholder.com/120x150/e50914/ffffff?text=Netflix",
+  playstore:"https://play.google.com/store/apps/details?id=com.netflix.mediaclient",
+  appstore:"https://apps.apple.com/app/netflix/id363590051",
+  apk:"https://www.malavida.com/fr/soft/netflix/download"
+},
+{
+  nom:"Google Keep",
+  categorie:"Productivité",
+  desc:"Notes rapides et listes.",
+  img:"https://via.placeholder.com/120x150/fff000/000000?text=Keep",
+  playstore:"https://play.google.com/store/apps/details?id=com.google.android.keep",
+  appstore:"https://apps.apple.com/app/google-keep-notes-and-lists/id1029207872",
+  apk:"https://www.malavida.com/fr/soft/google-keep/download"
+},
+{
+  nom:"Todoist",
+  categorie:"Productivité",
+  desc:"Gestionnaire de tâches.",
+  img:"https://via.placeholder.com/120x150/fa5744/ffffff?text=Todoist",
+  playstore:"https://play.google.com/store/apps/details?id=com.todoist",
+  appstore:"https://apps.apple.com/app/todoist-to-do-list-tasks/id572688855",
+  apk:"https://www.malavida.com/fr/soft/todoist/download"
+},
+{
+  nom:"Trello",
+  categorie:"Productivité",
+  desc:"Organisation visuelle.",
+  img:"https://via.placeholder.com/120x150/0079bf/ffffff?text=Trello",
+  playstore:"https://play.google.com/store/apps/details?id=com.trello",
+  appstore:"https://apps.apple.com/app/trello-organize-anything/id461504587",
+  apk:"https://www.malavida.com/fr/soft/trello/download"
+},
+{
+  nom:"Microsoft Excel",
+  categorie:"Productivité",
+  desc:"Tableur puissant.",
+  img:"https://via.placeholder.com/120x150/217346/ffffff?text=Excel",
+  playstore:"https://play.google.com/store/apps/details?id=com.microsoft.office.excel",
+  appstore:"https://apps.apple.com/app/microsoft-excel/id586683407",
+  apk:"https://www.malavida.com/fr/soft/microsoft-excel/download"
+},
+{
+  nom:"Google Sheets",
+  categorie:"Productivité",
+  desc:"Tableur cloud.",
+  img:"https://via.placeholder.com/120x150/0f9d58/ffffff?text=Sheets",
+  playstore:"https://play.google.com/store/apps/details?id=com.google.android.apps.docs.editors.sheets",
+  appstore:"https://apps.apple.com/app/google-sheets/id842849113",
+  apk:"https://www.malavida.com/fr/soft/google-sheets/download"
+},
+{
+  nom:"Google Docs",
+  categorie:"Productivité",
+  desc:"Traitement texte cloud.",
+  img:"https://via.placeholder.com/120x150/4285f4/ffffff?text=Docs",
+  playstore:"https://play.google.com/store/apps/details?id=com.google.android.apps.docs.editors.docs",
+  appstore:"https://apps.apple.com/app/google-docs/id842842640",
+  apk:"https://www.malavida.com/fr/soft/google-docs/download"
+},
+{
+  nom:"Skype for Business",
+  categorie:"Communication",
+  desc:"Appels professionnels.",
+  img:"https://via.placeholder.com/120x150/00aff0/ffffff?text=Skype+Biz",
+  playstore:"https://play.google.com/store/apps/details?id=com.microsoft.office.lync15",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/skype-for-business/download"
+},
+{
+  nom:"Spotify",
+  categorie:"Musique",
+  desc:"Streaming musical mondial.",
+  img:"https://via.placeholder.com/120x150/1db954/ffffff?text=Spotify",
+  playstore:"https://play.google.com/store/apps/details?id=com.spotify.music",
+  appstore:"https://apps.apple.com/app/spotify-music/id324684580",
+  apk:"https://www.malavida.com/fr/soft/spotify/download"
+},
+{
+  nom:"YouTube",
+  categorie:"Divertissement",
+  desc:"Vidéos en ligne.",
+  img:"https://via.placeholder.com/120x150/ff0000/ffffff?text=YouTube",
+  playstore:"https://play.google.com/store/apps/details?id=com.google.android.youtube",
+  appstore:"https://apps.apple.com/app/youtube-watch-listen-stream/id544007664",
+  apk:"https://www.malavida.com/fr/soft/youtube/download"
+},
+{
+  nom:"Messenger",
+  categorie:"Communication",
+  desc:"Messagerie instantanée Facebook.",
+  img:"https://via.placeholder.com/120x150/0084ff/ffffff?text=Messenger",
+  playstore:"https://play.google.com/store/apps/details?id=com.facebook.orca",
+  appstore:"https://apps.apple.com/app/messenger/id454638411",
+  apk:"https://www.malavida.com/fr/soft/messenger/download"
+},
+{
+  nom:"WhatsApp",
+  categorie:"Communication",
+  desc:"Messagerie simple et sécurisée.",
+  img:"https://via.placeholder.com/120x150/25d366/ffffff?text=WhatsApp",
+  playstore:"https://play.google.com/store/apps/details?id=com.whatsapp",
+  appstore:"https://apps.apple.com/app/whatsapp-messenger/id310633997",
+  apk:"https://www.malavida.com/fr/soft/whatsapp/download"
+},
+{
+  nom:"Instagram",
+  categorie:"Divertissement",
+  desc:"Partager photos et vidéos.",
+  img:"https://via.placeholder.com/120x150/e1306c/ffffff?text=Instagram",
+  playstore:"https://play.google.com/store/apps/details?id=com.instagram.android",
+  appstore:"https://apps.apple.com/app/instagram/id389801252",
+  apk:"https://www.malavida.com/fr/soft/instagram/download"
+},
+{
+  nom:"Facebook",
+  categorie:"Communication",
+  desc:"Réseau social mondial.",
+  img:"https://via.placeholder.com/120x150/1877f2/ffffff?text=Facebook",
+  playstore:"https://play.google.com/store/apps/details?id=com.facebook.katana",
+  appstore:"https://apps.apple.com/app/facebook/id284882215",
+  apk:"https://www.malavida.com/fr/soft/facebook/download"
+},
+{
+  nom:"Snapchat",
+  categorie:"Divertissement",
+  desc:"Messages éphémères.",
+  img:"https://via.placeholder.com/120x150/fffc00/000000?text=Snapchat",
+  playstore:"https://play.google.com/store/apps/details?id=com.snapchat.android",
+  appstore:"https://apps.apple.com/app/snapchat/id447188370",
+  apk:"https://www.malavida.com/fr/soft/snapchat/download"
+},
+{
+  nom:"TikTok Lite",
+  categorie:"Divertissement",
+  desc:"Version légère de TikTok.",
+  img:"https://via.placeholder.com/120x150/010101/ffffff?text=TikTok+Lite",
+  playstore:"https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically.go",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/tiktok-lite/download"
+},
+{
+  nom:"MX Player",
+  categorie:"Divertissement",
+  desc:"Lecteur vidéo puissant.",
+  img:"https://via.placeholder.com/120x150/000000/ffffff?text=MX+Player",
+  playstore:"https://play.google.com/store/apps/details?id=com.mxtech.videoplayer.ad",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/mx-player/download"
+},
+{
+  nom:"VLC",
+  categorie:"Divertissement",
+  desc:"Lecteur multimédia universel.",
+  img:"https://via.placeholder.com/120x150/ff6600/ffffff?text=VLC",
+  playstore:"https://play.google.com/store/apps/details?id=org.videolan.vlc",
+  appstore:"https://apps.apple.com/app/vlc-for-mobile/id650377962",
+  apk:"https://www.malavida.com/fr/soft/vlc/download"
+},
+{
+  nom:"Telegram X",
+  categorie:"Communication",
+  desc:"Alternative Telegram rapide.",
+  img:"https://via.placeholder.com/120x150/0088cc/ffffff?text=Telegram+X",
+  playstore:"https://play.google.com/store/apps/details?id=org.thunderdog.challegram",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/telegram-x/download"
+},
+{
+  nom:"Opera Mini",
+  categorie:"Internet",
+  desc:"Navigateur léger et rapide.",
+  img:"https://via.placeholder.com/120x150/ff1b2d/ffffff?text=Opera+Mini",
+  playstore:"https://play.google.com/store/apps/details?id=com.opera.mini.native",
+  appstore:"https://apps.apple.com/app/opera-mini-web-browser/id363729560",
+  apk:"https://www.malavida.com/fr/soft/opera-mini/download"
+},
+{
+  nom:"Firefox",
+  categorie:"Internet",
+  desc:"Navigateur rapide et sûr.",
+  img:"https://via.placeholder.com/120x150/ff9400/ffffff?text=Firefox",
+  playstore:"https://play.google.com/store/apps/details?id=org.mozilla.firefox",
+  appstore:"https://apps.apple.com/app/firefox-web-browser/id989804926",
+  apk:"https://www.malavida.com/fr/soft/firefox/download"
+},
+{
+  nom:"Procreate Pocket",
+  categorie:"Divertissement",
+  desc:"Dessins et illustrations.",
+  img:"https://via.placeholder.com/120x150/ff9500/ffffff?text=Procreate",
+  playstore:null,
+  appstore:"https://apps.apple.com/app/procreate-pocket/id916366645",
+  apk:null
+},
+{
+  nom:"Google Maps",
+  categorie:"Internet",
+  desc:"Navigation GPS et trafic.",
+  img:"https://via.placeholder.com/120x150/4285f4/ffffff?text=Maps",
+  playstore:"https://play.google.com/store/apps/details?id=com.google.android.apps.maps",
+  appstore:"https://apps.apple.com/app/google-maps-transit-food/id585027354",
+  apk:"https://www.malavida.com/fr/soft/google-maps/download"
+},
+{
+  nom:"Uber",
+  categorie:"Utilitaire",
+  desc:"Transport et taxi.",
+  img:"https://via.placeholder.com/120x150/000000/ffffff?text=Uber",
+  playstore:"https://play.google.com/store/apps/details?id=com.ubercab",
+  appstore:"https://apps.apple.com/app/uber/id368677368",
+  apk:"https://www.malavida.com/fr/soft/uber/download"
+},
+{
+  nom:"Airbnb",
+  categorie:"Utilitaire",
+  desc:"Réservation logements.",
+  img:"https://via.placeholder.com/120x150/ff5a5f/ffffff?text=Airbnb",
+  playstore:"https://play.google.com/store/apps/details?id=com.airbnb.android",
+  appstore:"https://apps.apple.com/app/airbnb/id401626263",
+  apk:"https://www.malavida.com/fr/soft/airbnb/download"
+},
+{
+  nom:"Duet Display",
+  categorie:"Productivité",
+  desc:"Transformer iPad en écran.",
+  img:"https://via.placeholder.com/120x150/ff0000/ffffff?text=Duet",
+  playstore:null,
+  appstore:"https://apps.apple.com/app/duet-display/id935754064",
+  apk:null
+},
+{
+  nom:"Slack",
+  categorie:"Communication",
+  desc:"Messagerie professionnelle.",
+  img:"https://via.placeholder.com/120x150/4a154b/ffffff?text=Slack",
+  playstore:"https://play.google.com/store/apps/details?id=com.Slack",
+  appstore:"https://apps.apple.com/app/slack/id618783545",
+  apk:"https://www.malavida.com/fr/soft/slack/download"
+},
+{
+  nom:"Zoom",
+  categorie:"Communication",
+  desc:"Vidéoconférence facile.",
+  img:"https://via.placeholder.com/120x150/2d8cff/ffffff?text=Zoom",
+  playstore:"https://play.google.com/store/apps/details?id=us.zoom.videomeetings",
+  appstore:"https://apps.apple.com/app/zoom-cloud-meetings/id546505307",
+  apk:"https://www.malavida.com/fr/soft/zoom/download"
+},
+{
+  nom:"Microsoft Word",
+  categorie:"Productivité",
+  desc:"Traitement texte puissant.",
+  img:"https://via.placeholder.com/120x150/2b579a/ffffff?text=Word",
+  playstore:"https://play.google.com/store/apps/details?id=com.microsoft.office.word",
+  appstore:"https://apps.apple.com/app/microsoft-word/id586447913",
+  apk:"https://www.malavida.com/fr/soft/microsoft-word/download"
+},
+{
+  nom:"Google Translate",
+  categorie:"Education",
+  desc:"Traduction instantanée.",
+  img:"https://via.placeholder.com/120x150/4285f4/ffffff?text=Translate",
+  playstore:"https://play.google.com/store/apps/details?id=com.google.android.apps.translate",
+  appstore:"https://apps.apple.com/app/google-translate/id414706506",
+  apk:"https://www.malavida.com/fr/soft/google-translate/download"
+},
+{
+  nom:"Microsoft PowerPoint",
+  categorie:"Productivité",
+  desc:"Présentation efficace.",
+  img:"https://via.placeholder.com/120x150/d24726/ffffff?text=PowerPoint",
+  playstore:"https://play.google.com/store/apps/details?id=com.microsoft.office.powerpoint",
+  appstore:"https://apps.apple.com/app/microsoft-powerpoint/id586449534",
+  apk:"https://www.malavida.com/fr/soft/microsoft-powerpoint/download"
+},
+{
+  nom:"Google Calendar",
+  categorie:"Productivité",
+  desc:"Calendrier et agenda.",
+  img:"https://via.placeholder.com/120x150/4285f4/ffffff?text=Calendar",
+  playstore:"https://play.google.com/store/apps/details?id=com.google.android.calendar",
+  appstore:"https://apps.apple.com/app/google-calendar/id909319292",
+  apk:"https://www.malavida.com/fr/soft/google-calendar/download"
+},
+{
+  nom:"Evernote",
+  categorie:"Productivité",
+  desc:"Prendre des notes et organiser.",
+  img:"https://via.placeholder.com/120x150/2dbe60/ffffff?text=Evernote",
+  playstore:"https://play.google.com/store/apps/details?id=com.evernote",
+  appstore:"https://apps.apple.com/app/evernote/id281796108",
+  apk:"https://www.malavida.com/fr/soft/evernote/download"
+},
+{
+  nom:"Shazam",
+  categorie:"Musique",
+  desc:"Identifier les chansons.",
+  img:"https://via.placeholder.com/120x150/0000ff/ffffff?text=Shazam",
+  playstore:"https://play.google.com/store/apps/details?id=com.shazam.android",
+  appstore:"https://apps.apple.com/app/shazam/id284993459",
+  apk:"https://www.malavida.com/fr/soft/shazam/download"
+},
+{
+  nom:"SoundCloud",
+  categorie:"Musique",
+  desc:"Écouter et partager musique.",
+  img:"https://via.placeholder.com/120x150/ff5500/ffffff?text=SoundCloud",
+  playstore:"https://play.google.com/store/apps/details?id=com.soundcloud.android",
+  appstore:"https://apps.apple.com/app/soundcloud/id336353151",
+  apk:"https://www.malavida.com/fr/soft/soundcloud/download"
+},
+{
+  nom:"ProtonMail",
+  categorie:"Communication",
+  desc:"Email sécurisé.",
+  img:"https://via.placeholder.com/120x150/008000/ffffff?text=ProtonMail",
+  playstore:"https://play.google.com/store/apps/details?id=ch.protonmail.android",
+  appstore:"https://apps.apple.com/app/protonmail-encrypted-email/id979659905",
+  apk:"https://www.malavida.com/fr/soft/protonmail/download"
+},
+{
+  nom:"Canva",
+  categorie:"Productivité",
+  desc:"Création graphique facile.",
+  img:"https://via.placeholder.com/120x150/00c4cc/ffffff?text=Canva",
+  playstore:"https://play.google.com/store/apps/details?id=com.canva.editor",
+  appstore:"https://apps.apple.com/app/canva/id897446215",
+  apk:"https://www.malavida.com/fr/soft/canva/download"
+},
+{
+  nom:"PicsArt",
+  categorie:"Divertissement",
+  desc:"Éditeur photo et vidéo.",
+  img:"https://via.placeholder.com/120x150/fc0080/ffffff?text=PicsArt",
+  playstore:"https://play.google.com/store/apps/details?id=com.picsart.studio",
+  appstore:"https://apps.apple.com/app/picsart-photo-video-editor/id587366035",
+  apk:"https://www.malavida.com/fr/soft/picsart/download"
+},
+{
+  nom:"Lightroom",
+  categorie:"Divertissement",
+  desc:"Édition photo professionnelle.",
+  img:"https://via.placeholder.com/120x150/ffcd00/ffffff?text=Lightroom",
+  playstore:"https://play.google.com/store/apps/details?id=com.adobe.lrmobile",
+  appstore:"https://apps.apple.com/app/adobe-lightroom-photo-editor/id878783582",
+  apk:null
+},
+{
+  nom:"Netflix",
+  categorie:"Divertissement",
+  desc:"Streaming films et séries.",
+  img:"https://via.placeholder.com/120x150/e50914/ffffff?text=Netflix",
+  playstore:"https://play.google.com/store/apps/details?id=com.netflix.mediaclient",
+  appstore:"https://apps.apple.com/app/netflix/id363590051",
+  apk:"https://www.malavida.com/fr/soft/netflix/download"
+},
+{
+  nom:"Disney+",
+  categorie:"Divertissement",
+  desc:"Films et séries Disney.",
+  img:"https://via.placeholder.com/120x150/113ccf/ffffff?text=Disney+",
+  playstore:"https://play.google.com/store/apps/details?id=com.disney.disneyplus",
+  appstore:"https://apps.apple.com/app/disney/id1446075923",
+  apk:null
+},
+{
+  nom:"Twitch",
+  categorie:"Divertissement",
+  desc:"Streaming jeux vidéo.",
+  img:"https://via.placeholder.com/120x150/6441a5/ffffff?text=Twitch",
+  playstore:"https://play.google.com/store/apps/details?id=tv.twitch.android.app",
+  appstore:"https://apps.apple.com/app/twitch-live-game-streaming/id460177396",
+  apk:"https://www.malavida.com/fr/soft/twitch/download"
+},
+{
+  nom:"Discord",
+  categorie:"Communication",
+  desc:"Voix, chat et communauté.",
+  img:"https://via.placeholder.com/120x150/7289da/ffffff?text=Discord",
+  playstore:"https://play.google.com/store/apps/details?id=com.discord",
+  appstore:"https://apps.apple.com/app/discord/id985746746",
+  apk:"https://www.malavida.com/fr/soft/discord/download"
+},
+{
+  nom:"Notion",
+  categorie:"Productivité",
+  desc:"Organiser idées et projets.",
+  img:"https://via.placeholder.com/120x150/000000/ffffff?text=Notion",
+  playstore:"https://play.google.com/store/apps/details?id=notion.id",
+  appstore:"https://apps.apple.com/app/notion/id1232780281",
+  apk:null
+},
+{
+  nom:"Todoist",
+  categorie:"Productivité",
+  desc:"Gérer tâches et projets.",
+  img:"https://via.placeholder.com/120x150/ed1c24/ffffff?text=Todoist",
+  playstore:"https://play.google.com/store/apps/details?id=com.todoist",
+  appstore:"https://apps.apple.com/app/todoist-to-do-list-tasks/id572688855",
+  apk:"https://www.malavida.com/fr/soft/todoist/download"
+},
+{
+  nom:"Google Keep",
+  categorie:"Productivité",
+  desc:"Prendre des notes rapidement.",
+  img:"https://via.placeholder.com/120x150/f9bc05/ffffff?text=Keep",
+  playstore:"https://play.google.com/store/apps/details?id=com.google.android.keep",
+  appstore:"https://apps.apple.com/app/google-keep-notes-and-lists/id1029207872",
+  apk:"https://www.malavida.com/fr/soft/google-keep/download"
+},
+{
+  nom:"Kinemaster",
+  categorie:"Divertissement",
+  desc:"Éditeur vidéo mobile.",
+  img:"https://via.placeholder.com/120x150/ff6600/ffffff?text=Kinemaster",
+  playstore:"https://play.google.com/store/apps/details?id=com.nexstreaming.app.kinemasterfree",
+  appstore:"https://apps.apple.com/app/kinemaster-video-editor/id1223932558",
+  apk:"https://www.malavida.com/fr/soft/kinemaster/download"
+},
+{
+  nom:"CapCut",
+  categorie:"Divertissement",
+  desc:"Montage vidéo rapide.",
+  img:"https://via.placeholder.com/120x150/00ff90/ffffff?text=CapCut",
+  playstore:"https://play.google.com/store/apps/details?id=com.lemon.lvoverseas",
+  appstore:"https://apps.apple.com/app/capcut/id1500855883",
+  apk:null
+},
+{
+  nom:"Google Photos",
+  categorie:"Utilitaire",
+  desc:"Stockage et gestion photo.",
+  img:"https://via.placeholder.com/120x150/4285f4/ffffff?text=Photos",
+  playstore:"https://play.google.com/store/apps/details?id=com.google.android.apps.photos",
+  appstore:"https://apps.apple.com/app/google-photos/id962194608",
+  apk:"https://www.malavida.com/fr/soft/google-photos/download"
+},
+{
+  nom:"Snapseed",
+  categorie:"Divertissement",
+  desc:"Éditeur photo pro.",
+  img:"https://via.placeholder.com/120x150/000000/ffffff?text=Snapseed",
+  playstore:"https://play.google.com/store/apps/details?id=com.niksoftware.snapseed",
+  appstore:"https://apps.apple.com/app/snapseed/id439438619",
+  apk:"https://www.malavida.com/fr/soft/snapseed/download"
+},
+{
+  nom:"Shazam Encore",
+  categorie:"Musique",
+  desc:"Identifier chansons rapidement.",
+  img:"https://via.placeholder.com/120x150/0000ff/ffffff?text=Shazam+Encore",
+  playstore:null,
+  appstore:null,
+  apk:null
+},
+{
+  nom:"GarageBand",
+  categorie:"Musique",
+  desc:"Créer musique sur mobile.",
+  img:"https://via.placeholder.com/120x150/ff9500/ffffff?text=GarageBand",
+  playstore:null,
+  appstore:"https://apps.apple.com/app/garageband/id408709785",
+  apk:null
+},
+{
+  nom:"WPS Office",
+  categorie:"Productivité",
+  desc:"Suite bureautique mobile.",
+  img:"https://via.placeholder.com/120x150/ff6600/ffffff?text=WPS+Office",
+  playstore:"https://play.google.com/store/apps/details?id=cn.wps.moffice_eng",
+  appstore:"https://apps.apple.com/app/wps-office/id1497035047",
+  apk:"https://www.malavida.com/fr/soft/wps-office/download"
+},
+{
+  nom:"Microsoft Excel",
+  categorie:"Productivité",
+  desc:"Tableur mobile puissant.",
+  img:"https://via.placeholder.com/120x150/217346/ffffff?text=Excel",
+  playstore:"https://play.google.com/store/apps/details?id=com.microsoft.office.excel",
+  appstore:"https://apps.apple.com/app/microsoft-excel/id586683407",
+  apk:"https://www.malavida.com/fr/soft/microsoft-excel/download"
+},
+{
+  nom:"Microsoft OneNote",
+  categorie:"Productivité",
+  desc:"Prendre et organiser notes.",
+  img:"https://via.placeholder.com/120x150/7719aa/ffffff?text=OneNote",
+  playstore:"https://play.google.com/store/apps/details?id=com.microsoft.office.onenote",
+  appstore:"https://apps.apple.com/app/microsoft-onenote/id410395246",
+  apk:"https://www.malavida.com/fr/soft/microsoft-onenote/download"
+},
+{
+  nom:"Kindle",
+  categorie:"Education",
+  desc:"Lire livres électroniques.",
+  img:"https://via.placeholder.com/120x150/ff9900/ffffff?text=Kindle",
+  playstore:"https://play.google.com/store/apps/details?id=com.amazon.kindle",
+  appstore:"https://apps.apple.com/app/amazon-kindle/id302584613",
+  apk:"https://www.malavida.com/fr/soft/kindle/download"
+},
+{
+  nom:"Coursera",
+  categorie:"Education",
+  desc:"Cours en ligne gratuits et payants.",
+  img:"https://via.placeholder.com/120x150/0056d2/ffffff?text=Coursera",
+  playstore:"https://play.google.com/store/apps/details?id=org.coursera.android",
+  appstore:"https://apps.apple.com/app/coursera-learn-new-skills/id736535961",
+  apk:"https://www.malavida.com/fr/soft/coursera/download"
+},
+{
+  nom:"Udemy",
+  categorie:"Education",
+  desc:"Apprendre des cours variés.",
+  img:"https://via.placeholder.com/120x150/f26a21/ffffff?text=Udemy",
+  playstore:"https://play.google.com/store/apps/details?id=com.udemy.android",
+  appstore:"https://apps.apple.com/app/udemy/id562413829",
+  apk:"https://www.malavida.com/fr/soft/udemy/download"
+},
+{
+  nom:"Duolingo ABC",
+  categorie:"Education",
+  desc:"Apprendre à lire pour enfants.",
+  img:"https://via.placeholder.com/120x150/00bfff/ffffff?text=Duolingo+ABC",
+  playstore:"https://play.google.com/store/apps/details?id=com.duolingo.abc",
+  appstore:"https://apps.apple.com/app/duolingo-abc/id1486912876",
+  apk:null
+},
+{
+  nom:"BBC News",
+  categorie:"Internet",
+  desc:"Actualités mondiales.",
+  img:"https://via.placeholder.com/120x150/ff0000/ffffff?text=BBC+News",
+  playstore:"https://play.google.com/store/apps/details?id=bbc.mobile.news.ww",
+  appstore:"https://apps.apple.com/app/bbc-news/id364147881",
+  apk:"https://www.malavida.com/fr/soft/bbc-news/download"
+},
+{
+  nom:"Flipboard",
+  categorie:"Internet",
+  desc:"Lire actualités et magazine.",
+  img:"https://via.placeholder.com/120x150/ff0000/ffffff?text=Flipboard",
+  playstore:"https://play.google.com/store/apps/details?id=flipboard.app",
+  appstore:"https://apps.apple.com/app/flipboard/id358801284",
+  apk:"https://www.malavida.com/fr/soft/flipboard/download"
+},
+{
+  nom:"Google News",
+  categorie:"Internet",
+  desc:"Actualités personnalisées.",
+  img:"https://via.placeholder.com/120x150/4285f4/ffffff?text=Google+News",
+  playstore:"https://play.google.com/store/apps/details?id=com.google.android.apps.magazines",
+  appstore:"https://apps.apple.com/app/google-news/id459182288",
+  apk:"https://www.malavida.com/fr/soft/google-news/download"
+},
+{
+  nom:"Webtoon",
+  categorie:"Divertissement",
+  desc:"Lire des mangas et webcomics.",
+  img:"https://via.placeholder.com/120x150/ff66cc/ffffff?text=Webtoon",
+  playstore:"https://play.google.com/store/apps/details?id=com.naver.webtoon",
+  appstore:"https://apps.apple.com/app/webtoon/id1353631255",
+  apk:null
+},
+{
+  nom:"RPCS3",
+  categorie:"Gaming",
+  desc:"Émulateur PlayStation 3 pour PC.",
+  img:"https://via.placeholder.com/120x150/9900ff/ffffff?text=RPCS3",
+  playstore:null,
+  appstore:null,
+  apk:"https://rpcs3.net/download"
+},
+{
+  nom:"Citra",
+  categorie:"Gaming",
+  desc:"Émulateur Nintendo 3DS pour PC.",
+  img:"https://via.placeholder.com/120x150/00ffcc/ffffff?text=Citra",
+  playstore:null,
+  appstore:null,
+  apk:"https://citra-emu.org/download/"
+},
+{
+  nom:"PCSX2",
+  categorie:"Gaming",
+  desc:"Émulateur PlayStation 2 pour PC.",
+  img:"https://via.placeholder.com/120x150/ffcc00/ffffff?text=PCSX2",
+  playstore:null,
+  appstore:null,
+  apk:"https://pcsx2.net/download.html"
+},
+{
+  nom:"BlueStacks",
+  categorie:"Gaming",
+  desc:"Émulateur Android sur PC.",
+  img:"https://via.placeholder.com/120x150/0099ff/ffffff?text=BlueStacks",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.bluestacks.com/download.html"
+},
+{
+  nom:"PPSSPP Gold",
+  categorie:"Gaming",
+  desc:"Émulateur PSP performant.",
+  img:"https://via.placeholder.com/120x150/9900ff/ffffff?text=PPSSPP+Gold",
+  playstore:"https://play.google.com/store/apps/details?id=org.ppsspp.ppssppgold",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/ppsspp/"
+},
+{
+  nom:"DraStic DS",
+  categorie:"Gaming",
+  desc:"Émulateur Nintendo DS.",
+  img:"https://via.placeholder.com/120x150/9900ff/ffffff?text=DraStic+DS",
+  playstore:"https://play.google.com/store/apps/details?id=com.dsemu.drastic",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/drastic-ds-emulator/"
+},
+{
+  nom:"RetroArch",
+  categorie:"Gaming",
+  desc:"Émulateur multi-console.",
+  img:"https://via.placeholder.com/120x150/ff6600/ffffff?text=RetroArch",
+  playstore:"https://play.google.com/store/apps/details?id=com.retroarch",
+  appstore:null,
+  apk:"https://www.retroarch.com/?page=platforms"
+},
+{
+  nom:"ePSXe",
+  categorie:"Gaming",
+  desc:"Émulateur PlayStation 1.",
+  img:"https://via.placeholder.com/120x150/cc0000/ffffff?text=ePSXe",
+  playstore:"https://play.google.com/store/apps/details?id=com.epsxe.ePSXe",
+  appstore:null,
+  apk:null
+},
+{
+  nom:"Moon+ Reader",
+  categorie:"Divertissement",
+  desc:"Lire ebooks et comics facilement.",
+  img:"https://via.placeholder.com/120x150/33cc33/ffffff?text=Moon+Reader",
+  playstore:"https://play.google.com/store/apps/details?id=com.flyersoft.moonreader",
+  appstore:null,
+  apk:null
+},
+{
+  nom:"Genshin Impact",
+  categorie:"Gaming",
+  desc:"Action-RPG Open World.",
+  img:"https://via.placeholder.com/120x150/ff0066/ffffff?text=Genshin+Impact",
+  playstore:"https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact",
+  appstore:"https://apps.apple.com/app/genshin-impact/id1517783697",
+  apk:null
+},
+{
+  nom:"Steam",
+  categorie:"Gaming",
+  desc:"Plateforme de jeux PC.",
+  img:"https://via.placeholder.com/120x150/000000/ffffff?text=Steam",
+  playstore:null,
+  appstore:null,
+  apk:"https://store.steampowered.com/about/"
+},
+{
+  nom:"Epic Games",
+  categorie:"Gaming",
+  desc:"Plateforme de jeux PC.",
+  img:"https://via.placeholder.com/120x150/001a66/ffffff?text=Epic+Games",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.epicgames.com/store/en-US/download"
+},
+{
+  nom:"Discord",
+  categorie:"Communication",
+  desc:"Voix, chat et communautés.",
+  img:"https://via.placeholder.com/120x150/7289da/ffffff?text=Discord",
+  playstore:"https://play.google.com/store/apps/details?id=com.discord",
+  appstore:"https://apps.apple.com/app/discord/id985746746",
+  apk:"https://www.malavida.com/fr/soft/discord/download"
+},
+{
+  nom:"VLC",
+  categorie:"Utilitaire",
+  desc:"Lecteur multimédia universel.",
+  img:"https://via.placeholder.com/120x150/ff6600/ffffff?text=VLC",
+  playstore:"https://play.google.com/store/apps/details?id=org.videolan.vlc",
+  appstore:"https://apps.apple.com/app/vlc-for-mobile/id650377962",
+  apk:"https://www.malavida.com/fr/soft/vlc/download"
+},
+{
+  nom:"TeamViewer",
+  categorie:"Utilitaire",
+  desc:"Contrôle PC à distance.",
+  img:"https://via.placeholder.com/120x150/0099ff/ffffff?text=TeamViewer",
+  playstore:"https://play.google.com/store/apps/details?id=com.teamviewer.teamviewer.market.mobile",
+  appstore:"https://apps.apple.com/app/teamviewer/id692035811",
+  apk:"https://www.malavida.com/fr/soft/teamviewer/download"
+},
+{
+  nom:"AnyDesk",
+  categorie:"Utilitaire",
+  desc:"Connexion distante simple.",
+  img:"https://via.placeholder.com/120x150/ff6600/ffffff?text=AnyDesk",
+  playstore:"https://play.google.com/store/apps/details?id=com.anydesk.anydeskandroid",
+  appstore:"https://apps.apple.com/app/anydesk/id1176131273",
+  apk:"https://www.malavida.com/fr/soft/anydesk/download"
+},
+{
+  nom:"Tubi TV",
+  categorie:"Divertissement",
+  desc:"Films et séries gratuits.",
+  img:"https://via.placeholder.com/120x150/33ccff/ffffff?text=Tubi+TV",
+  playstore:"https://play.google.com/store/apps/details?id=com.tubitv",
+  appstore:"https://apps.apple.com/app/tubi/id886445756",
+  apk:null
+},
+{
+  nom:"Crunchyroll",
+  categorie:"Divertissement",
+  desc:"Animes et mangas streaming.",
+  img:"https://via.placeholder.com/120x150/ff6600/ffffff?text=Crunchyroll",
+  playstore:"https://play.google.com/store/apps/details?id=com.crunchyroll.crunchyroid",
+  appstore:"https://apps.apple.com/app/crunchyroll/id329913454",
+  apk:null
+},
+{
+  nom:"Kodi",
+  categorie:"Divertissement",
+  desc:"Centre multimédia open-source.",
+  img:"https://via.placeholder.com/120x150/000000/ffffff?text=Kodi",
+  playstore:"https://play.google.com/store/apps/details?id=org.xbmc.kodi",
+  appstore:null,
+  apk:"https://kodi.tv/download"
+},
+{
+  nom:"Spotify",
+  categorie:"Musique",
+  desc:"Écoute de musique en streaming.",
+  img:"https://via.placeholder.com/120x150/1db954/ffffff?text=Spotify",
+  playstore:"https://play.google.com/store/apps/details?id=com.spotify.music",
+  appstore:"https://apps.apple.com/app/spotify-music-and-podcasts/id324684580",
+  apk:null
+},
+{
+  nom:"Deezer",
+  categorie:"Musique",
+  desc:"Streaming musique et podcasts.",
+  img:"https://via.placeholder.com/120x150/ff0000/ffffff?text=Deezer",
+  playstore:"https://play.google.com/store/apps/details?id=deezer.android.app",
+  appstore:"https://apps.apple.com/app/deezer-music-podcast-player/id292738169",
+  apk:null
+},
+{
+  nom:"BandLab",
+  categorie:"Musique",
+  desc:"Créer et mixer de la musique.",
+  img:"https://via.placeholder.com/120x150/ff00cc/ffffff?text=BandLab",
+  playstore:"https://play.google.com/store/apps/details?id=com.bandlab.bandlab",
+  appstore:"https://apps.apple.com/app/bandlab-music-studio/id968585775",
+  apk:null
+},
+{
+  nom:"Audacity",
+  categorie:"Musique",
+  desc:"Éditeur audio sur PC.",
+  img:"https://via.placeholder.com/120x150/000000/ffffff?text=Audacity",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.audacityteam.org/download/"
+},
+{
+  nom:"Google Drive",
+  categorie:"Productivité",
+  desc:"Stockage cloud et partage fichiers.",
+  img:"https://via.placeholder.com/120x150/4285f4/ffffff?text=Drive",
+  playstore:"https://play.google.com/store/apps/details?id=com.google.android.apps.docs",
+  appstore:"https://apps.apple.com/app/google-drive/id507874739",
+  apk:"https://www.malavida.com/fr/soft/google-drive/download"
+},
+{
+  nom:"Dropbox",
+  categorie:"Productivité",
+  desc:"Stockage et partage cloud.",
+  img:"https://via.placeholder.com/120x150/007ee5/ffffff?text=Dropbox",
+  playstore:"https://play.google.com/store/apps/details?id=com.dropbox.android",
+  appstore:"https://apps.apple.com/app/dropbox/id327630330",
+  apk:"https://www.malavida.com/fr/soft/dropbox/download"
+},
+{
+  nom:"Steam Link",
+  categorie:"Gaming",
+  desc:"Jouer à vos jeux Steam sur mobile.",
+  img:"https://via.placeholder.com/120x150/000000/ffffff?text=Steam+Link",
+  playstore:"https://play.google.com/store/apps/details?id=com.valvesoftware.steamlink",
+  appstore:"https://apps.apple.com/app/steam-link/id1246969117",
+  apk:null
+},
+{
+  nom:"Epic Games App",
+  categorie:"Gaming",
+  desc:"Gérer vos jeux Epic sur mobile.",
+  img:"https://via.placeholder.com/120x150/001a66/ffffff?text=Epic+Games",
+  playstore:"https://play.google.com/store/apps/details?id=com.epicgames.portal",
+  appstore:"https://apps.apple.com/app/epic-games/id1453439954",
+  apk:null
+},
+{
+  nom:"Citra",
+  categorie:"Gaming",
+  desc:"Émulateur Nintendo 3DS pour Android.",
+  img:"https://via.placeholder.com/120x150/ff9900/ffffff?text=Citra",
+  playstore:"https://play.google.com/store/apps/details?id=org.citra.citra_emu",
+  appstore:null,
+  apk:"https://citra-emu.org/download/"
+},
+{
+  nom:"Dolphin Emulator",
+  categorie:"Gaming",
+  desc:"Émulateur GameCube / Wii.",
+  img:"https://via.placeholder.com/120x150/00ccff/ffffff?text=Dolphin",
+  playstore:"https://play.google.com/store/apps/details?id=org.dolphinemu.dolphinemu",
+  appstore:null,
+  apk:"https://dolphin-emu.org/download/"
+},
+{
+  nom:"PPSSPP Gold Turbo",
+  categorie:"Gaming",
+  desc:"Émulateur PSP version optimisée.",
+  img:"https://via.placeholder.com/120x150/9900ff/ffffff?text=PPSSPP+Turbo",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/ppsspp/download/"
+},
+{
+  nom:"Happy Chick",
+  categorie:"Gaming",
+  desc:"Émulateur multi-console sur mobile.",
+  img:"https://via.placeholder.com/120x150/ff6600/ffffff?text=Happy+Chick",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/happy-chick/download/"
+},
+{
+  nom:"EmuBox",
+  categorie:"Gaming",
+  desc:"Émulateur GameBoy, GBA, NES et plus.",
+  img:"https://via.placeholder.com/120x150/cc0000/ffffff?text=EmuBox",
+  playstore:"https://play.google.com/store/apps/details?id=com.emubox.app",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/emubox/download/"
+},
+{
+  nom:"PicoBoy",
+  categorie:"Gaming",
+  desc:"Émulateur rétro NES / GBA.",
+  img:"https://via.placeholder.com/120x150/ffcc00/ffffff?text=PicoBoy",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/picoboy/download/"
+},
+{
+  nom:"Classic Emulator",
+  categorie:"Gaming",
+  desc:"Émulateur multi-console classique.",
+  img:"https://via.placeholder.com/120x150/ff0066/ffffff?text=Classic+Emu",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/classic-emulator/download/"
+},
+{
+  nom:"Webtoon Manga",
+  categorie:"Divertissement",
+  desc:"Lire mangas et webcomics gratuits.",
+  img:"https://via.placeholder.com/120x150/ff33cc/ffffff?text=Webtoon+Manga",
+  playstore:"https://play.google.com/store/apps/details?id=com.naver.webtoon",
+  appstore:"https://apps.apple.com/app/webtoon/id1353631255",
+  apk:null
+},
+{
+  nom:"LINE Manga",
+  categorie:"Divertissement",
+  desc:"Lire mangas japonais et coréens.",
+  img:"https://via.placeholder.com/120x150/cc33ff/ffffff?text=LINE+Manga",
+  playstore:"https://play.google.com/store/apps/details?id=jp.naver.line.android.manga",
+  appstore:null,
+  apk:null
+},
+{
+  nom:"Manga Reader",
+  categorie:"Divertissement",
+  desc:"Application pour lire mangas en ligne.",
+  img:"https://via.placeholder.com/120x150/ff6699/ffffff?text=Manga+Reader",
+  playstore:"https://play.google.com/store/apps/details?id=com.mangareader.app",
+  appstore:null,
+  apk:null
+},
+{
+  nom:"Retro Game Box",
+  categorie:"Gaming",
+  desc:"Collection de jeux rétro sur Android.",
+  img:"https://via.placeholder.com/120x150/ff9900/ffffff?text=Retro+Game+Box",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/retro-game-box/download/"
+},
+{
+  nom:"GBA Emulator Pro",
+  categorie:"Gaming",
+  desc:"Émulateur GameBoy Advance.",
+  img:"https://via.placeholder.com/120x150/ffcc00/ffffff?text=GBA+Emu+Pro",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/gba-emulator-pro/download/"
+},
+{
+  nom:"NES Emulator Plus",
+  categorie:"Gaming",
+  desc:"Émulateur Nintendo NES.",
+  img:"https://via.placeholder.com/120x150/cc0000/ffffff?text=NES+Emu+Plus",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/nes-emulator-plus/download/"
+},
+{
+  nom:"SNES9x EX+",
+  categorie:"Gaming",
+  desc:"Émulateur Super Nintendo.",
+  img:"https://via.placeholder.com/120x150/ff6600/ffffff?text=SNES9x+EX+",
+  playstore:"https://play.google.com/store/apps/details?id=com.explusalpha.snes9x",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/snes9x-ex-plus/download/"
+},
+{
+  nom:"PSP Emulator Advanced",
+  categorie:"Gaming",
+  desc:"Émulateur PSP amélioré.",
+  img:"https://via.placeholder.com/120x150/9900ff/ffffff?text=PSP+Emu+Adv",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/ppsspp/download/"
+},
+{
+  nom:"Switch Emulator Lite",
+  categorie:"Gaming",
+  desc:"Émulateur Switch léger Android.",
+  img:"https://via.placeholder.com/120x150/00ccff/ffffff?text=Switch+Emu+Lite",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/switch-emulator-lite/download/"
+},
+{
+  nom:"Epic Emulator",
+  categorie:"Gaming",
+  desc:"Émulateur console divers.",
+  img:"https://via.placeholder.com/120x150/ff3300/ffffff?text=Epic+Emu",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/epic-emulator/download/"
+},
+{
+  nom:"Manga Zone",
+  categorie:"Divertissement",
+  desc:"Lire vos mangas préférés.",
+  img:"https://via.placeholder.com/120x150/ff0066/ffffff?text=Manga+Zone",
+  playstore:"https://play.google.com/store/apps/details?id=com.mangazone.android",
+  appstore:null,
+  apk:null
+},
+{
+  nom:"Anime Manga World",
+  categorie:"Divertissement",
+  desc:"Streaming animes et mangas.",
+  img:"https://via.placeholder.com/120x150/ff33cc/ffffff?text=Anime+Manga+World",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/anime-manga-world/download/"
+},
+{
+  nom:"Retro Emulator Hub",
+  categorie:"Gaming",
+  desc:"Émulateur multi-plateforme Android.",
+  img:"https://via.placeholder.com/120x150/cc6600/ffffff?text=Retro+Emu+Hub",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/retro-emulator-hub/download/"
+},
+{
+  nom:"GameBox Ultimate",
+  categorie:"Gaming",
+  desc:"Collection ultime de jeux rétro.",
+  img:"https://via.placeholder.com/120x150/ff9900/ffffff?text=GameBox+Ultimate",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/gamebox-ultimate/download/"
+},
+{
+  nom:"Pocket Manga",
+  categorie:"Divertissement",
+  desc:"Mangas et webcomics à portée de main.",
+  img:"https://via.placeholder.com/120x150/ff6699/ffffff?text=Pocket+Manga",
+  playstore:"https://play.google.com/store/apps/details?id=com.pocketmanga.app",
+  appstore:null,
+  apk:null
+},
+{
+  nom:"GBC Emulator Pro",
+  categorie:"Gaming",
+  desc:"Émulateur GameBoy Color avancé.",
+  img:"https://via.placeholder.com/120x150/cc0000/ffffff?text=GBC+Emu+Pro",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/gbc-emulator-pro/download/"
+},
+{
+  nom:"MAME4droid",
+  categorie:"Gaming",
+  desc:"Émulateur arcade classique.",
+  img:"https://via.placeholder.com/120x150/ff6600/ffffff?text=MAME4droid",
+  playstore:"https://play.google.com/store/apps/details?id=com.seleuco.mame4droid",
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/mame4droid/download/"
+},
+{
+  nom:"Game Collector",
+  categorie:"Gaming",
+  desc:"Organiser votre collection de jeux.",
+  img:"https://via.placeholder.com/120x150/ff9900/ffffff?text=Game+Collector",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/game-collector/download/"
+},
+{
+  nom:"GBA4iOS",
+  categorie:"Gaming",
+  desc:"Émulateur GameBoy Advance iOS.",
+  img:"https://via.placeholder.com/120x150/ffcc00/ffffff?text=GBA4iOS",
+  playstore:null,
+  appstore:"https://apps.apple.com/app/gba4ios/id1081444070",
+  apk:null
+},
+{
+  nom:"AnimeX Stream",
+  categorie:"Divertissement",
+  desc:"Streaming animes HD.",
+  img:"https://via.placeholder.com/120x150/ff0066/ffffff?text=AnimeX+Stream",
+  playstore:null,
+  appstore:null,
+  apk:"https://www.malavida.com/fr/soft/animex-stream/download/"
+},
+
+];
+
+// Créer les trois liens cachés
+function createDownloadButtons(app){
+  return `
+    <button class="btn-telecharger" onclick="toggleDownloads(this)">📥 Télécharger</button>
+    <div class="download-options" style="display:none;">
+      <a class="btn-telecharger" href="${app.playstore}" target="_blank">📱 Play Store</a>
+      <a class="btn-telecharger" href="${app.appstore}" target="_blank">🍎 App Store</a>
+      <a class="btn-telecharger" href="${app.apk}" target="_blank">📦 APK</a>
+    </div>
+  `;
+}
+
+// Fonction toggle
+function toggleDownloads(button){
+  const container = button.nextElementSibling;
+  container.style.display = (container.style.display === "none") ? "block" : "none";
+}
+
+// Générer les mini-cadres
+const categoryAppsContainer = document.getElementById("categoryApps");
+const popularAppsContainer = document.getElementById("popularApps");
+
+apps.forEach(app => {
+  const div = document.createElement("div");
+  div.className = "category-app";
+  div.innerHTML = `<img src="${app.img}" alt="${app.nom}">
+                   <div class="app-info-mini">
+                     <h4>${app.nom}</h4>
+                     <p>${app.desc}</p>
+                     ${createDownloadButtons(app)}
+                   </div>`;
+  categoryAppsContainer.appendChild(div);
+});
+
+// Applications populaires : les 6 premières
+apps.slice(0,6).forEach(app => {
+  const div = document.createElement("div");
+  div.className = "app";
+  div.innerHTML = `<img src="${app.img}" alt="${app.nom}">
+                   <div class="app-info">
+                     <h4>${app.nom}</h4>
+                     <p>${app.desc}</p>
+                     ${createDownloadButtons(app)}
+                   </div>`;
+  popularAppsContainer.appendChild(div);
+});
+
+// Filtrer par catégorie
+function filterCategory(categorie){
+  const container = document.getElementById("filteredCategory");
+  container.innerHTML = "";
+  apps.filter(app => app.categorie === categorie).forEach(app => {
+    const div = document.createElement("div");
+    div.className = "category-app";
+    div.innerHTML = `<img src="${app.img}" alt="${app.nom}">
+                     <div class="app-info-mini">
+                       <h4>${app.nom}</h4>
+                       <p>${app.desc}</p>
+                       ${createDownloadButtons(app)}
+                     </div>`;
+    container.appendChild(div);
+  });
+  container.scrollIntoView({behavior:'smooth'});
+}
+
+function createDownloadButtons(app) {
+  let buttons = "";
+  if (app.playstore) {
+    buttons += `<a class="btn-telecharger" href="${app.playstore}" target="_blank">📱 Play Store</a>`;
+  }
+  if (app.appstore) {
+    buttons += `<a class="btn-telecharger" href="${app.appstore}" target="_blank">🍎 App Store</a>`;
+  }
+  if (app.apk) {
+    buttons += `<a class="btn-telecharger" href="${app.apk}" download target="_blank">📦 APK</a>`;
+  }
+  return buttons;
+}
+
+// Barre de recherche
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("input", function() {
+  const query = this.value.toLowerCase();
+  const container = document.getElementById("filteredCategory");
+  container.innerHTML = "";
+
+  // Filtrer toutes les apps dont le nom contient la recherche
+  apps.filter(app => app.nom.toLowerCase().includes(query))
+      .forEach(app => {
+    const div = document.createElement("div");
+    div.className = "category-app";
+    div.innerHTML = `
+      <img src="${app.img}" alt="${app.nom}">
+      <div class="app-info-mini">
+        <h4>${app.nom}</h4>
+        <p>${app.desc}</p>
+        ${createDownloadButtons(app)}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+
+  container.scrollIntoView({ behavior: 'smooth' });
+});
+
+function createDownloadButtons(app) {
+  let buttons = '';
+
+  if (app.playstore) {
+    buttons += `<a href="${app.playstore}" target="_blank" class="btn-telecharger">Play Store</a>`;
+  }
+
+  if (app.appstore) {
+    buttons += `<a href="${app.appstore}" target="_blank" class="btn-telecharger">App Store</a>`;
+  }
+
+  if (app.apk) {
+    buttons += `<a href="${app.apk}" target="_blank" class="btn-telecharger">APK</a>`;
+  }
+
+  if (buttons === '') return '';
+
+  return `
+    <div class="download-wrapper">
+      <div class="btn-telecharger" onclick="this.nextElementSibling.classList.toggle('show')">
+        Télécharger
+      </div>
+      <div class="download-options">
+        ${buttons}
+      </div>
+    </div>
+  `;
+}
+
+</script>
+    <footer>
+      <p>
+        &copy; 2026 MLG-XGame by MLG-Xtech - Tous droits réservés
+      </p>
+    </footer>
+</body>
+</html>

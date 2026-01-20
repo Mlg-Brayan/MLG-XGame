@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeux PPSSPP | MLG BN GameZone</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #111;
+  color: #00d8ff;
+  margin: 0;
+}
+
+/* TITRES */
+h1, h2, h3 {
+  text-align: center;
+  margin: 10px 0;
+  color: #ffffff;
+}
+
+h1 {
+  font-size: 35px;
+  background: linear-gradient(90deg,#9900ff,#00d8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px #9900ff;
+  padding: 20px;
+}
+
+/* BOUTONS CATEGORIES */
+.bouton-cadre{
+  display: flex;
+  font-weight: bold;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px;
+}
+
+.bouton {
+  border-radius: 10px;
+  background: #9900ff;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px 25px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s;
+}
+
+.bouton:hover {
+  transform: scale(1.05);
+  color: #00d8ff;
+  box-shadow: 0 0 15px #00d8ff;
+}
+
+/* GRANDS CADRES JEUX POPULAIRES / NOUVEAUX */
+.game-cadre {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 15px;
+  padding: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.game {
+  position: relative;
+  border-radius: 15px;
+  background: #1a1a2e;
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-width: 220px;
+  height: 150px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.game:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #9900ff;
+}
+
+.game img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* INFO JEU grands cadres */
+.game-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(10,10,26,0.9);
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.game-info h4 {
+  margin: 2px 0;
+  font-size: 14px;
+  color: #9900ff;
+}
+
+.game-info p {
+  margin: 2px 0 6px;
+  font-size: 11px;
+  color: #ddd;
+}
+
+/* BOUTON TELECHARGER */
+.btn-telecharger {
+  display: block;
+  text-align: center;
+  background: linear-gradient(90deg,#9900ff,#00d8ff);
+  color: white;
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.btn-telecharger:active {
+  transform: scale(0.95);
+}
+
+/* MINI-CADRES JEUX PAR CATEGORIE avec overlay */
+.category-game {
+  position: relative;
+  border-radius: 10px;
+  background: #1a1a2e;
+  width: 120px;
+  height: 150px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+  color: #00d8ff;
+  font-size: 11px;
+}
+
+.category-game img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay info sur image */
+.category-game .game-info-mini {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(10,10,26,0.8);
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.category-game .game-info-mini h4 {
+  margin: 2px 0;
+  font-size: 12px;
+  color: #9900ff;
+}
+
+.category-game .game-info-mini p {
+  margin: 2px 0 4px;
+  font-size: 9px;
+  color: #ddd;
+}
+
+.category-game .game-info-mini a.btn-telecharger {
+  font-size: 10px;
+  padding: 4px 5px;
+  display: block;
+  text-align: center;
+  background: linear-gradient(90deg,#9900ff,#00d8ff);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-top: 2px;
+}
+
+/* cacher scrollbar horizontal */
+.game-cadre::-webkit-scrollbar,
+.bouton-cadre::-webkit-scrollbar {
+  display: none;
+}
+
+.game-cadre {
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+
+#categoryGames {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 12px;
+  padding: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+</style>
+</head>
+<body>
+
+<h1>🎮 Jeux PPSSPP</h1>
+
+<h2>🔥 Jeux Populaires</h2>
+<div class="game-cadre" id="popularGames"></div>
+
+<h3>Nos Catégories</h3>
+<div class="bouton-cadre">
+  <div class="bouton" onclick="filterCategory('Action')">⚔ Action</div>
+  <div class="bouton" onclick="filterCategory('Aventure')">🏹 Aventure</div>
+  <div class="bouton" onclick="filterCategory('Course')">🏎️ Course</div>
+  <div class="bouton" onclick="filterCategory('Sport')">⚽ Sport</div>
+  <div class="bouton" onclick="filterCategory('Strategie')">🧠 Stratégie</div>
+  <div class="bouton" onclick="filterCategory('Simulation')">🛠 Simulation</div>
+  <div class="bouton" onclick="filterCategory('RPG')">🗡️ RPG</div>
+  <div class="bouton" onclick="filterCategory('Puzzle')">🧩 Puzzle</div>
+</div>
+
+<h2>📦 Tous les jeux PPSSPP</h2>
+<div class="game-cadre" id="categoryGames"></div>
+
+<h2>🎯 Jeux de la catégorie sélectionnée</h2>
+<div class="game-cadre" id="filteredCategory"></div>
+
+<script>
+const games = [
+ {nom:"Gran Turismo", categorie:"Course", description:"Simulation automobile réaliste et fluide.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Gran+Turismo", lien:"#"},
+  {nom:"Wipeout Pure", categorie:"Course", description:"Course futuriste ultra rapide.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Wipeout+Pure", lien:"#"},
+  {nom:"Need for Speed: Most Wanted", categorie:"Course", description:"Courses urbaines et poursuites stylées.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=NFS+Most+Wanted", lien:"#"},
+  {nom:"Burnout Legends", categorie:"Course", description:"Cascades et vitesse arcade.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Burnout+Legends", lien:"#"},
+  {nom:"Ridge Racer", categorie:"Course", description:"Course arcade fun et colorée.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Ridge+Racer", lien:"#"},
+  
+  {nom:"Daxter", categorie:"Aventure", description:"Plateforme drôle et dynamique.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Daxter", lien:"#"},
+  {nom:"LittleBigPlanet", categorie:"Aventure", description:"Création et exploration créative.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=LittleBigPlanet", lien:"#"},
+  {nom:"LocoRoco", categorie:"Aventure", description:"Jeu joyeux et relaxant.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=LocoRoco", lien:"#"},
+  {nom:"Ape Escape", categorie:"Aventure", description:"Attrape les singes dans des niveaux fun.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Ape+Escape", lien:"#"},
+  {nom:"Jak and Daxter", categorie:"Aventure", description:"Plateforme et action dynamique.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Jak+and+Daxter", lien:"#"},
+  
+  {nom:"Patapon", categorie:"Strategie", description:"Stratégie rythmique originale.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Patapon", lien:"#"},
+  {nom:"Patapon 2", categorie:"Strategie", description:"Stratégie rythmique avancée.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Patapon+2", lien:"#"},
+  {nom:"Field Commander", categorie:"Strategie", description:"Tactique et stratégie militaire.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Field+Commander", lien:"#"},
+  {nom:"Disgaea", categorie:"Strategie", description:"RPG tactique avec humour.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Disgaea", lien:"#"},
+  
+  {nom:"Kingdom Hearts BBS", categorie:"RPG", description:"RPG magique et émouvant.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Kingdom+Hearts+BBS", lien:"#"},
+  {nom:"Final Fantasy Crisis Core", categorie:"RPG", description:"Histoire profonde et combats dynamiques.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=FF+Crisis+Core", lien:"#"},
+  {nom:"Final Fantasy Type-0", categorie:"RPG", description:"RPG épique avec action rapide.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=FF+Type-0", lien:"#"},
+  {nom:"Persona 3 Portable", categorie:"RPG", description:"RPG avec éléments de simulation sociale.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Persona+3+Portable", lien:"#"},
+  {nom:"Ys Seven", categorie:"RPG", description:"RPG classique avec action intense.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Ys+Seven", lien:"#"},
+  
+  {nom:"FIFA 14", categorie:"Sport", description:"Football réaliste sur PSP.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=FIFA+14", lien:"#"},
+  {nom:"Tekken: Dark Resurrection", categorie:"Action", description:"Combat stylisé et équilibré.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Tekken+DR", lien:"#"},
+  {nom:"Infected", categorie:"Action", description:"Survie contre hordes de zombies.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Infected", lien:"#"},
+  {nom:"Syphon Filter: Dark Mirror", categorie:"Action", description:"Infiltration et missions spéciales.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Syphon+Filter", lien:"#"},
+  {nom:"God of War: Chains of Olympus", categorie:"Action", description:"Combat épique avec Kratos.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=GoW+Chains", lien:"#"},
+  {nom:"Grand Theft Auto: Liberty City Stories", categorie:"Action", description:"Explore Liberty City et accomplis des missions.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=GTA+LCS", lien:"#"},
+  
+  {nom:"Monster Hunter Freedom Unite", categorie:"RPG", description:"Chasse stratégique de monstres.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=MHFU", lien:"#"},
+  {nom:"Soul Calibur: Broken Destiny", categorie:"Action", description:"Combat épique avec armes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Soul+Calibur", lien:"#"},
+  {nom:"Tekken 6", categorie:"Action", description:"Combat intense avec différents personnages.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Tekken+6", lien:"#"},
+  {nom:"Worms: Open Warfare", categorie:"Strategie", description:"Stratégie et fun multijoueur.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Worms+OW", lien:"#"},
+  {nom:"Field Commander", categorie:"Strategie", description:"Tactique et stratégie militaire.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Field+Commander", lien:"#"},
+  
+  {nom:"Patapon 3", categorie:"Strategie", description:"Stratégie rythmique avancée.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Patapon+3", lien:"#"},
+  {nom:"Kingdom Hearts: Birth by Sleep", categorie:"RPG", description:"RPG magique et émouvant.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=KH+BBS", lien:"#"},
+  {nom:"Final Fantasy VII: Crisis Core", categorie:"RPG", description:"RPG épique avec histoire captivante.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=FF+VII+CC", lien:"#"},
+  {nom:"Monster Hunter Freedom", categorie:"RPG", description:"Chasse aux monstres gigantesques.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=MHF", lien:"#"},
+  {nom:"Lumines", categorie:"Puzzle", description:"Puzzle musical addictif.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Lumines", lien:"#"},
+  
+  {nom:"Tetris", categorie:"Puzzle", description:"Classique intemporel.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Tetris", lien:"#"},
+  {nom:"Soccer Stars", categorie:"Sport", description:"Matchs de football rapides.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Soccer+Stars", lien:"#"},
+  {nom:"FIFA 13", categorie:"Sport", description:"Football réaliste sur PSP.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=FIFA+13", lien:"#"},
+  {nom:"Virtua Tennis 3", categorie:"Sport", description:"Tennis fun et réaliste.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Virtua+Tennis+3", lien:"#"},
+  {nom:"Hot Shots Golf: Open Tee 2", categorie:"Sport", description:"Golf fun et accessible.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Hot+Shots+Golf+2", lien:"#"},
+   {nom:"Silent Hill: Shattered Memories", categorie:"Horreur", description:"Horreur psychologique immersive.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Silent+Hill+SM", lien:"#"},
+  {nom:"Resident Evil: Revelations", categorie:"Horreur", description:"Survie et action contre zombies.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=RE+Revelations", lien:"#"},
+  {nom:"Soul Calibur: Broken Destiny", categorie:"Action", description:"Combat épique avec armes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Soul+Calibur", lien:"#"},
+  {nom:"Tekken: Dark Resurrection", categorie:"Action", description:"Combat stylisé et équilibré.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Tekken+DR", lien:"#"},
+  {nom:"Infected", categorie:"Action", description:"Survie contre hordes de zombies.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Infected", lien:"#"},
+  
+  {nom:"Monster Hunter Freedom Unite", categorie:"RPG", description:"Chasse stratégique de monstres.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=MHFU", lien:"#"},
+  {nom:"Kingdom Hearts: Re:Chain of Memories", categorie:"RPG", description:"RPG avec combats dynamiques.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=KH+ReCoM", lien:"#"},
+  {nom:"Final Fantasy Type-0", categorie:"RPG", description:"RPG épique avec action rapide.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=FF+Type-0", lien:"#"},
+  {nom:"Persona 3 Portable", categorie:"RPG", description:"RPG avec éléments de simulation sociale.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Persona+3+Portable", lien:"#"},
+  {nom:"Ys Seven", categorie:"RPG", description:"RPG classique avec action intense.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Ys+Seven", lien:"#"},
+  
+  {nom:"LocoRoco 2", categorie:"Aventure", description:"Plateforme fun et colorée.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=LocoRoco+2", lien:"#"},
+  {nom:"Ape Escape 2", categorie:"Aventure", description:"Attrape les singes dans des niveaux fun.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Ape+Escape+2", lien:"#"},
+  {nom:"Daxter 2", categorie:"Aventure", description:"Plateforme dynamique et amusante.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Daxter+2", lien:"#"},
+  {nom:"LittleBigPlanet 2", categorie:"Aventure", description:"Création et exploration créative.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=LBP+2", lien:"#"},
+  {nom:"Jak X: Combat Racing", categorie:"Course", description:"Courses explosives avec action.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Jak+X", lien:"#"},
+  
+  {nom:"Gran Turismo 4 PSP", categorie:"Course", description:"Simulation automobile réaliste.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=GT4+PSP", lien:"#"},
+  {nom:"Need for Speed: Carbon", categorie:"Course", description:"Courses urbaines et poursuites stylées.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=NFS+Carbon", lien:"#"},
+  {nom:"Wipeout Pulse", categorie:"Course", description:"Course futuriste à grande vitesse.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Wipeout+Pulse", lien:"#"},
+  {nom:"Ridge Racer 2", categorie:"Course", description:"Course arcade fun et colorée.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Ridge+Racer+2", lien:"#"},
+  {nom:"FIFA 12", categorie:"Sport", description:"Football réaliste sur PSP.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=FIFA+12", lien:"#"},
+  {nom:"Hot Shots Golf: Open Tee", categorie:"Sport", description:"Golf fun et accessible.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Hot+Shots+Golf", lien:"#"},
+  {nom:"Virtua Tennis: World Tour", categorie:"Sport", description:"Tennis réaliste et amusant.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Virtua+Tennis+WT", lien:"#"},
+  {nom:"NBA Live 10", categorie:"Sport", description:"Basket réaliste sur PSP.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=NBA+Live+10", lien:"#"},
+  {nom:"PES 2014", categorie:"Sport", description:"Football tactique et réaliste.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=PES+2014", lien:"#"},
+  {nom:"FIFA Street", categorie:"Sport", description:"Football de rue dynamique.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=FIFA+Street", lien:"#"},
+  
+  {nom:"Disgaea 2", categorie:"Strategie", description:"RPG tactique humoristique.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Disgaea+2", lien:"#"},
+  {nom:"Patapon 4", categorie:"Strategie", description:"Stratégie rythmique avancée.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Patapon+4", lien:"#"},
+  {nom:"LocoRoco Midnight Carnival", categorie:"Aventure", description:"Plateforme fun et colorée.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=LocoRoco+MC", lien:"#"},
+  {nom:"Ape Escape: On the Loose", categorie:"Aventure", description:"Attrape les singes dans des niveaux amusants.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Ape+Escape+OTL", lien:"#"},
+  {nom:"Daxter: Mission Adventure", categorie:"Aventure", description:"Plateforme dynamique et amusante.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Daxter+MA", lien:"#"},
+  
+  {nom:"Tekken 5: Dark Resurrection", categorie:"Action", description:"Combat stylisé et équilibré.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Tekken+5DR", lien:"#"},
+  {nom:"Infected 2", categorie:"Action", description:"Survie contre hordes de zombies.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Infected+2", lien:"#"},
+  {nom:"God of War: Ghost of Sparta", categorie:"Action", description:"Combat épique avec Kratos.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=GoW+Ghost+Sparta", lien:"#"},
+  {nom:"Gran Turismo PSP Prologue", categorie:"Course", description:"Simulation automobile réaliste.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=GT+Prologue", lien:"#"},
+  {nom:"Need for Speed: Underground", categorie:"Course", description:"Courses urbaines et sensations fortes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=NFS+Underground", lien:"#"},
+  
+  {nom:"Ridge Racer PSP", categorie:"Course", description:"Course arcade fun et colorée.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Ridge+Racer+PSP", lien:"#"},
+  {nom:"Wipeout Pure 2", categorie:"Course", description:"Course futuriste à grande vitesse.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Wipeout+Pure+2", lien:"#"},
+  {nom:"Silent Hill Origins", categorie:"Horreur", description:"Horreur psychologique immersive.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=SH+Origins", lien:"#"},
+  {nom:"Resident Evil: Dead Aim", categorie:"Horreur", description:"Survie et action contre zombies.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=RE+Dead+Aim", lien:"#"},
+  {nom:"Lumines II", categorie:"Puzzle", description:"Puzzle musical addictif.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Lumines+II", lien:"#"},
+  {nom:"Kingdom Hearts: Chain of Memories", categorie:"RPG", description:"RPG magique et captivant.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=KH+CoM", lien:"#"},
+  {nom:"Final Fantasy IV: The After Years", categorie:"RPG", description:"RPG épique avec combats dynamiques.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=FF+IV+After+Years", lien:"#"},
+  {nom:"Persona 2: Innocent Sin", categorie:"RPG", description:"RPG avec intrigues et combats.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Persona+2+IS", lien:"#"},
+  {nom:"Ys I & II Chronicles", categorie:"RPG", description:"RPG classique avec action intense.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Ys+I+II", lien:"#"},
+  {nom:"Daxter: Spy Adventure", categorie:"Aventure", description:"Plateforme dynamique et amusante.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Daxter+SA", lien:"#"},
+  
+  {nom:"LittleBigPlanet PSP", categorie:"Aventure", description:"Création et exploration créative.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=LBP+PSP", lien:"#"},
+  {nom:"LocoRoco PSP", categorie:"Aventure", description:"Jeu joyeux et relaxant.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=LocoRoco+PSP", lien:"#"},
+  {nom:"Ape Escape PSP", categorie:"Aventure", description:"Attrape les singes dans des niveaux fun.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Ape+Escape+PSP", lien:"#"},
+  {nom:"Jak and Daxter: PSP", categorie:"Aventure", description:"Plateforme et action dynamique.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Jak+and+Daxter+PSP", lien:"#"},
+  {nom:"Tekken: Dark Resurrection PSP", categorie:"Action", description:"Combat stylisé et équilibré.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Tekken+DR+PSP", lien:"#"},
+  
+  {nom:"Infected PSP", categorie:"Action", description:"Survie contre hordes de zombies.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Infected+PSP", lien:"#"},
+  {nom:"God of War: Chains of Olympus PSP", categorie:"Action", description:"Combat épique avec Kratos.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=GoW+CoO+PSP", lien:"#"},
+  {nom:"Grand Theft Auto: Vice City Stories", categorie:"Action", description:"Explore Vice City et accomplis des missions.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=GTA+VCS", lien:"#"},
+  {nom:"Monster Hunter Freedom 2", categorie:"RPG", description:"Chasse stratégique de monstres.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=MHF2", lien:"#"},
+  {nom:"Patapon PSP", categorie:"Strategie", description:"Stratégie rythmique originale.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Patapon+PSP", lien:"#"},
+  
+  {nom:"Patapon 2 PSP", categorie:"Strategie", description:"Stratégie rythmique avancée.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Patapon+2+PSP", lien:"#"},
+  {nom:"Field Commander PSP", categorie:"Strategie", description:"Tactique et stratégie militaire.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Field+Commander+PSP", lien:"#"},
+  {nom:"Disgaea PSP", categorie:"Strategie", description:"RPG tactique avec humour.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Disgaea+PSP", lien:"#"},
+  {nom:"Lumines PSP", categorie:"Puzzle", description:"Puzzle musical addictif.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Lumines+PSP", lien:"#"},
+  {nom:"Tetris PSP", categorie:"Puzzle", description:"Classique intemporel.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Tetris+PSP", lien:"#"},
+  {nom:"Gran Turismo PSP", categorie:"Course", description:"Simulation automobile réaliste et fluide.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Gran+Turismo+PSP", lien:"#"},
+  {nom:"Wipeout Pure PSP", categorie:"Course", description:"Course futuriste ultra rapide.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Wipeout+Pure+PSP", lien:"#"},
+  {nom:"Need for Speed: Most Wanted PSP", categorie:"Course", description:"Courses urbaines et poursuites stylées.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=NFS+Most+Wanted+PSP", lien:"#"},
+  {nom:"Burnout Legends PSP", categorie:"Course", description:"Cascades et vitesse arcade.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Burnout+Legends+PSP", lien:"#"},
+  {nom:"Ridge Racer PSP 2", categorie:"Course", description:"Course arcade fun et colorée.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Ridge+Racer+PSP+2", lien:"#"},
+  
+  {nom:"Daxter 3", categorie:"Aventure", description:"Plateforme dynamique et amusante.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Daxter+3", lien:"#"},
+  {nom:"LittleBigPlanet 3", categorie:"Aventure", description:"Création et exploration créative.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=LBP+3", lien:"#"},
+  {nom:"LocoRoco 3", categorie:"Aventure", description:"Jeu joyeux et relaxant.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=LocoRoco+3", lien:"#"},
+  {nom:"Ape Escape 3", categorie:"Aventure", description:"Attrape les singes dans des niveaux amusants.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Ape+Escape+3", lien:"#"},
+  {nom:"Jak and Daxter: The Lost Frontier", categorie:"Aventure", description:"Plateforme et action dynamique.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Jak+and+Daxter+TLP", lien:"#"},
+  
+  {nom:"Tekken 7 PSP", categorie:"Action", description:"Combat stylisé et équilibré.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Tekken+7+PSP", lien:"#"},
+  {nom:"Infected 3", categorie:"Action", description:"Survie contre hordes de zombies.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Infected+3", lien:"#"},
+  {nom:"God of War: Ghost of Sparta PSP", categorie:"Action", description:"Combat épique avec Kratos.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=GoW+Ghost+Sparta+PSP", lien:"#"},
+  {nom:"Silent Hill: Shattered Memories PSP", categorie:"Horreur", description:"Horreur psychologique immersive.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=SH+SM+PSP", lien:"#"},
+  {nom:"Resident Evil: Revelations PSP", categorie:"Horreur", description:"Survie et action contre zombies.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=RE+Revelations+PSP", lien:"#"},
+  
+  {nom:"Lumines PSP 2", categorie:"Puzzle", description:"Puzzle musical addictif.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Lumines+PSP+2", lien:"#"},
+  {nom:"Tetris PSP 2", categorie:"Puzzle", description:"Classique intemporel.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Tetris+PSP+2", lien:"#"},
+  {nom:"PES 2015 PSP", categorie:"Sport", description:"Football tactique et réaliste.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=PES+2015+PSP", lien:"#"},
+  {nom:"FIFA 15 PSP", categorie:"Sport", description:"Football réaliste sur PSP.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=FIFA+15+PSP", lien:"#"},
+  {nom:"NBA Live 11 PSP", categorie:"Sport", description:"Basket réaliste sur PSP.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=NBA+Live+11+PSP", lien:"#"},
+  
+];
+
+
+// Générer les mini-cadres pour tous les jeux
+const categoryGamesContainer = document.getElementById("categoryGames");
+const popularGamesContainer = document.getElementById("popularGames");
+
+games.forEach(game => {
+  const div = document.createElement("div");
+  div.className = "category-game";
+  div.innerHTML = `
+    <img src="${game.img}" alt="${game.nom}">
+    <div class="game-info-mini">
+      <h4>${game.nom}</h4>
+      <p>${game.description}</p>
+      <a class="btn-telecharger" href="${game.lien}" target="_blank">📥 Télécharger</a>
+    </div>
+  `;
+  categoryGamesContainer.appendChild(div);
+});
+
+// Jeux populaires : on prend les 5 premiers
+games.slice(0,5).forEach(game => {
+  const div = document.createElement("div");
+  div.className = "game";
+  div.innerHTML = `
+    <img src="${game.img}" alt="${game.nom}">
+    <div class="game-info">
+      <h4>${game.nom}</h4>
+      <p>${game.description}</p>
+      <a class="btn-telecharger" href="${game.lien}" target="_blank">📥 Télécharger</a>
+    </div>
+  `;
+  popularGamesContainer.appendChild(div);
+});
+
+// Filtrer par catégorie
+function filterCategory(categorie) {
+  const container = document.getElementById("filteredCategory");
+  container.innerHTML = "";
+  games.filter(game => game.categorie === categorie).forEach(game => {
+    const div = document.createElement("div");
+    div.className = "category-game";
+    div.innerHTML = `
+      <img src="${game.img}" alt="${game.nom}">
+      <div class="game-info-mini">
+        <h4>${game.nom}</h4>
+        <p>${game.description}</p>
+        <a class="btn-telecharger" href="${game.lien}" target="_blank">📥 Télécharger</a>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+  container.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>

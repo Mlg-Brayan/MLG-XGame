@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeux PC | MLG-XGame</title>
+
+<style>
+body{
+  margin:0;
+  background:black;
+  font-family:Arial, sans-serif;
+  color:white;
+}
+
+/* TITRE */
+h1{
+  text-align:center;
+  color:#9900ff;
+  text-shadow:0 0 12px #00f;
+  font-size:34px; 
+  margin: 0;
+}
+h2, h3 {
+  text-align: left;
+  color: white;
+  margin: 0px;
+}
+/* BARRE RECHERCHE */
+.search-box{
+  display:flex;
+  justify-content:center;
+  padding:10px;
+}
+.search-box input{
+  width:90%;
+  max-width:400px;
+  padding:10px;
+  border-radius:12px;
+  border:none;
+  outline:none;
+  background:#1a0a3a;
+  color:white;
+  box-shadow:0 0 10px #9900ff;
+}
+
+/* CATEGORIES */
+.bouton-cadre{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding:10px;
+  margin: 0;
+}
+.bouton{
+  background:#9900ff;
+  color:white;
+  border-radius:10px;
+  padding:10px 18px;
+  font-weight:bold;
+  font-size:12px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.bouton:hover{
+  box-shadow:0 0 15px #00f;
+  transform:scale(1.05);
+}
+/* GRANDS CADRES */
+.game-cadre{
+  display:flex;
+  gap:15px;
+  padding:15px;
+  overflow-x:auto;
+}
+.game{
+  min-width:300px;
+  height:150px;
+  border-radius:15px;
+  overflow:hidden;
+  position:relative;
+  background:#1a0a3a;
+}
+.game img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.game-info{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  background:linear-gradient(to top, rgba(0,0,0,.9), transparent);
+  padding:8px;
+}
+.game-info h4{
+  margin:0;
+  color:#00f0ff;
+  font-size:13px;
+}
+.game-info a{
+  display:block;
+  margin-top:5px;
+  text-align:center;
+  background:linear-gradient(90deg,#0055ff,#9900ff);
+  color:white;
+  text-decoration:none;
+  border-radius:8px;
+  font-size:12px;
+  padding:6px;
+}
+
+/* MINI CADRES */
+#categoryGames{
+  display:grid;
+  grid-auto-flow:column;
+  grid-template-rows:repeat(4,2fr);
+  gap:12px;
+  padding:15px;
+  overflow-y: hidden; /* Plus de scroll horizontal */
+  overflow-x: auto;
+}
+.category-game{
+  width:130px;
+  height:180px;
+  background:#1a0a3a;
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+}
+.category-game img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.game-info-mini{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  background:rgba(0,0,0,.75);
+  padding:5px;
+}
+.game-info-mini h4{
+  margin:0;
+  font-size:10px;
+  color:#00f0ff;
+}
+.game-info-mini p{
+  margin:2px 0;
+  font-size:9px;
+  color:#ccc;
+}
+.game-info-mini a{
+  display:block;
+  margin-top:3px;
+  font-size:10px;
+  padding:4px;
+  text-align:center;
+  border-radius:6px;
+  background:#9900ff;
+  color:white;
+  text-decoration:none;
+}
+
+/* BOUTON TELECHARGER + MENU */
+.download-box{
+  position: relative;
+}
+.btn-telecharger{
+  display:block;
+  width:100%;
+  text-align:center;
+  background:linear-gradient(90deg,#0055ff,#9900ff);
+  color:white;
+  border:none;
+  border-radius:6px;
+  font-size:10px;
+  padding:4px 0;
+  cursor:pointer;
+}
+.download-options{
+  display:none;
+  position:absolute;
+  bottom:110%;
+  left:0;
+  background:#1a0a3a;
+  border-radius:6px;
+  box-shadow:0 0 15px #9900ff;
+  overflow:hidden;
+  width:100%;
+  z-index:20;
+}
+.download-options a{
+  display:block;
+  text-align:center;
+  padding:4px 0;
+  font-size:10px;
+  color:white;
+  text-decoration:none;
+  border-bottom:1px solid #333;
+}
+.download-options a:last-child{
+  border-bottom:none;
+}
+.download-options a:hover{
+  background:#9900ff;
+  color:black;
+}
+ footer {
+      text-align: center;
+      background-color: #111;
+      padding: 10px;
+      font-size: 14px;
+      color: #ccc;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>🎮 Jeux PC – MLG-XGame</h1>
+
+<!-- JEUX POPULAIRES -->
+<div class="game-cadre">
+  <div class="game">
+    <img src="images/minecraft.jpg">
+    <div class="game-info">
+      <h4>⛏️ Minecraft</h4>
+      <a href="https://www.minecraft.net/download" target="_blank">Télécharger</a>
+    </div>
+  </div>
+
+  <div class="game">
+    <img src="images/forza.jpg">
+    <div class="game-info">
+      <h4>🏎️ Forza Horizon</h4>
+      <a href="https://www.xbox.com/games/forza-horizon-5" target="_blank">Télécharger</a>
+    </div>
+  </div>
+
+  <div class="game">
+    <img src="images/sims4.jpg">
+    <div class="game-info">
+      <h4>🏠 The Sims 4</h4>
+      <a href="https://www.ea.com/games/the-sims/the-sims-4" target="_blank">Télécharger</a>
+    </div>
+  </div>
+</div>
+
+<h3> Catégorie</h3>
+<div class="bouton-cadre">
+  <div class="bouton" onclick="filterGames('all')">Tous</div>
+  <div class="bouton" onclick="filterGames('aventure')">Aventure</div>
+  <div class="bouton" onclick="filterGames('simulation')">Simulation</div>
+  <div class="bouton" onclick="filterGames('strategie')">Stratégie</div>
+  <div class="bouton" onclick="filterGames('course')">Course</div>
+  <div class="bouton" onclick="filterGames('construction')">Construction</div>
+  <div class="bouton" onclick="filterGames('sport')">Sport</div>
+  <div class="bouton" onclick="filterGames('puzzle')">Puzzle</div>
+  <div class="bouton" onclick="filterGames('musique')">Musique</div>
+  <div class="bouton" onclick="filterGames('education')">Education</div>
+</div>
+    <h2 style="text-align:center; margin:10px">🔍 Rechercher un jeu</h2>
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Rechercher un jeu PC...">
+</div>
+<!-- MINI JEUX -->
+<div id="categoryGames"></div>
+
+<script>
+const games = [
+  {
+    name:"Minecraft",
+    cat:"aventure",
+    img:"images/minecraft.jpg",
+    desc:"Construis et explore des mondes infinis.",
+    link:"https://www.minecraft.net/download"
+  },
+  {
+    name:"The Sims 4",
+    cat:"simulation",
+    img:"images/sims4.jpg",
+    desc:"Crée ta maison et gère tes Sims.",
+    link:"https://www.ea.com/games/the-sims/the-sims-4"
+  },
+  {
+    name:"Forza Horizon 5",
+    cat:"course",
+    img:"images/forza.jpg",
+    desc:"Courses dans des paysages magnifiques.",
+    link:"https://www.xbox.com/games/forza-horizon-5"
+  },
+  {
+    name:"Cities Skylines",
+    cat:"strategie",
+    img:"images/cities.jpg",
+    desc:"Construis et gère ta ville.",
+    link:"https://store.steampowered.com/app/255710"
+  },
+  {
+    name:"Rocket League",
+    cat:"sport",
+    img:"images/rocketleague.jpg",
+    desc:"Football avec des voitures.",
+    link:"https://rocket-league.fr.softonic.com/telecharger",
+  },
+  {
+    name:"Portal 2",
+    cat:"puzzle",
+    img:"images/portal2.jpg",
+    desc:"Résous des énigmes ingénieuses.",
+    link:"https://store.steampowered.com/app/620/Portal_2/"
+  },
+  {
+    name:"Planet Zoo",
+    cat:"construction",
+    img:"images/planetzoo.jpg",
+    desc:"Construis ton zoo et prends soin des animaux.",
+    link:"https://store.steampowered.com/app/703080/Planet_Zoo/"
+  },
+  {
+    name:"Guitar Hero Live",
+    cat:"musique",
+    img:"images/guitarhero.jpg",
+    desc:"Deviens un pro de la guitare.",
+    link:"https://www.guitarherolive.com/"
+  },
+  {
+    name:"Lumosity",
+    cat:"education",
+    img:"images/lumosity.jpg",
+    desc:"Exerce ton cerveau avec des jeux intelligents.",
+    link:"https://www.lumosity.com/"
+  },
+  {
+    name:"Slime Rancher",
+    cat:"aventure",
+    img:"images/slimerancher.jpg",
+    desc:"Explore un monde plein de slimes mignons.",
+    link:"https://store.steampowered.com/app/433340/Slime_Rancher/"
+  },
+   {name:"Roblox",cat:"aventure",img:"images/roblox.jpg",desc:"Crée, explore et joue avec la communauté.",link:"https://www.roblox.com/"},
+  {name:"Genshin Impact",cat:"aventure",img:"images/genshinimpact.jpg",desc:"Aventure open world RPG coloré et gratuit.",link:"https://genshin.hoyoverse.com/"},
+  {name:"Fortnite",cat:"aventure",img:"images/fortnite.jpg",desc:"Battle royale populaire et gratuit.",link:"https://www.epicgames.com/fortnite/fr/home"},
+  {name:"Valorant",cat:"strategie",img:"images/valorant.jpg",desc:"FPS tactique compétitif gratuit.",link:"https://playvalorant.com/"},
+  {name:"Warframe",cat:"action",img:"images/warframe.jpg",desc:"FPS coopératif futuriste.",link:"https://www.warframe.com/"},
+  {name:"Dauntless",cat:"aventure",img:"images/dauntless.jpg",desc:"Chasse aux monstres en coopération.",link:"https://playdauntless.com/"},
+  {name:"Path of Exile",cat:"rpg",img:"images/pathofexile.jpg",desc:"Action RPG gratuit et profond.",link:"https://www.pathofexile.com/"},
+  {name:"Team Fortress 2",cat:"fps",img:"images/tf2.jpg",desc:"FPS multijoueur fun et coloré.",link:"https://store.steampowered.com/app/440/Team_Fortress_2/"},
+  {name:"Brawlhalla",cat:"combat",img:"images/brawlhalla.jpg",desc:"Combat de plateforme multijoueur.",link:"https://www.brawlhalla.com/"},
+  {name:"Paladins",cat:"fps",img:"images/paladins.jpg",desc:"FPS héros gratuit.",link:"https://www.paladins.com/"},
+  {name:"Smite",cat:"strategie",img:"images/smite.jpg",desc:"MOBA gratuit avec dieux mythologiques.",link:"https://www.smitegame.com/"},
+  {name:"Spellbreak",cat:"aventure",img:"images/spellbreak.jpg",desc:"Battle royale magique.",link:"https://www.spellbreak.com/"},
+  {name:"Daedalic Adventure",cat:"aventure",img:"images/daedalic.jpg",desc:"Aventure point & click.",link:"https://www.daedalic.com/"},
+  {name:"War Thunder",cat:"simulation",img:"images/warthunder.jpg",desc:"Simulation de guerre aérienne et terrestre.",link:"https://warthunder.com/"},
+  {name:"League of Legends",cat:"strategie",img:"images/lol.jpg",desc:"MOBA gratuit populaire.",link:"https://www.leagueoflegends.com/"},
+  {name:"Counter-Strike: Global Offensive",cat:"fps",img:"images/csgo.jpg",desc:"FPS compétitif emblématique.",link:"https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/"},
+  {name:"Hearthstone",cat:"cartes",img:"images/hearthstone.jpg",desc:"Jeu de cartes stratégique.",link:"https://playhearthstone.com/"},
+  {name:"Dota 2",cat:"strategie",img:"images/dota2.jpg",desc:"MOBA emblématique gratuit.",link:"https://store.steampowered.com/app/570/Dota_2/"},
+  {name:"Runescape",cat:"rpg",img:"images/runescape.jpg",desc:"MMORPG gratuit et immersif.",link:"https://www.runescape.com/"},
+  {name:"Among Us",cat:"aventure",img:"images/amongus.jpg",desc:"Jeu social multijoueur amusant.",link:"https://www.innersloth.com/gameAmongUs.php"},
+  {name:"Fall Guys", cat:"fun", img:"images/fallguys.jpg", desc:"Party royale fun et hilarant.", link:"https://www.epicgames.com/store/fr/p/fall-guys"},
+  {name:"Where Winds Meet", cat:"aventure", img:"images/wherewindsmeet.jpg", desc:"Combattez dans un monde martial ouvert.", link:"https://www.epicgames.com/store/fr/p/where-winds-meet"},
+  {name:"RAVEN2", cat:"action", img:"images/raven2.jpg", desc:"FPS multijoueur gratuit avec action intense.", link:"https://www.epicgames.com/store/fr/p/raven2"},
+  {name:"Marvel Rivals", cat:"action", img:"images/marvelrivals.jpg", desc:"Combattez avec les super‑héros Marvel.", link:"https://www.epicgames.com/store/fr/p/marvel-rivals"},
+  {name:"Duet Night Abyss", cat:"arcade", img:"images/duetnightabyss.jpg", desc:"Arcade musical dynamique.", link:"https://www.epicgames.com/store/fr/p/duet-night-abyss"},
+  {name:"Asphalt Legends", cat:"course", img:"images/asphaltlegends.jpg", desc:"Course arcade rapide et fun.", link:"https://www.epicgames.com/store/fr/p/asphalt-legends"},
+  {name:"PUBG: BATTLEGROUNDS", cat:"action", img:"images/pubg.jpg", desc:"Battle royale populaire sur PC.", link:"https://www.epicgames.com/store/fr/p/pubg-battlegrounds"},
+  {name:"Albion Online", cat:"rpg", img:"images/albiononline.jpg", desc:"MMORPG sandbox gratuit.", link:"https://albiononline.com/"},
+  {name:"Guild Wars 2", cat:"rpg", img:"images/guildwars2.jpg", desc:"MMORPG riche en aventures.", link:"https://www.guildwars2.com/"},
+  {name:"Zenless Zone Zero", cat:"action", img:"images/zenlesszonezero.jpg", desc:"Action RPG dynamique gratuit.", link:"https://www.epicgames.com/store/fr/p/zenless-zone-zero"},
+  {name:"Honkai: Star Rail", cat:"aventure", img:"images/honkai_starrail.jpg", desc:"Action RPG tactique.", link:"https://www.epicgames.com/store/fr/p/honkai-star-rail"},
+  {name:"Infinity Nikki", cat:"aventure", img:"images/infinitynikki.jpg", desc:"Aventure RPG créatif gratuit.", link:"https://www.epicgames.com/store/fr/p/infinity-nikki"},
+  {name:"Texas Hold'em Pokerist", cat:"cartes", img:"images/pokerist.jpg", desc:"Poker Texas Hold'em en ligne gratuit.", link:"https://www.epicgames.com/store/fr/p/texas-holdem-pokerist"},
+  {name:"Fishing Planet", cat:"simulation", img:"images/fishingplanet.jpg", desc:"Simulation de pêche réaliste.", link:"https://www.epicgames.com/store/fr/p/fishing-planet"},
+  {name:"Mini Royale", cat:"action", img:"images/miniroyale.jpg", desc:"Battle royale en vue top‑down.", link:"https://www.epicgames.com/store/fr/p/mini‑royale"},
+  {name:"World Without", cat:"aventure", img:"images/worldwithout.jpg", desc:"Adventure exploratoire gratuit.", link:"https://www.epicgames.com/store/fr/p/world-without"},
+  {name:"BoltBreak 2 Prologue", cat:"action", img:"images/boltbreak2.jpg", desc:"FPS rapide et gratuit.", link:"https://www.epicgames.com/store/fr/p/boltbreak-2-prologue"},
+  {name:"Trackmania Starter", cat:"course", img:"images/trackmania.jpg", desc:"Course arcade gratuite.", link:"https://www.epicgames.com/store/fr/p/trackmania-starter"},
+  {name:"Disney Speedstorm", cat:"course", img:"images/disneyspeedstorm.jpg", desc:"Course arcade Disney.", link:"https://www.epicgames.com/store/fr/p/disney-speedstorm"},
+  {name:"Rogue Company", cat:"action", img:"images/roguecompany.jpg", desc:"Shooter tactical gratuit.", link:"https://www.roguecompany.com/"},
+  {name:"War Thunder", cat:"simulation", img:"images/warthunder.jpg", desc:"Simulation de combat aérien et terrestre.", link:"https://warthunder.com/"},
+  {name:"Dota 2", cat:"strategie", img:"images/dota2.jpg", desc:"MOBA stratégique gratuit.", link:"https://store.steampowered.com/app/570/Dota_2/"},
+  {name:"Destiny 2", cat:"fps", img:"images/destiny2.jpg", desc:"FPS MMO en ligne gratuit.", link:"https://www.bungie.net/7/fr/Destiny2"},
+  {name:"PUBG: NEW STATE", cat:"action", img:"images/pubgnewstate.jpg", desc:"Battle royale futuriste gratuit.", link:"https://www.pubgnewstate.com/"},
+  {name:"Fallout Shelter Online", cat:"simulation", img:"images/falloutshelter.jpg", desc:"Gestion de refuge post‑apo.", link:"https://www.falloutshelter.com/"},
+  {name:"World of Tanks", cat:"action", img:"images/worldoftanks.jpg", desc:"Combat de chars en ligne.", link:"https://worldoftanks.com/"},
+  {name:"World of Warships", cat:"action", img:"images/worldofwarships.jpg", desc:"Combat naval stratégique.", link:"https://worldofwarships.com/"},
+  {name:"World of Warplanes", cat:"action", img:"images/worldofwarplanes.jpg", desc:"Combat aérien multijoueur.", link:"https://worldofwarplanes.com/"},
+  {name:"Trackmania", cat:"course", img:"images/trackmania2.jpg", desc:"Course arcade rapide.", link:"https://trackmania.com/"},
+  {name:"Neverwinter", cat:"rpg", img:"images/neverwinter.jpg", desc:"MMORPG fantastique gratuit.", link:"https://www.arcgames.com/en/games/neverwinter"},
+  {name:"Planetside 2", cat:"fps", img:"images/planetside2.jpg", desc:"FPS massif en ligne gratuit.", link:"https://www.planetside2.com/"},
+  {name:"Smite", cat:"strategie", img:"images/smite.jpg", desc:"MOBA mythologique gratuit.", link:"https://www.smitegame.com/"},
+  {name:"Paladins", cat:"fps", img:"images/paladins.jpg", desc:"FPS héros gratuit.", link:"https://www.paladins.com/"},
+  {name:"Brawlhalla", cat:"combat", img:"images/brawlhalla.jpg", desc:"Combat plateforme gratuit.", link:"https://www.brawlhalla.com/"},
+  {name:"Trackmania Turbo", cat:"course", img:"images/trackmaniat.jpg", desc:"Course arcade fun.", link:"https://store.steampowered.com/app/698780/Trackmania_Turbo/"},
+  {name:"LEGO® Builder’s Journey", cat:"puzzle", img:"images/legobuilder.jpg", desc:"Puzzle familial et créatif.", link:"https://www.microsoft.com/store/apps/9P7QZR1G3Z6V"},  
+  {name:"Code of War", cat:"action", img:"images/codeofwar.jpg", desc:"Shooter tactique gratuit.", link:"https://www.microsoft.com/store/apps/9P7QZR1C5J72"},  
+  {name:"Hill Climb Racing", cat:"course", img:"images/hillclimb.jpg", desc:"Course amusante et gratuite.", link:"https://www.microsoft.com/store/apps/9NBLGGH5ZV2Z"},  
+  {name:"Asphalt 8: Airborne", cat:"course", img:"images/asphalt8.jpg", desc:"Course arcade rétro gratuite.", link:"https://www.microsoft.com/store/apps/9WZDNCRFJ3PT"},  
+  {name:"eFootball™", cat:"sport", img:"images/efootball.jpg", desc:"Football réaliste gratuit.", link:"https://www.microsoft.com/store/apps/9P7QZR1CF517"},  
+  {name:"Beach Buggy Racing", cat:"course", img:"images/beachbuggyracing.jpg", desc:"Course de plage fun.", link:"https://www.microsoft.com/store/apps/9P7QZRHD5M1R"},  
+  {name:"Microsoft Jigsaw", cat:"puzzle", img:"images/microsoftjigsaw.jpg", desc:"Puzzle classique gratuit.", link:"https://www.microsoft.com/store/apps/9WZDNCRFJ3PT"},  
+  {name:"Spider Solitaire", cat:"puzzle", img:"images/spidersolitaire.jpg", desc:"Solitaire Spider gratuit.", link:"https://www.microsoft.com/store/apps/XX"}  ,
+  {name:"Wuthering Waves",cat:"aventure",img:"images/wutheringwaves.jpg",desc:"Action RPG free‑to‑play gratuit.",link:"https://www.epicgames.com/store/fr/p/wuthering-waves"},  
+  {name:"Zenless Zone Zero",cat:"aventure",img:"images/zenlesszonezero.jpg",desc:"Action RPG dynamique gratuit.",link:"https://www.epicgames.com/store/fr/p/zenless-zone-zero"},  
+  {name:"Marvel Rivals",cat:"action",img:"images/marvelrivals.jpg",desc:"Combat d’équipe avec super‑héros.",link:"https://www.epicgames.com/store/fr/p/marvel-rivals"},  
+  {name:"Duet Night Abyss",cat:"arcade",img:"images/duetnightabyss.jpg",desc:"Arcade musical intense.",link:"https://www.epicgames.com/store/fr/p/duet-night-abyss"},  
+  {name:"RAVEN2",cat:"fps",img:"images/raven2.jpg",desc:"FPS multijoueur gratuit.",link:"https://www.epicgames.com/store/fr/p/raven2"},  
+  {name:"Where Winds Meet",cat:"strategie",img:"images/wherewindsmeet.jpg",desc:"Combat stratégique gratuit.",link:"https://www.epicgames.com/store/fr/p/where-winds-meet"},  
+  {name:"Duet Night Abyss",cat:"arcade",img:"images/duetnightabyss.jpg",desc:"Jeu musical vitesse et réflexes.",link:"https://www.epicgames.com/store/fr/p/duet-night-abyss"},  
+  {name:"Crosshair V2",cat:"fps",img:"images/crosshairv2.jpg",desc:"FPS rapide gratuit.",link:"https://www.epicgames.com/store/fr/p/crosshair-v2"},  
+  {name:"Idle Champions",cat:"strategie",img:"images/idlechampions.jpg",desc:"Stratégie idle RPG amusant.",link:"https://www.epicgames.com/store/fr/p/idle-champions-of-the-forgotten-realms"},  
+  {name:"Firestone Online Idle RPG",cat:"rpg",img:"images/firestoneonline.jpg",desc:"RPG idle gratuit.",link:"https://www.epicgames.com/store/fr/p/firestone-online-idle-rpg"},  
+  {name:"Shadowverse: Worlds Beyond",cat:"cartes",img:"images/shadowverse.jpg",desc:"Jeu de cartes stratégique.",link:"https://www.epicgames.com/store/fr/p/shadowverse-worlds-beyond"},  
+  {name:"Tom Clancy’s Rainbow Six Siege X - Free Access",cat:"fps",img:"images/r6siege.jpg",desc:"FPS tactique gratuit à accès limité.",link:"https://www.epicgames.com/store/fr/p/tom-clancys-rainbow-six-siege-x-free-access"},  
+  {name:"Skate™",cat:"sport",img:"images/skate.jpg",desc:"Jeu de skate street gratuit.",link:"https://www.epicgames.com/store/fr/p/skate"},  
+  {name:"Idle Champions of the Forgotten Realms",cat:"strategie",img:"images/idlechampions.jpg",desc:"Stratégie idle humour et héros.",link:"https://www.epicgames.com/store/fr/p/idle-champions-of-the-forgotten-realms"},  
+  {name:"Marvel Rivals",cat:"action",img:"images/marvelrivals.jpg",desc:"Combat super‑héros gratuit.",link:"https://www.epicgames.com/store/fr/p/marvel-rivals"},  
+  {name:"Naraka: Bladepoint",cat:"action",img:"images/naraka.jpg",desc:"Combat libre multijoueur gratuit.",link:"https://www.epicgames.com/store/fr/p/naraka-bladepoint"},  
+  {name:"Firestone Online",cat:"rpg",img:"images/firestoneonline.jpg",desc:"RPG idle fantasy gratuit.",link:"https://www.epicgames.com/store/fr/p/firestone-online-idle-rpg"},  
+  {name:"Blood West (free limited)",cat:"fps",img:"images/bloodwest.jpg",desc:"FPS style western gratuit temporairement.",link:"https://www.epicgames.com/store/free-games"},  
+  {name:"Game of Thrones: Kingsroad",cat:"strategie",img:"images/gotkingsroad.jpg",desc:"Jeu stratégie inspiré.",link:"https://www.epicgames.com/store/fr/p/game-of-thrones-kingsroad"},  
+  {name:"Marvel Rivals",cat:"action",img:"images/marvelrivals.jpg",desc:"Combat multijoueur gratuit.",link:"https://www.epicgames.com/store/fr/p/marvel-rivals"},  
+  {name:"Core (MMO)",cat:"aventure",img:"images/core.jpg",desc:"MMO sandbox et création libre.",link:"https://www.epicgames.com/store/fr/p/core"},  
+  {name:"Wuthering Waves",cat:"aventure",img:"images/wutheringwaves.jpg",desc:"Aventure RPG gratuit.",link:"https://www.epicgames.com/store/fr/p/wuthering-waves"},  
+  {name:"Smite",cat:"strategie",img:"images/smite.jpg",desc:"MOBA stratégique gratuit.",link:"https://www.smitegame.com/"},  
+  {name:"Realm Royale",cat:"action",img:"images/realmroyale.jpg",desc:"Battle royale gratuit.",link:"https://store.steampowered.com/app/813820/Realm_Royale_Reforged/"},  
+  {name:"Vigor",cat:"fps",img:"images/vigor.jpg",desc:"Shooter survie multijoueur.",link:"https://store.steampowered.com/app/1351020/Vigor/"},  
+  {name:"Final Fantasy XIV Free Trial",cat:"rpg",img:"images/ffxiv.jpg",desc:"MMORPG essai gratuit jusqu’à lvl 60.",link:"https://ffxiv.com/"},  
+  {name:"Apex Legends",cat:"action",img:"images/apexlegends.jpg",desc:"Battle royale très populaire.",link:"https://www.ea.com/games/apex-legends"},  
+  {name:"CS2 (Counter Strike 2)",cat:"fps",img:"images/cs2.jpg",desc:"FPS compétitif principal.",link:"https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/"},  
+  {name:"Enlisted",cat:"fps",img:"images/enlisted.jpg",desc:"FPS historique multijoueur.",link:"https://store.steampowered.com/app/933210/Enlisted/"},  
+  {name:"Heroes & Generals 2",cat:"fps",img:"images/heroesgenerals2.jpg",desc:"FPS stratégique gratuit.",link:"https://heroesandgenerals.com/"},  
+  {name:"Mir4",cat:"rpg",img:"images/mir4.jpg",desc:"MMORPG gratuit et mobile PC.",link:"https://mir4.com/"},  
+  {name:"Warlander",cat:"action",img:"images/warlander.jpg",desc:"Action arena multijoueur gratuit.",link:"https://store.steampowered.com/app/1991790/Warlander/"},  
+  {name:"The Finals",cat:"fps",img:"images/thefinals.jpg",desc:"FPS sportif multijoueur gratuit.",link:"https://www.ea.com/games/the-finals"},  
+  {name:"Xdefiant",cat:"fps",img:"images/xdefiant.jpg",desc:"FPS Ubisoft dynamique gratuit.",link:"https://www.ubisoft.com/game/xdefiant"},  
+  {name:"KartRider: Drift",cat:"course",img:"images/kartrider.jpg",desc:"Course arcade fun gratuit.",link:"https://kdrift.com/"},  
+  {name:"Operation Harsh Doorstop",cat:"action",img:"images/harshdoorstop.jpg",desc:"FPS coop tactique gratuit.",link:"https://store.steampowered.com/app/2244830/Operation_Harsh_Doorstop/"},  
+  {name:"FragPunk",cat:"fps",img:"images/fragpunk.jpg",desc:"FPS multijoueur gratuit.",link:"https://store.steampowered.com/app/1381990/FragPunk/"},  
+  {name:"Star Conflict",cat:"action",img:"images/starconflict.jpg",desc:"Combat spatial MMO gratuit.",link:"https://www.star-conflict.com/"},  
+  {name:"Enshrouded",cat:"aventure",img:"images/enshrouded.jpg",desc:"Aventure survie en monde ouvert.",link:"https://store.steampowered.com/app/1854140/Enshrouded/"},  
+  {name:"Apex Legends Mobile PC Mode",cat:"action",img:"images/apexmobile.jpg",desc:"Version mobile jouable PC.",link:"https://www.ea.com/games/apex-legends"},  
+  {name:"Street Power Football",cat:"sport",img:"images/streetpowerfootball.jpg",desc:"Football freestyle multijoueur.",link:"https://streetpowerfootball.com/"},  
+  {name:"Epic Seven",cat:"rpg",img:"images/epicseven.jpg",desc:"RPG animé gratuit.",link:"https://epic7.co/"},  
+  {name:"Shadow Arena",cat:"action",img:"images/shadowarena.jpg",desc:"Battle royale gratuit.",link:"https://store.steampowered.com/app/950820/Shadow_Arena/"},  
+  {name:"Roboquest",cat:"action",img:"images/roboquest.jpg",desc:"Action FPS roguelite gratuit.",link:"https://store.steampowered.com/app/1076790/Roboquest/"},  
+  {name:"Gotham Knights Free Trial",cat:"aventure",img:"images/gothamknights.jpg",desc:"Essai gratuit Gotham Knights.",link:"https://www.dc.com/gothamknights"}  ,
+   {name:"Path of Exile", cat:"rpg", img:"images/pathofexile.jpg", desc:"MMORPG hack & slash gratuit.", link:"https://www.pathofexile.com/"},
+  {name:"Warframe", cat:"action", img:"images/warframe.jpg", desc:"Shooter coop en ligne free‑to‑play.", link:"https://www.warframe.com/"},
+  {name:"Dauntless", cat:"action", img:"images/dauntless.jpg", desc:"Chasse aux monstres en équipe gratuit.", link:"https://playdauntless.com/"},
+  {name:"Genshin Impact", cat:"aventure", img:"images/genshinimpact.jpg", desc:"RPG open-world gratuit.", link:"https://genshin.hoyoverse.com/"},
+  {name:"Team Fortress 2", cat:"fps", img:"images/teamfortress2.jpg", desc:"FPS multijoueur classique gratuit.", link:"https://store.steampowered.com/app/440/Team_Fortress_2/"},
+];
+
+const container=document.getElementById("categoryGames");
+
+function render(list){
+  container.innerHTML="";
+  list.forEach(g=>{
+    container.innerHTML+=`
+    <div class="category-game">
+      <img src="${g.img}">
+      <div class="game-info-mini">
+        <h4>${g.name}</h4>
+        <p>${g.desc}</p>
+        <a href="${g.link}" target="_blank" class="btn-telecharger">Télécharger</a>
+      </div>
+    </div>`;
+  });
+}
+
+
+function filterGames(cat){
+  if(cat==="all") render(games);
+  else render(games.filter(g=>g.cat===cat));
+}
+
+document.getElementById("searchInput").addEventListener("input",e=>{
+  const v=e.target.value.toLowerCase();
+  render(games.filter(g=>g.name.toLowerCase().includes(v)));
+});
+
+function toggleDownload(button){
+  const options = button.nextElementSibling;
+  options.style.display = (options.style.display === 'block') ? 'none' : 'block';
+}
+
+// Masquer le menu si on clique ailleurs
+document.addEventListener('click', function(e){
+  const boxes = document.querySelectorAll('.download-options');
+  boxes.forEach(box => {
+    if(!box.contains(e.target) && !box.previousElementSibling.contains(e.target)){
+      box.style.display = 'none';
+    }
+  });
+});
+
+render(games);
+const allGames = games.concat(moreGames);
+
+</script>
+
+<footer>
+    <p>&copy; 2026 MLG-XGame by MLG-Xtech - Tous droits réservés</p>
+  </footer>
+
+</body>
+</html>

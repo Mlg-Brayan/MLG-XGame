@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeux DS | MLG BN GameZone</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #111;
+  color: #9900ff;
+  margin: 0;
+}
+
+/* TITRES */
+h1, h2, h3 {
+  text-align: center;
+  color: white;
+  margin: 10px 0;
+}
+
+h1 {
+  font-size: 35px;
+  background: linear-gradient(90deg,#9900ff,#0055ff);
+  text-shadow: 0 0 10px #9900ff;
+  padding: 20px;
+}
+
+/* BOUTONS CATEGORIES */
+.bouton-cadre{
+  display: flex;
+  font-weight: bold;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px;
+}
+
+.bouton {
+  border-radius: 10px;
+  background: #0055ff;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px 25px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.bouton:hover {
+  transform: scale(1.05);
+  color: #9900ff;
+  box-shadow: 0 0 20px #9900ff;
+}
+
+/* GRANDS CADRES JEUX POPULAIRES */
+.game-cadre {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 15px;
+  padding: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.game {
+  position: relative;
+  border-radius: 15px;
+  background: #1a1a2e;
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-width: 220px;
+  height: 150px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.game:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #9900ff;
+}
+
+.game img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* INFO JEU grands cadres */
+.game-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(10,10,26,0.9);
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.game-info h4 {
+  margin: 2px 0;
+  font-size: 14px;
+  color: #9900ff;
+}
+
+.game-info p {
+  margin: 2px 0 6px;
+  font-size: 11px;
+  color: #ddd;
+}
+
+/* BOUTON TELECHARGER */
+.btn-telecharger {
+  display: block;
+  text-align: center;
+  background: linear-gradient(90deg,#9900ff,#0055ff);
+  color: white;
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.btn-telecharger:active {
+  transform: scale(0.95);
+}
+
+/* MINI-CADRES JEUX PAR CATEGORIE avec overlay */
+.category-game {
+  position: relative;
+  border-radius: 10px;
+  background: #1a1a2e;
+  width: 120px;
+  height: 150px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+  color: #9900ff;
+  font-size: 11px;
+}
+
+.category-game img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.category-game .game-info-mini {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(10,10,26,0.8);
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.category-game .game-info-mini h4 {
+  margin: 2px 0;
+  font-size: 12px;
+  color: #9900ff;
+}
+
+.category-game .game-info-mini p {
+  margin: 2px 0 4px;
+  font-size: 9px;
+  color: #ddd;
+}
+
+.category-game .game-info-mini a.btn-telecharger {
+  font-size: 10px;
+  padding: 4px 5px;
+  display: block;
+  text-align: center;
+  background: linear-gradient(90deg,#9900ff,#0055ff);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-top: 2px;
+}
+
+/* cacher scrollbar horizontal */
+.game-cadre::-webkit-scrollbar,
+.bouton-cadre::-webkit-scrollbar {
+  display: none;
+}
+
+.game-cadre {
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+
+#categoryGames {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 12px;
+  padding: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+</style>
+</head>
+<body>
+
+<h1>🎮 Jeux DS</h1>
+
+<h2>🔥 Jeux Populaires</h2>
+<div class="game-cadre" id="popularGames">
+  <!-- Jeux populaires DS -->
+</div>
+
+<h3>Nos Catégories</h3>
+<div class="bouton-cadre">
+  <div class="bouton" onclick="filterCategory('Action')">⚔ Action</div>
+  <div class="bouton" onclick="filterCategory('Aventure')">🏹 Aventure</div>
+  <div class="bouton" onclick="filterCategory('Course')">🏎️ Course</div>
+  <div class="bouton" onclick="filterCategory('Sport')">⚽ Sport</div>
+  <div class="bouton" onclick="filterCategory('Strategie')">🧠 Stratégie</div>
+  <div class="bouton" onclick="filterCategory('Simulation')">🛠 Simulation</div>
+  <div class="bouton" onclick="filterCategory('RPG')">🗡️ RPG</div>
+  <div class="bouton" onclick="filterCategory('Puzzle')">🧩 Puzzle</div>
+</div>
+
+<h2>📦 Tous les jeux DS</h2>
+<div class="game-cadre" id="categoryGames"></div>
+
+<h2>🎯 Jeux de la catégorie sélectionnée</h2>
+<div class="game-cadre" id="filteredCategory"></div>
+
+<script>
+const dsGames = [
+  {nom:"Pokémon Diamond/Pearl", categorie:"RPG", description:"RPG captivant avec aventures Pokémon.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+DP", lien:"#"},
+  {nom:"Mario Kart DS", categorie:"Course", description:"Courses rapides et fun.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Mario+Kart+DS", lien:"#"},
+  {nom:"New Super Mario Bros", categorie:"Aventure", description:"Plateforme classique et fun.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=NSMB", lien:"#"},
+  {nom:"The Legend of Zelda: Phantom Hourglass", categorie:"Aventure", description:"Aventure épique avec énigmes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Zelda+PH", lien:"#"},
+  {nom:"Animal Crossing: Wild World", categorie:"Simulation", description:"Vie dans un village interactif.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=AC+WW", lien:"#"},
+  {nom:"Metroid Prime: Hunters", categorie:"Action", description:"Action et exploration spatiale.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Metroid+PH", lien:"#"},
+  {nom:"Castlevania: Dawn of Sorrow", categorie:"Action", description:"Combat contre créatures démoniaques.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Castlevania+DoS", lien:"#"},
+  {nom:"Kirby: Canvas Curse", categorie:"Aventure", description:"Plateforme colorée et originale.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Kirby+CC", lien:"#"},
+  {nom:"Fire Emblem: Shadow Dragon", categorie:"Strategie", description:"Stratégie tactique captivante.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=FE+SD", lien:"#"},
+  {nom:"Mario & Luigi: Partners in Time", categorie:"RPG", description:"RPG drôle et dynamique.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=M&L+PiT", lien:"#"},
+  {nom:"Advance Wars: Dual Strike", categorie:"Strategie", description:"Stratégie militaire amusante.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=AW+DS", lien:"#"},
+  {nom:"Sonic Rush", categorie:"Course", description:"Course rapide avec Sonic.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Sonic+Rush", lien:"#"},
+  {nom:"Nintendogs", categorie:"Simulation", description:"Éleve tes chiens virtuels.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Nintendogs", lien:"#"},
+  {nom:"Chrono Trigger DS", categorie:"RPG", description:"RPG classique et épique.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Chrono+Trigger", lien:"#"},
+  {nom:"Professor Layton and the Curious Village", categorie:"Puzzle", description:"Résous des énigmes captivantes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Layton+Curious+Village", lien:"#"},
+  {nom:"Dragon Quest IX", categorie:"RPG", description:"RPG épique avec quêtes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Dragon+Quest+IX", lien:"#"},
+  {nom:"WarioWare: Touched!", categorie:"Action", description:"Mini-jeux rapides et fun.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=WarioWare+Touched", lien:"#"},
+  {nom:"Elite Beat Agents", categorie:"Puzzle", description:"Rythme et réflexes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Elite+Beat+Agents", lien:"#"},
+  {nom:"Final Fantasy III DS", categorie:"RPG", description:"RPG classique et captivant.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=FF+III+DS", lien:"#"},
+  {nom:"Inazuma Eleven", categorie:"Sport", description:"Football tactique et fun.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Inazuma+Eleven", lien:"#"},
+  {nom:"Pokémon Platinum", categorie:"RPG", description:"Nouvelle aventure Pokémon captivante.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+Platinum", lien:"#"},
+  {nom:"Mario & Luigi: Superstar Saga DS", categorie:"RPG", description:"RPG drôle et dynamique.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=M&L+Superstar+Saga", lien:"#"},
+  {nom:"The Legend of Zelda: Four Swords", categorie:"Aventure", description:"Aventure coopérative et énigmes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Zelda+Four+Swords", lien:"#"},
+  {nom:"Kirby Mass Attack", categorie:"Aventure", description:"Aventure avec multiples Kirby à contrôler.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Kirby+Mass+Attack", lien:"#"},
+  {nom:"Pokémon Mystery Dungeon: Explorers of Time", categorie:"RPG", description:"Aventure et exploration dans un monde Pokémon.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+MD+Time", lien:"#"},
+  {nom:"Super Princess Peach", categorie:"Aventure", description:"Aventure et pouvoirs uniques de Peach.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Super+Princess+Peach", lien:"#"},
+  {nom:"Fire Emblem: Shadow Dragon DS", categorie:"Strategie", description:"Stratégie tactique captivante.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=FE+SD+DS", lien:"#"},
+  {nom:"Dragon Quest IV", categorie:"RPG", description:"RPG classique et captivant.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Dragon+Quest+IV", lien:"#"},
+  {nom:"Mario Kart DS Championship", categorie:"Course", description:"Courses palpitantes sur circuits variés.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Mario+Kart+DS+Champ", lien:"#"},
+  {nom:"Animal Crossing: DS Edition", categorie:"Simulation", description:"Gère ta vie virtuelle dans un village.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=AC+DS", lien:"#"},
+  {nom:"Professor Layton and the Unwound Future", categorie:"Puzzle", description:"Résous de nouvelles énigmes captivantes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Layton+Unwound+Future", lien:"#"},
+  {nom:"Elite Beat Agents: Remix", categorie:"Puzzle", description:"Rythme et réflexes avec missions fun.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Elite+Beat+Remix", lien:"#"},
+  {nom:"Sonic Chronicles: The Dark Brotherhood", categorie:"RPG", description:"RPG avec aventure et action.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Sonic+Chronicles", lien:"#"},
+  {nom:"Wario Land: Shake It!", categorie:"Aventure", description:"Plateforme et défis amusants.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Wario+Land+Shake+It", lien:"#"},
+  {nom:"Inazuma Eleven 3", categorie:"Sport", description:"Football tactique et aventures.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Inazuma+Eleven+3", lien:"#"},
+  {nom:"Pokémon HeartGold: Gym Challenge", categorie:"RPG", description:"Défie les gym leaders et collectionne.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+HG+Gym", lien:"#"},
+  {nom:"Mario & Sonic at the Olympic Games", categorie:"Sport", description:"Compétitions sportives amusantes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Mario+Sonic+Olympic", lien:"#"},
+  {nom:"Kirby and the Amazing Mirror", categorie:"Aventure", description:"Explore un monde coloré avec Kirby.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Kirby+Amazing+Mirror", lien:"#"},
+  {nom:"Metroid Prime: Hunters Challenge", categorie:"Action", description:"Combat et exploration spatiale intense.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Metroid+PH+Challenge", lien:"#"},
+  {nom:"WarioWare: Twisted!", categorie:"Action", description:"Mini-jeux originaux et amusants.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=WarioWare+Twisted", lien:"#"},
+  {nom:"Pokémon Black 2", categorie:"RPG", description:"Nouvelle aventure Pokémon captivante.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+Black+2", lien:"#"},
+  {nom:"Pokémon White 2", categorie:"RPG", description:"Nouvelle aventure Pokémon captivante.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+White+2", lien:"#"},
+  {nom:"Mario & Luigi: Partners in Time", categorie:"RPG", description:"RPG drôle et interactif.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=M&L+Partners+in+Time", lien:"#"},
+  {nom:"The Legend of Zelda: Phantom Hourglass", categorie:"Aventure", description:"Aventure et énigmes sur bateau.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Zelda+PH", lien:"#"},
+  {nom:"Kirby Canvas Curse", categorie:"Aventure", description:"Aventure interactive avec stylet.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Kirby+Canvas+Curse", lien:"#"},
+  {nom:"Pokémon Ranger: Guardian Signs", categorie:"RPG", description:"Aventure et missions de Ranger Pokémon.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+Ranger", lien:"#"},
+  {nom:"Super Mario 64 DS: Challenge", categorie:"Plateforme", description:"Revisite de la plateforme classique.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=SM64+DS+Challenge", lien:"#"},
+  {nom:"Dragon Quest VI", categorie:"RPG", description:"RPG classique et aventure épique.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Dragon+Quest+VI", lien:"#"},
+  {nom:"Mario Kart DS: Battle Mode", categorie:"Course", description:"Courses et batailles amusantes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Mario+Kart+DS+Battle", lien:"#"},
+  {nom:"Animal Crossing: Wild World", categorie:"Simulation", description:"Vie et interactions dans ton village.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=AC+Wild+World", lien:"#"},
+  {nom:"Professor Layton and the Last Specter", categorie:"Puzzle", description:"Résous de nouvelles énigmes captivantes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Layton+Last+Specter", lien:"#"},
+  {nom:"Elite Beat Agents: Mega Remix", categorie:"Puzzle", description:"Rythme et missions fun.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Elite+Beat+Mega", lien:"#"},
+  {nom:"Sonic Rush", categorie:"Course", description:"Course rapide avec aventures colorées.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Sonic+Rush", lien:"#"},
+  {nom:"WarioWare: Touched!", categorie:"Action", description:"Mini-jeux originaux et rapides.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=WarioWare+Touched", lien:"#"},
+  {nom:"Inazuma Eleven GO", categorie:"Sport", description:"Football tactique et aventures.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Inazuma+Eleven+GO", lien:"#"},
+  {nom:"Pokémon SoulSilver: Battle Frontier", categorie:"RPG", description:"Défie les meilleurs dresseurs Pokémon.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+SS+BF", lien:"#"},
+  {nom:"Mario & Sonic at the Winter Olympics", categorie:"Sport", description:"Compétitions sportives amusantes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Mario+Sonic+Winter", lien:"#"},
+  {nom:"Kirby: Squeak Squad", categorie:"Aventure", description:"Explore et résous des puzzles avec Kirby.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Kirby+Squeak+Squad", lien:"#"},
+  {nom:"Metroid Prime: Hunters DS", categorie:"Action", description:"Combat et exploration spatiale.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Metroid+PH+DS", lien:"#"},
+  {nom:"Wario Land: The Shake Dimension", categorie:"Aventure", description:"Plateforme et défis amusants.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Wario+Land+Shake+Dim", lien:"#"},
+  {nom:"Pokémon Black Version", categorie:"RPG", description:"Nouvelle génération Pokémon à capturer.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+Black", lien:"#"},
+  {nom:"Pokémon White Version", categorie:"RPG", description:"Nouvelle génération Pokémon à capturer.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+White", lien:"#"},
+  {nom:"Mario & Luigi: Bowser's Inside Story", categorie:"RPG", description:"RPG drôle avec aventures interactives.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=M&L+Bowser+Story", lien:"#"},
+  {nom:"The Legend of Zelda: Spirit Tracks", categorie:"Aventure", description:"Aventure épique avec train et énigmes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Zelda+Spirit+Tracks", lien:"#"},
+  {nom:"Kirby: Super Star Ultra", categorie:"Aventure", description:"Plateforme et aventures colorées.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Kirby+Super+Star+Ultra", lien:"#"},
+  {nom:"Pokémon Ranger: Shadows of Almia", categorie:"RPG", description:"Aventure et missions de Ranger Pokémon.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+Ranger+Almia", lien:"#"},
+  {nom:"Super Mario 64 DS: Extra Challenges", categorie:"Plateforme", description:"Revisite de la plateforme classique.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=SM64+DS+Extra", lien:"#"},
+  {nom:"Dragon Quest VII", categorie:"RPG", description:"RPG classique avec quêtes et batailles.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Dragon+Quest+VII", lien:"#"},
+  {nom:"Mario Kart DS: Time Trials", categorie:"Course", description:"Courses rapides contre la montre.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Mario+Kart+DS+Time", lien:"#"},
+  {nom:"Animal Crossing: City Folk DS", categorie:"Simulation", description:"Vie et interactions dans un village moderne.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=AC+City+Folk", lien:"#"},
+  {nom:"Professor Layton and the Diabolical Box", categorie:"Puzzle", description:"Résous de nouvelles énigmes captivantes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Layton+Diabolical+Box", lien:"#"},
+  {nom:"Elite Beat Agents: Ultimate Remix", categorie:"Puzzle", description:"Rythme et missions amusantes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Elite+Beat+Ultimate", lien:"#"},
+  {nom:"Sonic Rush Adventure", categorie:"Course", description:"Aventure et courses rapides.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Sonic+Rush+Adventure", lien:"#"},
+  {nom:"WarioWare: D.I.Y. Showcase", categorie:"Action", description:"Crée tes mini-jeux et amuse-toi.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=WarioWare+DIY", lien:"#"},
+  {nom:"Inazuma Eleven Strikers", categorie:"Sport", description:"Football tactique et aventure.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Inazuma+Strikers", lien:"#"},
+  {nom:"Pokémon SoulSilver: Elite Battle", categorie:"RPG", description:"Batailles contre les meilleurs dresseurs.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+SS+Elite", lien:"#"},
+  {nom:"Mario & Sonic at the London 2012 Olympics", categorie:"Sport", description:"Compétitions sportives amusantes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Mario+Sonic+London", lien:"#"},
+  {nom:"Kirby: Epic Yarn DS", categorie:"Aventure", description:"Aventure colorée et originale.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Kirby+Epic+Yarn", lien:"#"},
+  {nom:"Metroid Prime: Hunters Legacy", categorie:"Action", description:"Exploration et combats spatiaux.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Metroid+PH+Legacy", lien:"#"},
+  {nom:"Wario Land: Shake Dimension 2", categorie:"Aventure", description:"Plateforme et défis amusants.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Wario+Land+Shake+Dim2", lien:"#"},
+  {nom:"Pokémon Platinum DS", categorie:"RPG", description:"Explore Sinnoh et capture de nouveaux Pokémon.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+Platinum", lien:"#"},
+  {nom:"Pokémon Diamond DS", categorie:"RPG", description:"Aventure épique dans la région de Sinnoh.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+Diamond", lien:"#"},
+  {nom:"Pokémon Pearl DS", categorie:"RPG", description:"Aventure et combats stratégiques.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+Pearl", lien:"#"},
+  {nom:"Mario & Luigi: Dream Team", categorie:"RPG", description:"RPG amusant avec aventures dans le rêve.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=M&L+Dream+Team", lien:"#"},
+  {nom:"The Legend of Zelda: Four Swords DS", categorie:"Aventure", description:"Résous des énigmes en coopération.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Zelda+Four+Swords", lien:"#"},
+  {nom:"Kirby Mass Attack", categorie:"Aventure", description:"Contrôle plusieurs Kirby pour avancer.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Kirby+Mass+Attack", lien:"#"},
+  {nom:"Pokémon Ranger: Shadows DS", categorie:"RPG", description:"Mission et aventures avec Pokémon Rangers.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+Ranger+Shadows", lien:"#"},
+  {nom:"Dragon Quest VIII DS", categorie:"RPG", description:"Aventure épique et batailles stratégiques.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Dragon+Quest+VIII", lien:"#"},
+  {nom:"Mario Kart DS: Grand Prix", categorie:"Course", description:"Courses classiques et amusantes.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Mario+Kart+DS+GP", lien:"#"},
+  {nom:"Animal Crossing: DS Village Life", categorie:"Simulation", description:"Vie quotidienne et interactions.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=AC+DS+Village", lien:"#"},
+  {nom:"Professor Layton and the Unwound Future", categorie:"Puzzle", description:"Énigmes captivantes et histoire intrigante.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Layton+Unwound+Future", lien:"#"},
+  {nom:"Elite Beat Agents: Mega Beat", categorie:"Puzzle", description:"Mini-jeux rythmiques amusants.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Elite+Beat+Mega+Beat", lien:"#"},
+  {nom:"Sonic Colors DS", categorie:"Course", description:"Aventure rapide avec niveaux colorés.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Sonic+Colors+DS", lien:"#"},
+  {nom:"WarioWare: D.I.Y. Megamix", categorie:"Action", description:"Crée tes mini-jeux originaux.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=WarioWare+DIY+Mega", lien:"#"},
+  {nom:"Inazuma Eleven: Thunder DS", categorie:"Sport", description:"Football stratégique et aventure.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Inazuma+Thunder+DS", lien:"#"},
+  {nom:"Pokémon HeartGold DS", categorie:"RPG", description:"Redécouvre Johto et capture Pokémon.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Pokemon+HeartGold+DS", lien:"#"},
+  {nom:"Mario & Sonic at the Sochi 2014 Olympics", categorie:"Sport", description:"Jeux olympiques amusants avec tes héros.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Mario+Sonic+Sochi", lien:"#"},
+  {nom:"Kirby: Triple Deluxe DS", categorie:"Aventure", description:"Plateforme colorée avec Kirby.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Kirby+Triple+Deluxe", lien:"#"},
+  {nom:"Metroid Prime: Hunters DS 2", categorie:"Action", description:"Exploration et combats spatiaux.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Metroid+PH+DS+2", lien:"#"},
+  {nom:"Wario Land: Super Shake DS", categorie:"Aventure", description:"Plateforme et défis amusants.", img:"https://via.placeholder.com/220x150/9900ff/ffffff?text=Wario+Land+Super+Shake", lien:"#"},
+];
+
+// Générer les mini-cadres pour tous les jeux
+const categoryGamesContainer = document.getElementById("categoryGames");
+const popularGamesContainer = document.getElementById("popularGames");
+
+dsGames.forEach(game => {
+  const div = document.createElement("div");
+  div.className = "category-game";
+  div.innerHTML = `
+    <img src="${game.img}" alt="${game.nom}">
+    <div class="game-info-mini">
+      <h4>${game.nom}</h4>
+      <p>${game.description}</p>
+      <a class="btn-telecharger" href="${game.lien}" target="_blank">📥 Télécharger</a>
+    </div>
+  `;
+  categoryGamesContainer.appendChild(div);
+});
+
+// Jeux populaires : on prend les 5 premiers
+dsGames.slice(0,5).forEach(game => {
+  const div = document.createElement("div");
+  div.className = "game";
+  div.innerHTML = `
+    <img src="${game.img}" alt="${game.nom}">
+    <div class="game-info">
+      <h4>${game.nom}</h4>
+      <p>${game.description}</p>
+      <a class="btn-telecharger" href="${game.lien}" target="_blank">📥 Télécharger</a>
+    </div>
+  `;
+  popularGamesContainer.appendChild(div);
+});
+
+// Filtrer par catégorie
+function filterCategory(categorie) {
+  const container = document.getElementById("filteredCategory");
+  container.innerHTML = "";
+  dsGames.filter(game => game.categorie === categorie).forEach(game => {
+    const div = document.createElement("div");
+    div.className = "category-game";
+    div.innerHTML = `
+      <img src="${game.img}" alt="${game.nom}">
+      <div class="game-info-mini">
+        <h4>${game.nom}</h4>
+        <p>${game.description}</p>
+        <a class="btn-telecharger" href="${game.lien}" target="_blank">📥 Télécharger</a>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+  container.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
