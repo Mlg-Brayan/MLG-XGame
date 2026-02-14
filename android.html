@@ -1,554 +1,245 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jeux Android & iOS | MLG XGame</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-  body {
- font-family: Arial, sans-serif;
-  background-color: black;
-  color: #9900ff;
-  margin: 0;
-}
+<title>MLG XGame — Jeux Android & ios</title>
 
-/* TITRES */
-h1, h2, h3 {
-  text-align: left;
-  color: white;
-  margin: 0px;
+<style>
+
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:linear-gradient(135deg,#000,#0a0a1a);
+  color:white;
 }
 
-h1 {
-  font-size: 35px;
-  text-shadow: 0 0 10px #00f;
-  padding: 5px;
-  color: #9900ff;
-  text-align: center;
-  margin: 10px 0;
-}
-/* BOUTONS CATEGORIES */
-.bouton-cadre{
-  display: flex;
-  font-weight: bold;
-  gap: 10px;
-  overflow-x: auto;
-  padding: 10px;
-}
+/* HEADER */
 
-.bouton {
-  border-radius: 10px;
-  background: #9900ff;
-  color: white;
-  text-align: center;
-  font-size: 12px;
-  padding: 10px 25px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.bouton:hover {
-  transform: scale(1.05);
-      color: #00f;
-  box-shadow: 0 0 20px #00f;
-}
-
-/* CADRE JEUX POPULAIRE / NOUVEAUX */
-.game {
-  position: relative;
-  border-radius: 15px;
-  background: #1a0a3a;
-  transition: transform 0.3s, box-shadow 0.3s;
-  min-width: 300px;
-  height: 135px;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.game:hover {
-  transform: scale(1.05);
-      box-shadow: 0 0 20px #00ff;
-}
-
-.game img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.game-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4));
-      padding: 6px;
-  box-sizing: border-box;
-}
-
-.game-info h4{
-  font-size: 11px;
-  margin: 0;
-  color: #00f0ff;
-}
-
-.game-info p{
-  font-size: 9px;
-  margin: 2px 0;
-  color: #ddd;
-}
-/* INFO JEU grands cadres */
-.game-info-mini{
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4));
-      padding: 6px;
-  box-sizing: border-box;
-}
-
-.game-info-mini h4{
-  font-size: 11px;
-  margin: 0;
-  color: #00f0ff;
-}
-
-.game-info-mini p{
-  font-size: 9px;
-  margin: 2px 0;
-  color: #ddd;
-}
-
-
-/* BOUTON TELECHARGER */
-.btn-telecharger {
-  display: block;
-  text-align: center;
-  background: linear-gradient(90deg,#0055ff,#9900ff);
-  color: white;
-  padding: 4px;
-  border-radius: 8px;
-  font-size: 11px;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.btn-telecharger:active {
-  transform: scale(0.95);
-      }
-
-      /* MINI-CADRES JEUX PAR CATEGORIE avec overlay */
-.category-game{
-  position: relative;
-  width: 120px;
-  height: 150px;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #1a0a3a;
-  cursor: pointer;
-  flex: 0 0 auto;
-}
-
-.category-game img{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.category-game .game-img {
-  width: 90px;
-  height: 90px;
-  flex-shrink: 0;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-/* Overlay info sur image */
-.category-game .game-info-mini .game-info {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: rgba(10,10,26,0.8);
-      padding: 2px;
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.category-game .game-info-mini h4 {
-  margin: 0;
-  font-size: 10px;
-  color: #00f0ff;
-}
-
-.category-game .game-info-mini p {
-  margin: 0;
-  font-size: 9px;
-  color: #ddd;
-}
-
-.category-game .game-info-mini a.btn-telecharger {
-  font-size: 10px;
-  padding: 4px 5px;
-  display: block;
-  text-align: center;
-  background: linear-gradient(90deg,#0055ff,#9900ff);
-  color: white;
-  border-radius: 6px;
-  text-decoration: none;
-  margin-top: 2px;
-}
-/* cacher scrollbar - Chrome, Edge, Safari */
-.game-cadre::-webkit-scrollbar {
-  display: none;
-}
-
-/* cacher scrollbar - Firefox */
-.game-cadre {
-  scrollbar-width: none;
-}
-/* Scroll horizontal actif mais barre invisible */
-.game-cadre,
-.bouton-cadre {
-  scrollbar-width: none;      /* Firefox */
-  -ms-overflow-style: none;   /* IE / Edge */
-}
-
-.game-cadre::-webkit-scrollbar,
-.bouton-cadre::-webkit-scrollbar {
-  display: none;              /* Chrome / Safari */
-}
-/* Conteneur des petits jeux : 4 lignes + scroll horizontal */
-#categoryGames {
-  display: grid;
-  grid-auto-flow: column;       /* scroll horizontal */
-  grid-template-rows: repeat(4, 2fr); /* ✅ 4 lignes */
-  gap: 12px;
-  padding: 15px;
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-/* Grands cadres (populaires / nouveaux) */
- .game-cadre{
-  display: flex;
-  gap: 15px;
-  padding: 15px;
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-.download-box{
-  position: relative;
-  display: inline-block;
-  min-width: 335px;
-  font-size: 12px;
-}
-.download-options{
-  display:none;
-  position:absolute;
-  bottom:50%;
-  left:0;
+header{
+  padding:18px;
+  text-align:center;
   background:#000;
-  border-radius:8px;
-  box-shadow:0 0 20px #9900ff;
-  overflow:hidden;
-  min-width:120px;
-  z-index:20;
-  font-size: 10px;
+  box-shadow:0 0 15px #9900ff;
 }
 
-.download-options a{
-  padding:9px;
-  text-decoration:none;
-  font-weight: bold;
-  display: block;
-  font-size: 12px;        /* 🔽 taille réduite */
-  padding: 4px 5px;       /* 🔽 moins de hauteur */
-  margin-bottom: 2px;
-  border-radius: 6px;
-  text-align: center;
-  background: #2b2b2b;
-  color: #fff;
+header h1{
+  margin:0;
+  color:#9900ff;
+  font-size:24px;
 }
 
-.download-options a:hover{
+/* SEARCH */
+
+.search{
+  padding:15px;
+  text-align:center;
+}
+
+.search input{
+  width:90%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  font-size:15px;
+  outline:none;
+}
+
+/* CATEGORIES */
+
+.categories{
+  display:flex;
+  overflow-x:auto;
+  gap:10px;
+  padding:10px;
+}
+
+.cat-btn{
   background:#9900ff;
+  padding:8px 14px;
+  border-radius:8px;
+  white-space:nowrap;
+  cursor:pointer;
+  transition:0.25s;
+}
+
+.cat-btn:hover{
+  background:#00ff;
   color:black;
 }
 
-/* DERNIER LIEN SANS MARGE */
-.category-game .download-options a:last-child {
-  margin-bottom: 0;
+/* GRID */
+
+.games{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:15px;
+  padding:15px;
 }
 
-/* HOVER */
-.category-game .download-options a:hover {
-  background: #3b3b3b;
-}
- footer {
-  text-align: center;
-  background-color: #111;
-  padding: 10px;
-  font-size: 14px;
-  color: white; 
-  }
-.filtered-grid{
-  display: grid;
-  grid-auto-flow: column; /* scroll horizontal */
-  grid-template-rows: repeat(2, 2fr); 
-  gap: 12px;
-  padding: 15px;
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-#categoryGames {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  padding: 10px;
+/* CARD */
+
+.card{
+  background:#0a0a1a;
+  border-radius:14px;
+  overflow:hidden;
+  transition:0.3s;
+  box-shadow:0 0 10px #000;
 }
 
-.scroll-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  overflow-x: auto;
-  scrollbar-width: none;
+.card:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 15px #00ff;
 }
 
-.scroll-group::-webkit-scrollbar {
-  display: none;
+.card img{
+  width:100%;
+  height:120px;
+  object-fit:cover;
 }
 
-.scroll-line {
-  display: flex;
-  gap: 12px;
+.card-content{
+  padding:8px;
 }
 
+.card h3{
+  margin:5px 0;
+  font-size:14px;
+}
 
-    </style>
-  </head>
+.card p{
+  font-size:12px;
+  opacity:0.8;
+}
 
-  <body>
+/* BUTTONS */
 
-    <h1>🎮 Jeux Android & iOS</h1>
+.buttons{
+  display:flex;
+  gap:5px;
+  margin-top:5px;
+}
 
-    <h2>🔥 Jeux Populaires</h2>
-    <div class="game-cadre" id="popularGames">
+.buttons a{
+  flex:1;
+  text-align:center;
+  padding:6px;
+  background:#9900ff;
+  color:black;
+  text-decoration:none;
+  border-radius:6px;
+  font-size:12px;
+  font-weight:bold;
+}
 
-      <!-- FC Mobile -->
-      <div class="game">
-        <img src="c:\Users\Admin\Downloads\_956f852a-9810-43d5-83ec-4999c196a9f0.jfif" alt="FC Mobile">
-        <div class="game-info">
-          <h4>FC Mobile</h4>
-          <p>
-            Football réaliste avec équipes officielles.
-          </p>
-          <div class="download-box">
-            <div class="btn-telecharger" onclick="toggleDownload(this)">
-              📥 Télécharger
-            </div>
-            <div class="download-options">
-              <a href="https://play.google.com/store/apps/details?id=com.ea.gp.fifamobile" target="_blank">📥 Play Store</a>
-              <a href="https://apkpure.com/fr/fc-mobile/com.ea.gp.fifamobile" target="_blank">⬇️ APK</a>
-            </div>
-          </div>
-        </div>
-      </div>
+/* FOOTER */
 
-      <!-- Minecraft -->
-      <div class="game">
-        <img src="_24d23639-a4b2-44ce-9737-5eba834d0a69.jpg" alt="Minecraft">
-        <div class="game-info">
-          <h4>Minecraft</h4>
-          <p>
-            Jeu créatif et survie multijoueur.
-          </p>
-          <div class="download-box">
-            <div class="btn-telecharger" onclick="toggleDownload(this)">
-              📥 Télécharger
-            </div>
-            <div class="download-options">
-              <a href="https://play.google.com/store/apps/details?id=com.mojang.minecraftpe" target="_blank">📥 Play Store</a>
-              <a href="https://apps.apple.com/app/id479516143" target="_blank">🍎 App Store</a>
-              <a href="https://mcpedl.org/downloading/minecraft-pe-1-21/" target="_blank">⬇️ APK</a>
-            </div>
-          </div>
-        </div>
-      </div>
+footer{
+  text-align:center;
+  padding:12px;
+  background:#0a0a1a;
+  font-size:12px;
+}
 
-      <!-- Asphalt Nitro -->
-      <div class="game">
-        <img src="c:\Users\Admin\Downloads\_44a5eee9-69fe-43c7-bfed-7dec95d946ad.jfif" alt="Asphalt Nitro">
-        <div class="game-info">
-          <h4>Asphalt Nitro</h4>
-          <p>
-            Course intense avec voitures de luxe.
-          </p>
-          <div class="download-box">
-            <div class="btn-telecharger" onclick="toggleDownload(this)">
-              📥 Télécharger
-            </div>
-            <div class="download-options">
-              <a href="https://play.google.com/store/apps/details?id=com.gameloft.android.ANMP.GloftA8HM" target="_blank">📥 Play Store</a>
-              <a href="https://asphalt-nitro.fr.malavida.com/android/download" target="_blank">⬇️ APK</a>
-            </div>
-          </div>
-        </div>
-      </div>
+.download-btn{
+width:100%;
+margin-top:6px;
+padding:8px;
+border:none;
+border-radius:6px;
+background:#9900ff;
+color:black;
+font-weight:bold;
+cursor:pointer;
+}
+.card{
+position:relative;
+}
 
-      <!-- Talking Tom Hero Dash -->
-      <div class="game">
-        <img src="c:\Users\Admin\Downloads\_cd2f5c71-8b43-435f-a538-0a1918a96d46.jfif" alt="Talking Tom Hero Dash">
-        <div class="game-info">
-          <h4>Talking Tom Hero Dash</h4>
-          <p>
-            Parcours les niveaux avec Tom et ses amis.
-          </p>
-          <div class="download-box">
-            <div class="btn-telecharger" onclick="toggleDownload(this)">
-              📥 Télécharger
-            </div>
-            <div class="download-options">
-              <a href="https://play.google.com/store/apps/details?id=com.outfit7.herodash" target="_blank">📥 Play Store</a>
-              <a href="https://apps.apple.com/us/app/talking-tom-hero-dash/id1434807653" target="_blank">🍎 App Store</a>
-              <a href="" target="_blank">⬇️ APK</a>
-            </div>
-          </div>
-        </div>
-      </div>
+.download-menu{
+display:none;
+position:absolute;
+bottom:60px;
+left:10px;
+right:10px;
 
-      <!-- Among Us -->
-      <div class="game">
-        <img src="_fb954ae5-5e4a-409e-ae2e-02ba410a517b.jpg" alt="Among Us">
-        <div class="game-info">
-          <h4>Among Us</h4>
-          <p>
-            Trouve l'imposteur, ne fais confiance à personne.
-          </p>
-          <div class="download-box">
-            <div class="btn-telecharger" onclick="toggleDownload(this)">
-              📥 Télécharger
-            </div>
-            <div class="download-options">
-              <a href="https://play.google.com/store/apps/details?id=com.innersloth.spacemafia" target="_blank">📥 Play Store</a>
-              <a href="https://apps.apple.com/app/id1351168404" target="_blank">🍎 App Store</a>
-              <a href="https://apkpure.com/fr/among-us/com.innersloth.spacemafia" target="_blank">⬇️ APK</a>
-            </div>
-          </div>
-        </div>
-      </div>
+flex-direction:column;
+background:#0a0a1a;
+border-radius:8px;
+overflow:hidden;
 
-      <div class="game">
-        <img src="c:\Users\Admin\Downloads\_579d713a-3d55-4224-b59f-230d405fe288.jfif" alt="Genshin Impact">
-        <div class="game-info">
-          <h4>Genshin Impact</h4>
-          <p>
-            RPG monde ouvert spectaculaire action, aventure et exploration.
-          </p>
+box-shadow:0 8px 20px #000;
+z-index:10;
 
-          <div class="download-box">
-            <div class="btn-telecharger" onclick="toggleDownload(this)">
-              📥 Télécharger
-            </div>
+animation:pop 0.15s ease;
+}
 
-            <div class="download-options">
-              <!-- Play Store -->
-              <a href="https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact"
-                target="_blank">📥 Play Store</a>
+@keyframes pop{
+from{
+opacity:0;
+transform:translateY(10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
 
-              <!-- App Store -->
-              <a href="https://apps.apple.com/app/id1517783697"
-                target="_blank">🍎 App Store</a>
+.download-menu a{
+padding:8px;
+color:white;
+text-decoration:none;
+font-size:11px;
+border-top:1px solid #0a0a1a;
+}
 
-              <!-- APK -->
-              <a href="https://apkpure.com/genshin-impact/com.miHoYo.GenshinImpact"
-                target="_blank">⬇️ APK</a>
-            </div>
-          </div>
+.download-menu a:hover{
+background:#00ff;
+color:black;
+}
 
-        </div>
-      </div>
+</style>
+</head>
 
+<body>
 
-    </div>
+<header>
+<h1>📱 MLG XGame — Android & ios</h1>
+</header>
 
+<div class="search">
+<input type="text" placeholder="Rechercher un jeu..." onkeyup="searchGame()" id="search">
+</div>
 
-    <h3>Nos Catégories</h3>
-    <div class="bouton-cadre">
-      <div class="bouton" onclick="filterCategory('Sport')">
-        ⚽ Sport
-      </div>
-      <div class="bouton" onclick="filterCategory('Aventure')">
-        🏹 Aventure
-      </div>
-      <div class="bouton" onclick="filterCategory('Strategie')">
-        🧠 Stratégie
-      </div>
-      <div class="bouton" onclick="filterCategory('Reflexion')">
-        🕹️ Réflexion
-      </div>
-      <div class="bouton" onclick="filterCategory('Course')">
-        🏎️ Course
-      </div>
-      <div class="bouton" onclick="filterCategory('Simulation')">
-        🛠 Simulation
-      </div>
-      <div class="bouton" onclick="filterCategory('Gourmand')">
-        🍔 Gourmand
-      </div>
-      <div class="bouton" onclick="filterCategory('Multiplayer')">
-        🌐 Multijoueur
-      </div>
-      <div class="bouton" onclick="filterCategory('Mode')">
-        👗 Mode
-      </div>
-      <div class="bouton" onclick="filterCategory('Casual')">
-        Casual
-      </div>
-    </div>
+<div class="categories">
 
-    <h2 style="text-align:center; margin:10px">🔍 Rechercher un jeu</h2>
-    <div style="text-align:center; margin-bottom: 15px;">
-      <input type="text" id="searchInput" placeholder="Tape le nom du jeu..."
-      style="width: 60%; padding: 8px; border-radius: 8px; border: 1px solid #9900ff; background: #1a0a3a; color: #fff;">
-    </div>
-
-    <div id="categoryGames">
-
-  <div class="scroll-group">
-    <div class="scroll-line"></div>
-    <div class="scroll-line"></div>
-  </div>
-
-  <div class="scroll-group">
-    <div class="scroll-line"></div>
-    <div class="scroll-line"></div>
-  </div>
+<div class="cat-btn" onclick="filter('all')">Tous</div>
+<div class="cat-btn" onclick="filter('Sport')">Sport</div>
+<div class="cat-btn" onclick="filter('Aventure')">Aventure</div>
+<div class="cat-btn" onclick="filter('Stratégie')">Stratégie</div>
+<div class="cat-btn" onclick="filter('Réflexion')">Réflexion</div>
+<div class="cat-btn" onclick="filter('Course')">Course</div>
+<div class="cat-btn" onclick="filter('Simulation')">Simulation</div>
+<div class="cat-btn" onclick="filter('Gourmand')">Gourmand</div>
+<div class="cat-btn" onclick="filter('Multijoueur')">Multijoueur</div>
+<div class="cat-btn" onclick="filter('Mode')">Mode</div>
+<div class="cat-btn" onclick="filter('Casual')">Casual</div>
 
 </div>
 
-    <h2>🆕 Nouveaux Jeux</h2>
-    <div class="game-cadre" id="newGames">
-      <div class="game">
-        <img src="https://play-lh.googleusercontent.com/2Q7xgU9a1wLzJb9mM8qv=w526-h296-rw" alt="Asphalt 8">
-        <div class="game-info">
-          <h4>Asphalt 8</h4>
-          <p>
-            Course arcade intense avec voitures de luxe.
-          </p>
-          <a class="btn-telecharger" href="https://play.google.com/store/apps/details?id=com.gameloft.android.ANMP.GloftA8HM" target="_blank">📥 Télécharger</a>
-        </div>
-      </div>
-    </div>
+<div class="games" id="games"></div>
 
-    <h2>🎯 Jeux de la catégorie sélectionnée</h2>
-    <div class="filtered-grid" id="filteredCategory"></div>
-    <script>
-      const games = [
-  // ⚽ Sport
+<footer>
+MLG XGame © — Android & ios Launcher
+</footer>
+
+<script>
+
+/* ========= COLLE TES JEUX ICI ========= */
+
+const androidGames=[
+ // ⚽ Sport
   {
     nom: "FIFA Mobile",
     img: "images/android/fifa-mobile.jpg",
@@ -1447,113 +1138,84 @@ h1 {
   appstore: "https://apps.apple.com/fr/app/jetpack-joyride/id457446957",
   categorie: "Casual"
 },
+
 ];
 
+/* ========= RENDER ========= */
 
-    const groups = document.querySelectorAll(".scroll-group");
-let index = 0;
+function render(list){
+const container=document.getElementById("games");
+container.innerHTML="";
 
-games.forEach(game => {
-  const div = document.createElement("div");
-  div.className = "category-game";
-  div.innerHTML = `
-    <img src="${game.img}" alt="${game.nom}">
-    <div class="game-info-mini">
-      <h4>${game.nom}</h4>
-      <p>${game.description}</p>
-      <div class="btn-telecharger" onclick="toggleDownload(this)">📥 Télécharger</div>
-      <div class="download-options">
-        ${game.playstore ? `<a href="${game.playstore}" target="_blank">📥 Play Store</a>` : ""}
-        ${game.appstore ? `<a href="${game.appstore}" target="_blank">🍎 App Store</a>` : ""}
-        ${game.apk ? `<a href="${game.apk}" target="_blank">⬇️ APK</a>` : ""}
-      </div>
-    </div>
-  `;
+list.forEach((game,index)=>{
+container.innerHTML+=`
+<div class="card">
+<img src="${game.img}">
+<div class="card-content">
 
-  const group = groups[Math.floor(index / 8) % 2]; 
-  const lines = group.querySelectorAll(".scroll-line");
-  lines[index % 2].appendChild(div);
+<h3>${game.nom}</h3>
+<p>${game.description}</p>
 
-  index++;
+<button class="download-btn" onclick="toggleMenu(event,'menu${index}')">
+Download
+</button>
+
+<div class="download-menu" id="menu${index}">
+<a href="${game.playstore}" target="_blank">Play Store</a>
+<a href="${game.appstore}" target="_blank">App Store</a>
+<a href="${game.apk}" target="_blank">APK</a>
+</div>
+
+</div>
+</div>
+`;
+});
+}
+
+render(androidGames);
+
+/* ========= FILTER ========= */
+
+function filter(cat){
+if(cat==="all") return render(androidGames);
+
+const filtered=androidGames.filter(g=>g.categorie===cat);
+render(filtered);
+}
+
+/* ========= SEARCH ========= */
+
+function searchGame(){
+let text=document.getElementById("search").value.toLowerCase();
+
+const filtered=androidGames.filter(g=>
+g.nom.toLowerCase().includes(text)
+);
+
+render(filtered);
+}
+
+function toggleMenu(event,id){
+
+event.stopPropagation();
+
+// ferme tous les menus
+document.querySelectorAll(".download-menu")
+.forEach(menu=>menu.style.display="none");
+
+const menu=document.getElementById(id);
+
+menu.style.display=
+menu.style.display==="flex" ? "none" : "flex";
+}
+
+// ferme si clic ailleurs
+document.addEventListener("click",()=>{
+document.querySelectorAll(".download-menu")
+.forEach(menu=>menu.style.display="none");
 });
 
-      // Filtrer par catégorie
-      function filterCategory(categorie) {
-        const container = document.getElementById("filteredCategory");
-        container.innerHTML = "";
-        games.filter(game => game.categorie === categorie).forEach(game => {
-          const div = document.createElement("div");
-          div.className = "category-game";
-          div.innerHTML = `
-          <img src="${game.img}" alt="${game.nom}">
-          <div class="game-info-mini">
-          <h4>${game.nom}</h4>
-          <p>${game.description}</p>
-          <div class="btn-telecharger" onclick="toggleDownload(this)">
-          📥 Télécharger </div>
-          <div class="download-options">
-          ${game.playstore ? `<a href="${game.playstore}" target="_blank">📥 Play Store</a>`: ""}
-          ${game.appstore ? `<a href="${game.appstore}" target="_blank">🍎 App Store</a>`: ""}
-          ${game.apk ? `<a href="${game.apk}" target="_blank">⬇️ APK</a>`: ""}
-          </div>
-          </div>
-          `;
-          container.appendChild(div);
-        });
-        container.scrollIntoView({
-          behavior: 'smooth'
-        });
-      }
+</script>
 
-      const searchInput = document.getElementById("searchInput");
-      searchInput.addEventListener("input", function() {
-        const query = this.value.toLowerCase();
-        const container = document.getElementById("categoryGames");
-        container.innerHTML = "";
-
-        games.filter(game => game.nom.toLowerCase().includes(query)).forEach(game => {
-          const div = document.createElement("div");
-          div.className = "category-game";
-          div.innerHTML = `
-          <img src="${game.img}" alt="${game.nom}">
-          <div class="game-info">
-          <h4>${game.nom}</h4>
-          <p>${game.description}</p>
-          <div class="btn-telecharger" onclick="toggleDownload(this)">
-          📥 Télécharger </div>
-          <div class="download-options">
-          ${game.playstore ? `<a href="${game.playstore}" target="_blank">📥 Play Store</a>`: ""}
-          ${game.appstore ? `<a href="${game.appstore}" target="_blank">🍎 App Store</a>`: ""}
-          ${game.apk ? `<a href="${game.apk}" target="_blank">⬇️ APK</a>`: ""}
-          </div>
-          </div>
-          `;
-          container.appendChild(div);
-        });
-      });
-      function toggleDownload(btn) {
-        const box = btn.parentElement;
-        const menu = box.querySelector('.download-options');
-        menu.style.display = (menu.style.display === "block") ? "none": "block";
-      }
-
-      // Fermer si on clique ailleurs
-      document.addEventListener("click", function(e) {
-        document.querySelectorAll('.download-options').forEach(menu => {
-          if (!menu.parentElement.contains(e.target)) {
-            menu.style.display = "none";
-          }
-        });
-      });
-
-    </script>
-
-    <footer>
-      <p>
-        &copy; 2026 MLG XGame by MLG Xtech - Tous droits réservés
-      </p>
-    </footer>
-
-  </body>
+</body>
 </html>
-
