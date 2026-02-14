@@ -3,329 +3,859 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jeux PC | MLG XGame</title>
+<title>MLG XGame — Jeux PC</title>
 
 <style>
+
 body{
   margin:0;
-  background:black;
-  font-family:Arial, sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
+  background:linear-gradient(135deg,#000,#0a0a1a);
   color:white;
 }
 
-/* TITRE */
-h1{
+/* HEADER */
+
+header{
+  padding:20px;
   text-align:center;
+  background:#000;
+  box-shadow:0 0 20px #9900ff;
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
   color:#9900ff;
-  text-shadow:0 0 12px #00f;
-  font-size:34px; 
-  margin: 0;
 }
-h2, h3 {
-  text-align: left;
-  color: white;
-  margin: 0px;
+
+/* SEARCH */
+
+.search-bar{
+  text-align:center;
+  margin:20px;
 }
-/* BARRE RECHERCHE */
-.search-box{
-  display:flex;
-  justify-content:center;
-  padding:10px;
-}
-.search-box input{
-  width:90%;
-  max-width:400px;
-  padding:10px;
-  border-radius:12px;
+
+.search-bar input{
+  width:80%;
+  padding:12px;
+  border-radius:8px;
   border:none;
+  font-size:16px;
   outline:none;
-  background:#1a0a3a;
-  color:white;
-  box-shadow:0 0 10px #9900ff;
 }
 
 /* CATEGORIES */
-.bouton-cadre{
+
+.categories{
   display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
   gap:10px;
-  overflow-x:auto;
-  padding:10px;
-  margin: 0;
+  margin-bottom:20px;
 }
-.bouton{
+
+.cat-btn{
   background:#9900ff;
-  color:white;
-  border-radius:10px;
-  padding:10px 18px;
-  font-weight:bold;
-  font-size:12px;
-  cursor:pointer;
-  white-space:nowrap;
-}
-.bouton:hover{
-  box-shadow:0 0 15px #00f;
-  transform:scale(1.05);
-}
-/* GRANDS CADRES */
-.game-cadre{
-  display:flex;
-  gap:15px;
-  padding:15px;
-  overflow-x:auto;
-}
-.game{
-  min-width:300px;
-  height:150px;
-  border-radius:15px;
-  overflow:hidden;
-  position:relative;
-  background:#1a0a3a;
-}
-.game img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.game-info{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  background:linear-gradient(to top, rgba(0,0,0,.9), transparent);
-  padding:8px;
-}
-.game-info h4{
-  margin:0;
-  color:#00f0ff;
-  font-size:13px;
-}
-.game-info a{
-  display:block;
-  margin-top:5px;
-  text-align:center;
-  background:linear-gradient(90deg,#0055ff,#9900ff);
-  color:white;
-  text-decoration:none;
+  padding:10px 15px;
   border-radius:8px;
-  font-size:12px;
-  padding:6px;
-}
-
-/* MINI CADRES */
-#categoryGames{
-  display:grid;
-  grid-auto-flow:column;
-  grid-template-rows:repeat(4,2fr);
-  gap:12px;
-  padding:15px;
-  overflow-y: hidden; /* Plus de scroll horizontal */
-  overflow-x: auto;
-}
-.category-game{
-  width:130px;
-  height:180px;
-  background:#1a0a3a;
-  border-radius:12px;
-  overflow:hidden;
-  position:relative;
-}
-.category-game img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.game-info-mini{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  background:rgba(0,0,0,.75);
-  padding:5px;
-}
-.game-info-mini h4{
-  margin:0;
-  font-size:10px;
-  color:#00f0ff;
-}
-.game-info-mini p{
-  margin:2px 0;
-  font-size:9px;
-  color:#ccc;
-}
-.game-info-mini a{
-  display:block;
-  margin-top:3px;
-  font-size:10px;
-  padding:4px;
-  text-align:center;
-  border-radius:6px;
-  background:#9900ff;
-  color:white;
-  text-decoration:none;
-}
-
-/* BOUTON TELECHARGER + MENU */
-.download-box{
-  position: relative;
-}
-.btn-telecharger{
-  display:block;
-  width:100%;
-  text-align:center;
-  background:linear-gradient(90deg,#0055ff,#9900ff);
-  color:white;
-  border:none;
-  border-radius:6px;
-  font-size:10px;
-  padding:4px 0;
   cursor:pointer;
+  transition:0.3s;
 }
-.download-options{
-  display:none;
-  position:absolute;
-  bottom:110%;
-  left:0;
-  background:#1a0a3a;
-  border-radius:6px;
-  box-shadow:0 0 15px #9900ff;
-  overflow:hidden;
-  width:100%;
-  z-index:20;
-}
-.download-options a{
-  display:block;
-  text-align:center;
-  padding:4px 0;
-  font-size:10px;
-  color:white;
-  text-decoration:none;
-  border-bottom:1px solid #333;
-}
-.download-options a:last-child{
-  border-bottom:none;
-}
-.download-options a:hover{
-  background:#9900ff;
+
+.cat-btn:hover{
+  background:#00ff;
   color:black;
 }
- footer {
-      text-align: center;
-      background-color: #111;
-      padding: 10px;
-      font-size: 14px;
-      color: #ccc;
-    }
+
+/* GRID */
+
+.games{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  padding:20px;
+}
+
+/* CARD */
+
+.card{
+  background:#0a0a1a;
+  border-radius:12px;
+  overflow:hidden;
+  transition:0.3s;
+  box-shadow:0 0 10px #000;
+}
+
+.card:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px #00f0ff88;
+}
+
+.card img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+}
+
+.card-content{
+  padding:10px;
+}
+
+.card h3{
+  margin:5px 0;
+  font-size:16px;
+}
+
+.card p{
+  font-size:13px;
+  opacity:0.8;
+}
+
+.card a{
+  display:inline-block;
+  margin-top:8px;
+  padding:6px 10px;
+  background:#9900ff;
+  color:black;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+footer{
+  text-align:center;
+  padding:15px;
+  background:#020617;
+  margin-top:20px;
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>🖥️ Jeux PC – MLG XGame</h1>
+<header>
+<h1>🎮 MLG XGame — Jeux PC</h1>
+</header>
 
-<!-- JEUX POPULAIRES -->
-<div class="game-cadre">
-  <div class="game">
-    <img src="images/minecraft.jpg">
-    <div class="game-info">
-      <h4>⛏️ Minecraft</h4>
-      <a href="https://www.minecraft.net/download" target="_blank">Télécharger</a>
-    </div>
-  </div>
-
-  <div class="game">
-    <img src="images/forza.jpg">
-    <div class="game-info">
-      <h4>🏎️ Forza Horizon</h4>
-      <a href="https://www.xbox.com/games/forza-horizon-5" target="_blank">Télécharger</a>
-    </div>
-  </div>
-
-  <div class="game">
-    <img src="images/sims4.jpg">
-    <div class="game-info">
-      <h4>🏠 The Sims 4</h4>
-      <a href="https://www.ea.com/games/the-sims/the-sims-4" target="_blank">Télécharger</a>
-    </div>
-  </div>
+<div class="search-bar">
+<input type="text" id="search" placeholder="Rechercher un jeu PC..." onkeyup="searchGame()">
 </div>
 
-<h3> Catégorie</h3>
-<div class="bouton-cadre">
-  <div class="bouton" onclick="filterGames('all')">Tous</div>
-  <div class="bouton" onclick="filterGames('aventure')">Aventure</div>
-  <div class="bouton" onclick="filterGames('simulation')">Simulation</div>
-  <div class="bouton" onclick="filterGames('strategie')">Stratégie</div>
-  <div class="bouton" onclick="filterGames('course')">Course</div>
-  <div class="bouton" onclick="filterGames('construction')">Construction</div>
-  <div class="bouton" onclick="filterGames('sport')">Sport</div>
-  <div class="bouton" onclick="filterGames('puzzle')">Puzzle</div>
-  <div class="bouton" onclick="filterGames('musique')">Musique</div>
-  <div class="bouton" onclick="filterGames('education')">Education</div>
+<div class="categories">
+
+<div class="cat-btn" onclick="filter('all')">Tous</div>
+<div class="cat-btn" onclick="filter('Sport')">Sport</div>
+<div class="cat-btn" onclick="filter('Aventure')">Aventure</div>
+<div class="cat-btn" onclick="filter('Simulation')">Simulation</div>
+<div class="cat-btn" onclick="filter('Strategie')">Stratégie</div>
+<div class="cat-btn" onclick="filter('Course')">Course</div>
+<div class="cat-btn" onclick="filter('Construction')">Construction</div>
+<div class="cat-btn" onclick="filter('Puzzle')">Puzzle</div>
+<div class="cat-btn" onclick="filter('Musique')">Musique</div>
+<div class="cat-btn" onclick="filter('Education')">Education</div>
+
 </div>
-    <h2 style="text-align:center; margin:10px">🔍 Rechercher un jeu</h2>
-<div class="search-box">
-  <input type="text" id="searchInput" placeholder="Rechercher un jeu PC...">
-</div>
-<!-- MINI JEUX -->
-<div id="categoryGames"></div>
+
+<div class="games" id="games"></div>
+
+<footer>
+MLG XGame © — Jeux PC
+</footer>
 
 <script>
-const games = [
- 
-  {name:"Team Fortress 2", cat:"fps", img:"images/teamfortress2.jpg", desc:"FPS multijoueur classique gratuit.", link:"https://store.steampowered.com/app/440/Team_Fortress_2/"},
+
+/* ========= AJOUTE TES JEUX ICI ========= */
+
+const pcGames = [
+// SPORT
+{
+nom:"FIFA 23",
+img:"images/pc/fifa23.jpg",
+description:"Simulation de football réaliste.",
+lien:"https://fifa-23.en.softonic.com/download",
+categorie:"Sport"
+},
+{
+nom:"eFootball PES 2021",
+img:"images/pc/pes2021.jpg",
+description:"Football fluide et compétitif.",
+lien:"https://pes-2021.en.softonic.com/download",
+categorie:"Sport"
+},
+{
+nom:"NBA 2K23",
+img:"images/pc/nba2k23.jpg",
+description:"Simulation officielle de basketball.",
+lien:"https://nba-2k23.en.softonic.com/download",
+categorie:"Sport"
+},
+{
+nom:"WWE 2K22",
+img:"images/pc/wwe2k22.jpg",
+description:"Combat sportif spectaculaire.",
+lien:"https://wwe-2k22.en.softonic.com/download",
+categorie:"Sport"
+},
+{
+nom:"Football Manager 2023",
+img:"images/pc/fm2023.jpg",
+description:"Gestion complète d’équipe de foot.",
+lien:"https://football-manager-2023.en.softonic.com/download",
+categorie:"Sport"
+},
+{
+nom:"Tony Hawk's Pro Skater 1+2",
+img:"images/pc/tonyhawk.jpg",
+description:"Skate arcade fun.",
+lien:"https://tony-hawks-pro-skater.en.softonic.com/download",
+categorie:"Sport"
+},
+{
+nom:"Rocket League",
+img:"images/pc/rocketleague.jpg",
+description:"Football avec voitures.",
+lien:"https://rocket-league.en.softonic.com/download",
+categorie:"Sport"
+},
+{
+nom:"AO Tennis 2",
+img:"images/pc/aotennis.jpg",
+description:"Simulation de tennis réaliste.",
+lien:"https://ao-tennis-2.en.softonic.com/download",
+categorie:"Sport"
+},
+{
+nom:"Golf It!",
+img:"images/pc/golfit.jpg",
+description:"Mini golf multijoueur fun.",
+lien:"https://golf-it.en.softonic.com/download",
+categorie:"Sport"
+},
+{
+nom:"Pro Cycling Manager",
+img:"images/pc/cycling.jpg",
+description:"Gestion de cyclisme professionnel.",
+lien:"https://pro-cycling-manager.en.softonic.com/download",
+categorie:"Sport"
+},
+// AVENTURE
+{
+nom:"Minecraft",
+img:"images/pc/minecraft.jpg",
+description:"Exploration et construction en monde ouvert.",
+lien:"https://minecraft.en.softonic.com/download",
+categorie:"Aventure"
+},
+{
+nom:"Terraria",
+img:"images/pc/terraria.jpg",
+description:"Aventure sandbox en 2D.",
+lien:"https://terraria.en.softonic.com/download",
+categorie:"Aventure"
+},
+{
+nom:"Stardew Valley",
+img:"images/pc/stardew.jpg",
+description:"Vie à la ferme et exploration relaxante.",
+lien:"https://stardew-valley.en.softonic.com/download",
+categorie:"Aventure"
+},
+{
+nom:"Portal 2",
+img:"images/pc/portal2.jpg",
+description:"Puzzle aventure intelligent.",
+lien:"https://portal-2.en.softonic.com/download",
+categorie:"Aventure"
+},
+{
+nom:"Journey",
+img:"images/pc/journey.jpg",
+description:"Aventure poétique et visuelle.",
+lien:"https://journey.en.softonic.com/download",
+categorie:"Aventure"
+},
+{
+nom:"Firewatch",
+img:"images/pc/firewatch.jpg",
+description:"Exploration narrative immersive.",
+lien:"https://firewatch.en.softonic.com/download",
+categorie:"Aventure"
+},
+{
+nom:"Subnautica",
+img:"images/pc/subnautica.jpg",
+description:"Exploration sous-marine fascinante.",
+lien:"https://subnautica.en.softonic.com/download",
+categorie:"Aventure"
+},
+{
+nom:"Ori and the Blind Forest",
+img:"images/pc/ori.jpg",
+description:"Plateforme aventure artistique.",
+lien:"https://ori-and-the-blind-forest.en.softonic.com/download",
+categorie:"Aventure"
+},
+{
+nom:"The Witness",
+img:"images/pc/witness.jpg",
+description:"Aventure puzzle en monde ouvert.",
+lien:"https://the-witness.en.softonic.com/download",
+categorie:"Aventure"
+},
+{
+nom:"Life is Strange",
+img:"images/pc/lifeisstrange.jpg",
+description:"Aventure narrative émotionnelle.",
+lien:"https://life-is-strange.en.softonic.com/download",
+categorie:"Aventure"
+},
+// SIMULATION
+{
+nom:"The Sims 4",
+img:"images/pc/sims4.jpg",
+description:"Simulation de vie complète.",
+lien:"https://the-sims-4.en.softonic.com/download",
+categorie:"Simulation"
+},
+{
+nom:"Euro Truck Simulator 2",
+img:"images/pc/trucksim.jpg",
+description:"Conduite de camions réaliste.",
+lien:"https://euro-truck-simulator-2.en.softonic.com/download",
+categorie:"Simulation"
+},
+{
+nom:"Microsoft Flight Simulator",
+img:"images/pc/flightsim.jpg",
+description:"Simulation de vol ultra réaliste.",
+lien:"https://microsoft-flight-simulator.en.softonic.com/download",
+categorie:"Simulation"
+},
+{
+nom:"House Flipper",
+img:"images/pc/houseflipper.jpg",
+description:"Rénovation et décoration de maisons.",
+lien:"https://house-flipper.en.softonic.com/download",
+categorie:"Simulation"
+},
+{
+nom:"Farming Simulator 22",
+img:"images/pc/farmingsim.jpg",
+description:"Gestion agricole immersive.",
+lien:"https://farming-simulator-22.en.softonic.com/download",
+categorie:"Simulation"
+},
+{
+nom:"PC Building Simulator",
+img:"images/pc/pcbuild.jpg",
+description:"Construis ton PC virtuel.",
+lien:"https://pc-building-simulator.en.softonic.com/download",
+categorie:"Simulation"
+},
+{
+nom:"Car Mechanic Simulator",
+img:"images/pc/mechanic.jpg",
+description:"Réparation automobile réaliste.",
+lien:"https://car-mechanic-simulator.en.softonic.com/download",
+categorie:"Simulation"
+},
+{
+nom:"Planet Zoo",
+img:"images/pc/planetzoo.jpg",
+description:"Gestion d’un zoo moderne.",
+lien:"https://planet-zoo.en.softonic.com/download",
+categorie:"Simulation"
+},
+{
+nom:"Train Simulator",
+img:"images/pc/trainsim.jpg",
+description:"Simulation ferroviaire détaillée.",
+lien:"https://train-simulator.en.softonic.com/download",
+categorie:"Simulation"
+},
+{
+nom:"Cooking Simulator",
+img:"images/pc/cookingsim.jpg",
+description:"Cuisine réaliste et fun.",
+lien:"https://cooking-simulator.en.softonic.com/download",
+categorie:"Simulation"
+},
+// STRATEGIE
+{
+nom:"Civilization VI",
+img:"images/pc/civ6.jpg",
+description:"Construis un empire à travers l’histoire.",
+lien:"https://civilization-vi.en.softonic.com/download",
+categorie:"Strategie"
+},
+{
+nom:"Age of Empires II",
+img:"images/pc/aoe2.jpg",
+description:"Stratégie historique en temps réel.",
+lien:"https://age-of-empires-ii.en.softonic.com/download",
+categorie:"Strategie"
+},
+{
+nom:"Cities Skylines",
+img:"images/pc/citiessky.jpg",
+description:"Planifie et gère ta ville.",
+lien:"https://cities-skylines.en.softonic.com/download",
+categorie:"Strategie"
+},
+{
+nom:"StarCraft II",
+img:"images/pc/starcraft2.jpg",
+description:"Stratégie futuriste compétitive.",
+lien:"https://starcraft-2.en.softonic.com/download",
+categorie:"Strategie"
+},
+{
+nom:"Command & Conquer Remastered",
+img:"images/pc/cnc.jpg",
+description:"Stratégie classique modernisée.",
+lien:"https://command-and-conquer-remastered.en.softonic.com/download",
+categorie:"Strategie"
+},
+{
+nom:"Total War Rome II",
+img:"images/pc/rome2.jpg",
+description:"Gestion militaire et empire antique.",
+lien:"https://total-war-rome-2.en.softonic.com/download",
+categorie:"Strategie"
+},
+{
+nom:"Factorio",
+img:"images/pc/factorio.jpg",
+description:"Optimisation et automatisation stratégique.",
+lien:"https://factorio.en.softonic.com/download",
+categorie:"Strategie"
+},
+{
+nom:"Northgard",
+img:"images/pc/northgard.jpg",
+description:"Stratégie viking accessible.",
+lien:"https://northgard.en.softonic.com/download",
+categorie:"Strategie"
+},
+{
+nom:"Stronghold Crusader",
+img:"images/pc/stronghold.jpg",
+description:"Construction de forteresses médiévales.",
+lien:"https://stronghold-crusader.en.softonic.com/download",
+categorie:"Strategie"
+},
+{
+nom:"Plague Inc Evolved",
+img:"images/pc/plagueinc.jpg",
+description:"Simulation stratégique originale.",
+lien:"https://plague-inc-evolved.en.softonic.com/download",
+categorie:"Strategie"
+},
+// COURSE
+{
+nom:"Forza Horizon 5",
+img:"images/pc/forza5.jpg",
+description:"Courses arcade en monde ouvert.",
+lien:"https://forza-horizon-5.en.softonic.com/download",
+categorie:"Course"
+},
+{
+nom:"Need for Speed Heat",
+img:"images/pc/nfsheat.jpg",
+description:"Courses urbaines rapides.",
+lien:"https://need-for-speed-heat.en.softonic.com/download",
+categorie:"Course"
+},
+{
+nom:"Trackmania",
+img:"images/pc/trackmania.jpg",
+description:"Circuits arcade ultra rapides.",
+lien:"https://trackmania.en.softonic.com/download",
+categorie:"Course"
+},
+{
+nom:"F1 22",
+img:"images/pc/f122.jpg",
+description:"Simulation officielle de F1.",
+lien:"https://f1-22.en.softonic.com/download",
+categorie:"Course"
+},
+{
+nom:"Dirt Rally 2.0",
+img:"images/pc/dirt2.jpg",
+description:"Rallye réaliste et exigeant.",
+lien:"https://dirt-rally-2.en.softonic.com/download",
+categorie:"Course"
+},
+{
+nom:"Assetto Corsa",
+img:"images/pc/assettocorsa.jpg",
+description:"Simulation de conduite avancée.",
+lien:"https://assetto-corsa.en.softonic.com/download",
+categorie:"Course"
+},
+{
+nom:"Burnout Paradise",
+img:"images/pc/burnout.jpg",
+description:"Arcade et cascades explosives.",
+lien:"https://burnout-paradise.en.softonic.com/download",
+categorie:"Course"
+},
+{
+nom:"Project Cars 3",
+img:"images/pc/projectcars.jpg",
+description:"Simulation de course moderne.",
+lien:"https://project-cars-3.en.softonic.com/download",
+categorie:"Course"
+},
+{
+nom:"MotoGP 22",
+img:"images/pc/motogp22.jpg",
+description:"Courses de motos officielles.",
+lien:"https://motogp-22.en.softonic.com/download",
+categorie:"Course"
+},
+{
+nom:"The Crew 2",
+img:"images/pc/crew2.jpg",
+description:"Courses variées air-terre-mer.",
+lien:"https://the-crew-2.en.softonic.com/download",
+categorie:"Course"
+},
+// CONSTRUCTION
+{
+nom:"Minecraft",
+img:"images/pc/minecraft.jpg",
+description:"Construction libre dans un monde infini.",
+lien:"https://minecraft.en.softonic.com/download",
+categorie:"Construction"
+},
+{
+nom:"Cities Skylines",
+img:"images/pc/citiessky.jpg",
+description:"Gestion et construction de ville.",
+lien:"https://cities-skylines.en.softonic.com/download",
+categorie:"Construction"
+},
+{
+nom:"Planet Coaster",
+img:"images/pc/planetcoaster.jpg",
+description:"Crée ton parc d’attractions.",
+lien:"https://planet-coaster.en.softonic.com/download",
+categorie:"Construction"
+},
+{
+nom:"Factorio",
+img:"images/pc/factorio.jpg",
+description:"Automatisation et industrie stratégique.",
+lien:"https://factorio.en.softonic.com/download",
+categorie:"Construction"
+},
+{
+nom:"Satisfactory",
+img:"images/pc/satisfactory.jpg",
+description:"Construction d’usines futuristes.",
+lien:"https://satisfactory.en.softonic.com/download",
+categorie:"Construction"
+},
+{
+nom:"SimCity",
+img:"images/pc/simcity.jpg",
+description:"Simulation de construction urbaine.",
+lien:"https://simcity.en.softonic.com/download",
+categorie:"Construction"
+},
+{
+nom:"Tropico 6",
+img:"images/pc/tropico6.jpg",
+description:"Développe ton île tropicale.",
+lien:"https://tropico-6.en.softonic.com/download",
+categorie:"Construction"
+},
+{
+nom:"Banished",
+img:"images/pc/banished.jpg",
+description:"Survie et gestion de village.",
+lien:"https://banished.en.softonic.com/download",
+categorie:"Construction"
+},
+{
+nom:"Planet Zoo",
+img:"images/pc/planetzoo.jpg",
+description:"Construis et gère un zoo moderne.",
+lien:"https://planet-zoo.en.softonic.com/download",
+categorie:"Construction"
+},
+{
+nom:"RollerCoaster Tycoon 3",
+img:"images/pc/rct3.jpg",
+description:"Création de parcs fun.",
+lien:"https://rollercoaster-tycoon-3.en.softonic.com/download",
+categorie:"Construction"
+},
+// PUZZLE
+{
+nom:"Portal 2",
+img:"images/pc/portal2.jpg",
+description:"Puzzle intelligent en 3D.",
+lien:"https://portal-2.en.softonic.com/download",
+categorie:"Puzzle"
+},
+{
+nom:"The Witness",
+img:"images/pc/witness.jpg",
+description:"Exploration et énigmes visuelles.",
+lien:"https://the-witness.en.softonic.com/download",
+categorie:"Puzzle"
+},
+{
+nom:"Tetris Effect",
+img:"images/pc/tetris.jpg",
+description:"Puzzle musical hypnotique.",
+lien:"https://tetris-effect.en.softonic.com/download",
+categorie:"Puzzle"
+},
+{
+nom:"Human Fall Flat",
+img:"images/pc/humanfall.jpg",
+description:"Physique drôle et puzzles.",
+lien:"https://human-fall-flat.en.softonic.com/download",
+categorie:"Puzzle"
+},
+{
+nom:"Braid",
+img:"images/pc/braid.jpg",
+description:"Puzzle plateforme original.",
+lien:"https://braid.en.softonic.com/download",
+categorie:"Puzzle"
+},
+{
+nom:"Limbo",
+img:"images/pc/limbo.jpg",
+description:"Puzzle sombre et artistique.",
+lien:"https://limbo.en.softonic.com/download",
+categorie:"Puzzle"
+},
+{
+nom:"Inside",
+img:"images/pc/inside.jpg",
+description:"Énigmes atmosphériques.",
+lien:"https://inside.en.softonic.com/download",
+categorie:"Puzzle"
+},
+{
+nom:"Fez",
+img:"images/pc/fez.jpg",
+description:"Puzzle en dimension changeante.",
+lien:"https://fez.en.softonic.com/download",
+categorie:"Puzzle"
+},
+{
+nom:"Monument Valley",
+img:"images/pc/monument.jpg",
+description:"Architecture impossible à résoudre.",
+lien:"https://monument-valley.en.softonic.com/download",
+categorie:"Puzzle"
+},
+{
+nom:"World of Goo",
+img:"images/pc/goo.jpg",
+description:"Construction puzzle créatif.",
+lien:"https://world-of-goo.en.softonic.com/download",
+categorie:"Puzzle"
+},
+// MUSIQUE
+{
+nom:"Friday Night Funkin",
+img:"images/pc/fnf.jpg",
+description:"Jeu de rythme fun et rapide.",
+lien:"https://friday-night-funkin.en.softonic.com/download",
+categorie:"Musique"
+},
+{
+nom:"Osu!",
+img:"images/pc/osu.jpg",
+description:"Rythme musical compétitif.",
+lien:"https://osu.en.softonic.com/download",
+categorie:"Musique"
+},
+{
+nom:"StepMania",
+img:"images/pc/stepmania.jpg",
+description:"Danse et rythme personnalisable.",
+lien:"https://stepmania.en.softonic.com/download",
+categorie:"Musique"
+},
+{
+nom:"Audiosurf",
+img:"images/pc/audiosurf.jpg",
+description:"Courses basées sur ta musique.",
+lien:"https://audiosurf.en.softonic.com/download",
+categorie:"Musique"
+},
+{
+nom:"Beat Hazard",
+img:"images/pc/beathazard.jpg",
+description:"Shoot musical dynamique.",
+lien:"https://beat-hazard.en.softonic.com/download",
+categorie:"Musique"
+},
+{
+nom:"Melody Escape",
+img:"images/pc/melodyescape.jpg",
+description:"Plateforme rythmique colorée.",
+lien:"https://melody-escape.en.softonic.com/download",
+categorie:"Musique"
+},
+{
+nom:"Frets on Fire",
+img:"images/pc/fretsonfire.jpg",
+description:"Guitare rythmique arcade.",
+lien:"https://frets-on-fire.en.softonic.com/download",
+categorie:"Musique"
+},
+{
+nom:"Soundodger",
+img:"images/pc/soundodger.jpg",
+description:"Esquive au rythme de la musique.",
+lien:"https://soundodger.en.softonic.com/download",
+categorie:"Musique"
+},
+{
+nom:"Super Crazy Rhythm Castle",
+img:"images/pc/rhythmcastle.jpg",
+description:"Mini-jeux musicaux délirants.",
+lien:"https://super-crazy-rhythm-castle.en.softonic.com/download",
+categorie:"Musique"
+},
+{
+nom:"Rhythm Doctor",
+img:"images/pc/rhythmdoctor.jpg",
+description:"Timing musical précis.",
+lien:"https://rhythm-doctor.en.softonic.com/download",
+categorie:"Musique"
+},
+// EDUCATION
+{
+nom:"GeoGebra",
+img:"images/pc/geogebra.jpg",
+description:"Mathématiques interactives.",
+lien:"https://geogebra.en.softonic.com/download",
+categorie:"Education"
+},
+{
+nom:"TuxMath",
+img:"images/pc/tuxmath.jpg",
+description:"Calcul mental amusant.",
+lien:"https://tuxmath.en.softonic.com/download",
+categorie:"Education"
+},
+{
+nom:"GCompris",
+img:"images/pc/gcompris.jpg",
+description:"Suite éducative pour enfants.",
+lien:"https://gcompris.en.softonic.com/download",
+categorie:"Education"
+},
+{
+nom:"Scratch",
+img:"images/pc/scratch.jpg",
+description:"Apprendre la programmation.",
+lien:"https://scratch.en.softonic.com/download",
+categorie:"Education"
+},
+{
+nom:"Celestia",
+img:"images/pc/celestia.jpg",
+description:"Exploration éducative de l’espace.",
+lien:"https://celestia.en.softonic.com/download",
+categorie:"Education"
+},
+{
+nom:"Stellarium",
+img:"images/pc/stellarium.jpg",
+description:"Planétarium réaliste.",
+lien:"https://stellarium.en.softonic.com/download",
+categorie:"Education"
+},
+{
+nom:"TypingClub",
+img:"images/pc/typingclub.jpg",
+description:"Apprendre à taper au clavier.",
+lien:"https://typingclub.en.softonic.com/download",
+categorie:"Education"
+},
+{
+nom:"Childsplay",
+img:"images/pc/childsplay.jpg",
+description:"Mini-jeux éducatifs.",
+lien:"https://childsplay.en.softonic.com/download",
+categorie:"Education"
+},
+{
+nom:"TuxTyping",
+img:"images/pc/tuxtyping.jpg",
+description:"Apprentissage de frappe rapide.",
+lien:"https://tuxtyping.en.softonic.com/download",
+categorie:"Education"
+},
+{
+nom:"Kalzium",
+img:"images/pc/kalzium.jpg",
+description:"Découverte interactive de la chimie.",
+lien:"https://kalzium.en.softonic.com/download",
+categorie:"Education"
+},
+
+
 ];
 
-const container=document.getElementById("categoryGames");
+/* ========= RENDER ========= */
 
-function render(list){
-  container.innerHTML="";
-  list.forEach(g=>{
-    container.innerHTML+=`
-    <div class="category-game">
-      <img src="${g.img}">
-      <div class="game-info-mini">
-        <h4>${g.name}</h4>
-        <p>${g.desc}</p>
-        <a href="${g.link}" target="_blank" class="btn-telecharger">Télécharger</a>
-      </div>
-    </div>`;
-  });
-}
+function renderGames(list){
+const container=document.getElementById("games");
+container.innerHTML="";
 
-
-function filterGames(cat){
-  if(cat==="all") render(games);
-  else render(games.filter(g=>g.cat===cat));
-}
-
-document.getElementById("searchInput").addEventListener("input",e=>{
-  const v=e.target.value.toLowerCase();
-  render(games.filter(g=>g.name.toLowerCase().includes(v)));
+list.forEach(game=>{
+container.innerHTML+=`
+<div class="card" data-cat="${game.categorie}">
+<img src="${game.img}">
+<div class="card-content">
+<h3>${game.nom}</h3>
+<p>${game.description}</p>
+<a href="${game.lien}" target="_blank">Télécharger</a>
+</div>
+</div>
+`;
 });
-
-function toggleDownload(button){
-  const options = button.nextElementSibling;
-  options.style.display = (options.style.display === 'block') ? 'none' : 'block';
 }
 
-// Masquer le menu si on clique ailleurs
-document.addEventListener('click', function(e){
-  const boxes = document.querySelectorAll('.download-options');
-  boxes.forEach(box => {
-    if(!box.contains(e.target) && !box.previousElementSibling.contains(e.target)){
-      box.style.display = 'none';
-    }
-  });
-});
+renderGames(pcGames);
 
-render(games);
-const allGames = games.concat(moreGames);
+/* ========= FILTER ========= */
+
+function filter(cat){
+if(cat==="all") return renderGames(pcGames);
+
+const filtered=pcGames.filter(g=>g.categorie===cat);
+renderGames(filtered);
+}
+
+/* ========= SEARCH ========= */
+
+function searchGame(){
+let input=document.getElementById("search").value.toLowerCase();
+
+const filtered=pcGames.filter(g=>
+g.nom.toLowerCase().includes(input)
+);
+
+renderGames(filtered);
+}
 
 </script>
 
-<footer>
-    <p>&copy; 2026 MLG-XGame by MLG-Xtech - Tous droits réservés</p>
-  </footer>
-
 </body>
 </html>
-
-
