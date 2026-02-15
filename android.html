@@ -230,6 +230,80 @@ color:black;
 
 <div class="games" id="games"></div>
 
+  <!-- ====== SECTION COMMENTAIRES ====== -->
+<div class="comments-section">
+  <h2>💬 Commentaires</h2>
+  
+  <div class="comment-form">
+    <input type="text" id="comment-input" placeholder="Écris ton commentaire..." />
+    <button onclick="addComment()">Publier</button>
+  </div>
+  
+  <div id="comments-list"></div>
+</div>
+
+<style>
+.comments-section{
+  background:#1e293b;
+  padding:15px;
+  border-radius:12px;
+  margin:20px 0;
+}
+
+.comments-section h2{
+  color:#a855f7;
+  margin-bottom:10px;
+}
+
+.comment-form{
+  display:flex;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.comment-form input{
+  flex:1;
+  padding:8px;
+  border-radius:8px;
+  border:none;
+  outline:none;
+}
+
+.comment-form button{
+  padding:8px 12px;
+  border:none;
+  border-radius:8px;
+  background:#a855f7;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+#comments-list .comment{
+  background:#0f172a;
+  padding:8px 12px;
+  border-radius:8px;
+  margin-bottom:8px;
+  font-size:13px;
+}
+</style>
+
+<script>
+function addComment(){
+  const input=document.getElementById("comment-input");
+  const text=input.value.trim();
+  if(!text) return;
+
+  const commentList=document.getElementById("comments-list");
+  const div=document.createElement("div");
+  div.className="comment";
+  div.textContent=text;
+  commentList.prepend(div);
+
+  input.value="";
+}
+</script>
+
 <footer>
 MLG XGame © — Android & ios Launcher
 </footer>
@@ -1219,3 +1293,4 @@ document.querySelectorAll(".download-menu")
 
 </body>
 </html>
+
