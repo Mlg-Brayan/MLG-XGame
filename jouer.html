@@ -415,13 +415,15 @@ const container = document.getElementById("games");
 function render(list){
   container.innerHTML="";
   list.forEach(g=>{
-    container.innerHTML += `
-      <div class="game-card">
-        <img src="${g.img}">
-        <h4>${g.name}</h4>
-         <p>${g.desc}</p>
-        <button onclick="play('${g.url}')">▶️ Play</button>
-      </div>`;
+   container.innerHTML += `
+  <div class="game-card">
+    <img src="${g.img}" alt="${g.name}">
+    <div class="overlay">
+      <h4>${g.name}</h4>
+      <p>${g.desc}</p>
+      <button onclick="play('${g.url}')">▶️ Play</button>
+    </div>
+  </div>`;
   });
 }
 render(games);
@@ -448,6 +450,7 @@ function closeGame(){
 
 </body>
 </html>
+
 
 
 
