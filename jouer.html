@@ -80,17 +80,31 @@ p {
   gap:15px;
   padding:15px;
 }
-
-.game-card{
-  background:#1a1a2e;
-  border-radius:12px;
-  overflow:hidden;
-  text-align:center;
+.game-card {
+  position: relative;
+  width: 100%;
+  height: 210px; /* hauteur totale de la carte */
+  border-radius: 12px;
+  overflow: hidden;
 }
-.game-card img{
-  width:100%;
-  height:100px;
-  object-fit:cover;
+
+.game-card img {
+  width: 100%;
+  height: 100%; /* prend toute la hauteur de la carte */
+  object-fit: cover; /* l'image remplit le cadre sans déformation */
+}
+
+.game-card:hover {
+  transform: scale(1.03);
+}
+.game-card .overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4));
+  color: #fff;
+  padding: 2px;
+  box-sizing: border-box;
 }
 .game-card h4{
   margin:5px;
@@ -434,6 +448,7 @@ function closeGame(){
 
 </body>
 </html>
+
 
 
 
