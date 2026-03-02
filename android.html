@@ -93,7 +93,8 @@ header h1{
 /* CARD */
 
 .card{
-  background:#0a0a1a;
+  position:relative;
+  height:220px; /* hauteur totale de la carte */
   border-radius:14px;
   overflow:hidden;
   transition:0.3s;
@@ -107,12 +108,17 @@ header h1{
 
 .card img{
   width:100%;
-  height:120px;
+  height:100%;
   object-fit:cover;
 }
 
 .card-content{
-  padding:8px;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  padding:10px;
+  box-sizing:border-box;
+  background:linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
 }
 
 .card h3{
@@ -337,7 +343,7 @@ const androidGames=[
   },
   {
     nom: "PES 2023",
-    img: "images/android/pes-2023.jpg",
+    img: "img/fc mobile.jpg",
     description: "Simulation de football authentique.",
     playstore: "https://play.google.com/store/apps/details?id=jp.konami.pesam",
     apk: "https://pes-2023.fr.malavida.com/android/download#goog_rewarded",
@@ -1305,6 +1311,7 @@ document.querySelectorAll(".download-menu")
 
 </body>
 </html>
+
 
 
 
