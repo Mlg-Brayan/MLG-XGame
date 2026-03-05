@@ -1229,7 +1229,51 @@ const androidGames=[
 },
 
 ];
+// ====== Tableau de tous les jeux Android ======
 
+
+// ====== Fonction pour récupérer le paramètre 'jeu' de l'URL ======
+function getParam(name){
+  const url = new URL(window.location.href);
+  return url.searchParams.get(name);
+}
+
+// ====== Fonction d'affichage dynamique ======
+function afficherJeu(){
+  const gameNameParam = getParam('jeu'); // ex: pes-2023
+  const titleEl = document.getElementById('game-name');
+  const imgEl = document.getElementById('game-img');
+  const descEl = document.getElementById('game-desc');
+  const playstoreEl = document.getElementById('playstore');
+  const appstoreEl = document.getElementById('appstore');
+  const apkEl = document.getElementById('apk');
+
+  if(!gameNameParam){
+    titleEl.textContent = "Aucun jeu sélectionné";
+    descEl.textContent = "";
+    return;
+  }
+
+  const game = androidGames.find(g => g.nom.toLowerCase().replace(/\s+/g,'-') === gameNameParam.toLowerCase());
+  if(game){
+    titleEl.textContent = game.nom;
+    imgEl.src = game.img;
+    imgEl.alt = game.nom;
+    descEl.textContent = game.description;
+    playstoreEl.href = game.playstore;
+    appstoreEl.href = game.appstore;
+    apkEl.href = game.apk;
+  } else {
+    titleEl.textContent = "Jeu introuvable";
+    descEl.textContent = "";
+    playstoreEl.href = "#";
+    appstoreEl.href = "#";
+    apkEl.href = "#";
+  }
+}
+
+// ====== Lancer l'affichage au chargement ======
+window.addEventListener('DOMContentLoaded', afficherJeu);
 /* ========= RENDER ========= */
 
 function render(list){
@@ -1321,6 +1365,7 @@ document.querySelectorAll(".download-menu")
   
 </body>
 </html>
+
 
 
 
