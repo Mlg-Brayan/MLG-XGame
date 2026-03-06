@@ -21,1372 +21,677 @@
   
 <title>MLG XGame — Jeux Android & ios</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet"/>
+
 <style>
-
-body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:linear-gradient(135deg,#000,#0a0a1a);
-  color:white;
+/* ── VARIABLES ── */
+:root {
+  --purple: #9900ff;
+  --cyan: #00f0ff;
+  --bg: #000;
+  --bg2: #0a0a1a;
+  --bg3: #1a0a2e;
+  --text: #ccc;
 }
 
-/* HEADER */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-header{
-  padding:18px;
-  text-align:center;
-  background:#000;
-  box-shadow:0 0 15px #9900ff;
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: linear-gradient(135deg, #000, #0a0a1a);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
-header h1{
-  margin:0;
-  color:#9900ff;
-  font-size:24px;
+/* ── HEADER ── */
+header {
+  background: #000;
+  box-shadow: 0 0 25px #9900ff55;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-/* SEARCH */
-
-.search{
-  padding:15px;
-  text-align:center;
+.logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  background: linear-gradient(90deg, var(--purple), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+  text-decoration: none;
 }
 
-.search input{
-  width:90%;
-  padding:12px;
-  border:none;
-  border-radius:10px;
-  font-size:15px;
-  outline:none;
+.back-btn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  color: var(--cyan);
+  text-decoration: none;
+  border: 1px solid var(--cyan);
+  padding: 8px 14px;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  transition: 0.25s;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+}
+.back-btn:hover, .back-btn:active {
+  background: var(--cyan);
+  color: #000;
 }
 
-/* CATEGORIES */
-
-.categories{
-  display:flex;
-  overflow-x:auto;
-  gap:10px;
-  padding:10px;
+/* ── SEARCH ── */
+.search-wrap {
+  padding: 14px 16px 8px;
 }
 
-.cat-btn{
-  background:#9900ff;
-  padding:8px 14px;
-  border-radius:8px;
-  white-space:nowrap;
-  cursor:pointer;
-  transition:0.25s;
-  font-size:13px;
+.search-wrap input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #9900ff44;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: 'Rajdhani', sans-serif;
+  outline: none;
+  background: #0a0a1a;
+  color: #fff;
+  -webkit-appearance: none;
+  transition: 0.2s;
+}
+.search-wrap input:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 12px #9900ff33;
+}
+.search-wrap input::placeholder { color: #666; }
+
+/* ── CATEGORIES ── */
+.categories {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 10px 16px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.categories::-webkit-scrollbar { display: none; }
+
+.cat-btn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 9px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--purple);
+  color: #cc55ff;
+  background: #9900ff15;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: 0.2s;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.cat-btn:hover, .cat-btn.active, .cat-btn:active {
+  background: var(--purple);
+  color: #fff;
+  box-shadow: 0 0 14px #9900ff55;
 }
 
-.cat-btn:hover{
-  background:#00ff;
-  color:black;
+/* ── SECTION TITLE ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 16px 10px;
+}
+.section-header h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.section-header::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--purple), transparent);
 }
 
-/* GRID */
-
-.games{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-  gap:15px;
-  padding:15px;
+/* ── GAMES GRID ── */
+.games {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 12px;
+  padding: 0 12px 20px;
 }
 
-/* CARD */
-
-.card{
-  position:relative;
-  height:220px; /* hauteur totale de la carte */
-  border-radius:14px;
-  overflow:hidden;
-  transition:0.3s;
-  box-shadow:0 0 10px #000;
+/* ── CARD ── */
+.card {
+  position: relative;
+  height: 215px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #9900ff33;
+  box-shadow: 0 0 10px #00000088;
+  transition: transform 0.25s, box-shadow 0.25s;
+  cursor: pointer;
+  background: var(--bg3);
+  -webkit-tap-highlight-color: transparent;
 }
 
-.card:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 15px #00ff;
+.card:active {
+  transform: scale(0.97);
 }
 
-.card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+@media (hover: hover) {
+  .card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px #9900ff55;
+    border-color: var(--purple);
+  }
 }
 
-.card-content{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  padding:6px;
-  box-sizing:border-box;
-  background:linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4));
-}
-.card h3{
-  margin:0 0 5px 0;
-  font-size:14px;
-  color:00f0ff;
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.card p{
-  font-size:12px;
-  margin:0 0 6px 0;
-  color:#ddd;
+.card-content {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 60%, rgba(0,0,0,0.4));
 }
 
-/* BUTTONS */
-
-.buttons{
-  display:flex;
-  gap:5px;
-  margin-top:5px;
+.card h3 {
+  margin: 0 0 2px 0;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  color: var(--cyan);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.buttons a{
-  flex:1;
-  text-align:center;
-  padding:6px;
-  background:#9900ff;
-  color:black;
-  text-decoration:none;
-  border-radius:6px;
-  font-size:12px;
-  font-weight:bold;
+.card p {
+  font-size: 11px;
+  margin: 0 0 6px 0;
+  color: #bbb;
+  text-align: left;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* FOOTER */
-
-footer{
-  text-align:center;
-  padding:12px;
-  background:#0a0a1a;
-  font-size:12px;
+/* ── BADGE CATEGORIE ── */
+.badge-cat {
+  display: inline-block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid #9900ff55;
+  color: #cc55ff;
+  background: #9900ff15;
+  margin-bottom: 4px;
 }
 
-.download-btn{
-width:100%;
-margin-top:6px;
-padding:8px;
-border:none;
-border-radius:6px;
-background:#9900ff;
-color:black;
-font-weight:bold;
-cursor:pointer;
+/* ── DOWNLOAD BUTTON ── */
+.download-btn {
+  width: 100%;
+  padding: 9px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--purple), #6600cc);
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: 0.2s;
+  min-height: 36px;
 }
-.card{
-position:relative;
-}
+.download-btn:active { filter: brightness(1.3); transform: scale(0.98); }
 
-.download-menu{
-display:none;
-position:absolute;
-bottom:60px;
-left:10px;
-right:10px;
-
-flex-direction:column;
-background:#0a0a1a;
-border-radius:8px;
-overflow:hidden;
-
-box-shadow:0 8px 20px #000;
-z-index:10;
-
-animation:pop 0.15s ease;
-}
-
-@keyframes pop{
-from{
-opacity:0;
-transform:translateY(10px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+/* ── DOWNLOAD MENU ── */
+.download-menu {
+  display: none;
+  position: absolute;
+  bottom: 62px;
+  left: 8px;
+  right: 8px;
+  flex-direction: column;
+  background: #0a0a1a;
+  border: 1px solid #9900ff55;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px #9900ff44, 0 8px 20px #000;
+  z-index: 20;
+  animation: pop 0.15s ease;
 }
 
-.download-menu a{
-padding:8px;
-color:white;
-text-decoration:none;
-font-size:11px;
-border-top:1px solid #0a0a1a;
+@keyframes pop {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.download-menu a:hover{
-background:#00ff;
-color:black;
+.download-menu a {
+  padding: 10px 12px;
+  color: #ccc;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  border-bottom: 1px solid #ffffff0a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  transition: 0.15s;
+}
+.download-menu a:last-child { border-bottom: none; }
+.download-menu a:hover, .download-menu a:active {
+  background: var(--purple);
+  color: #fff;
 }
 
+/* ── LINK TO GAME PAGE ── */
+.card-link {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: calc(100% - 90px);
+  z-index: 5;
+  text-decoration: none;
+}
+
+/* ── EMPTY STATE ── */
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  color: #555;
+  letter-spacing: 2px;
+}
+
+/* ── COMMENTS ── */
+.comments-section {
+  background: var(--bg3);
+  padding: 16px;
+  border-radius: 12px;
+  margin: 0 12px 24px;
+  border: 1px solid #9900ff22;
+}
+.comments-section h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  color: #fff;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+.comment-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.comment-form input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #9900ff44;
+  background: #000;
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  outline: none;
+  min-height: 42px;
+}
+.comment-form input:focus { border-color: var(--purple); }
+.comment-form button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--purple);
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 42px;
+  white-space: nowrap;
+}
+#comments-list .comment {
+  background: #000;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  border-left: 3px solid var(--purple);
+}
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 16px;
+  background: var(--bg2);
+  font-size: 12px;
+  color: #555;
+  border-top: 1px solid #9900ff22;
+}
+footer a {
+  color: #9900ff88;
+  text-decoration: none;
+  margin: 0 6px;
+}
+footer a:hover { color: var(--purple); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 360px) {
+  .games { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 10px 16px; }
+  .card { height: 200px; }
+}
+@media (min-width: 600px) {
+  .games { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+}
+@media (min-width: 900px) {
+  .games { grid-template-columns: repeat(auto-fill, minmax(185px, 1fr)); }
+}
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
-<h1>📱 MLG XGame — Android & ios</h1>
+  <a class="logo" href="index.html">MLG XGame</a>
+  <a class="back-btn" href="index.html">← Accueil</a>
 </header>
 
-<div class="search">
-<input type="text" placeholder="Rechercher un jeu..." onkeyup="searchGame()" id="search">
+<!-- SEARCH -->
+<div class="search-wrap">
+  <input type="text" placeholder="🔍 Rechercher un jeu..." oninput="searchGame()" id="search" autocomplete="off" autocorrect="off" spellcheck="false">
 </div>
 
-<div class="categories">
-
-<div class="cat-btn" onclick="filter('all')">Tous</div>
-<div class="cat-btn" onclick="filter('Sport')">Sport</div>
-<div class="cat-btn" onclick="filter('Aventure')">Aventure</div>
-<div class="cat-btn" onclick="filter('Stratégie')">Stratégie</div>
-<div class="cat-btn" onclick="filter('Réflexion')">Réflexion</div>
-<div class="cat-btn" onclick="filter('Course')">Course</div>
-<div class="cat-btn" onclick="filter('Simulation')">Simulation</div>
-<div class="cat-btn" onclick="filter('Gourmand')">Gourmand</div>
-<div class="cat-btn" onclick="filter('Multijoueur')">Multijoueur</div>
-<div class="cat-btn" onclick="filter('Mode')">Mode</div>
-<div class="cat-btn" onclick="filter('Casual')">Casual</div>
-
+<!-- CATEGORIES -->
+<div class="categories" id="catStrip">
+  <div class="cat-btn active" onclick="filter('all', this)">Tous</div>
+  <div class="cat-btn" onclick="filter('Sport', this)">⚽ Sport</div>
+  <div class="cat-btn" onclick="filter('Aventure', this)">🏹 Aventure</div>
+  <div class="cat-btn" onclick="filter('Stratégie', this)">🧠 Stratégie</div>
+  <div class="cat-btn" onclick="filter('Réflexion', this)">🕹️ Réflexion</div>
+  <div class="cat-btn" onclick="filter('Course', this)">🏎️ Course</div>
+  <div class="cat-btn" onclick="filter('Simulation', this)">🛠️ Simulation</div>
+  <div class="cat-btn" onclick="filter('Gourmand', this)">🍔 Gourmand</div>
+  <div class="cat-btn" onclick="filter('Multijoueur', this)">🌐 Multijoueur</div>
+  <div class="cat-btn" onclick="filter('Mode', this)">👗 Mode</div>
+  <div class="cat-btn" onclick="filter('Casual', this)">🎲 Casual</div>
 </div>
 
+<!-- SECTION TITLE -->
+<div class="section-header">
+  <h2 id="section-title">Tous les jeux</h2>
+</div>
+
+<!-- GAMES GRID -->
 <div class="games" id="games"></div>
 
-  <!-- ====== SECTION COMMENTAIRES ====== -->
+<!-- COMMENTS -->
 <div class="comments-section">
   <h2>💬 Commentaires</h2>
-  
   <div class="comment-form">
     <input type="text" id="comment-input" placeholder="Écris ton commentaire..." />
     <button onclick="addComment()">Publier</button>
   </div>
-  
   <div id="comments-list"></div>
 </div>
 
-<style>
-.comments-section{
-  background:#1e293b;
-  padding:15px;
-  border-radius:12px;
-  margin:20px 0;
-}
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:8px;">&copy; 2026 <strong style="color:#9900ff">MLG XGame</strong>. Tous droits réservés.</p>
+  <p>
+    <a href="apropos.html">À propos</a>
+    <a href="politique.html">Confidentialité</a>
+    <a href="conditions.html">Conditions</a>
+    <a href="contact.html">Contact</a>
+  </p>
+</footer>
 
-.comments-section h2{
-  color:#a855f7;
-  margin-bottom:10px;
-}
-
-.comment-form{
-  display:flex;
-  gap:10px;
-  margin-bottom:15px;
-}
-
-.comment-form input{
-  flex:1;
-  padding:8px;
-  border-radius:8px;
-  border:none;
-  outline:none;
-}
-
-.comment-form button{
-  padding:8px 12px;
-  border:none;
-  border-radius:8px;
-  background:#a855f7;
-  color:black;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-#comments-list .comment{
-  background:#0f172a;
-  padding:8px 12px;
-  border-radius:8px;
-  margin-bottom:8px;
-  font-size:13px;
-}
-</style>
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7572845165323582" crossorigin="anonymous"></script>
 
 <script>
-function addComment(){
-  const input=document.getElementById("comment-input");
-  const text=input.value.trim();
-  if(!text) return;
+/* ═══════════════════════════════════════
+   DONNÉES DES JEUX
+   Chaque jeu a un "slug" qui correspond
+   au fichier HTML dans jeux/
+═══════════════════════════════════════ */
 
-  const commentList=document.getElementById("comments-list");
-  const div=document.createElement("div");
-  div.className="comment";
-  div.textContent=text;
-  commentList.prepend(div);
+const androidGames = [
+  // ⚽ SPORT
+  { nom:"FIFA Mobile", slug:"fifa-mobile", img:"img/fc mobile.jpg", description:"Football réaliste et compétitif.", playstore:"https://play.google.com/store/apps/details?id=com.ea.gp.fifamobile", apk:"https://fifa-mobile.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/fifa-mobile/id1094930513", categorie:"Sport" },
+  { nom:"PES 2023", slug:"pes-2023", img:"img/pes 2023.jpg", description:"Simulation de football authentique.", playstore:"https://play.google.com/store/apps/details?id=jp.konami.pesam", apk:"https://pes-2023.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/efootball-pes-2023/id1477900624", categorie:"Sport" },
+  { nom:"NBA Live Mobile", slug:"nba-live-mobile", img:"images/android/nba-live.jpg", description:"Basketball rapide et fun.", playstore:"https://play.google.com/store/apps/details?id=com.ea.gp.nbamobile", apk:"https://nba-live-mobile.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/nba-live-mobile-basketball/id669341646", categorie:"Sport" },
+  { nom:"Golf Clash", slug:"golf-clash", img:"images/android/golf-clash.jpg", description:"Compétitions de golf en ligne.", playstore:"https://play.google.com/store/apps/details?id=com.playdemic.golf.android", apk:"https://golf-clash.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/golf-clash/id1043080243", categorie:"Sport" },
+  { nom:"8 Ball Pool", slug:"8-ball-pool", img:"images/android/8-ball-pool.jpg", description:"Billard multijoueur fun.", playstore:"https://play.google.com/store/apps/details?id=com.miniclip.eightballpool", apk:"https://8-ball-pool.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/8-ball-pool/id543186831", categorie:"Sport" },
+  { nom:"Real Cricket 20", slug:"real-cricket-20", img:"images/android/real-cricket.jpg", description:"Cricket réaliste et compétitif.", playstore:"https://play.google.com/store/apps/details?id=com.playstar.cricket20", apk:"https://real-cricket-20.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/real-cricket-20/id1473278708", categorie:"Sport" },
+  { nom:"Dream League Soccer", slug:"dream-league-soccer", img:"images/android/dream-league-soccer.jpg", description:"Construis ton équipe de rêve.", playstore:"https://play.google.com/store/apps/details?id=com.firsttouchgames.dls7", apk:"https://dream-league-soccer.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/dream-league-soccer-2023/id1198961170", categorie:"Sport" },
+  { nom:"Archery King", slug:"archery-king", img:"images/android/archery-king.jpg", description:"Tire à l'arc contre des adversaires.", playstore:"https://play.google.com/store/apps/details?id=com.pk.ArcheryKing", apk:"https://archery-king.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/archery-king/id1196440558", categorie:"Sport" },
+  { nom:"Tennis Clash", slug:"tennis-clash", img:"images/android/tennis-clash.jpg", description:"Matchs de tennis rapides.", playstore:"https://play.google.com/store/apps/details?id=com.playdemic.tennisclash", apk:"https://tennis-clash.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/tennis-clash/id1348323548", categorie:"Sport" },
+  { nom:"Motorsport Manager", slug:"motorsport-manager", img:"images/android/motorsport-manager.jpg", description:"Gère ton équipe de course.", playstore:"https://play.google.com/store/apps/details?id=com.playsport.motorsportmanager", apk:"https://motorsport-manager.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/motorsport-manager/id1324468032", categorie:"Sport" },
 
-  input.value="";
-}
-</script>
+  // 🏹 AVENTURE
+  { nom:"Minecraft", slug:"minecraft", img:"images/android/minecraft.jpg", description:"Construis et explore un monde infini.", playstore:"https://play.google.com/store/apps/details?id=com.mojang.minecraftpe", apk:"https://minecraft.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/minecraft/id479516143", categorie:"Aventure" },
+  { nom:"Terraria", slug:"terraria", img:"images/android/terraria.jpg", description:"Aventure sandbox colorée.", playstore:"https://play.google.com/store/apps/details?id=com.and.games505.TerrariaPaid", apk:"https://terraria.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/terraria/id640364616", categorie:"Aventure" },
+  { nom:"Genshin Impact", slug:"genshin-impact", img:"images/android/genshin.jpg", description:"RPG ouvert avec paysages magnifiques.", playstore:"https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact", apk:"https://genshin-impact.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/genshin-impact/id1517783697", categorie:"Aventure" },
+  { nom:"Stardew Valley", slug:"stardew-valley", img:"images/android/stardew.jpg", description:"Gestion de ferme et exploration.", playstore:"https://play.google.com/store/apps/details?id=com.chucklefish.stardewvalley", apk:"https://stardew-valley.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/stardew-valley/id1406719342", categorie:"Aventure" },
+  { nom:"Grimvalor", slug:"grimvalor", img:"images/android/grimvalor.jpg", description:"Platformer aventureux et challenge.", playstore:"https://play.google.com/store/apps/details?id=com.ravenousgames.grimvalor", apk:"https://grimvalor.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/grimvalor/id1444867609", categorie:"Aventure" },
+  { nom:"Oddmar", slug:"oddmar", img:"images/android/oddmar.jpg", description:"Aventure viking stylée.", playstore:"https://play.google.com/store/apps/details?id=com.mobge.oddmar", apk:"https://oddmar.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/oddmar/id1309199243", categorie:"Aventure" },
+  { nom:"Oceanhorn 2", slug:"oceanhorn-2", img:"images/android/oceanhorn2.jpg", description:"Aventure épique dans un monde fantastique.", playstore:"https://play.google.com/store/apps/details?id=com.fdg.oceanhorn2", apk:"https://oceanhorn-2.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/oceanhorn-2/id1472649553", categorie:"Aventure" },
+  { nom:"Portal Knights", slug:"portal-knights", img:"images/android/portalknights.jpg", description:"RPG sandbox coopératif.", playstore:"https://play.google.com/store/apps/details?id=com.keengames.portalknights", apk:"https://portal-knights.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/portal-knights/id1214850996", categorie:"Aventure" },
+  { nom:"Monster Hunter Stories", slug:"monster-hunter-stories", img:"images/android/monster-hunter.jpg", description:"Aventure RPG avec créatures fantastiques.", playstore:"https://play.google.com/store/apps/details?id=com.capcom.monsterhunterstories", apk:"https://monster-hunter-stories.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/monster-hunter-stories/id1527662554", categorie:"Aventure" },
+  { nom:"Oddworld: Munch's Oddysee", slug:"oddworld-munchs-oddysee", img:"images/android/oddworld.jpg", description:"Aventure fun et non violente.", playstore:"https://play.google.com/store/apps/details?id=com.oddworld.munch", apk:"https://oddworld.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/oddworld-munchs-oddysee/id1168702210", categorie:"Aventure" },
 
-<script>
+  // 🧠 STRATÉGIE
+  { nom:"Clash of Clans", slug:"clash-of-clans", img:"images/android/clash-of-clans.jpg", description:"Construis ton village et combats stratégiques.", playstore:"https://play.google.com/store/apps/details?id=com.supercell.clashofclans", apk:"https://clash-of-clans.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/clash-of-clans/id529479190", categorie:"Stratégie" },
+  { nom:"Clash Royale", slug:"clash-royale", img:"images/android/clash-royale.jpg", description:"Stratégie rapide en temps réel.", playstore:"https://play.google.com/store/apps/details?id=com.supercell.clashroyale", apk:"https://clash-royale.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/clash-royale/id1053012308", categorie:"Stratégie" },
+  { nom:"Age of Civilizations", slug:"age-of-civilizations", img:"images/android/age-of-civilizations.jpg", description:"Stratégie et diplomatie globale.", playstore:"https://play.google.com/store/apps/details?id=pl.tgames.worldmap", apk:"https://age-of-civilizations.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/age-of-civilizations/id1453544342", categorie:"Stratégie" },
+  { nom:"Plants vs Zombies 2", slug:"plants-vs-zombies-2", img:"images/android/plants-vs-zombies2.jpg", description:"Défends ton jardin contre des zombies fun.", playstore:"https://play.google.com/store/apps/details?id=com.ea.zeptolab.pvz2", apk:"https://plants-vs-zombies2.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/plants-vs-zombies-2/id597986893", categorie:"Stratégie" },
+  { nom:"Rise of Kingdoms", slug:"rise-of-kingdoms", img:"images/android/rise-of-kingdoms.jpg", description:"Gestion de royaume et combats stratégiques.", playstore:"https://play.google.com/store/apps/details?id=com.lilithgames.roc.gp", apk:"https://rise-of-kingdoms.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/rise-of-kingdoms/id1361679721", categorie:"Stratégie" },
+  { nom:"Civilization VI", slug:"civilization-vi", img:"images/android/civilization6.jpg", description:"Stratégie globale au tour par tour.", playstore:"https://play.google.com/store/apps/details?id=com.aspyr.civvi", apk:"https://civilization-vi.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/civilization-vi/id1456270066", categorie:"Stratégie" },
+  { nom:"Bloons TD 6", slug:"bloons-td-6", img:"images/android/bloons-td6.jpg", description:"Tower defense fun et coloré.", playstore:"https://play.google.com/store/apps/details?id=com.ninjakiwi.bloonstd6", apk:"https://bloons-td6.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/bloons-td-6/id1040200483", categorie:"Stratégie" },
+  { nom:"Chess.com", slug:"chesscom", img:"images/android/chesscom.jpg", description:"Joue aux échecs contre des joueurs du monde.", playstore:"https://play.google.com/store/apps/details?id=com.chess", apk:"https://chess.com.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/chess-com/id329218549", categorie:"Stratégie" },
+  { nom:"SimCity BuildIt", slug:"simcity-buildit", img:"images/android/simcity.jpg", description:"Construis et gère ta ville.", playstore:"https://play.google.com/store/apps/details?id=com.ea.game.simcitymobile", apk:"https://simcity-buildit.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/simcity-buildit/id656308137", categorie:"Stratégie" },
+  { nom:"Plague Inc", slug:"plague-inc", img:"images/android/plague-inc.jpg", description:"Stratégie de simulation pandémique.", playstore:"https://play.google.com/store/apps/details?id=com.miniclip.plagueinc", apk:"https://plague-inc.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/plague-inc/id525818839", categorie:"Stratégie" },
 
-/* ========= COLLE TES JEUX ICI ========= */
+  // 🕹️ RÉFLEXION
+  { nom:"Brain Out", slug:"brain-out", img:"images/android/brain-out.jpg", description:"Défis et énigmes amusantes.", playstore:"https://play.google.com/store/apps/details?id=com.bboom.brainout", apk:"https://brain-out.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/brain-out/id1395588271", categorie:"Réflexion" },
+  { nom:"Monument Valley", slug:"monument-valley", img:"images/android/monument-valley.jpg", description:"Puzzle et architecture stylée.", playstore:"https://play.google.com/store/apps/details?id=com.ustwo.monumentvalley", apk:"https://monument-valley.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/monument-valley/id728293409", categorie:"Réflexion" },
+  { nom:"The Room", slug:"the-room", img:"images/android/the-room.jpg", description:"Résous des énigmes mystérieuses.", playstore:"https://play.google.com/store/apps/details?id=com.FireproofStudios.TheRoom", apk:"https://the-room.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/the-room/id552039496", categorie:"Réflexion" },
+  { nom:"Cut the Rope", slug:"cut-the-rope", img:"images/android/cut-the-rope.jpg", description:"Puzzle fun et addictif.", playstore:"https://play.google.com/store/apps/details?id=com.zeptolab.ctr.ads", apk:"https://cut-the-rope.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/cut-the-rope/id548642989", categorie:"Réflexion" },
+  { nom:"Flow Free", slug:"flow-free", img:"images/android/flow-free.jpg", description:"Relie les couleurs sans croiser les tuyaux.", playstore:"https://play.google.com/store/apps/details?id=com.bigduckgames.flow", apk:"https://flow-free.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/flow-free/id505518022", categorie:"Réflexion" },
+  { nom:"Sudoku.com", slug:"sudokucom", img:"images/android/sudoku.jpg", description:"Sudoku classique pour tous.", playstore:"https://play.google.com/store/apps/details?id=com.easybrain.sudoku.android", apk:"https://sudoku-com.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/sudoku-com/id1197405359", categorie:"Réflexion" },
+  { nom:"2048", slug:"2048", img:"images/android/2048.jpg", description:"Puzzle de chiffres addictif.", playstore:"https://play.google.com/store/apps/details?id=com.digipix.game2048", apk:"https://2048.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/2048/id840919914", categorie:"Réflexion" },
+  { nom:"Candy Crush Saga", slug:"candy-crush-saga", img:"images/android/candy-crush.jpg", description:"Match 3 coloré et fun.", playstore:"https://play.google.com/store/apps/details?id=com.king.candycrushsaga", apk:"https://candy-crush-saga.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/candy-crush-saga/id553834731", categorie:"Réflexion" },
+  { nom:"Brain Test", slug:"brain-test", img:"images/android/brain-test.jpg", description:"Énigmes et défis intelligents.", playstore:"https://play.google.com/store/apps/details?id=com.unico.brain", apk:"https://brain-test.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/brain-test/id1448618824", categorie:"Réflexion" },
+  { nom:"Lara Croft GO", slug:"lara-croft-go", img:"images/android/lara-croft-go.jpg", description:"Puzzle aventure avec Lara Croft.", playstore:"https://play.google.com/store/apps/details?id=com.squareenix.laracroftgo", apk:"https://lara-croft-go.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/lara-croft-go/id955201169", categorie:"Réflexion" },
 
-const androidGames=[
- // ⚽ Sport
-  {
-    nom: "FIFA Mobile",
-    img: "img/fc mobile.jpg",
-    description: "Football réaliste et compétitif.",
-    playstore: "https://play.google.com/store/apps/details?id=com.ea.gp.fifamobile",
-    apk: "https://fifa-mobile.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/fifa-mobile/id1094930513",
-    categorie: "Sport"
-  },
-  {
-    nom: "PES 2023",
-    img: "img/pes 2023.jpg",
-    description: "Simulation de football authentique.",
-    playstore: "https://play.google.com/store/apps/details?id=jp.konami.pesam",
-    apk: "https://pes-2023.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/efootball-pes-2023/id1477900624",
-    categorie: "Sport"
-  },
-  {
-    nom: "NBA Live Mobile",
-    img: "images/android/nba-live.jpg",
-    description: "Basketball rapide et fun.",
-    playstore: "https://play.google.com/store/apps/details?id=com.ea.gp.nbamobile",
-    apk: "https://nba-live-mobile.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/nba-live-mobile-basketball/id669341646",
-    categorie: "Sport"
-  },
-  {
-    nom: "Golf Clash",
-    img: "images/android/golf-clash.jpg",
-    description: "Compétitions de golf en ligne.",
-    playstore: "https://play.google.com/store/apps/details?id=com.playdemic.golf.android",
-    apk: "https://golf-clash.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/golf-clash/id1043080243",
-    categorie: "Sport"
-  },
-  {
-    nom: "8 Ball Pool",
-    img: "images/android/8-ball-pool.jpg",
-    description: "Billard multijoueur fun.",
-    playstore: "https://play.google.com/store/apps/details?id=com.miniclip.eightballpool",
-    apk: "https://8-ball-pool.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/8-ball-pool/id543186831",
-    categorie: "Sport"
-  },
-  {
-    nom: "Real Cricket 20",
-    img: "images/android/real-cricket.jpg",
-    description: "Cricket réaliste et compétitif.",
-    playstore: "https://play.google.com/store/apps/details?id=com.playstar.cricket20",
-    apk: "https://real-cricket-20.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/real-cricket-20/id1473278708",
-    categorie: "Sport"
-  },
-  {
-    nom: "Dream League Soccer",
-    img: "images/android/dream-league-soccer.jpg",
-    description: "Construis ton équipe de rêve.",
-    playstore: "https://play.google.com/store/apps/details?id=com.firsttouchgames.dls7",
-    apk: "https://dream-league-soccer.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/dream-league-soccer-2023/id1198961170",
-    categorie: "Sport"
-  },
-  {
-    nom: "Archery King",
-    img: "images/android/archery-king.jpg",
-    description: "Tire à l’arc contre des adversaires.",
-    playstore: "https://play.google.com/store/apps/details?id=com.pk.ArcheryKing",
-    apk: "https://archery-king.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/archery-king/id1196440558",
-    categorie: "Sport"
-  },
-  {
-    nom: "Tennis Clash",
-    img: "images/android/tennis-clash.jpg",
-    description: "Matchs de tennis rapides.",
-    playstore: "https://play.google.com/store/apps/details?id=com.playdemic.tennisclash",
-    apk: "https://tennis-clash.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/tennis-clash/id1348323548",
-    categorie: "Sport"
-  },
-  {
-    nom: "Motorsport Manager",
-    img: "images/android/motorsport-manager.jpg",
-    description: "Gère ton équipe de course.",
-    playstore: "https://play.google.com/store/apps/details?id=com.playsport.motorsportmanager",
-    apk: "https://motorsport-manager.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/motorsport-manager/id1324468032",
-    categorie: "Sport"
-  },
+  // 🏎️ COURSE
+  { nom:"Hill Climb Racing 2", slug:"hill-climb-racing-2", img:"images/android/hill-climb.jpg", description:"Course amusante et déjantée.", playstore:"https://play.google.com/store/apps/details?id=com.fingersoft.hcr2", apk:"https://hill-climb-racing-2.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/hill-climb-racing-2/id1136922203", categorie:"Course" },
+  { nom:"Mario Kart Tour", slug:"mario-kart-tour", img:"images/android/mario-kart.jpg", description:"Courses colorées avec personnages Nintendo.", playstore:"https://play.google.com/store/apps/details?id=com.nintendo.zaka", apk:"https://mario-kart-tour.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/mario-kart-tour/id1293634699", categorie:"Course" },
+  { nom:"Beach Buggy Racing 2", slug:"beach-buggy-racing-2", img:"images/android/beach-buggy.jpg", description:"Courses fun et véhicules fous.", playstore:"https://play.google.com/store/apps/details?id=com.aurum.beachbunny2", apk:"https://beach-buggy-racing-2.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/beach-buggy-racing-2/id1275897324", categorie:"Course" },
+  { nom:"Traffic Rider", slug:"traffic-rider", img:"images/android/traffic-rider.jpg", description:"Conduite immersive à moto.", playstore:"https://play.google.com/store/apps/details?id=com.skgames.trafficrider", apk:"https://traffic-rider.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/traffic-rider/id945436900", categorie:"Course" },
+  { nom:"F1 Mobile Racing", slug:"f1-mobile-racing", img:"images/android/f1-mobile.jpg", description:"Courses de F1 réalistes et fun.", playstore:"https://play.google.com/store/apps/details?id=com.codemasters.f1mobile", apk:"https://f1-mobile.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/f1-mobile-racing/id1323923416", categorie:"Course" },
+  { nom:"MotoGP Racing", slug:"motogp-racing", img:"images/android/motogp.jpg", description:"Courses motos fun et immersives.", playstore:"https://play.google.com/store/apps/details?id=com.motogpracing", apk:"https://motogp-racing.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/motogp-racing/id1367892345", categorie:"Course" },
+  { nom:"Drift Max Pro", slug:"drift-max-pro", img:"images/android/drift-max.jpg", description:"Courses de drift fun.", playstore:"https://play.google.com/store/apps/details?id=com.tiramisu.driftsimulator", apk:"https://drift-max-pro.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/drift-max-pro/id1212345678", categorie:"Course" },
+  { nom:"Real Racing 3", slug:"real-racing-3", img:"images/android/real-racing-3.jpg", description:"Course réaliste mais fun.", playstore:"https://play.google.com/store/apps/details?id=com.ea.games.r3_row", apk:"https://real-racing-3.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/real-racing-3/id556857816", categorie:"Course" },
+  { nom:"Rocket League Sideswipe", slug:"rocket-league-sideswipe", img:"images/android/rocket-league.jpg", description:"Course et football automobile fun.", playstore:"https://play.google.com/store/apps/details?id=com.rocketleague.sideswipe", apk:"https://rocket-league-sideswipe.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/rocket-league-sideswipe/id1577789343", categorie:"Course" },
+  { nom:"Asphalt Nitro", slug:"asphalt-nitro", img:"images/android/asphalt-nitro.jpg", description:"Courses fun et arcade.", playstore:"https://play.google.com/store/apps/details?id=com.gameloft.android.AsphaltNitro", apk:"https://asphalt-nitro.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/asphalt-nitro/id1088878123", categorie:"Course" },
 
-  // 🏹 Aventure (remplacement des jeux violents)
-  {
-    nom: "Minecraft",
-    img: "images/android/minecraft.jpg",
-    description: "Construis et explore un monde infini.",
-    playstore: "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe",
-    apk: "https://minecraft.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/minecraft/id479516143",
-    categorie: "Aventure"
-  },
-  {
-    nom: "Terraria",
-    img: "images/android/terraria.jpg",
-    description: "Aventure sandbox colorée.",
-    playstore: "https://play.google.com/store/apps/details?id=com.and.games505.TerrariaPaid",
-    apk: "https://terraria.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/terraria/id640364616",
-    categorie: "Aventure"
-  },
-  {
-    nom: "Genshin Impact",
-    img: "images/android/genshin.jpg",
-    description: "RPG ouvert avec paysages magnifiques.",
-    playstore: "https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact",
-    apk: "https://genshin-impact.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/genshin-impact/id1517783697",
-    categorie: "Aventure"
-  },
-  {
-    nom: "Stardew Valley",
-    img: "images/android/stardew.jpg",
-    description: "Gestion de ferme et exploration.",
-    playstore: "https://play.google.com/store/apps/details?id=com.chucklefish.stardewvalley",
-    apk: "https://stardew-valley.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/stardew-valley/id1406719342",
-    categorie: "Aventure"
-  },
-  {
-    nom: "Grimvalor",
-    img: "images/android/grimvalor.jpg",
-    description: "Platformer aventureux et challenge.",
-    playstore: "https://play.google.com/store/apps/details?id=com.ravenousgames.grimvalor",
-    apk: "https://grimvalor.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/grimvalor/id1444867609",
-    categorie: "Aventure"
-  },
-  {
-    nom: "Oddmar",
-    img: "images/android/oddmar.jpg",
-    description: "Aventure viking stylée.",
-    playstore: "https://play.google.com/store/apps/details?id=com.mobge.oddmar",
-    apk: "https://oddmar.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/oddmar/id1309199243",
-    categorie: "Aventure"
-  },
-  {
-    nom: "Oceanhorn 2",
-    img: "images/android/oceanhorn2.jpg",
-    description: "Aventure épique dans un monde fantastique.",
-    playstore: "https://play.google.com/store/apps/details?id=com.fdg.oceanhorn2",
-    apk: "https://oceanhorn-2.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/oceanhorn-2/id1472649553",
-    categorie: "Aventure"
-  },
-  {
-    nom: "Portal Knights",
-    img: "images/android/portalknights.jpg",
-    description: "RPG sandbox coopératif.",
-    playstore: "https://play.google.com/store/apps/details?id=com.keengames.portalknights",
-    apk: "https://portal-knights.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/portal-knights/id1214850996",
-    categorie: "Aventure"
-  },
-  {
-    nom: "Monster Hunter Stories",
-    img: "images/android/monster-hunter.jpg",
-    description: "Aventure RPG avec créatures fantastiques.",
-    playstore: "https://play.google.com/store/apps/details?id=com.capcom.monsterhunterstories",
-    apk: "https://monster-hunter-stories.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/monster-hunter-stories/id1527662554",
-    categorie: "Aventure"
-  },
-  {
-    nom: "Oddworld: Munch's Oddysee",
-    img: "images/android/oddworld.jpg",
-    description: "Aventure fun et non violente.",
-    playstore: "https://play.google.com/store/apps/details?id=com.oddworld.munch",
-    apk: "https://oddworld.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/oddworld-munchs-oddysee/id1168702210",
-    categorie: "Aventure"
-  },
+  // 🛠️ SIMULATION
+  { nom:"The Sims Mobile", slug:"the-sims-mobile", img:"images/android/the-sims.jpg", description:"Crée et gère tes Sims.", playstore:"https://play.google.com/store/apps/details?id=com.ea.gp.simsmobile", apk:"https://the-sims-mobile.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/the-sims-mobile/id1160126905", categorie:"Simulation" },
+  { nom:"Farming Simulator 20", slug:"farming-simulator-20", img:"images/android/farming-simulator.jpg", description:"Gère ta ferme et cultive tes champs.", playstore:"https://play.google.com/store/apps/details?id=com.focushome.fs20", apk:"https://farming-simulator-20.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/farming-simulator-20/id1466547201", categorie:"Simulation" },
+  { nom:"Car Simulator 2", slug:"car-simulator-2", img:"images/android/car-simulator-2.jpg", description:"Conduis et explore librement.", playstore:"https://play.google.com/store/apps/details?id=com.ovilex.carsimulator2", apk:"https://car-simulator-2.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/car-simulator-2/id1478654321", categorie:"Simulation" },
+  { nom:"Bus Simulator: Ultimate", slug:"bus-simulator-ultimate", img:"images/android/bus-simulator.jpg", description:"Conduis ton bus dans la ville.", playstore:"https://play.google.com/store/apps/details?id=com.ovilex.bussimulator", apk:"https://bus-simulator-ultimate.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/bus-simulator-ultimate/id1487654321", categorie:"Simulation" },
+  { nom:"Goat Simulator", slug:"goat-simulator", img:"images/android/goat-simulator.jpg", description:"Fais le chaos avec une chèvre.", playstore:"https://play.google.com/store/apps/details?id=com.coffeestain.goatsimulator", apk:"https://goat-simulator.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/goat-simulator/id1071966070", categorie:"Simulation" },
+  { nom:"Pocket City", slug:"pocket-city", img:"images/android/pocket-city.jpg", description:"Construis et gère ta ville mobile.", playstore:"https://play.google.com/store/apps/details?id=com.codebrew.pocketcity", apk:"https://pocket-city.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/pocket-city/id1284791494", categorie:"Simulation" },
+  { nom:"Airport City", slug:"airport-city", img:"images/android/airport-city.jpg", description:"Gère ton aéroport et tes vols.", playstore:"https://play.google.com/store/apps/details?id=com.socialquantum.airportcity", apk:"https://airport-city.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/airport-city/id481030838", categorie:"Simulation" },
+  { nom:"RollerCoaster Tycoon Touch", slug:"rollercoaster-tycoon-touch", img:"images/android/rollercoaster-tycoon.jpg", description:"Construis et gère ton parc d'attractions.", playstore:"https://play.google.com/store/apps/details?id=com.atari.mobile.rct", apk:"https://rollercoaster-tycoon.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/rollercoaster-tycoon-touch/id1204898586", categorie:"Simulation" },
 
-  // 🧠 Stratégie (jeux non violents)
-  {
-    nom: "Clash of Clans",
-    img: "images/android/clash-of-clans.jpg",
-    description: "Construis ton village et combats stratégiques.",
-    playstore: "https://play.google.com/store/apps/details?id=com.supercell.clashofclans",
-    apk: "https://clash-of-clans.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/clash-of-clans/id529479190",
-    categorie: "Stratégie"
-  },
-  {
-    nom: "Clash Royale",
-    img: "images/android/clash-royale.jpg",
-    description: "Stratégie rapide en temps réel.",
-    playstore: "https://play.google.com/store/apps/details?id=com.supercell.clashroyale",
-    apk: "https://clash-royale.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/clash-royale/id1053012308",
-    categorie: "Stratégie"
-  },
-  {
-    nom: "Age of Civilizations",
-    img: "images/android/age-of-civilizations.jpg",
-    description: "Stratégie et diplomatie globale.",
-    playstore: "https://play.google.com/store/apps/details?id=pl.tgames.worldmap",
-    apk: "https://age-of-civilizations.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/age-of-civilizations/id1453544342",
-    categorie: "Stratégie"
-  },
-  {
-    nom: "Plants vs Zombies 2",
-    img: "images/android/plants-vs-zombies2.jpg",
-    description: "Défends ton jardin contre des zombies fun.",
-    playstore: "https://play.google.com/store/apps/details?id=com.ea.zeptolab.pvz2",
-    apk: "https://plants-vs-zombies2.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/plants-vs-zombies-2/id597986893",
-    categorie: "Stratégie"
-  },
-  {
-    nom: "Rise of Kingdoms",
-    img: "images/android/rise-of-kingdoms.jpg",
-    description: "Gestion de royaume et combats stratégiques.",
-    playstore: "https://play.google.com/store/apps/details?id=com.lilithgames.roc.gp",
-    apk: "https://rise-of-kingdoms.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/rise-of-kingdoms/id1361679721",
-    categorie: "Stratégie"
-  },
-  {
-    nom: "Civilization VI",
-    img: "images/android/civilization6.jpg",
-    description: "Stratégie globale au tour par tour.",
-    playstore: "https://play.google.com/store/apps/details?id=com.aspyr.civvi",
-    apk: "https://civilization-vi.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/civilization-vi/id1456270066",
-    categorie: "Stratégie"
-  },
-  {
-    nom: "Bloons TD 6",
-    img: "images/android/bloons-td6.jpg",
-    description: "Tower defense fun et coloré.",
-    playstore: "https://play.google.com/store/apps/details?id=com.ninjakiwi.bloonstd6",
-    apk: "https://bloons-td6.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/bloons-td-6/id1040200483",
-    categorie: "Stratégie"
-  },
-  {
-    nom: "Chess.com",
-    img: "images/android/chesscom.jpg",
-    description: "Joue aux échecs contre des joueurs du monde.",
-    playstore: "https://play.google.com/store/apps/details?id=com.chess",
-    apk: "https://chess.com.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/chess-com/id329218549",
-    categorie: "Stratégie"
-  },
-  {
-    nom: "SimCity BuildIt",
-    img: "images/android/simcity.jpg",
-    description: "Construis et gère ta ville.",
-    playstore: "https://play.google.com/store/apps/details?id=com.ea.game.simcitymobile",
-    apk: "https://simcity-buildit.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/simcity-buildit/id656308137",
-    categorie: "Stratégie"
-  },
-  {
-    nom: "Plague Inc",
-    img: "images/android/plague-inc.jpg",
-    description: "Stratégie de simulation pandémique.",
-    playstore: "https://play.google.com/store/apps/details?id=com.miniclip.plagueinc",
-    apk: "https://plague-inc.fr.malavida.com/android/download#goog_rewarded",
-    appstore: "https://apps.apple.com/fr/app/plague-inc/id525818839",
-    categorie: "Stratégie"
-  },
-  // 🕹️ Réflexion
-{
-  nom: "Brain Out",
-  img: "images/android/brain-out.jpg",
-  description: "Défis et énigmes amusantes.",
-  playstore: "https://play.google.com/store/apps/details?id=com.bboom.brainout",
-  apk: "https://brain-out.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/brain-out/id1395588271",
-  categorie: "Réflexion"
-},
-{
-  nom: "Monument Valley",
-  img: "images/android/monument-valley.jpg",
-  description: "Puzzle et architecture stylée.",
-  playstore: "https://play.google.com/store/apps/details?id=com.ustwo.monumentvalley",
-  apk: "https://monument-valley.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/monument-valley/id728293409",
-  categorie: "Réflexion"
-},
-{
-  nom: "The Room",
-  img: "images/android/the-room.jpg",
-  description: "Résous des énigmes mystérieuses.",
-  playstore: "https://play.google.com/store/apps/details?id=com.FireproofStudios.TheRoom",
-  apk: "https://the-room.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/the-room/id552039496",
-  categorie: "Réflexion"
-},
-{
-  nom: "Cut the Rope",
-  img: "images/android/cut-the-rope.jpg",
-  description: "Puzzle fun et addictif.",
-  playstore: "https://play.google.com/store/apps/details?id=com.zeptolab.ctr.ads",
-  apk: "https://cut-the-rope.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/cut-the-rope/id548642989",
-  categorie: "Réflexion"
-},
-{
-  nom: "Flow Free",
-  img: "images/android/flow-free.jpg",
-  description: "Relie les couleurs sans croiser les tuyaux.",
-  playstore: "https://play.google.com/store/apps/details?id=com.bigduckgames.flow",
-  apk: "https://flow-free.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/flow-free/id505518022",
-  categorie: "Réflexion"
-},
-{
-  nom: "Sudoku.com",
-  img: "images/android/sudoku.jpg",
-  description: "Sudoku classique pour tous.",
-  playstore: "https://play.google.com/store/apps/details?id=com.easybrain.sudoku.android",
-  apk: "https://sudoku-com.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/sudoku-com/id1197405359",
-  categorie: "Réflexion"
-},
-{
-  nom: "2048",
-  img: "images/android/2048.jpg",
-  description: "Puzzle de chiffres addictif.",
-  playstore: "https://play.google.com/store/apps/details?id=com.digipix.game2048",
-  apk: "https://2048.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/2048/id840919914",
-  categorie: "Réflexion"
-},
-{
-  nom: "Candy Crush Saga",
-  img: "images/android/candy-crush.jpg",
-  description: "Match 3 coloré et fun.",
-  playstore: "https://play.google.com/store/apps/details?id=com.king.candycrushsaga",
-  apk: "https://candy-crush-saga.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/candy-crush-saga/id553834731",
-  categorie: "Réflexion"
-},
-{
-  nom: "Brain Test",
-  img: "images/android/brain-test.jpg",
-  description: "Énigmes et défis intelligents.",
-  playstore: "https://play.google.com/store/apps/details?id=com.unico.brain",
-  apk: "https://brain-test.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/brain-test/id1448618824",
-  categorie: "Réflexion"
-},
-{
-  nom: "Lara Croft GO",
-  img: "images/android/lara-croft-go.jpg",
-  description: "Puzzle aventure avec Lara Croft.",
-  playstore: "https://play.google.com/store/apps/details?id=com.squareenix.laracroftgo",
-  apk: "https://lara-croft-go.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/lara-croft-go/id955201169",
-  categorie: "Réflexion"
-},
+  // 🍔 GOURMAND
+  { nom:"Cooking Fever", slug:"cooking-fever", img:"images/android/cooking-fever.jpg", description:"Cuisine rapide et fun.", playstore:"https://play.google.com/store/apps/details?id=com.nordcurrent.canteenhd", apk:"https://cooking-fever.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/cooking-fever/id694534039", categorie:"Gourmand" },
+  { nom:"Food Street", slug:"food-street", img:"images/android/food-street.jpg", description:"Gère ton restaurant et cuisine.", playstore:"https://play.google.com/store/apps/details?id=com.foodstreet.game", apk:"https://food-street.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/food-street/id1032608832", categorie:"Gourmand" },
+  { nom:"Restaurant Story 2", slug:"restaurant-story-2", img:"images/android/restaurant-story-2.jpg", description:"Cuisine et décoration fun.", playstore:"https://play.google.com/store/apps/details?id=com.gameloft.restaurantstory2", apk:"https://restaurant-story-2.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/restaurant-story-2/id885816534", categorie:"Gourmand" },
+  { nom:"Toca Kitchen 2", slug:"toca-kitchen-2", img:"images/android/toca-kitchen-2.jpg", description:"Cuisine créative pour tous.", playstore:"https://play.google.com/store/apps/details?id=com.tocaboca.tocakitchen2", apk:"https://toca-kitchen-2.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/toca-kitchen-2/id596425297", categorie:"Gourmand" },
+  { nom:"My Cafe", slug:"my-cafe", img:"images/android/my-cafe.jpg", description:"Gère ton café et rencontres clients.", playstore:"https://play.google.com/store/apps/details?id=com.tivola.myprom", apk:"https://my-cafe.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/my-cafe/id1038317646", categorie:"Gourmand" },
+  { nom:"Burger Shop 2", slug:"burger-shop-2", img:"images/android/burger-shop-2.jpg", description:"Cuisine rapide et gestion fun.", playstore:"https://play.google.com/store/apps/details?id=com.gameloft.burgershop2", apk:"https://burger-shop-2.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/burger-shop-2/id1153548280", categorie:"Gourmand" },
+  { nom:"Chef Wars", slug:"chef-wars", img:"images/android/chef-wars.jpg", description:"Compète en cuisine contre d'autres chefs.", playstore:"https://play.google.com/store/apps/details?id=com.chefwars.game", apk:"https://chef-wars.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/chef-wars/id1234567890", categorie:"Gourmand" },
+  { nom:"Pizza Maker", slug:"pizza-maker", img:"images/android/pizza-maker.jpg", description:"Prépare des pizzas délicieuses.", playstore:"https://play.google.com/store/apps/details?id=com.pizzamaker.game", apk:"https://pizza-maker.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/pizza-maker/id1098765432", categorie:"Gourmand" },
+  { nom:"Cooking Mama", slug:"cooking-mama", img:"images/android/cooking-mama.jpg", description:"Cuisine interactive et fun.", playstore:"https://play.google.com/store/apps/details?id=com.cookingmama.android", apk:"https://cooking-mama.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/cooking-mama/id1166789102", categorie:"Gourmand" },
+  { nom:"Diner DASH Adventures", slug:"diner-dash-adventures", img:"images/android/diner-dash.jpg", description:"Gère ton restaurant et sers les clients.", playstore:"https://play.google.com/store/apps/details?id=com.gameloft.dinerdash", apk:"https://diner-dash-adventures.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/diner-dash-adventures/id1134567890", categorie:"Gourmand" },
 
-// 🏎️ Course
-{
-  nom: "Hill Climb Racing 2",
-  img: "images/android/hill-climb.jpg",
-  description: "Course amusante et déjantée.",
-  playstore: "https://play.google.com/store/apps/details?id=com.fingersoft.hcr2",
-  apk: "https://hill-climb-racing-2.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/hill-climb-racing-2/id1136922203",
-  categorie: "Course"
-},
-{
-  nom: "Mario Kart Tour",
-  img: "images/android/mario-kart.jpg",
-  description: "Courses colorées avec personnages Nintendo.",
-  playstore: "https://play.google.com/store/apps/details?id=com.nintendo.zaka",
-  apk: "https://mario-kart-tour.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/mario-kart-tour/id1293634699",
-  categorie: "Course"
-},
-{
-  nom: "Beach Buggy Racing 2",
-  img: "images/android/beach-buggy.jpg",
-  description: "Courses fun et véhicules fous.",
-  playstore: "https://play.google.com/store/apps/details?id=com.aurum.beachbunny2",
-  apk: "https://beach-buggy-racing-2.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/beach-buggy-racing-2/id1275897324",
-  categorie: "Course"
-},
-{
-  nom: "Traffic Rider",
-  img: "images/android/traffic-rider.jpg",
-  description: "Conduite immersive à moto.",
-  playstore: "https://play.google.com/store/apps/details?id=com.skgames.trafficrider",
-  apk: "https://traffic-rider.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/traffic-rider/id945436900",
-  categorie: "Course"
-},
-{
-  nom: "F1 Mobile Racing",
-  img: "images/android/f1-mobile.jpg",
-  description: "Courses de F1 réalistes et fun.",
-  playstore: "https://play.google.com/store/apps/details?id=com.codemasters.f1mobile",
-  apk: "https://f1-mobile.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/f1-mobile-racing/id1323923416",
-  categorie: "Course"
-},
-{
-  nom: "MotoGP Racing",
-  img: "images/android/motogp.jpg",
-  description: "Courses motos fun et immersives.",
-  playstore: "https://play.google.com/store/apps/details?id=com.motogpracing",
-  apk: "https://motogp-racing.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/motogp-racing/id1367892345",
-  categorie: "Course"
-},
-{
-  nom: "Drift Max Pro",
-  img: "images/android/drift-max.jpg",
-  description: "Courses de drift fun.",
-  playstore: "https://play.google.com/store/apps/details?id=com.tiramisu.driftsimulator",
-  apk: "https://drift-max-pro.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/drift-max-pro/id1212345678",
-  categorie: "Course"
-},
-{
-  nom: "Real Racing 3",
-  img: "images/android/real-racing-3.jpg",
-  description: "Course réaliste mais fun.",
-  playstore: "https://play.google.com/store/apps/details?id=com.ea.games.r3_row",
-  apk: "https://real-racing-3.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/real-racing-3/id556857816",
-  categorie: "Course"
-},
-{
-  nom: "Rocket League Sideswipe",
-  img: "images/android/rocket-league.jpg",
-  description: "Course et football automobile fun.",
-  playstore: "https://play.google.com/store/apps/details?id=com.rocketleague.sideswipe",
-  apk: "https://rocket-league-sideswipe.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/rocket-league-sideswipe/id1577789343",
-  categorie: "Course"
-},
-{
-  nom: "Asphalt Nitro",
-  img: "images/android/asphalt-nitro.jpg",
-  description: "Courses fun et arcade.",
-  playstore: "https://play.google.com/store/apps/details?id=com.gameloft.android.AsphaltNitro",
-  apk: "https://asphalt-nitro.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/asphalt-nitro/id1088878123",
-  categorie: "Course"
-},
+  // 🌐 MULTIJOUEUR
+  { nom:"Among Us", slug:"among-us", img:"images/android/among-us.jpg", description:"Découvre l'imposteur dans ton équipe.", playstore:"https://play.google.com/store/apps/details?id=com.innersloth.spacemafia", apk:"https://among-us.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/among-us/id1351168404", categorie:"Multijoueur" },
+  { nom:"PUBG Mobile", slug:"pubg-mobile", img:"images/android/pubg-mobile.jpg", description:"Battle royale fun sur mobile.", playstore:"https://play.google.com/store/apps/details?id=com.tencent.ig", apk:"https://pubg-mobile.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/pubg-mobile/id1330123889", categorie:"Multijoueur" },
+  { nom:"Free Fire", slug:"free-fire", img:"images/android/free-fire.jpg", description:"Battle royale rapide et fun.", playstore:"https://play.google.com/store/apps/details?id=com.dts.freefireth", apk:"https://free-fire.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/free-fire/id1300146617", categorie:"Multijoueur" },
+  { nom:"Brawl Stars", slug:"brawl-stars", img:"images/android/brawl-stars.jpg", description:"Combats multijoueur colorés et fun.", playstore:"https://play.google.com/store/apps/details?id=com.supercell.brawlstars", apk:"https://brawl-stars.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/brawl-stars/id1229016807", categorie:"Multijoueur" },
+  { nom:"Mobile Legends", slug:"mobile-legends", img:"images/android/mobile-legends.jpg", description:"MOBA rapide et fun.", playstore:"https://play.google.com/store/apps/details?id=com.mobile.legends", apk:"https://mobile-legends.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/mobile-legends/id1169397887", categorie:"Multijoueur" },
+  { nom:"Fortnite", slug:"fortnite", img:"images/android/fortnite.jpg", description:"Battle royale coloré et fun.", playstore:"https://play.google.com/store/apps/details?id=com.epicgames.fortnite", apk:"https://fortnite.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/fortnite/id1261357853", categorie:"Multijoueur" },
+  { nom:"Roblox", slug:"roblox", img:"images/android/roblox.jpg", description:"Crée et explore des mondes multijoueur.", playstore:"https://play.google.com/store/apps/details?id=com.roblox.client", apk:"https://roblox.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/roblox/id431946152", categorie:"Multijoueur" },
 
-// 🛠 Simulation
-{
-  nom: "The Sims Mobile",
-  img: "images/android/the-sims.jpg",
-  description: "Crée et gère tes Sims.",
-  playstore: "https://play.google.com/store/apps/details?id=com.ea.gp.simsmobile",
-  apk: "https://the-sims-mobile.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/the-sims-mobile/id1160126905",
-  categorie: "Simulation"
-},
-{
-  nom: "SimCity BuildIt",
-  img: "images/android/simcity.jpg",
-  description: "Construis et gère ta ville.",
-  playstore: "https://play.google.com/store/apps/details?id=com.ea.game.simcitymobile",
-  apk: "https://simcity-buildit.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/simcity-buildit/id656308137",
-  categorie: "Simulation"
-},
-{
-  nom: "Farming Simulator 20",
-  img: "images/android/farming-simulator.jpg",
-  description: "Gère ta ferme et cultive tes champs.",
-  playstore: "https://play.google.com/store/apps/details?id=com.focushome.fs20",
-  apk: "https://farming-simulator-20.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/farming-simulator-20/id1466547201",
-  categorie: "Simulation"
-},
-{
-  nom: "Car Simulator 2",
-  img: "images/android/car-simulator-2.jpg",
-  description: "Conduis et explore librement.",
-  playstore: "https://play.google.com/store/apps/details?id=com.ovilex.carsimulator2",
-  apk: "https://car-simulator-2.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/car-simulator-2/id1478654321",
-  categorie: "Simulation"
-},
-{
-  nom: "Bus Simulator: Ultimate",
-  img: "images/android/bus-simulator.jpg",
-  description: "Conduis ton bus dans la ville.",
-  playstore: "https://play.google.com/store/apps/details?id=com.ovilex.bussimulator",
-  apk: "https://bus-simulator-ultimate.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/bus-simulator-ultimate/id1487654321",
-  categorie: "Simulation"
-},
-{
-  nom: "Goat Simulator",
-  img: "images/android/goat-simulator.jpg",
-  description: "Fais le chaos avec une chèvre.",
-  playstore: "https://play.google.com/store/apps/details?id=com.coffeestain.goatsimulator",
-  apk: "https://goat-simulator.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/goat-simulator/id1071966070",
-  categorie: "Simulation"
-},
-{
-  nom: "Pocket City",
-  img: "images/android/pocket-city.jpg",
-  description: "Construis et gère ta ville mobile.",
-  playstore: "https://play.google.com/store/apps/details?id=com.codebrew.pocketcity",
-  apk: "https://pocket-city.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/pocket-city/id1284791494",
-  categorie: "Simulation"
-},
-{
-  nom: "Airport City",
-  img: "images/android/airport-city.jpg",
-  description: "Gère ton aéroport et tes vols.",
-  playstore: "https://play.google.com/store/apps/details?id=com.socialquantum.airportcity",
-  apk: "https://airport-city.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/airport-city/id481030838",
-  categorie: "Simulation"
-},
-{
-  nom: "RollerCoaster Tycoon Touch",
-  img: "images/android/rollercoaster-tycoon.jpg",
-  description: "Construis et gère ton parc d’attractions.",
-  playstore: "https://play.google.com/store/apps/details?id=com.atari.mobile.rct",
-  apk: "https://rollercoaster-tycoon.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/rollercoaster-tycoon-touch/id1204898586",
-  categorie: "Simulation"
-},
-// 🍔 Gourmand
-{
-  nom: "Cooking Fever",
-  img: "images/android/cooking-fever.jpg",
-  description: "Cuisine rapide et fun.",
-  playstore: "https://play.google.com/store/apps/details?id=com.nordcurrent.canteenhd",
-  apk: "https://cooking-fever.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/cooking-fever/id694534039",
-  categorie: "Gourmand"
-},
-{
-  nom: "Food Street",
-  img: "images/android/food-street.jpg",
-  description: "Gère ton restaurant et cuisine.",
-  playstore: "https://play.google.com/store/apps/details?id=com.foodstreet.game",
-  apk: "https://food-street.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/food-street/id1032608832",
-  categorie: "Gourmand"
-},
-{
-  nom: "Restaurant Story 2",
-  img: "images/android/restaurant-story-2.jpg",
-  description: "Cuisine et décoration fun.",
-  playstore: "https://play.google.com/store/apps/details?id=com.gameloft.restaurantstory2",
-  apk: "https://restaurant-story-2.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/restaurant-story-2/id885816534",
-  categorie: "Gourmand"
-},
-{
-  nom: "Toca Kitchen 2",
-  img: "images/android/toca-kitchen-2.jpg",
-  description: "Cuisine créative pour tous.",
-  playstore: "https://play.google.com/store/apps/details?id=com.tocaboca.tocakitchen2",
-  apk: "https://toca-kitchen-2.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/toca-kitchen-2/id596425297",
-  categorie: "Gourmand"
-},
-{
-  nom: "My Cafe",
-  img: "images/android/my-cafe.jpg",
-  description: "Gère ton café et rencontres clients.",
-  playstore: "https://play.google.com/store/apps/details?id=com.tivola.myprom",
-  apk: "https://my-cafe.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/my-cafe/id1038317646",
-  categorie: "Gourmand"
-},
-{
-  nom: "Burger Shop 2",
-  img: "images/android/burger-shop-2.jpg",
-  description: "Cuisine rapide et gestion fun.",
-  playstore: "https://play.google.com/store/apps/details?id=com.gameloft.burgershop2",
-  apk: "https://burger-shop-2.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/burger-shop-2/id1153548280",
-  categorie: "Gourmand"
-},
-{
-  nom: "Chef Wars",
-  img: "images/android/chef-wars.jpg",
-  description: "Compète en cuisine contre d’autres chefs.",
-  playstore: "https://play.google.com/store/apps/details?id=com.chefwars.game",
-  apk: "https://chef-wars.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/chef-wars/id1234567890",
-  categorie: "Gourmand"
-},
-{
-  nom: "Pizza Maker",
-  img: "images/android/pizza-maker.jpg",
-  description: "Prépare des pizzas délicieuses.",
-  playstore: "https://play.google.com/store/apps/details?id=com.pizzamaker.game",
-  apk: "https://pizza-maker.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/pizza-maker/id1098765432",
-  categorie: "Gourmand"
-},
-{
-  nom: "Cooking Mama",
-  img: "images/android/cooking-mama.jpg",
-  description: "Cuisine interactive et fun.",
-  playstore: "https://play.google.com/store/apps/details?id=com.cookingmama.android",
-  apk: "https://cooking-mama.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/cooking-mama/id1166789102",
-  categorie: "Gourmand"
-},
-{
-  nom: "Diner DASH Adventures",
-  img: "images/android/diner-dash.jpg",
-  description: "Gère ton restaurant et sers les clients rapidement.",
-  playstore: "https://play.google.com/store/apps/details?id=com.gameloft.dinerdash",
-  apk: "https://diner-dash-adventures.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/diner-dash-adventures/id1134567890",
-  categorie: "Gourmand"
-},
+  // 👗 MODE
+  { nom:"Covet Fashion", slug:"covet-fashion", img:"images/android/covet-fashion.jpg", description:"Défie ton style et habille tes modèles.", playstore:"https://play.google.com/store/apps/details?id=com.crowdstar.covetfashion", apk:"https://covet-fashion.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/covet-fashion/id637033108", categorie:"Mode" },
+  { nom:"Fashion Empire", slug:"fashion-empire", img:"images/android/fashion-empire.jpg", description:"Gère ton empire de mode.", playstore:"https://play.google.com/store/apps/details?id=com.gameloft.fashionempire", apk:"https://fashion-empire.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/fashion-empire/id1098765433", categorie:"Mode" },
+  { nom:"Love Nikki", slug:"love-nikki", img:"images/android/love-nikki.jpg", description:"Dress-up et aventures mode.", playstore:"https://play.google.com/store/apps/details?id=com.efun.lovenikki", apk:"https://love-nikki.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/love-nikki/id1091249936", categorie:"Mode" },
+  { nom:"Stardoll", slug:"stardoll", img:"images/android/stardoll.jpg", description:"Jeu de mode et créativité.", playstore:"https://play.google.com/store/apps/details?id=com.stardoll.stardollmobile", apk:"https://stardoll.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/stardoll/id1234567891", categorie:"Mode" },
+  { nom:"Kim Kardashian: Hollywood", slug:"kim-kardashian-hollywood", img:"images/android/kim-k.jpg", description:"Crée ton personnage et vis la vie de star.", playstore:"https://play.google.com/store/apps/details?id=com.glu.kimkardashian", apk:"https://kim-k-hollywood.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/kim-kardashian-hollywood/id438977825", categorie:"Mode" },
+  { nom:"Dress Up Diary", slug:"dress-up-diary", img:"images/android/dress-up-diary.jpg", description:"Habille tes personnages et décore.", playstore:"https://play.google.com/store/apps/details?id=com.guagua.dressupdiary", apk:"https://dress-up-diary.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/dress-up-diary/id1223456789", categorie:"Mode" },
+  { nom:"Style Me Girl", slug:"style-me-girl", img:"images/android/style-me-girl.jpg", description:"Mode et dress-up fun.", playstore:"https://play.google.com/store/apps/details?id=com.glamstudios.stylemegirl", apk:"https://style-me-girl.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/style-me-girl/id1234567892", categorie:"Mode" },
+  { nom:"Fashion Fantasy", slug:"fashion-fantasy", img:"images/android/fashion-fantasy.jpg", description:"Jeu de mode créatif.", playstore:"https://play.google.com/store/apps/details?id=com.fashion.fantasy", apk:"https://fashion-fantasy.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/fashion-fantasy/id1234567893", categorie:"Mode" },
+  { nom:"Fashion Diva", slug:"fashion-diva", img:"images/android/fashion-diva.jpg", description:"Crée ton style unique.", playstore:"https://play.google.com/store/apps/details?id=com.fashion.diva", apk:"https://fashion-diva.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/fashion-diva/id1234567894", categorie:"Mode" },
+  { nom:"Super Stylist", slug:"super-stylist", img:"images/android/super-stylist.jpg", description:"Habille et coiffe tes modèles.", playstore:"https://play.google.com/store/apps/details?id=com.super.stylist", apk:"https://super-stylist.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/super-stylist/id1234567895", categorie:"Mode" },
 
-// 🌐 Multijoueur (Call of Duty remplacé par Brawl Stars)
-{
-  nom: "Among Us",
-  img: "images/android/among-us.jpg",
-  description: "Découvre l’imposteur dans ton équipe.",
-  playstore: "https://play.google.com/store/apps/details?id=com.innersloth.spacemafia",
-  apk: "https://among-us.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/among-us/id1351168404",
-  categorie: "Multijoueur"
-},
-{
-  nom: "PUBG Mobile",
-  img: "images/android/pubg-mobile.jpg",
-  description: "Battle royale fun sur mobile.",
-  playstore: "https://play.google.com/store/apps/details?id=com.tencent.ig",
-  apk: "https://pubg-mobile.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/pubg-mobile/id1330123889",
-  categorie: "Multijoueur"
-},
-{
-  nom: "Free Fire",
-  img: "images/android/free-fire.jpg",
-  description: "Battle royale rapide et fun.",
-  playstore: "https://play.google.com/store/apps/details?id=com.dts.freefireth",
-  apk: "https://free-fire.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/free-fire/id1300146617",
-  categorie: "Multijoueur"
-},
-{
-  nom: "Brawl Stars",
-  img: "images/android/brawl-stars.jpg",
-  description: "Combats multijoueur colorés et fun.",
-  playstore: "https://play.google.com/store/apps/details?id=com.supercell.brawlstars",
-  apk: "https://brawl-stars.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/brawl-stars/id1229016807",
-  categorie: "Multijoueur"
-},
-{
-  nom: "Mobile Legends",
-  img: "images/android/mobile-legends.jpg",
-  description: "MOBA rapide et fun.",
-  playstore: "https://play.google.com/store/apps/details?id=com.mobile.legends",
-  apk: "https://mobile-legends.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/mobile-legends/id1169397887",
-  categorie: "Multijoueur"
-},
-{
-  nom: "Fortnite",
-  img: "images/android/fortnite.jpg",
-  description: "Battle royale coloré et fun.",
-  playstore: "https://play.google.com/store/apps/details?id=com.epicgames.fortnite",
-  apk: "https://fortnite.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/fortnite/id1261357853",
-  categorie: "Multijoueur"
-},
-{
-  nom: "Minecraft Multiplayer",
-  img: "images/android/minecraft-mp.jpg",
-  description: "Joue en multijoueur sur Minecraft.",
-  playstore: "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe",
-  apk: "https://minecraft-mp.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/minecraft/id479516143",
-  categorie: "Multijoueur"
-},
-{
-  nom: "Roblox",
-  img: "images/android/roblox.jpg",
-  description: "Crée et explore des mondes multijoueur.",
-  playstore: "https://play.google.com/store/apps/details?id=com.roblox.client",
-  apk: "https://roblox.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/roblox/id431946152",
-  categorie: "Multijoueur"
-},
-{
-  nom: "Clash Royale",
-  img: "images/android/clash-royale.jpg",
-  description: "Stratégie multijoueur rapide.",
-  playstore: "https://play.google.com/store/apps/details?id=com.supercell.clashroyale",
-  apk: "https://clash-royale.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/clash-royale/id1053012308",
-  categorie: "Multijoueur"
-},
-
-// 👗 Mode
-{
-  nom: "Covet Fashion",
-  img: "images/android/covet-fashion.jpg",
-  description: "Défie ton style et habille tes modèles.",
-  playstore: "https://play.google.com/store/apps/details?id=com.crowdstar.covetfashion",
-  apk: "https://covet-fashion.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/covet-fashion/id637033108",
-  categorie: "Mode"
-},
-{
-  nom: "Fashion Empire",
-  img: "images/android/fashion-empire.jpg",
-  description: "Gère ton empire de mode.",
-  playstore: "https://play.google.com/store/apps/details?id=com.gameloft.fashionempire",
-  apk: "https://fashion-empire.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/fashion-empire/id1098765433",
-  categorie: "Mode"
-},
-{
-  nom: "Love Nikki",
-  img: "images/android/love-nikki.jpg",
-  description: "Dress-up et aventures mode.",
-  playstore: "https://play.google.com/store/apps/details?id=com.efun.lovenikki",
-  apk: "https://love-nikki.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/love-nikki/id1091249936",
-  categorie: "Mode"
-},
-{
-  nom: "Stardoll",
-  img: "images/android/stardoll.jpg",
-  description: "Jeu de mode et créativité.",
-  playstore: "https://play.google.com/store/apps/details?id=com.stardoll.stardollmobile",
-  apk: "https://stardoll.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/stardoll/id1234567891",
-  categorie: "Mode"
-},
-{
-  nom: "Kim Kardashian: Hollywood",
-  img: "images/android/kim-k.jpg",
-  description: "Crée ton personnage et vis la vie de star.",
-  playstore: "https://play.google.com/store/apps/details?id=com.glu.kimkardashian",
-  apk: "https://kim-k-hollywood.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/kim-kardashian-hollywood/id438977825",
-  categorie: "Mode"
-},
-{
-  nom: "Dress Up Diary",
-  img: "images/android/dress-up-diary.jpg",
-  description: "Habille tes personnages et décore.",
-  playstore: "https://play.google.com/store/apps/details?id=com.guagua.dressupdiary",
-  apk: "https://dress-up-diary.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/dress-up-diary/id1223456789",
-  categorie: "Mode"
-},
-{
-  nom: "Style Me Girl",
-  img: "images/android/style-me-girl.jpg",
-  description: "Mode et dress-up fun.",
-  playstore: "https://play.google.com/store/apps/details?id=com.glamstudios.stylemegirl",
-  apk: "https://style-me-girl.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/style-me-girl/id1234567892",
-  categorie: "Mode"
-},
-{
-  nom: "Fashion Fantasy",
-  img: "images/android/fashion-fantasy.jpg",
-  description: "Jeu de mode créatif.",
-  playstore: "https://play.google.com/store/apps/details?id=com.fashion.fantasy",
-  apk: "https://fashion-fantasy.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/fashion-fantasy/id1234567893",
-  categorie: "Mode"
-},
-{
-  nom: "Fashion Diva",
-  img: "images/android/fashion-diva.jpg",
-  description: "Crée ton style unique.",
-  playstore: "https://play.google.com/store/apps/details?id=com.fashion.diva",
-  apk: "https://fashion-diva.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/fashion-diva/id1234567894",
-  categorie: "Mode"
-},
-{
-  nom: "Super Stylist",
-  img: "images/android/super-stylist.jpg",
-  description: "Habille et coiffe tes modèles.",
-  playstore: "https://play.google.com/store/apps/details?id=com.super.stylist",
-  apk: "https://super-stylist.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/super-stylist/id1234567895",
-  categorie: "Mode"
-},
-
-// Casual
-{
-  nom: "Candy Crush Saga",
-  img: "images/android/candy-crush.jpg",
-  description: "Match 3 coloré et addictif.",
-  playstore: "https://play.google.com/store/apps/details?id=com.king.candycrushsaga",
-  apk: "https://candy-crush-saga.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/candy-crush-saga/id553834731",
-  categorie: "Casual"
-},
-{
-  nom: "Subway Surfers",
-  img: "images/android/subway-surfers.jpg",
-  description: "Course infinie fun et rapide.",
-  playstore: "https://play.google.com/store/apps/details?id=com.kiloo.subwaysurf",
-  apk: "https://subway-surfers.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/subway-surfers/id512939461",
-  categorie: "Casual"
-},
-{
-  nom: "Temple Run 2",
-  img: "images/android/temple-run-2.jpg",
-  description: "Course infinie dans des temples anciens.",
-  playstore: "https://play.google.com/store/apps/details?id=com.imangi.templerun2",
-  apk: "https://temple-run-2.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/temple-run-2/id572395608",
-  categorie: "Casual"
-},
-{
-  nom: "Angry Birds 2",
-  img: "images/android/angry-birds-2.jpg",
-  description: "Catapulte les oiseaux pour gagner.",
-  playstore: "https://play.google.com/store/apps/details?id=com.rovio.baba",
-  apk: "https://angry-birds-2.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/angry-birds-2/id880047117",
-  categorie: "Casual"
-},
-{
-  nom: "Crossy Road",
-  img: "images/android/crossy-road.jpg",
-  description: "Traverse la route sans te faire écraser.",
-  playstore: "https://play.google.com/store/apps/details?id=com.yodo1.crossy",
-  apk: "https://crossy-road.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/crossy-road/id924373886",
-  categorie: "Casual"
-},
-{
-  nom: "Pou",
-  img: "images/android/pou.jpg",
-  description: "Prends soin de ton petit alien.",
-  playstore: "https://play.google.com/store/apps/details?id=me.pou.app",
-  apk: "https://pou.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/pou/id575154551",
-  categorie: "Casual"
-},
-{
-  nom: "My Talking Tom",
-  img: "images/android/my-talking-tom.jpg",
-  description: "Parle et joue avec Tom.",
-  playstore: "https://play.google.com/store/apps/details?id=com.outfit7.mytalkingtom2",
-  apk: "https://my-talking-tom.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/my-talking-tom/id656509200",
-  categorie: "Casual"
-},
-{
-  nom: "Hill Climb Racing",
-  img: "images/android/hill-climb.jpg",
-  description: "Course amusante et déjantée.",
-  playstore: "https://play.google.com/store/apps/details?id=com.fingersoft.hillclimb",
-  apk: "https://hill-climb-racing.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/hill-climb-racing/id550680616",
-  categorie: "Casual"
-},
-{
-  nom: "Fruit Ninja",
-  img: "images/android/fruit-ninja.jpg",
-  description: "Tranche des fruits rapidement.",
-  playstore: "https://play.google.com/store/apps/details?id=com.halfbrick.fruitninja",
-  apk: "https://fruit-ninja.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/fruit-ninja/id362949845",
-  categorie: "Casual"
-},
-{
-  nom: "Jetpack Joyride",
-  img: "images/android/jetpack-joyride.jpg",
-  description: "Cours et évite les obstacles avec ton jetpack.",
-  playstore: "https://play.google.com/store/apps/details?id=com.halfbrick.jetpackjoyride",
-  apk: "https://jetpack-joyride.fr.malavida.com/android/download#goog_rewarded",
-  appstore: "https://apps.apple.com/fr/app/jetpack-joyride/id457446957",
-  categorie: "Casual"
-},
-
+  // 🎲 CASUAL
+  { nom:"Subway Surfers", slug:"subway-surfers", img:"images/android/subway-surfers.jpg", description:"Course infinie fun et rapide.", playstore:"https://play.google.com/store/apps/details?id=com.kiloo.subwaysurf", apk:"https://subway-surfers.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/subway-surfers/id512939461", categorie:"Casual" },
+  { nom:"Temple Run 2", slug:"temple-run-2", img:"images/android/temple-run-2.jpg", description:"Course infinie dans des temples anciens.", playstore:"https://play.google.com/store/apps/details?id=com.imangi.templerun2", apk:"https://temple-run-2.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/temple-run-2/id572395608", categorie:"Casual" },
+  { nom:"Angry Birds 2", slug:"angry-birds-2", img:"images/android/angry-birds-2.jpg", description:"Catapulte les oiseaux pour gagner.", playstore:"https://play.google.com/store/apps/details?id=com.rovio.baba", apk:"https://angry-birds-2.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/angry-birds-2/id880047117", categorie:"Casual" },
+  { nom:"Crossy Road", slug:"crossy-road", img:"images/android/crossy-road.jpg", description:"Traverse la route sans te faire écraser.", playstore:"https://play.google.com/store/apps/details?id=com.yodo1.crossy", apk:"https://crossy-road.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/crossy-road/id924373886", categorie:"Casual" },
+  { nom:"Pou", slug:"pou", img:"images/android/pou.jpg", description:"Prends soin de ton petit alien.", playstore:"https://play.google.com/store/apps/details?id=me.pou.app", apk:"https://pou.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/pou/id575154551", categorie:"Casual" },
+  { nom:"My Talking Tom", slug:"my-talking-tom", img:"images/android/my-talking-tom.jpg", description:"Parle et joue avec Tom.", playstore:"https://play.google.com/store/apps/details?id=com.outfit7.mytalkingtom2", apk:"https://my-talking-tom.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/my-talking-tom/id656509200", categorie:"Casual" },
+  { nom:"Hill Climb Racing", slug:"hill-climb-racing", img:"images/android/hill-climb.jpg", description:"Course amusante et déjantée.", playstore:"https://play.google.com/store/apps/details?id=com.fingersoft.hillclimb", apk:"https://hill-climb-racing.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/hill-climb-racing/id550680616", categorie:"Casual" },
+  { nom:"Fruit Ninja", slug:"fruit-ninja", img:"images/android/fruit-ninja.jpg", description:"Tranche des fruits rapidement.", playstore:"https://play.google.com/store/apps/details?id=com.halfbrick.fruitninja", apk:"https://fruit-ninja.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/fruit-ninja/id362949845", categorie:"Casual" },
+  { nom:"Jetpack Joyride", slug:"jetpack-joyride", img:"images/android/jetpack-joyride.jpg", description:"Cours et évite les obstacles avec ton jetpack.", playstore:"https://play.google.com/store/apps/details?id=com.halfbrick.jetpackjoyride", apk:"https://jetpack-joyride.fr.malavida.com/android/download#goog_rewarded", appstore:"https://apps.apple.com/fr/app/jetpack-joyride/id457446957", categorie:"Casual" },
 ];
-// ====== Tableau de tous les jeux Android ======
 
+/* ═══════════════════════════════════════
+   RENDER — chaque carte clique → jeux/slug.html
+═══════════════════════════════════════ */
+function render(list) {
+  const container = document.getElementById("games");
+  container.innerHTML = "";
 
-// ====== Fonction pour récupérer le paramètre 'jeu' de l'URL ======
-function getParam(name){
-  const url = new URL(window.location.href);
-  return url.searchParams.get(name);
-}
-
-// ====== Fonction d'affichage dynamique ======
-function afficherJeu(){
-  const gameNameParam = getParam('jeu'); // ex: pes-2023
-  const titleEl = document.getElementById('game-name');
-  const imgEl = document.getElementById('game-img');
-  const descEl = document.getElementById('game-desc');
-  const playstoreEl = document.getElementById('playstore');
-  const appstoreEl = document.getElementById('appstore');
-  const apkEl = document.getElementById('apk');
-
-  if(!gameNameParam){
-    titleEl.textContent = "Aucun jeu sélectionné";
-    descEl.textContent = "";
+  if (list.length === 0) {
+    container.innerHTML = '<div class="empty">Aucun jeu trouvé 😕</div>';
     return;
   }
 
-  const game = androidGames.find(g => g.nom.toLowerCase().replace(/\s+/g,'-') === gameNameParam.toLowerCase());
-  if(game){
-    titleEl.textContent = game.nom;
-    imgEl.src = game.img;
-    imgEl.alt = game.nom;
-    descEl.textContent = game.description;
-    playstoreEl.href = game.playstore;
-    appstoreEl.href = game.appstore;
-    apkEl.href = game.apk;
-  } else {
-    titleEl.textContent = "Jeu introuvable";
-    descEl.textContent = "";
-    playstoreEl.href = "#";
-    appstoreEl.href = "#";
-    apkEl.href = "#";
-  }
-}
-
-// ====== Lancer l'affichage au chargement ======
-window.addEventListener('DOMContentLoaded', afficherJeu);
-/* ========= RENDER ========= */
-
-function render(list){
-const container=document.getElementById("games");
-container.innerHTML="";
-
-list.forEach((game,index)=>{
-container.innerHTML+=`
-<div class="card">
-<img src="${game.img}">
-<div class="card-content">
-
-<h3>${game.nom}</h3>
-<p>${game.description}</p>
-
-<button class="download-btn" onclick="toggleMenu(event,'menu${index}')">
-Download
-</button>
-
-<div class="download-menu" id="menu${index}">
-<a href="${game.playstore}" target="_blank">Play Store</a>
-<a href="${game.appstore}" target="_blank">App Store</a>
-<a href="${game.apk}" target="_blank">APK</a>
-</div>
-
-</div>
-</div>
-`;
-});
+  list.forEach((game, index) => {
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = `
+      <a class="card-link" href="jeux/${game.slug}.html" aria-label="Voir ${game.nom}"></a>
+      <img src="${game.img}" alt="${game.nom}" loading="lazy" onerror="this.style.background='#1a0a2e';this.src=''">
+      <div class="card-content">
+        <span class="badge-cat">${game.categorie}</span>
+        <h3>${game.nom}</h3>
+        <p>${game.description}</p>
+        <button class="download-btn" onclick="toggleMenu(event,'menu${index}')">📥 Télécharger</button>
+        <div class="download-menu" id="menu${index}">
+          <a href="${game.playstore}" target="_blank" rel="noopener">▶ Play Store</a>
+          <a href="${game.appstore}" target="_blank" rel="noopener"> App Store</a>
+          <a href="${game.apk}" target="_blank" rel="noopener">⬇ APK Direct</a>
+        </div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
 }
 
 render(androidGames);
 
-/* ========= FILTER ========= */
-
-function filter(cat){
-if(cat==="all") return render(androidGames);
-
-const filtered=androidGames.filter(g=>g.categorie===cat);
-render(filtered);
+/* FILTER */
+function filter(cat, btn) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  const title = document.getElementById('section-title');
+  if (cat === 'all') {
+    title.textContent = 'Tous les jeux';
+    render(androidGames);
+  } else {
+    title.textContent = cat;
+    render(androidGames.filter(g => g.categorie === cat));
+  }
 }
 
-/* ========= SEARCH ========= */
-
-function searchGame(){
-let text=document.getElementById("search").value.toLowerCase();
-
-const filtered=androidGames.filter(g=>
-g.nom.toLowerCase().includes(text)
-);
-
-render(filtered);
+/* SEARCH */
+function searchGame() {
+  const text = document.getElementById("search").value.toLowerCase().trim();
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.cat-btn').classList.add('active');
+  if (!text) { render(androidGames); return; }
+  render(androidGames.filter(g =>
+    g.nom.toLowerCase().includes(text) ||
+    g.categorie.toLowerCase().includes(text)
+  ));
 }
 
-function toggleMenu(event,id){
-
-event.stopPropagation();
-
-// ferme tous les menus
-document.querySelectorAll(".download-menu")
-.forEach(menu=>menu.style.display="none");
-
-const menu=document.getElementById(id);
-
-menu.style.display=
-menu.style.display==="flex" ? "none" : "flex";
+/* DOWNLOAD MENU TOGGLE */
+function toggleMenu(event, id) {
+  event.stopPropagation();
+  event.preventDefault();
+  document.querySelectorAll(".download-menu").forEach(m => {
+    if (m.id !== id) m.style.display = "none";
+  });
+  const menu = document.getElementById(id);
+  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
 }
 
-// ferme si clic ailleurs
-document.addEventListener("click",()=>{
-document.querySelectorAll(".download-menu")
-.forEach(menu=>menu.style.display="none");
+document.addEventListener("click", () => {
+  document.querySelectorAll(".download-menu").forEach(m => m.style.display = "none");
 });
 
+/* COMMENTS */
+function addComment() {
+  const input = document.getElementById("comment-input");
+  const text = input.value.trim();
+  if (!text) return;
+  const div = document.createElement("div");
+  div.className = "comment";
+  div.textContent = text;
+  document.getElementById("comments-list").prepend(div);
+  input.value = "";
+}
 </script>
-  
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7572845165323582"
-     crossorigin="anonymous"></script>
-  
-  <footer>
-  <p>&copy; 2026 MLG XGame. Tous droits réservés.</p>
-  <p>
-    <a href="apropos.html">À propos</a> |
-    <a href="politique.html">Politique de confidentialité</a> |
-    <a href="conditions.html">Conditions d'utilisation</a> |
-    <a href="contact.html">Contact</a>
-  </p>
-</footer>
-  
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
