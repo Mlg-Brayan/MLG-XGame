@@ -346,7 +346,7 @@ header {
   box-shadow: var(--glow-p);
   transform: translateY(-3px);
 }
-.nav-card .icon { font-size: 24px; }
+.nav-card .icon { font-size: 16px; }
 .nav-card span {
   font-family: 'Orbitron', sans-serif;
   font-size: 10px;
@@ -663,39 +663,6 @@ footer .credit { color: var(--purple); font-weight: 600; }
     <a href="application.html" class="nav-btn purple">📦 Apps</a>
   </nav>
 </header>
-<!-- MESSAGE D'ACCUEIL -->
-<div id="welcome-msg" style="
-position:fixed;
-top:0;
-left:50%;
-transform:translateX(-50%);
-background:#a855f7;
-color:black;
-padding:10px 20px;
-border-radius:0 0 10px 10px;
-font-weight:bold;
-box-shadow:0 0 10px #000;
-z-index:1000;
-opacity:0;
-transition:opacity 0.5s;
-">
-Bienvenue sur MLG XGame ! 🎮 Télécharge, joue et découvre de nouveaux jeux !
-</div>
-
-<script>
-// Faire apparaître le message
-window.addEventListener("load", () => {
-  const msg = document.getElementById("welcome-msg");
-  msg.style.opacity = "1";
-
-  // Disparaît après 5 secondes
-  setTimeout(() => {
-    msg.style.opacity = "0";
-  }, 5000);
-});
-</script>
-
- 
 <!-- TOP DES JEUX (scroll horizontal) -->
 <div class="section-header">
   <h2>🎮 Top des jeux</h2>
@@ -1189,3 +1156,4 @@ function fitCanvas(canvas,w,h){canvas.width=window.innerWidth*w;canvas.height=wi
 
 </body>
 </html>
+
