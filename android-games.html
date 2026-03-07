@@ -603,36 +603,27 @@ const androidGames = [
 function render(list) {
   const container = document.getElementById("games");
   container.innerHTML = "";
-
   if (list.length === 0) {
     container.innerHTML = '<div class="empty">Aucun jeu trouvé 😕</div>';
     return;
   }
-
-  list.forEach((game, index) => {
+  list.forEach((game) => {
     const div = document.createElement('div');
     div.className = 'card';
     div.innerHTML = `
-      <a class="card-link" href="jeux/${game.slug}.html" aria-label="Voir ${game.nom}"></a>
+      <a class="card-link" href="${game.lien}" aria-label="Voir ${game.nom}"></a>
       <img src="${game.img}" alt="${game.nom}" loading="lazy" onerror="this.style.background='#1a0a2e';this.src=''">
       <div class="card-content">
         <span class="badge-cat">${game.categorie}</span>
         <h3>${game.nom}</h3>
         <p>${game.description}</p>
-        <button class="download-btn" onclick="toggleMenu(event,'menu${index}')">📥 Télécharger</button>
-        <div class="download-menu" id="menu${index}">
-          <a href="${game.playstore}" target="_blank" rel="noopener">▶ Play Store</a>
-          <a href="${game.appstore}" target="_blank" rel="noopener"> App Store</a>
-          <a href="${game.apk}" target="_blank" rel="noopener">⬇ APK Direct</a>
-        </div>
+        <button class="download-btn" onclick="window.location.href='${game.lien}'">👁️ Voir le jeu</button>
       </div>
     `;
     container.appendChild(div);
   });
 }
-
 render(androidGames);
-
 /* FILTER */
 function filter(cat, btn) {
   document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -646,7 +637,6 @@ function filter(cat, btn) {
     render(androidGames.filter(g => g.categorie === cat));
   }
 }
-
 /* SEARCH */
 function searchGame() {
   const text = document.getElementById("search").value.toLowerCase().trim();
@@ -658,22 +648,6 @@ function searchGame() {
     g.categorie.toLowerCase().includes(text)
   ));
 }
-
-/* DOWNLOAD MENU TOGGLE */
-function toggleMenu(event, id) {
-  event.stopPropagation();
-  event.preventDefault();
-  document.querySelectorAll(".download-menu").forEach(m => {
-    if (m.id !== id) m.style.display = "none";
-  });
-  const menu = document.getElementById(id);
-  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
-}
-
-document.addEventListener("click", () => {
-  document.querySelectorAll(".download-menu").forEach(m => m.style.display = "none");
-});
-
 /* COMMENTS */
 function addComment() {
   const input = document.getElementById("comment-input");
@@ -689,4 +663,5 @@ function addComment() {
 
 </body>
 </html>
+
 
