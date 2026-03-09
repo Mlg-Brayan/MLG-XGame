@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JM697RQXKF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JM697RQXKF');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="Les meilleurs PC gaming et consoles au meilleur prix — Comparatif et recommandations MLG XGame.">
+<meta name="google-adsense-account" content="ca-pub-7572845165323582">
+<link rel="icon" type="image/png" href="/favicon.png">
+<title>MLG XGame — PC Gaming & Consoles</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --purple:#9900ff;
+  --cyan:#00f0ff;
+  --green:#00ff88;
+  --bg:#000;
+  --bg2:#0a0a1a;
+  --bg3:#1a0a2e;
+  --text:#ccc;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Rajdhani',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-tap-highlight-color:transparent;}
+
+/* ── SCANLINE BG ── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,240,255,0.015) 2px,rgba(0,240,255,0.015) 4px);
+  pointer-events:none;z-index:0;
+}
+
+/* ── HEADER ── */
+header{background:#000;box-shadow:0 0 30px #9900ff44;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:1px solid #9900ff33;}
+.logo{font-family:'Orbitron',sans-serif;font-size:20px;font-weight:900;background:linear-gradient(90deg,var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px;text-decoration:none;}
+.back-btn{font-family:'Orbitron',sans-serif;font-size:10px;color:var(--cyan);text-decoration:none;border:1px solid var(--cyan);padding:8px 14px;border-radius:6px;letter-spacing:1px;transition:0.25s;min-height:36px;display:flex;align-items:center;}
+.back-btn:hover,.back-btn:active{background:var(--cyan);color:#000;}
+
+/* ── HERO ── */
+.hero{
+  position:relative;
+  padding:40px 20px 30px;
+  text-align:center;
+  overflow:hidden;
+  background:radial-gradient(ellipse at 50% 0%,#2a006688 0%,transparent 70%);
+}
+.hero-label{font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:4px;color:var(--cyan);margin-bottom:12px;opacity:0.8;}
+.hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(22px,5vw,38px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:12px;}
+.hero h1 span{background:linear-gradient(90deg,var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{font-size:15px;color:#999;max-width:500px;margin:0 auto 20px;line-height:1.5;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:#9900ff22;border:1px solid #9900ff55;border-radius:20px;padding:8px 16px;font-family:'Orbitron',sans-serif;font-size:10px;color:#cc55ff;letter-spacing:1px;}
+
+/* ── DISCLAIMER ── */
+.disclaimer{
+  background:#0a0a1a;
+  border:1px solid #9900ff22;
+  border-radius:10px;
+  padding:12px 16px;
+  margin:16px 12px;
+  font-size:12px;
+  color:#666;
+  text-align:center;
+  line-height:1.5;
+}
+.disclaimer strong{color:#9900ff88;}
+
+/* ── FILTER TABS ── */
+.filter-wrap{display:flex;overflow-x:auto;gap:8px;padding:12px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.filter-wrap::-webkit-scrollbar{display:none;}
+.ftab{font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:1px;padding:9px 18px;border-radius:20px;border:1px solid var(--purple);color:#cc55ff;background:#9900ff15;white-space:nowrap;cursor:pointer;transition:0.2s;min-height:36px;display:flex;align-items:center;user-select:none;}
+.ftab.active,.ftab:active{background:var(--purple);color:#fff;box-shadow:0 0 14px #9900ff55;}
+
+/* ── SECTION HEADER ── */
+.sec-head{display:flex;align-items:center;gap:10px;padding:16px 16px 12px;}
+.sec-head h2{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;color:#fff;letter-spacing:2px;white-space:nowrap;}
+.sec-head::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--purple),transparent);}
+
+/* ── GRID ── */
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:14px;padding:0 12px 24px;position:relative;z-index:1;}
+
+/* ── PRODUCT CARD ── */
+.pcard{
+  background:linear-gradient(145deg,#0f0820,#0a0a1a);
+  border:1px solid #9900ff33;
+  border-radius:16px;
+  overflow:hidden;
+  transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;
+  position:relative;
+}
+.pcard:active{transform:scale(0.97);}
+@media(hover:hover){
+  .pcard:hover{transform:translateY(-4px);box-shadow:0 8px 30px #9900ff44;border-color:var(--purple);}
+}
+
+/* badge best seller */
+.badge-hot{position:absolute;top:10px;right:10px;background:linear-gradient(135deg,#ff6600,#ff0066);color:#fff;font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:1px;padding:3px 8px;border-radius:10px;z-index:5;font-weight:700;}
+.badge-new{position:absolute;top:10px;right:10px;background:linear-gradient(135deg,var(--purple),var(--cyan));color:#fff;font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:1px;padding:3px 8px;border-radius:10px;z-index:5;font-weight:700;}
+
+.pcard-img{
+  width:100%;height:160px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#1a0a2e,#0a0a1a);
+  padding:16px;overflow:hidden;
+}
+.pcard-img img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 4px 12px #9900ff44);transition:transform 0.3s;}
+.pcard:hover .pcard-img img{transform:scale(1.05);}
+
+.pcard-body{padding:12px;}
+.pcard-cat{font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:1px;color:var(--cyan);margin-bottom:5px;opacity:0.8;}
+.pcard-name{font-family:'Orbitron',sans-serif;font-size:11px;color:#fff;margin-bottom:4px;line-height:1.3;}
+.pcard-desc{font-size:11px;color:#999;line-height:1.4;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* stars */
+.stars{color:#ffcc00;font-size:11px;margin-bottom:8px;letter-spacing:1px;}
+.stars span{color:#666;font-size:10px;margin-left:3px;}
+
+/* price */
+.price-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.price{font-family:'Orbitron',sans-serif;font-size:15px;font-weight:900;color:var(--green);}
+.price-old{font-size:11px;color:#555;text-decoration:line-through;}
+
+/* buy button */
+.buy-btn{
+  display:block;width:100%;padding:10px;
+  border:none;border-radius:10px;
+  background:linear-gradient(90deg,var(--purple),#6600cc);
+  color:#fff;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;
+  cursor:pointer;letter-spacing:0.5px;text-align:center;text-decoration:none;
+  transition:0.2s;min-height:38px;
+}
+.buy-btn:active,.buy-btn:hover{filter:brightness(1.2);box-shadow:0 0 15px #9900ff55;}
+.buy-btn.disabled{background:#333;color:#666;cursor:not-allowed;pointer-events:none;}
+
+/* affiliate note on button */
+.affiliate-tag{font-size:8px;opacity:0.6;display:block;margin-top:2px;font-family:'Rajdhani',sans-serif;letter-spacing:0;}
+
+/* ── EMPTY ── */
+.empty{grid-column:1/-1;text-align:center;padding:40px 20px;font-family:'Orbitron',sans-serif;font-size:13px;color:#555;letter-spacing:2px;}
+
+/* ── COMPARE SECTION ── */
+.compare-section{margin:0 12px 24px;padding:20px;background:linear-gradient(135deg,#0f0820,#0a0a1a);border:1px solid #9900ff33;border-radius:16px;position:relative;z-index:1;}
+.compare-section h3{font-family:'Orbitron',sans-serif;font-size:13px;color:var(--cyan);letter-spacing:2px;margin-bottom:16px;}
+.compare-table{width:100%;border-collapse:collapse;font-size:12px;}
+.compare-table th{font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:1px;color:#9900ff88;padding:8px 6px;border-bottom:1px solid #9900ff33;text-align:left;}
+.compare-table td{padding:8px 6px;border-bottom:1px solid #ffffff08;color:#ccc;vertical-align:top;}
+.compare-table tr:last-child td{border-bottom:none;}
+.compare-table .check{color:var(--green);}
+.compare-table .cross{color:#ff4444;}
+.compare-table .name-col{font-family:'Orbitron',sans-serif;font-size:10px;color:#fff;}
+
+/* ── COMMENTS ── */
+.comments-section{background:var(--bg3);padding:16px;border-radius:12px;margin:0 12px 24px;border:1px solid #9900ff22;position:relative;z-index:1;}
+.comments-section h2{font-family:'Orbitron',sans-serif;font-size:13px;color:#fff;letter-spacing:2px;margin-bottom:14px;}
+.comment-form{display:flex;gap:8px;margin-bottom:14px;}
+.comment-form input{flex:1;padding:10px 12px;border-radius:8px;border:1px solid #9900ff44;background:#000;color:#fff;font-family:'Rajdhani',sans-serif;font-size:14px;outline:none;min-height:42px;}
+.comment-form input:focus{border-color:var(--purple);}
+.comment-form button{padding:10px 16px;border:none;border-radius:8px;background:var(--purple);color:#fff;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;cursor:pointer;min-height:42px;white-space:nowrap;}
+#comments-list .comment{background:#000;padding:10px 12px;border-radius:8px;margin-bottom:8px;font-size:13px;border-left:3px solid var(--purple);}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:16px;background:var(--bg2);font-size:12px;color:#555;border-top:1px solid #9900ff22;position:relative;z-index:1;}
+footer a{color:#9900ff88;text-decoration:none;margin:0 6px;}
+footer a:hover{color:var(--purple);}
+
+/* RESPONSIVE */
+@media(max-width:360px){.products{grid-template-columns:repeat(2,1fr);gap:10px;padding:0 10px 20px;}.pcard-img{height:130px;}}
+@media(min-width:600px){.products{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));}}
+@media(min-width:900px){.products{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));}}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">MLG XGame</a>
+  <a class="back-btn" href="index.html">← Accueil</a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">⚡ SÉLECTION GAMING</div>
+  <h1>PC Gaming<br><span>&amp; Consoles</span></h1>
+  <p>Les meilleures machines pour jouer — comparatif honnête et liens directs vers les meilleurs prix.</p>
+  <div class="hero-badge">🔗 Liens affiliés — on gagne une commission sans frais pour toi</div>
+</div>
+
+<div class="disclaimer">
+  <strong>⚠️ Note :</strong> Les prix affichés sont indicatifs et peuvent varier. Les boutons d'achat seront actifs dès qu'on rejoindra un programme d'affiliation.
+</div>
+
+<!-- FILTER -->
+<div class="filter-wrap">
+  <div class="ftab active" onclick="filter('all',this)">Tout voir</div>
+  <div class="ftab" onclick="filter('PC Gaming',this)">🖥️ PC Gaming</div>
+  <div class="ftab" onclick="filter('Console',this)">🎮 Consoles</div>
+  <div class="ftab" onclick="filter('Portable',this)">📱 Portables</div>
+  <div class="ftab" onclick="filter('Composant',this)">🔧 Composants</div>
+</div>
+
+<div class="sec-head">
+  <h2 id="sec-title">Toute la sélection</h2>
+</div>
+
+<div class="products" id="products"></div>
+
+<!-- COMPARATIF -->
+<div class="compare-section">
+  <h3>📊 PC vs Console — Lequel choisir ?</h3>
+  <div style="overflow-x:auto;">
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Critère</th>
+        <th>PC Gaming</th>
+        <th>Console</th>
+        <th>Portable</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="name-col">Prix d'entrée</td><td>€€€</td><td>€€</td><td>€€</td></tr>
+      <tr><td class="name-col">Upgradeable</td><td class="check">✔ Oui</td><td class="cross">✘ Non</td><td class="cross">✘ Non</td></tr>
+      <tr><td class="name-col">Jeux gratuits</td><td class="check">✔ Beaucoup</td><td>Quelques-uns</td><td>Peu</td></tr>
+      <tr><td class="name-col">Performance</td><td class="check">✔ Très haute</td><td>Haute</td><td>Moyenne</td></tr>
+      <tr><td class="name-col">Jouer n'importe où</td><td class="cross">✘ Non</td><td class="cross">✘ Non</td><td class="check">✔ Oui</td></tr>
+      <tr><td class="name-col">Exclusivités</td><td>PC</td><td class="check">✔ Sony/MS</td><td>Nintendo</td></tr>
+      <tr><td class="name-col">Idéal pour</td><td>Performance max</td><td>Simplicité</td><td>Voyage</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- COMMENTS -->
+<div class="comments-section">
+  <h2>💬 Commentaires</h2>
+  <div class="comment-form">
+    <input type="text" id="comment-input" placeholder="Pose ta question ou partage ton avis..."/>
+    <button onclick="addComment()">Publier</button>
+  </div>
+  <div id="comments-list"></div>
+</div>
+
+<footer>
+  <p style="margin-bottom:8px;">&copy; 2026 <strong style="color:#9900ff">MLG XGame</strong>. Tous droits réservés.</p>
+  <p>
+    <a href="apropos.html">À propos</a>
+    <a href="politique.html">Confidentialité</a>
+    <a href="conditions.html">Conditions</a>
+    <a href="contact.html">Contact</a>
+  </p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7572845165323582" crossorigin="anonymous"></script>
+
+<script>
+// ══════════════════════════════════════════
+//  PRODUITS — remplace les lien:"#" par ton lien affilié quand tu en auras un
+//  ex: lien:"https://amzn.to/XXXXXXX"
+// ══════════════════════════════════════════
+const products = [
+
+  // 🖥️ PC GAMING
+  {
+    nom: "PC Gaming RTX 4060",
+    cat: "PC Gaming",
+    img: "images/affiliation/pc-rtx4060.jpg",
+    desc: "Processeur Intel i5-13400F, RTX 4060, 16 Go RAM, SSD 1 To. Parfait pour jouer en 1080p / 1440p max.",
+    prix: "799€",
+    ancien_prix: "999€",
+    stars: 4.5, avis: 312,
+    badge: "HOT",
+    lien: "#"
+  },
+  {
+    nom: "PC Gaming RTX 4070",
+    cat: "PC Gaming",
+    img: "images/affiliation/pc-rtx4070.jpg",
+    desc: "Intel i7-13700F, RTX 4070, 32 Go DDR5, SSD 1 To NVMe. 1440p et 4K sans effort.",
+    prix: "1199€",
+    ancien_prix: "",
+    stars: 4.8, avis: 198,
+    badge: "NEW",
+    lien: "#"
+  },
+  {
+    nom: "Mini PC Gaming",
+    cat: "PC Gaming",
+    img: "images/affiliation/mini-pc.jpg",
+    desc: "Ryzen 7, RTX 4060 Ti, compact et silencieux. Idéal bureau ou salon.",
+    prix: "699€",
+    ancien_prix: "849€",
+    stars: 4.3, avis: 87,
+    badge: "",
+    lien: "#"
+  },
+  {
+    nom: "PC Gaming Bureautique+",
+    cat: "PC Gaming",
+    img: "images/affiliation/pc-budget.jpg",
+    desc: "AMD Ryzen 5, RX 6600, 16 Go RAM. Le meilleur rapport qualité/prix pour débuter.",
+    prix: "549€",
+    ancien_prix: "649€",
+    stars: 4.2, avis: 541,
+    badge: "HOT",
+    lien: "#"
+  },
+
+  // 🎮 CONSOLES
+  {
+    nom: "PlayStation 5",
+    cat: "Console",
+    img: "images/affiliation/ps5.jpg",
+    desc: "Console next-gen Sony. SSD ultra rapide, DualSense haptique, graphismes 4K/120fps.",
+    prix: "449€",
+    ancien_prix: "",
+    stars: 4.9, avis: 8420,
+    badge: "HOT",
+    lien: "#"
+  },
+  {
+    nom: "Xbox Series X",
+    cat: "Console",
+    img: "images/affiliation/xbox-series-x.jpg",
+    desc: "La console la plus puissante de Microsoft. 4K natif, Xbox Game Pass inclus.",
+    prix: "449€",
+    ancien_prix: "",
+    stars: 4.8, avis: 5231,
+    badge: "",
+    lien: "#"
+  },
+  {
+    nom: "Xbox Series S",
+    cat: "Console",
+    img: "images/affiliation/xbox-series-s.jpg",
+    desc: "Version compacte et abordable. 1440p, Game Pass, tout digital.",
+    prix: "269€",
+    ancien_prix: "299€",
+    stars: 4.6, avis: 3108,
+    badge: "",
+    lien: "#"
+  },
+  {
+    nom: "PS5 Slim",
+    cat: "Console",
+    img: "images/affiliation/ps5-slim.jpg",
+    desc: "Version allégée et redessinée de la PS5. Mêmes performances, design plus fin.",
+    prix: "399€",
+    ancien_prix: "449€",
+    stars: 4.7, avis: 1240,
+    badge: "NEW",
+    lien: "#"
+  },
+
+  // 📱 PORTABLES
+  {
+    nom: "Steam Deck OLED",
+    cat: "Portable",
+    img: "images/affiliation/steam-deck.jpg",
+    desc: "PC gaming portable par Valve. Écran OLED 7.4\", accès à toute ta bibliothèque Steam.",
+    prix: "569€",
+    ancien_prix: "",
+    stars: 4.7, avis: 6780,
+    badge: "HOT",
+    lien: "#"
+  },
+  {
+    nom: "Nintendo Switch OLED",
+    cat: "Portable",
+    img: "images/affiliation/switch-oled.jpg",
+    desc: "Console hybride Nintendo. Joue à la TV ou en portable. Écran OLED 7 pouces.",
+    prix: "319€",
+    ancien_prix: "349€",
+    stars: 4.8, avis: 12400,
+    badge: "",
+    lien: "#"
+  },
+  {
+    nom: "ASUS ROG Ally",
+    cat: "Portable",
+    img: "images/affiliation/rog-ally.jpg",
+    desc: "PC gaming portable Windows. AMD Ryzen Z1 Extreme, écran 120Hz 7 pouces.",
+    prix: "699€",
+    ancien_prix: "799€",
+    stars: 4.5, avis: 890,
+    badge: "NEW",
+    lien: "#"
+  },
+
+  // 🔧 COMPOSANTS
+  {
+    nom: "GPU RTX 4070 Super",
+    cat: "Composant",
+    img: "images/affiliation/rtx4070s.jpg",
+    desc: "Carte graphique Nvidia pour 1440p et 4K. DLSS 3, ray tracing, 12 Go GDDR6X.",
+    prix: "559€",
+    ancien_prix: "649€",
+    stars: 4.8, avis: 2310,
+    badge: "HOT",
+    lien: "#"
+  },
+  {
+    nom: "RAM DDR5 32 Go",
+    cat: "Composant",
+    img: "images/affiliation/ram-ddr5.jpg",
+    desc: "Kit 2×16 Go DDR5 6000MHz RGB. Compatible Intel et AMD AM5.",
+    prix: "89€",
+    ancien_prix: "119€",
+    stars: 4.6, avis: 774,
+    badge: "",
+    lien: "#"
+  },
+  {
+    nom: "SSD NVMe 1 To",
+    cat: "Composant",
+    img: "images/affiliation/ssd-nvme.jpg",
+    desc: "SSD PCIe 4.0 — 7000 Mo/s en lecture. Chargements ultra rapides.",
+    prix: "69€",
+    ancien_prix: "99€",
+    stars: 4.7, avis: 4210,
+    badge: "",
+    lien: "#"
+  },
+];
+
+// ── RENDER ──
+function renderStars(n){
+  const full=Math.floor(n);
+  const half=n%1>=0.5?1:0;
+  return '★'.repeat(full)+(half?'½':'')+'☆'.repeat(5-full-half);
+}
+
+function render(list){
+  const c=document.getElementById("products");c.innerHTML="";
+  if(!list.length){c.innerHTML='<div class="empty">Aucun produit trouvé 😕</div>';return;}
+  list.forEach(p=>{
+    const d=document.createElement('div');d.className='pcard';
+    const badgeHtml=p.badge==='HOT'?'<div class="badge-hot">🔥 HOT</div>':p.badge==='NEW'?'<div class="badge-new">✨ NEW</div>':'';
+    const oldPrice=p.ancien_prix?`<span class="price-old">${p.ancien_prix}</span>`:'';
+    const btnClass=p.lien==='#'?'buy-btn disabled':'buy-btn';
+    const btnText=p.lien==='#'?'Bientôt disponible':'🛒 Voir le prix';
+    d.innerHTML=`
+      ${badgeHtml}
+      <div class="pcard-img">
+        <img src="${p.img}" alt="${p.nom}" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:48px>🖥️</span>'">
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-cat">${p.cat}</div>
+        <div class="pcard-name">${p.nom}</div>
+        <div class="pcard-desc">${p.desc}</div>
+        <div class="stars">${renderStars(p.stars)} <span>(${p.avis})</span></div>
+        <div class="price-row">
+          <span class="price">${p.prix}</span>
+          ${oldPrice}
+        </div>
+        <a class="${btnClass}" href="${p.lien}" target="_blank" rel="noopener sponsored">
+          ${btnText}
+          ${p.lien!=='#'?'<span class="affiliate-tag">lien affilié</span>':''}
+        </a>
+      </div>`;
+    c.appendChild(d);
+  });
+}
+render(products);
+
+function filter(cat,btn){
+  document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  const t=document.getElementById('sec-title');
+  if(cat==='all'){t.textContent='Toute la sélection';render(products);}
+  else{t.textContent=cat;render(products.filter(p=>p.cat===cat));}
+}
+
+function addComment(){
+  const inp=document.getElementById("comment-input");
+  const text=inp.value.trim();if(!text)return;
+  const div=document.createElement("div");div.className="comment";div.textContent=text;
+  document.getElementById("comments-list").prepend(div);inp.value="";
+}
+</script>
+</body>
+</html>

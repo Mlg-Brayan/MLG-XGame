@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JM697RQXKF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JM697RQXKF');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="Les meilleurs accessoires gaming — manettes, casques, chaises, écrans, claviers, souris. Sélection MLG XGame.">
+<meta name="google-adsense-account" content="ca-pub-7572845165323582">
+<link rel="icon" type="image/png" href="/favicon.png">
+<title>MLG XGame — Accessoires Gaming</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --purple:#9900ff;
+  --cyan:#00f0ff;
+  --green:#00ff88;
+  --orange:#ff6600;
+  --bg:#000;
+  --bg2:#0a0a1a;
+  --bg3:#1a0a2e;
+  --text:#ccc;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Rajdhani',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-tap-highlight-color:transparent;}
+
+body::before{
+  content:'';position:fixed;inset:0;
+  background:repeating-linear-gradient(90deg,transparent,transparent 3px,rgba(0,240,255,0.008) 3px,rgba(0,240,255,0.008) 4px);
+  pointer-events:none;z-index:0;
+}
+
+/* ── HEADER ── */
+header{background:#000;box-shadow:0 0 30px #00f0ff33;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:1px solid #00f0ff22;}
+.logo{font-family:'Orbitron',sans-serif;font-size:20px;font-weight:900;background:linear-gradient(90deg,var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px;text-decoration:none;}
+.back-btn{font-family:'Orbitron',sans-serif;font-size:10px;color:var(--cyan);text-decoration:none;border:1px solid var(--cyan);padding:8px 14px;border-radius:6px;letter-spacing:1px;transition:0.25s;min-height:36px;display:flex;align-items:center;}
+.back-btn:hover,.back-btn:active{background:var(--cyan);color:#000;}
+
+/* ── HERO ── */
+.hero{
+  position:relative;padding:40px 20px 30px;text-align:center;overflow:hidden;
+  background:radial-gradient(ellipse at 30% 50%,#00f0ff11 0%,transparent 60%),radial-gradient(ellipse at 70% 50%,#9900ff11 0%,transparent 60%);
+}
+.hero-label{font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:4px;color:var(--orange);margin-bottom:12px;opacity:0.9;}
+.hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(22px,5vw,36px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:12px;}
+.hero h1 span{background:linear-gradient(90deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{font-size:15px;color:#999;max-width:500px;margin:0 auto 20px;line-height:1.5;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:#00f0ff11;border:1px solid #00f0ff44;border-radius:20px;padding:8px 16px;font-family:'Orbitron',sans-serif;font-size:10px;color:var(--cyan);letter-spacing:1px;}
+
+/* ── DISCLAIMER ── */
+.disclaimer{background:#0a0a1a;border:1px solid #00f0ff11;border-radius:10px;padding:12px 16px;margin:16px 12px;font-size:12px;color:#666;text-align:center;line-height:1.5;}
+.disclaimer strong{color:#00f0ff66;}
+
+/* ── CATEGORY ICONS NAV ── */
+.cat-icons{display:flex;overflow-x:auto;gap:10px;padding:14px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.cat-icons::-webkit-scrollbar{display:none;}
+.cat-icon-btn{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  background:#0a0a1a;border:1px solid #9900ff33;
+  border-radius:14px;padding:12px 16px;cursor:pointer;
+  transition:0.2s;min-width:70px;flex-shrink:0;
+  user-select:none;-webkit-user-select:none;
+}
+.cat-icon-btn .ico{font-size:22px;line-height:1;}
+.cat-icon-btn .lbl{font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:1px;color:#cc55ff;white-space:nowrap;}
+.cat-icon-btn.active,.cat-icon-btn:active{background:#9900ff22;border-color:var(--purple);box-shadow:0 0 14px #9900ff33;}
+.cat-icon-btn.active .lbl{color:#fff;}
+
+/* ── SEC HEADER ── */
+.sec-head{display:flex;align-items:center;gap:10px;padding:14px 16px 12px;}
+.sec-head h2{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;color:#fff;letter-spacing:2px;white-space:nowrap;}
+.sec-head::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--cyan),transparent);}
+
+/* ── GRID ── */
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;padding:0 12px 24px;position:relative;z-index:1;}
+
+/* ── PRODUCT CARD ── */
+.pcard{
+  background:linear-gradient(145deg,#0a0f20,#0a0a1a);
+  border:1px solid #00f0ff22;
+  border-radius:16px;overflow:hidden;
+  transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;
+  position:relative;
+}
+.pcard:active{transform:scale(0.97);}
+@media(hover:hover){
+  .pcard:hover{transform:translateY(-4px);box-shadow:0 8px 30px #00f0ff33;border-color:var(--cyan);}
+}
+.badge-hot{position:absolute;top:10px;right:10px;background:linear-gradient(135deg,#ff6600,#ff0066);color:#fff;font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:1px;padding:3px 8px;border-radius:10px;z-index:5;font-weight:700;}
+.badge-new{position:absolute;top:10px;right:10px;background:linear-gradient(135deg,var(--cyan),var(--green));color:#000;font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:1px;padding:3px 8px;border-radius:10px;z-index:5;font-weight:700;}
+.badge-promo{position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#ff0066,#ff6600);color:#fff;font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:0px;padding:3px 8px;border-radius:10px;z-index:5;font-weight:700;}
+
+.pcard-img{width:100%;height:155px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#050e1a,#0a0a1a);padding:14px;overflow:hidden;}
+.pcard-img img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 4px 12px #00f0ff33);transition:transform 0.3s;}
+.pcard:hover .pcard-img img{transform:scale(1.06) rotate(-1deg);}
+
+.pcard-body{padding:12px;}
+.pcard-cat{font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:1px;color:var(--cyan);margin-bottom:5px;opacity:0.8;}
+.pcard-name{font-family:'Orbitron',sans-serif;font-size:11px;color:#fff;margin-bottom:4px;line-height:1.3;}
+.pcard-desc{font-size:11px;color:#999;line-height:1.4;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.stars{color:#ffcc00;font-size:11px;margin-bottom:8px;letter-spacing:1px;}
+.stars span{color:#666;font-size:10px;margin-left:3px;}
+.price-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.price{font-family:'Orbitron',sans-serif;font-size:15px;font-weight:900;color:var(--green);}
+.price-old{font-size:11px;color:#555;text-decoration:line-through;}
+
+.buy-btn{display:block;width:100%;padding:10px;border:none;border-radius:10px;background:linear-gradient(90deg,var(--cyan),#0088cc);color:#000;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:900;cursor:pointer;letter-spacing:0.5px;text-align:center;text-decoration:none;transition:0.2s;min-height:38px;}
+.buy-btn:active,.buy-btn:hover{filter:brightness(1.15);box-shadow:0 0 15px #00f0ff44;}
+.buy-btn.disabled{background:#1a1a2e;color:#444;cursor:not-allowed;pointer-events:none;border:1px solid #333;}
+.affiliate-tag{font-size:8px;opacity:0.5;display:block;margin-top:2px;font-family:'Rajdhani',sans-serif;}
+
+/* ── GUIDE SECTION ── */
+.guide-section{margin:0 12px 24px;padding:20px;background:linear-gradient(135deg,#050e1a,#0a0a1a);border:1px solid #00f0ff22;border-radius:16px;position:relative;z-index:1;}
+.guide-section h3{font-family:'Orbitron',sans-serif;font-size:13px;color:var(--cyan);letter-spacing:2px;margin-bottom:16px;}
+.guide-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;}
+.guide-card{background:#000;border:1px solid #ffffff08;border-radius:12px;padding:14px;}
+.guide-card h4{font-family:'Orbitron',sans-serif;font-size:11px;color:#fff;margin-bottom:8px;}
+.guide-card ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.guide-card li{font-size:12px;color:#aaa;padding-left:14px;position:relative;line-height:1.4;}
+.guide-card li::before{content:'▸';position:absolute;left:0;color:var(--cyan);}
+
+/* ── EMPTY ── */
+.empty{grid-column:1/-1;text-align:center;padding:40px 20px;font-family:'Orbitron',sans-serif;font-size:13px;color:#555;letter-spacing:2px;}
+
+/* ── COMMENTS ── */
+.comments-section{background:var(--bg3);padding:16px;border-radius:12px;margin:0 12px 24px;border:1px solid #00f0ff11;position:relative;z-index:1;}
+.comments-section h2{font-family:'Orbitron',sans-serif;font-size:13px;color:#fff;letter-spacing:2px;margin-bottom:14px;}
+.comment-form{display:flex;gap:8px;margin-bottom:14px;}
+.comment-form input{flex:1;padding:10px 12px;border-radius:8px;border:1px solid #00f0ff33;background:#000;color:#fff;font-family:'Rajdhani',sans-serif;font-size:14px;outline:none;min-height:42px;}
+.comment-form input:focus{border-color:var(--cyan);}
+.comment-form button{padding:10px 16px;border:none;border-radius:8px;background:var(--cyan);color:#000;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;cursor:pointer;min-height:42px;white-space:nowrap;}
+#comments-list .comment{background:#000;padding:10px 12px;border-radius:8px;margin-bottom:8px;font-size:13px;border-left:3px solid var(--cyan);}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:16px;background:var(--bg2);font-size:12px;color:#555;border-top:1px solid #00f0ff11;position:relative;z-index:1;}
+footer a{color:#00f0ff55;text-decoration:none;margin:0 6px;}
+footer a:hover{color:var(--cyan);}
+
+@media(max-width:360px){.products{grid-template-columns:repeat(2,1fr);gap:10px;padding:0 10px 20px;}.pcard-img{height:130px;}}
+@media(min-width:600px){.products{grid-template-columns:repeat(auto-fill,minmax(190px,1fr));}}
+@media(min-width:900px){.products{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));}}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">MLG XGame</a>
+  <a class="back-btn" href="index.html">← Accueil</a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">🎯 SETUP GAMING</div>
+  <h1>Accessoires<br><span>Gaming</span></h1>
+  <p>Manettes, casques, chaises, écrans, claviers, souris — tout pour construire le setup parfait.</p>
+  <div class="hero-badge">🔗 Liens affiliés — on gagne une commission sans frais pour toi</div>
+</div>
+
+<div class="disclaimer">
+  <strong>⚠️ Note :</strong> Les prix sont indicatifs. Les boutons d'achat seront activés dès qu'on rejoindra un programme d'affiliation.
+</div>
+
+<!-- CATEGORY ICONS -->
+<div class="cat-icons">
+  <div class="cat-icon-btn active" onclick="filter('all',this)"><span class="ico">🎮</span><span class="lbl">Tout</span></div>
+  <div class="cat-icon-btn" onclick="filter('Manette',this)"><span class="ico">🕹️</span><span class="lbl">Manettes</span></div>
+  <div class="cat-icon-btn" onclick="filter('Casque',this)"><span class="ico">🎧</span><span class="lbl">Casques</span></div>
+  <div class="cat-icon-btn" onclick="filter('Chaise',this)"><span class="ico">🪑</span><span class="lbl">Chaises</span></div>
+  <div class="cat-icon-btn" onclick="filter('Écran',this)"><span class="ico">🖥️</span><span class="lbl">Écrans</span></div>
+  <div class="cat-icon-btn" onclick="filter('Clavier',this)"><span class="ico">⌨️</span><span class="lbl">Claviers</span></div>
+  <div class="cat-icon-btn" onclick="filter('Souris',this)"><span class="ico">🖱️</span><span class="lbl">Souris</span></div>
+  <div class="cat-icon-btn" onclick="filter('Tapis',this)"><span class="ico">🟦</span><span class="lbl">Tapis</span></div>
+</div>
+
+<div class="sec-head">
+  <h2 id="sec-title">Toute la sélection</h2>
+</div>
+
+<div class="products" id="products"></div>
+
+<!-- GUIDE D'ACHAT -->
+<div class="guide-section">
+  <h3>💡 Guide d'achat rapide</h3>
+  <div class="guide-grid">
+    <div class="guide-card">
+      <h4>🎧 Choisir son casque</h4>
+      <ul>
+        <li>Son surround 7.1 pour les FPS</li>
+        <li>Micro detachable = meilleure qualité</li>
+        <li>Filaire = 0 latence, sans fil = liberté</li>
+        <li>Tour d'oreille fermé = isolation</li>
+      </ul>
+    </div>
+    <div class="guide-card">
+      <h4>🖱️ Choisir sa souris</h4>
+      <ul>
+        <li>400-800 DPI pour la précision en FPS</li>
+        <li>Poids léger (&lt;80g) = moins de fatigue</li>
+        <li>Capteur optique &gt; laser</li>
+        <li>Forme selon prise en main (palm/claw/tip)</li>
+      </ul>
+    </div>
+    <div class="guide-card">
+      <h4>⌨️ Choisir son clavier</h4>
+      <ul>
+        <li>Switch mécanique Red = rapide, silencieux</li>
+        <li>Switch Blue = clicky, bruyant</li>
+        <li>60% compact pour setup minimaliste</li>
+        <li>TKL = compromis idéal</li>
+      </ul>
+    </div>
+    <div class="guide-card">
+      <h4>🖥️ Choisir son écran</h4>
+      <ul>
+        <li>144Hz minimum pour le gaming</li>
+        <li>240Hz+ pour les compétitifs FPS</li>
+        <li>1ms de temps de réponse</li>
+        <li>IPS = meilleurs couleurs, VA = meilleur contraste</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- COMMENTS -->
+<div class="comments-section">
+  <h2>💬 Commentaires & Questions</h2>
+  <div class="comment-form">
+    <input type="text" id="comment-input" placeholder="Pose ta question ou partage ton avis..."/>
+    <button onclick="addComment()">Publier</button>
+  </div>
+  <div id="comments-list"></div>
+</div>
+
+<footer>
+  <p style="margin-bottom:8px;">&copy; 2026 <strong style="color:#9900ff">MLG XGame</strong>. Tous droits réservés.</p>
+  <p>
+    <a href="apropos.html">À propos</a>
+    <a href="politique.html">Confidentialité</a>
+    <a href="conditions.html">Conditions</a>
+    <a href="contact.html">Contact</a>
+  </p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7572845165323582" crossorigin="anonymous"></script>
+
+<script>
+// ══════════════════════════════════════════
+//  PRODUITS ACCESSOIRES
+//  Remplace lien:"#" par ton lien affilié
+//  ex: lien:"https://amzn.to/XXXXXXX"
+// ══════════════════════════════════════════
+const products = [
+
+  // 🕹️ MANETTES
+  {nom:"DualSense PS5",cat:"Manette",img:"images/affiliation/dualsense.jpg",desc:"Manette officielle PS5. Retour haptique, gâchettes adaptatives, rechargeable USB-C.",prix:"74€",ancien_prix:"79€",stars:4.9,avis:24100,badge:"HOT",lien:"#"},
+  {nom:"Xbox Series Controller",cat:"Manette",img:"images/affiliation/xbox-ctrl.jpg",desc:"Manette Microsoft. Compatible PC, Xbox, Cloud. Grip amélioré, bouton share.",prix:"59€",ancien_prix:"",stars:4.8,avis:18400,badge:"",lien:"#"},
+  {nom:"Manette Pro PS5 Edge",cat:"Manette",img:"images/affiliation/ps5-edge.jpg",desc:"Manette pro Sony. Palettes, sticks interchangeables, profils personnalisés.",prix:"219€",ancien_prix:"",stars:4.6,avis:3200,badge:"NEW",lien:"#"},
+  {nom:"8BitDo Pro 2",cat:"Manette",img:"images/affiliation/8bitdo.jpg",desc:"Manette polyvalente PC/Switch/Android. Boutons programmables, excellente ergonomie.",prix:"49€",ancien_prix:"59€",stars:4.7,avis:7800,badge:"",lien:"#"},
+
+  // 🎧 CASQUES
+  {nom:"HyperX Cloud Alpha",cat:"Casque",img:"images/affiliation/hyperx-alpha.jpg",desc:"Son stéréo immersif, micro détachable, tours d'oreille en mousse memory foam. Compatible multiplateforme.",prix:"79€",ancien_prix:"99€",stars:4.7,avis:31200,badge:"HOT",lien:"#"},
+  {nom:"SteelSeries Arctis 7+",cat:"Casque",img:"images/affiliation/arctis7.jpg",desc:"Sans fil 2.4GHz, son surround 7.1, 30h batterie, compatible PC/PS/Switch.",prix:"149€",ancien_prix:"179€",stars:4.6,avis:9840,badge:"",lien:"#"},
+  {nom:"Razer BlackShark V2",cat:"Casque",img:"images/affiliation/blackshark.jpg",desc:"Casque esport filaire. THX Spatial Audio, micro cardioid détachable, ultra léger.",prix:"99€",ancien_prix:"",stars:4.8,avis:14200,badge:"",lien:"#"},
+  {nom:"Logitech G535",cat:"Casque",img:"images/affiliation/g535.jpg",desc:"Sans fil léger (236g), autonomie 33h, micro boom flip. Idéal longues sessions.",prix:"89€",ancien_prix:"119€",stars:4.5,avis:5600,badge:"PROMO",lien:"#"},
+
+  // 🪑 CHAISES
+  {nom:"SecretLab Titan Evo",cat:"Chaise",img:"images/affiliation/secretlab.jpg",desc:"La référence gaming. Dossier magnétique, accoudoirs 4D, cuir NEO hybride.",prix:"429€",ancien_prix:"",stars:4.9,avis:8200,badge:"HOT",lien:"#"},
+  {nom:"DXRacer Formula",cat:"Chaise",img:"images/affiliation/dxracer.jpg",desc:"Chaise gaming classique. Appui-tête et lombaire inclus, réglable, similicuir.",prix:"249€",ancien_prix:"299€",stars:4.5,avis:12400,badge:"",lien:"#"},
+  {nom:"Noblechairs Hero",cat:"Chaise",img:"images/affiliation/noblechairs.jpg",desc:"Cuir véritable, support lombaire réglable, classe et confort.",prix:"349€",ancien_prix:"399€",stars:4.7,avis:4100,badge:"",lien:"#"},
+
+  // 🖥️ ÉCRANS
+  {nom:"LG UltraGear 27\" 165Hz",cat:"Écran",img:"images/affiliation/lg-27.jpg",desc:"27 pouces IPS QHD, 165Hz, 1ms, G-Sync compatible. Le meilleur rapport qualité/prix.",prix:"279€",ancien_prix:"349€",stars:4.8,avis:7600,badge:"HOT",lien:"#"},
+  {nom:"Samsung Odyssey G5",cat:"Écran",img:"images/affiliation/samsung-g5.jpg",desc:"32\" incurvé 1000R, 144Hz, QHD. Immersion totale pour les jeux.",prix:"299€",ancien_prix:"369€",stars:4.7,avis:5100,badge:"",lien:"#"},
+  {nom:"ASUS ROG Swift 240Hz",cat:"Écran",img:"images/affiliation/rog-swift.jpg",desc:"24.5\" FHD 240Hz, 0.5ms. Conçu pour les FPS compétitifs.",prix:"329€",ancien_prix:"",stars:4.6,avis:2800,badge:"NEW",lien:"#"},
+
+  // ⌨️ CLAVIERS
+  {nom:"Logitech G Pro X",cat:"Clavier",img:"images/affiliation/gpro-clavier.jpg",desc:"Clavier mécanique TKL gaming. Switchs hot-swap, RGB LIGHTSYNC, ultra compact.",prix:"129€",ancien_prix:"149€",stars:4.7,avis:9100,badge:"",lien:"#"},
+  {nom:"Razer Huntsman Mini",cat:"Clavier",img:"images/affiliation/huntsman-mini.jpg",desc:"60% avec switchs optiques linéaires. Ultra rapide, RGB, PBT keycaps.",prix:"99€",ancien_prix:"",stars:4.6,avis:6700,badge:"HOT",lien:"#"},
+  {nom:"Keychron K2 Pro",cat:"Clavier",img:"images/affiliation/keychron-k2.jpg",desc:"75% mécanique sans fil. Bluetooth + USB, hot-swap, compatible Mac/Windows.",prix:"89€",ancien_prix:"109€",stars:4.8,avis:11200,badge:"",lien:"#"},
+
+  // 🖱️ SOURIS
+  {nom:"Logitech G Pro X Superlight",cat:"Souris",img:"images/affiliation/superlight.jpg",desc:"61g ultra légère, capteur HERO 25K, sans fil LIGHTSPEED. La référence pro.",prix:"139€",ancien_prix:"159€",stars:4.9,avis:21400,badge:"HOT",lien:"#"},
+  {nom:"Razer DeathAdder V3",cat:"Souris",img:"images/affiliation/deathadder.jpg",desc:"Ergonomique, 59g, capteur Focus Pro 30K. 90h batterie sans fil.",prix:"89€",ancien_prix:"",stars:4.8,avis:8900,badge:"",lien:"#"},
+  {nom:"SteelSeries Rival 3",cat:"Souris",img:"images/affiliation/rival3.jpg",desc:"Souris filaire budget. Capteur TrueMove Core, 6 boutons, RGB.",prix:"29€",ancien_prix:"39€",stars:4.5,avis:14200,badge:"PROMO",lien:"#"},
+
+  // 🟦 TAPIS
+  {nom:"SteelSeries QcK Large",cat:"Tapis",img:"images/affiliation/qck-large.jpg",desc:"450×400mm, surface micro-tissée, base antidérapante. Le classique indémodable.",prix:"24€",ancien_prix:"",stars:4.8,avis:41200,badge:"HOT",lien:"#"},
+  {nom:"Razer Gigantus V2 XL",cat:"Tapis",img:"images/affiliation/gigantus.jpg",desc:"XL 920×294mm, surface vitesse+contrôle, bords cousus.",prix:"39€",ancien_prix:"49€",stars:4.7,avis:7600,badge:"",lien:"#"},
+];
+
+function renderStars(n){
+  const full=Math.floor(n);const half=n%1>=0.5?1:0;
+  return '★'.repeat(full)+(half?'½':'')+'☆'.repeat(5-full-half);
+}
+
+function render(list){
+  const c=document.getElementById("products");c.innerHTML="";
+  if(!list.length){c.innerHTML='<div class="empty">Aucun produit trouvé 😕</div>';return;}
+  list.forEach(p=>{
+    const d=document.createElement('div');d.className='pcard';
+    const badgeRight=p.badge==='HOT'?'<div class="badge-hot">🔥 HOT</div>':p.badge==='NEW'?'<div class="badge-new">✨ NEW</div>':'';
+    const badgeLeft=p.badge==='PROMO'?'<div class="badge-promo">🏷️ PROMO</div>':'';
+    const oldPrice=p.ancien_prix?`<span class="price-old">${p.ancien_prix}</span>`:'';
+    const isDisabled=p.lien==='#';
+    const btnClass=isDisabled?'buy-btn disabled':'buy-btn';
+    const btnText=isDisabled?'Bientôt disponible':'🛒 Voir le prix';
+    d.innerHTML=`
+      ${badgeRight}${badgeLeft}
+      <div class="pcard-img">
+        <img src="${p.img}" alt="${p.nom}" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:40px>${getEmoji(p.cat)}</span>'">
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-cat">${p.cat}</div>
+        <div class="pcard-name">${p.nom}</div>
+        <div class="pcard-desc">${p.desc}</div>
+        <div class="stars">${renderStars(p.stars)} <span>(${p.avis.toLocaleString('fr')})</span></div>
+        <div class="price-row">
+          <span class="price">${p.prix}</span>
+          ${oldPrice}
+        </div>
+        <a class="${btnClass}" href="${p.lien}" target="_blank" rel="noopener sponsored">
+          ${btnText}
+          ${!isDisabled?'<span class="affiliate-tag">lien affilié</span>':''}
+        </a>
+      </div>`;
+    c.appendChild(d);
+  });
+}
+
+function getEmoji(cat){
+  const m={Manette:'🕹️',Casque:'🎧',Chaise:'🪑',Écran:'🖥️',Clavier:'⌨️',Souris:'🖱️',Tapis:'🟦'};
+  return m[cat]||'🎮';
+}
+
+render(products);
+
+function filter(cat,btn){
+  document.querySelectorAll('.cat-icon-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  const t=document.getElementById('sec-title');
+  if(cat==='all'){t.textContent='Toute la sélection';render(products);}
+  else{t.textContent=cat+'s';render(products.filter(p=>p.cat===cat));}
+}
+
+function addComment(){
+  const inp=document.getElementById("comment-input");
+  const text=inp.value.trim();if(!text)return;
+  const div=document.createElement("div");div.className="comment";div.textContent=text;
+  document.getElementById("comments-list").prepend(div);inp.value="";
+}
+</script>
+</body>
+</html>
