@@ -226,9 +226,12 @@
     }
     footer span { color: #9900ff; }
     @media (max-width: 580px) {
-      .hero { flex-direction: column; align-items: center; padding: 20px 16px 16px; }
-      .game-cover { width: 160px; height: 210px; }
-      .game-info { align-items: center; text-align: center; }
+     .hero { flex-direction: row; align-items: flex-start; padding: 16px 12px; gap: 14px; }
+.game-cover { width: 120px; height: 160px; flex-shrink: 0; }
+.game-info { align-items: flex-start; text-align: left; }
+.game-title { font-size: 18px; }
+.dl-buttons { flex-direction: column; gap: 8px; }
+.dl-btn { width: 100%; justify-content: center; padding: 10px 12px; font-size: 13px; }
       .game-description { text-align: left; }
       .download-section { padding: 0 16px 30px; }
       .dl-buttons { flex-direction: column; }
@@ -240,13 +243,13 @@
 <body>
 
 <header>
-  <a class="logo" href="../index.html">MLG XGame</a>
-  <a class="back-btn" href="../android-games.html">← Retour</a>
+  <a class="logo" href="/index.html">MLG XGame</a>
+  <a class="back-btn" href="/android-games.html">← Retour</a>
 </header>
 
 <section class="hero">
   <div class="game-cover">
-    <img src="../images/android/8-ball-pool.jpg" alt="8 Ball Pool cover"
+    <img src="/img/8-ball-pool.jpg" alt="8 Ball Pool cover"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
     <div class="cover-placeholder" style="display:none;">IMAGE<br>DU JEU</div>
   </div>
@@ -300,19 +303,19 @@
   <div class="sim-title"><span>🎮 Jeux similaires</span></div>
   <div class="sim-grid">
     <a class="sim-card" href="fifa-mobile.html">
-      <div class="sim-img"><img src="../img/fc mobile.jpg" alt="FIFA Mobile" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="sim-img"><img src="/img/fifa-mobile.jpg" alt="FIFA Mobile" loading="lazy" onerror="this.style.display='none'"></div>
       <div class="sim-name">FIFA Mobile</div>
     </a>
     <a class="sim-card" href="nba-live-mobile.html">
-      <div class="sim-img"><img src="../img/nba-live.jpg" alt="NBA Live Mobile" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="sim-img"><img src="/img/nba-live.jpg" alt="NBA Live Mobile" loading="lazy" onerror="this.style.display='none'"></div>
       <div class="sim-name">NBA Live Mobile</div>
     </a>
     <a class="sim-card" href="real-cricket-20.html">
-      <div class="sim-img"><img src="../img/real-cricket.jpg" alt="Real Cricket 20" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="sim-img"><img src="/img/real-cricket.jpg" alt="Real Cricket 20" loading="lazy" onerror="this.style.display='none'"></div>
       <div class="sim-name">Real Cricket 20</div>
     </a>
     <a class="sim-card" href="archery-king.html">
-      <div class="sim-img"><img src="../img/archery-king.jpg" alt="Archery King" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="sim-img"><img src="/img/archery-king.jpg" alt="Archery King" loading="lazy" onerror="this.style.display='none'"></div>
       <div class="sim-name">Archery King</div>
     </a>
   </div>
