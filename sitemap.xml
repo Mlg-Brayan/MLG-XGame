@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- PAGES PRINCIPALES -->
+  <url><loc>https://mlgxgame.vercel.app/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/pc-games.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/jeux-online.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/application.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+
+  <!-- SPORT -->
+  <url><loc>https://mlgxgame.vercel.app/android-games/sport/fifa-mobile.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/sport/efootball.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/sport/nba-live-mobile.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/sport/golf-clash.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/sport/8-ball-pool.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/sport/real-cricket-20.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/sport/dream-league-soccer.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/sport/archery-king.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/sport/tennis-clash.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/sport/motorsport-manager.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- AVENTURE -->
+  <url><loc>https://mlgxgame.vercel.app/android-games/aventure/minecraft.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/aventure/terraria.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/aventure/genshin-impact.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/aventure/stardew-valley.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/aventure/grimvalor.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/aventure/oddmar.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/aventure/dungeon-hunter-5.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/aventure/legends-of-kingdom-rush.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/aventure/monster-hunter-stories.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/aventure/oddworld-munchs-oddysee.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- STRATÉGIE -->
+  <url><loc>https://mlgxgame.vercel.app/android-games/strategie/clash-of-clans.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/strategie/clash-royale.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/strategie/age-of-civilizations.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/strategie/plants-vs-zombies-2.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/strategie/rise-of-kingdoms.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/strategie/civilization-vi.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/strategie/bloons-td-6.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/strategie/chesscom.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/strategie/simcity-buildit.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/strategie/plague-inc.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- RÉFLEXION -->
+  <url><loc>https://mlgxgame.vercel.app/android-games/reflexion/brain-out.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/reflexion/monument-valley.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/reflexion/the-room.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/reflexion/cut-the-rope.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/reflexion/flow-free.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/reflexion/sudokucom.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/reflexion/2048.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/reflexion/candy-crush-saga.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/reflexion/brain-test.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/reflexion/lara-croft-go.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- COURSE -->
+  <url><loc>https://mlgxgame.vercel.app/android-games/course/f1-mobile-racing.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/course/motogp-racing.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/course/drift-max-pro.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/course/real-racing-3.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/course/rocket-league-sideswipe.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/course/asphalt-nitro.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/course/traffic-rider.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/course/beach-buggy-racing-2.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/course/mario-kart-tour.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/course/hill-climb-racing-2.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- SIMULATION -->
+  <url><loc>https://mlgxgame.vercel.app/android-games/simulation/the-sims-mobile.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/simulation/farming-simulator-20.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/simulation/car-simulator-2.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/simulation/bus-simulator-ultimate.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/simulation/goat-simulator.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/simulation/pocket-city.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/simulation/airport-city.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/simulation/rollercoaster-tycoon-touch.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- GOURMAND -->
+  <url><loc>https://mlgxgame.vercel.app/android-games/gourmand/cooking-fever.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/gourmand/food-street.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/gourmand/restaurant-story-2.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/gourmand/toca-kitchen-2.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/gourmand/my-cafe.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/gourmand/burger-shop-2.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/gourmand/chef-wars.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/gourmand/pizza-maker.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/gourmand/cooking-mama.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/gourmand/diner-dash-adventures.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- MULTIJOUEUR -->
+  <url><loc>https://mlgxgame.vercel.app/android-games/multijoueur/among-us.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/multijoueur/pubg-mobile.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/multijoueur/free-fire.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/multijoueur/brawl-stars.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/multijoueur/mobile-legends.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/multijoueur/fortnite.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/multijoueur/roblox.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/multijoueur/clash-royale.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/multijoueur/diner-dash-adventures.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/multijoueur/minecraft-multiplayer.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- MODE -->
+  <url><loc>https://mlgxgame.vercel.app/android-games/mode/covet-fashion.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/mode/fashion-empire.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/mode/love-nikki.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/mode/stardoll.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/mode/kim-kardashian-hollywood.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/mode/dress-up-diary.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/mode/style-me-girl.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/mode/fashion-fantasy.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/mode/fashion-diva.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/mode/super-stylist.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- CASUAL -->
+  <url><loc>https://mlgxgame.vercel.app/android-games/casual/subway-surfers.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/casual/temple-run-2.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/casual/angry-birds-2.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/casual/crossy-road.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/casual/pou.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/casual/my-talking-tom.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/casual/hill-climb-racing.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/casual/fruit-ninja.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mlgxgame.vercel.app/android-games/casual/jetpack-joyride.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+</urlset>
