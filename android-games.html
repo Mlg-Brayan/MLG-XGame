@@ -610,14 +610,20 @@ function render(list) {
   list.forEach((game) => {
     const div = document.createElement('div');
     div.className = 'card';
+    const stars = '⭐'.repeat(Math.floor(game.note)) + (game.note % 1 >= 0.5 ? '½' : '');
     div.innerHTML = `
       <a class="card-link" href="${game.lien}" aria-label="Voir ${game.nom}"></a>
+      ${game.badge ? `<span class="badge-top">${game.badge}</span>` : ''}
       <img src="${game.img}" alt="${game.nom}" loading="lazy" onerror="this.style.background='#1a0a2e';this.src=''">
       <div class="card-content">
         <span class="badge-cat">${game.categorie}</span>
         <h3>${game.nom}</h3>
         <p>${game.description}</p>
-        <button class="download-btn" onclick="window.location.href='${game.lien}'">⬇ Voir le jeu</button>
+        <div class="card-note">
+          <span class="stars">${stars}</span>
+          <span class="note-val">${game.note}/5</span>
+        </div>
+        <button class="download-btn" onclick="window.location.href='${game.lien}'">👁️ Voir le jeu</button>
       </div>
     `;
     container.appendChild(div);
