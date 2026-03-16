@@ -635,6 +635,104 @@ header {
   margin: 4px 20px 24px;
 }
 
+  /* 4 boutons colorés */
+.nav-card.nav-cyan {
+  border-color: #00f0ff44;
+  background: #00f0ff11;
+}
+.nav-card.nav-cyan:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 20px #00f0ff55;
+  transform: translateY(-3px);
+}
+.nav-card.nav-cyan .icon { color: var(--cyan); }
+.nav-card.nav-cyan span:last-child { color: var(--cyan); }
+
+.nav-card.nav-purple {
+  border-color: #9900ff44;
+  background: #9900ff11;
+}
+.nav-card.nav-purple:hover {
+  border-color: var(--purple);
+  box-shadow: 0 0 20px #9900ff55;
+  transform: translateY(-3px);
+}
+.nav-card.nav-purple .icon { color: #cc55ff; }
+.nav-card.nav-purple span:last-child { color: #cc55ff; }
+
+.nav-card.nav-blue {
+  border-color: #0066ff44;
+  background: #0066ff11;
+}
+.nav-card.nav-blue:hover {
+  border-color: #0066ff;
+  box-shadow: 0 0 20px #0066ff55;
+  transform: translateY(-3px);
+}
+.nav-card.nav-blue .icon { color: #5599ff; }
+.nav-card.nav-blue span:last-child { color: #5599ff; }
+
+.nav-card.nav-green {
+  border-color: #00ff8844;
+  background: #00ff8811;
+}
+.nav-card.nav-green:hover {
+  border-color: #00ff88;
+  box-shadow: 0 0 20px #00ff8855;
+  transform: translateY(-3px);
+}
+.nav-card.nav-green .icon { color: #00ff88; }
+.nav-card.nav-green span:last-child { color: #00ff88; }
+
+/* Accessoires & Consoles */
+.affil-btns-home {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 20px 24px;
+}
+.affil-home {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  text-decoration: none;
+  border: 1px solid;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.affil-home:hover { transform: translateY(-3px); }
+.affil-home-pc {
+  background: #9900ff11;
+  border-color: #9900ff44;
+}
+.affil-home-pc:hover {
+  box-shadow: 0 8px 24px #9900ff44;
+  border-color: #9900ff;
+}
+.affil-home-acc {
+  background: #00f0ff11;
+  border-color: #00f0ff44;
+}
+.affil-home-acc:hover {
+  box-shadow: 0 8px 24px #00f0ff44;
+  border-color: #00f0ff;
+}
+.affil-home-ico { font-size: 28px; flex-shrink: 0; }
+.affil-home-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.affil-home-title-pc { color: #cc55ff; }
+.affil-home-title-acc { color: #00f0ff; }
+.affil-home-sub { font-size: 11px; color: #888; }
+
+@media(max-width:480px) {
+  .affil-btns-home { grid-template-columns: 1fr; }
+}
+
 /* ── FOOTER ── */
 footer {
   text-align: center;
@@ -751,35 +849,47 @@ footer .credit { color: var(--purple); font-weight: 600; }
 <div class="divider"></div>
 
 <!-- NAVIGATION CARDS -->
+<!-- NAVIGATION CARDS -->
 <div class="section-header">
   <h2>Explorer</h2>
 </div>
 <div class="nav-cards">
-  <a href="jeux-online.html" class="nav-card">
+  <a href="jeux-online.html" class="nav-card nav-cyan">
     <span class="icon">🎮</span>
     <span>Jouer en ligne</span>
   </a>
-  <a href="android-games.html" class="nav-card">
+  <a href="android-games.html" class="nav-card nav-purple">
     <span class="icon">📱</span>
     <span>Jeux Android</span>
   </a>
-  <a href="pc-games.html" class="nav-card">
+  <a href="pc-games.html" class="nav-card nav-blue">
     <span class="icon">🖥️</span>
     <span>Jeux PC</span>
   </a>
-  <a href="application.html" class="nav-card">
+  <a href="application.html" class="nav-card nav-green">
     <span class="icon">📦</span>
     <span>Meilleures Apps</span>
   </a>
-  <a href="accessoires-gaming.html" class="nav-card">
-    <span class="icon">🎧</span>
-    <span>Accessoires</span>
+</div>
+
+<!-- ACCESSOIRES & CONSOLES -->
+<div class="affil-btns-home">
+  <a href="pc-consoles.html" class="affil-home affil-home-pc">
+    <span class="affil-home-ico">🕹️</span>
+    <div>
+      <div class="affil-home-title affil-home-title-pc">Consoles & PC</div>
+      <div class="affil-home-sub">Meilleurs prix sélectionnés</div>
+    </div>
   </a>
-  <a href="pc-consoles.html" class="nav-card">
-    <span class="icon">🕹️</span>
-    <span>Consoles & PC</span>
+  <a href="accessoires-gaming.html" class="affil-home affil-home-acc">
+    <span class="affil-home-ico">🎧</span>
+    <div>
+      <div class="affil-home-title affil-home-title-acc">Accessoires Gaming</div>
+      <div class="affil-home-sub">Manettes, casques, chaises...</div>
+    </div>
   </a>
 </div>
+  
 <div class="divider"></div>
 
 <!-- JOUER EN LIGNE -->
