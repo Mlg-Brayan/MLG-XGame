@@ -34,7 +34,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet"/>
 
 <style>
-/* ── VARIABLES ── */
 :root {
   --purple: #9900ff;
   --cyan: #00f0ff;
@@ -45,9 +44,7 @@
   --glow-p: 0 0 20px #9900ff66;
   --glow-c: 0 0 20px #00f0ff66;
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
   font-family: 'Rajdhani', sans-serif;
   background: var(--bg);
@@ -55,16 +52,26 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
-
+ 
+/* ── PARTICLES CANVAS ── */
+#particles-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+ 
 /* ── WELCOME BANNER ── */
 #welcome-msg {
   position: fixed;
-  top: 0;
-  left: 60%;
+  top: -60px;
+  left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(90deg, var(--purple), var(--cyan));
   color: #000;
-  padding: 6px 22px;
+  padding: 8px 22px;
   border-radius: 0 0 12px 12px;
   font-family: 'Orbitron', sans-serif;
   font-size: 12px;
@@ -72,15 +79,16 @@ body {
   letter-spacing: 1px;
   box-shadow: 0 4px 20px #9900ff55;
   z-index: 1000;
-  opacity: 0;
-  transition: opacity 0.6s;
+  transition: top 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   white-space: nowrap;
 }
-
+#welcome-msg.show { top: 0; }
+ 
 /* ── HEADER ── */
 header {
-  background: #000;
-  box-shadow: 0 0 25px #9900ff55;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px #9900ff33;
   padding: 20px 26px;
   display: flex;
   align-items: center;
@@ -89,7 +97,8 @@ header {
   top: 0;
   z-index: 100;
 }
-
+ 
+/* Logo pulse glow */
 .logo {
   font-family: 'Orbitron', sans-serif;
   font-size: 24px;
@@ -99,49 +108,40 @@ header {
   -webkit-text-fill-color: transparent;
   letter-spacing: 1px;
   text-decoration: none;
+  animation: logoPulse 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px #9900ff44);
 }
-
-.header-nav {
-  display: flex;
-  gap: 5px;
-  align-items: center;
+@keyframes logoPulse {
+  0%, 100% { filter: drop-shadow(0 0 6px #9900ff33); }
+  50% { filter: drop-shadow(0 0 14px #9900ff66); }
 }
-
+ 
+.header-nav { display: flex; gap: 5px; align-items: center; }
 .nav-btn {
   font-family: 'Orbitron', sans-serif;
   font-size: 12px;
   color: var(--cyan);
   text-decoration: none;
   border: 1px solid var(--cyan);
-  padding: 6px 2px;
+  padding: 6px 10px;
   border-radius: 6px;
   letter-spacing: 1px;
   transition: 0.25s;
   white-space: nowrap;
 }
-.nav-btn:hover, .nav-btn.active {
-  background: var(--cyan);
-  color: #000;
-  box-shadow: var(--glow-c);
-}
-.nav-btn.purple {
-  color: var(--purple);
-  border-color: var(--purple);
-}
-.nav-btn.purple:hover {
-  background: var(--purple);
-  color: #fff;
-  box-shadow: var(--glow-p);
-}
-
+.nav-btn:hover, .nav-btn.active { background: var(--cyan); color: #000; box-shadow: var(--glow-c); }
+.nav-btn.purple { color: var(--purple); border-color: var(--purple); }
+.nav-btn.purple:hover { background: var(--purple); color: #fff; box-shadow: var(--glow-p); }
+ 
 /* ── SECTION TITLES ── */
 .section-header {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 24px 20px 12px;
+  position: relative;
+  z-index: 1;
 }
-
 .section-header h2 {
   font-family: 'Orbitron', sans-serif;
   font-size: 16px;
@@ -150,59 +150,33 @@ header {
   letter-spacing: 2px;
   text-transform: uppercase;
 }
-
 .section-header::after {
   content: '';
   flex: 1;
   height: 1px;
   background: linear-gradient(90deg, var(--purple), transparent);
 }
-
-/* ── CATEGORY CHIPS ── */
-.cat-strip {
-  display: flex;
-  gap: 8px;
-  padding: 0 20px 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
+ 
+/* ── CAROUSEL AUTO ── */
+.carousel-wrap {
+  position: relative;
+  overflow: hidden;
+  padding: 0 0 20px;
+  z-index: 1;
 }
-.cat-strip::-webkit-scrollbar { display: none; }
-
-.cat-chip {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 10px;
-  letter-spacing: 1px;
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: 1px solid var(--purple);
-  color: #cc55ff;
-  background: #9900ff15;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: 0.2s;
-  text-decoration: none;
-}
-.cat-chip:hover, .cat-chip.active {
-  background: var(--purple);
-  color: #fff;
-  box-shadow: var(--glow-p);
-}
-
-/* ── FEATURED SCROLL ── */
-.scroll-row {
+.carousel-track {
   display: flex;
   gap: 14px;
-  padding: 0 20px 20px;
-  overflow-x: auto;
-  scrollbar-width: none;
+  padding: 0 20px;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
-.scroll-row::-webkit-scrollbar { display: none; }
-
-/* ── GAME CARD (large) ── */
+ 
+/* ── GAME CARD large ── */
 .card-lg {
   flex-shrink: 0;
-  width: 320px;
-  height: 160px;
+  width: 300px;
+  height: 170px;
   border-radius: 14px;
   overflow: hidden;
   position: relative;
@@ -210,21 +184,20 @@ header {
   border: 1px solid #9900ff33;
   transition: 0.3s;
   cursor: pointer;
+  text-decoration: none;
 }
 .card-lg:hover {
   transform: scale(1.04);
   box-shadow: 0 0 22px #9900ff55;
   border-color: var(--purple);
 }
-.card-lg img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-}
+.card-lg img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.card-lg:hover img { transform: scale(1.06); }
 .card-lg .overlay {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  padding: 8px 10px;
-  background: linear-gradient(to top, rgba(0,0,0,0.92), rgba(0,0,0,0.3));
+  padding: 10px 12px;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 60%, rgba(0,0,0,0.2));
 }
 .card-lg .overlay h4 {
   font-family: 'Orbitron', sans-serif;
@@ -232,84 +205,79 @@ header {
   color: var(--cyan);
   margin-bottom: 3px;
 }
-.card-lg .overlay p {
-  font-size: 11px;
-  color: #bbb;
-  text-align: left;
-  margin-bottom: 6px;
+.card-lg .overlay p { font-size: 11px; color: #bbb; text-align: left; }
+ 
+/* Carousel dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 0 4px;
 }
-
-/* ── DOWNLOAD BUTTON & MENU ── */
-.dl-wrap { position: relative; }
-
-.dl-btn-main {
-  display: block;
-  text-align: center;
-  background: linear-gradient(90deg, var(--purple), #6600cc);
-  color: #fff;
-  padding: 6px 10px;
-  border-radius: 7px;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #9900ff44;
+  transition: 0.3s;
   cursor: pointer;
-  transition: 0.2s;
-  border: none;
- text-decoration: none;
 }
-.dl-btn-main:hover { filter: brightness(1.2); }
-
-.dl-menu {
-  display: none;
-  position: absolute;
-  bottom: calc(100% + 6px);
-  left: 0; right: 0;
-  background: #0a0a1a;
-  border: 1px solid #9900ff55;
-  border-radius: 9px;
-  overflow: hidden;
-  box-shadow: 0 0 20px #9900ff44;
-  z-index: 50;
-  text-decoration: none;
+.dot.active { background: var(--purple); width: 18px; border-radius: 3px; box-shadow: 0 0 6px #9900ff88; }
+ 
+/* ── STATS COUNTER ── */
+.stats-bar {
+  display: flex;
+  justify-content: space-around;
+  padding: 16px 20px;
+  margin: 0 0 4px;
+  position: relative;
+  z-index: 1;
 }
-.dl-menu a {
-  display: block;
-  padding: 8px 10px;
-  font-size: 11px;
-  color: #ccc;
-  text-decoration: none;
-  border-bottom: 1px solid #ffffff0f;
-  transition: 0.15s;
-  font-weight: 600;
+.stat-item { text-align: center; }
+.stat-number {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  background: linear-gradient(90deg, var(--purple), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.dl-menu a:last-child { border-bottom: none; }
-.dl-menu a:hover { background: var(--purple); color: #fff; }
-
+.stat-label {
+  font-size: 10px;
+  color: #666;
+  letter-spacing: 1px;
+  font-family: 'Orbitron', sans-serif;
+}
+ 
 /* ── TOP JEUX LIST ── */
 .top-list {
   padding: 0 10px 10px;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  position: relative;
+  z-index: 1;
 }
-
 .top-item {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 3px 14px;
+  padding: 10px 14px;
   background: var(--bg3);
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1px solid #9900ff22;
   text-decoration: none;
   transition: 0.2s;
+  animation: fadeSlideIn 0.4s ease both;
 }
-.top-item:hover {
-  border-color: var(--purple);
-  background: #1a0a3a;
-  transform: translateX(4px);
+.top-item:nth-child(1) { animation-delay: 0.1s; }
+.top-item:nth-child(2) { animation-delay: 0.2s; }
+.top-item:nth-child(3) { animation-delay: 0.3s; }
+.top-item:nth-child(4) { animation-delay: 0.4s; }
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: translateX(0); }
 }
+.top-item:hover { border-color: var(--purple); background: #1a0a3a; transform: translateX(6px); }
 .top-rank {
   font-family: 'Orbitron', sans-serif;
   font-size: 18px;
@@ -318,30 +286,22 @@ header {
   min-width: 28px;
   text-align: center;
 }
-.top-name {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  color: #fff;
-  flex: 1;
-}
-.top-arrow {
-  color: var(--cyan);
-  font-size: 14px;
-}
-
-/* ── NAVIGATION BUTTONS ── */
+.top-name { font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 600; color: #fff; flex: 1; }
+.top-arrow { color: var(--cyan); font-size: 14px; }
+ 
+/* ── NAV CARDS ── */
 .nav-cards {
   display: flex;
   gap: 12px;
-  padding: 0 20px 24px;
+  padding: 0 20px 16px;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
-
 .nav-card {
   flex: 1;
   min-width: 70px;
-  padding: 12px 10px;
+  padding: 14px 10px;
   background: var(--bg3);
   border: 1px solid #9900ff33;
   border-radius: 12px;
@@ -353,29 +313,68 @@ header {
   align-items: center;
   gap: 6px;
 }
-.nav-card:hover {
-  border-color: var(--purple);
-  box-shadow: var(--glow-p);
-  transform: translateY(-3px);
+.nav-card:hover { transform: translateY(-4px); }
+.nav-card .icon { font-size: 20px; }
+.nav-card span { font-family: 'Orbitron', sans-serif; font-size: 9px; letter-spacing: 1px; }
+ 
+.nav-card.nav-cyan { border-color: #00f0ff44; background: #00f0ff0a; }
+.nav-card.nav-cyan:hover { border-color: var(--cyan); box-shadow: 0 0 20px #00f0ff33; }
+.nav-card.nav-cyan span { color: var(--cyan); }
+ 
+.nav-card.nav-purple { border-color: #9900ff44; background: #9900ff0a; }
+.nav-card.nav-purple:hover { border-color: var(--purple); box-shadow: 0 0 20px #9900ff33; }
+.nav-card.nav-purple span { color: #cc55ff; }
+ 
+.nav-card.nav-blue { border-color: #0066ff44; background: #0066ff0a; }
+.nav-card.nav-blue:hover { border-color: #0066ff; box-shadow: 0 0 20px #0066ff33; }
+.nav-card.nav-blue span { color: #5599ff; }
+ 
+.nav-card.nav-green { border-color: #00ff8844; background: #00ff880a; }
+.nav-card.nav-green:hover { border-color: #00ff88; box-shadow: 0 0 20px #00ff8833; }
+.nav-card.nav-green span { color: #00ff88; }
+ 
+/* ── AFFIL BUTTONS ── */
+.affil-btns-home {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 20px 24px;
+  position: relative;
+  z-index: 1;
 }
-.nav-card .icon { font-size: 16px; }
-.nav-card span {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 10px;
-  color: #fff;
-  letter-spacing: 1px;
+.affil-home {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  text-decoration: none;
+  border: 1px solid;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-
+.affil-home:hover { transform: translateY(-3px); }
+.affil-home-pc { background: #9900ff0a; border-color: #9900ff44; }
+.affil-home-pc:hover { box-shadow: 0 8px 24px #9900ff33; border-color: #9900ff; }
+.affil-home-acc { background: #00f0ff0a; border-color: #00f0ff44; }
+.affil-home-acc:hover { box-shadow: 0 8px 24px #00f0ff33; border-color: #00f0ff; }
+.affil-home-ico { font-size: 28px; flex-shrink: 0; }
+.affil-home-title { font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 700; margin-bottom: 3px; }
+.affil-home-title-pc { color: #cc55ff; }
+.affil-home-title-acc { color: #00f0ff; }
+.affil-home-sub { font-size: 11px; color: #888; }
+@media(max-width:480px) { .affil-btns-home { grid-template-columns: 1fr; } }
+ 
 /* ── MINI GAME BUTTONS ── */
 .minigame-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   padding: 0 20px 24px;
+  position: relative;
+  z-index: 1;
 }
-
 .minigame-btn {
-  padding: 18px 10px;
+  padding: 20px 10px;
   background: var(--bg3);
   border: 1px solid #9900ff33;
   border-radius: 12px;
@@ -386,14 +385,33 @@ header {
   font-size: 11px;
   color: var(--cyan);
   letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
 }
-.minigame-btn:hover {
-  border-color: var(--cyan);
-  box-shadow: var(--glow-c);
-  color: #fff;
+.minigame-btn::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle, #00f0ff11 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
-
-/* ── ONLINE GAMES CARD (small) ── */
+.minigame-btn:hover::before { opacity: 1; }
+.minigame-btn:hover { border-color: var(--cyan); box-shadow: 0 0 14px #00f0ff22; color: #fff; transform: translateY(-2px); }
+ 
+/* ── ONLINE GAMES CARD ── */
+.scroll-row {
+  display: flex;
+  gap: 14px;
+  padding: 0 20px 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  position: relative;
+  z-index: 1;
+}
+.scroll-row::-webkit-scrollbar { display: none; }
+ 
 .card-sm {
   flex-shrink: 0;
   width: 220px;
@@ -405,11 +423,7 @@ header {
   transition: 0.3s;
   cursor: pointer;
 }
-.card-sm:hover {
-  transform: scale(1.05);
-  border-color: var(--cyan);
-  box-shadow: var(--glow-c);
-}
+.card-sm:hover { transform: scale(1.05); border-color: var(--cyan); box-shadow: var(--glow-c); }
 .card-sm img { width: 100%; height: 100%; object-fit: cover; }
 .card-sm .overlay {
   position: absolute;
@@ -417,12 +431,7 @@ header {
   padding: 6px 8px;
   background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
 }
-.card-sm .overlay h4 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 9px;
-  color: #fff;
-  margin-bottom: 4px;
-}
+.card-sm .overlay h4 { font-family: 'Orbitron', sans-serif; font-size: 9px; color: #fff; margin-bottom: 4px; }
 .play-btn {
   display: block;
   text-align: center;
@@ -437,443 +446,238 @@ header {
   border: none;
   width: 100%;
 }
-
-/* ── MISSION SECTION ── */
+ 
+/* ── MISSION ── */
 .mission-box {
   margin: 0 20px 24px;
   padding: 20px;
   background: var(--bg3);
-  border: 1px solid #9900ff33;
+  border: 1px solid #9900ff22;
   border-radius: 14px;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
-.mission-box h3 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 14px;
-  color: #fff;
-  letter-spacing: 2px;
-  margin-bottom: 10px;
-}
-.mission-box p {
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--text);
-  text-align: center;
-}
-
+.mission-box h3 { font-family: 'Orbitron', sans-serif; font-size: 14px; color: #fff; letter-spacing: 2px; margin-bottom: 10px; }
+.mission-box p { font-size: 14px; line-height: 1.7; color: var(--text); }
+ 
 /* ── COMMENTS ── */
 .comments-section {
   margin: 0 20px 24px;
   background: var(--bg3);
   padding: 18px;
   border-radius: 14px;
-  border: 1px solid #9900ff33;
+  border: 1px solid #9900ff22;
+  position: relative;
+  z-index: 1;
 }
-.comments-section h2 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 14px;
-  color: #fff;
-  letter-spacing: 2px;
-  margin-bottom: 14px;
-}
-.comment-form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 14px;
-}
-.comment-form input {
-  flex: 1;
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid #9900ff44;
-  background: #000;
-  color: #fff;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 14px;
-  outline: none;
-}
+.comments-section h2 { font-family: 'Orbitron', sans-serif; font-size: 14px; color: #fff; letter-spacing: 2px; margin-bottom: 14px; }
+.comment-form { display: flex; gap: 10px; margin-bottom: 14px; }
+.comment-form input { flex: 1; padding: 10px 14px; border-radius: 8px; border: 1px solid #9900ff44; background: #000; color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 14px; outline: none; }
 .comment-form input:focus { border-color: var(--purple); }
-.comment-form button {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 8px;
-  background: var(--purple);
-  color: #fff;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.comment-form button:hover { filter: brightness(1.2); }
-#comments-list .comment {
-  background: #000;
-  padding: 10px 14px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  font-size: 14px;
-  border-left: 3px solid var(--purple);
-}
-
-/* ── GAME OVERLAY (iframe) ── */
+.comment-form button { padding: 10px 18px; border: none; border-radius: 8px; background: var(--purple); color: #fff; font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: 700; cursor: pointer; }
+#comments-list .comment { background: #000; padding: 10px 14px; border-radius: 8px; margin-bottom: 8px; font-size: 14px; border-left: 3px solid var(--purple); }
+ 
+/* ── GAME OVERLAY ── */
 #iframeOverlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
+  display: none; position: fixed; top: 0; left: 0;
   width: 100%; height: 100%;
   background: rgba(0,0,0,0.97);
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
+  z-index: 9999; align-items: center; justify-content: center; padding: 10px;
 }
-.iframePanel {
-  width: 100%; height: 100%;
-  max-width: 1200px; max-height: 900px;
-  background: #000;
-  border-radius: 14px;
-  border: 1px solid var(--purple);
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 40px #9900ff66;
-}
-.closeIframe {
-  position: absolute; top: 12px; right: 12px;
-  width: 40px; height: 40px;
-  background: #e74c3c;
-  border: none; border-radius: 50%;
-  color: white; font-size: 18px;
-  cursor: pointer; z-index: 10;
-  transition: 0.2s;
-}
+.iframePanel { width: 100%; height: 100%; max-width: 1200px; max-height: 900px; background: #000; border-radius: 14px; border: 1px solid var(--purple); position: relative; overflow: hidden; box-shadow: 0 0 40px #9900ff44; }
+.closeIframe { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; background: #e74c3c; border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; z-index: 10; transition: 0.2s; }
 .closeIframe:hover { transform: scale(1.1); }
 #iframeViewer { width: 100%; height: 100%; border: 0; }
-
+ 
 /* ── MINI GAME OVERLAY ── */
 #overlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
+  display: none; position: fixed; top: 0; left: 0;
   width: 100%; height: 100%;
   background: rgba(0,0,0,0.97);
-  z-index: 9998;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
+  z-index: 9998; align-items: center; justify-content: center; padding: 10px;
 }
-.panel {
-  width: 100%; height: 100%;
-  max-width: 1200px; max-height: 900px;
-  background: var(--bg2);
-  border-radius: 14px;
-  border: 1px solid var(--cyan);
-  box-shadow: 0 0 40px #00f0ff33;
-  padding: 12px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-.close-btn {
-  position: absolute; right: 12px; top: 12px;
-  background: #e74c3c; color: #fff;
-  border: none; width: 40px; height: 40px;
-  border-radius: 50%; cursor: pointer; font-size: 18px;
-}
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  padding-right: 50px;
-}
-.game-title-bar {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 14px;
-  color: var(--cyan);
-  letter-spacing: 2px;
-}
-.reload-btn {
-  background: var(--bg3);
-  border: 1px solid var(--purple);
-  color: #fff;
-  padding: 7px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 12px;
-}
-.game-area {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 8px;
-}
+.panel { width: 100%; height: 100%; max-width: 1200px; max-height: 900px; background: var(--bg2); border-radius: 14px; border: 1px solid var(--cyan); box-shadow: 0 0 30px #00f0ff22; padding: 12px; position: relative; display: flex; flex-direction: column; }
+.close-btn { position: absolute; right: 12px; top: 12px; background: #e74c3c; color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 18px; }
+.toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-right: 50px; }
+.game-title-bar { font-family: 'Orbitron', sans-serif; font-size: 14px; color: var(--cyan); letter-spacing: 2px; }
+.reload-btn { background: var(--bg3); border: 1px solid var(--purple); color: #fff; padding: 7px 14px; border-radius: 8px; cursor: pointer; font-size: 12px; }
+.game-area { flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px; }
 .game-box { display: none; width: 100%; height: 100%; }
-
-/* Tic Tac Toe */
 #tt-board { width: 360px; max-width: 90%; margin: 12px auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
 .tt-cell { background: #111; height: 110px; display: flex; align-items: center; justify-content: center; font-size: 56px; cursor: pointer; border-radius: 8px; border: 1px solid #9900ff33; transition: 0.2s; }
 .tt-cell:hover { border-color: var(--purple); background: #1a0a2e; }
 .tt-info { display: flex; justify-content: space-between; margin: 5px 10px; font-size: 16px; color: #ccc; }
-
-/* Memory */
 #memoryGrid { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; width: 100%; max-width: 920px; margin: 10px auto; }
 .mem-card { background: #111; height: 100px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 40px; cursor: pointer; user-select: none; transition: 0.2s; border: 1px solid #9900ff33; }
 .mem-card:hover { border-color: var(--cyan); }
 .status { text-align: center; color: var(--cyan); margin-top: 8px; font-family: 'Orbitron', sans-serif; font-size: 13px; }
-
-@media (max-width: 920px) {
-  #memoryGrid { grid-template-columns: repeat(4,1fr); }
-  .tt-cell { height: 84px; font-size: 40px; }
-}
-
+@media (max-width: 920px) { #memoryGrid { grid-template-columns: repeat(4,1fr); } .tt-cell { height: 84px; font-size: 40px; } }
+ 
 /* ── DIVIDER ── */
-.divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--purple), transparent);
-  margin: 4px 20px 24px;
-}
-
-  /* 4 boutons colorés */
-.nav-card.nav-cyan {
-  border-color: #00f0ff44;
-  background: #00f0ff11;
-}
-.nav-card.nav-cyan:hover {
-  border-color: var(--cyan);
-  box-shadow: 0 0 20px #00f0ff55;
-  transform: translateY(-3px);
-}
-.nav-card.nav-cyan .icon { color: var(--cyan); }
-.nav-card.nav-cyan span:last-child { color: var(--cyan); }
-
-.nav-card.nav-purple {
-  border-color: #9900ff44;
-  background: #9900ff11;
-}
-.nav-card.nav-purple:hover {
-  border-color: var(--purple);
-  box-shadow: 0 0 20px #9900ff55;
-  transform: translateY(-3px);
-}
-.nav-card.nav-purple .icon { color: #cc55ff; }
-.nav-card.nav-purple span:last-child { color: #cc55ff; }
-
-.nav-card.nav-blue {
-  border-color: #0066ff44;
-  background: #0066ff11;
-}
-.nav-card.nav-blue:hover {
-  border-color: #0066ff;
-  box-shadow: 0 0 20px #0066ff55;
-  transform: translateY(-3px);
-}
-.nav-card.nav-blue .icon { color: #5599ff; }
-.nav-card.nav-blue span:last-child { color: #5599ff; }
-
-.nav-card.nav-green {
-  border-color: #00ff8844;
-  background: #00ff8811;
-}
-.nav-card.nav-green:hover {
-  border-color: #00ff88;
-  box-shadow: 0 0 20px #00ff8855;
-  transform: translateY(-3px);
-}
-.nav-card.nav-green .icon { color: #00ff88; }
-.nav-card.nav-green span:last-child { color: #00ff88; }
-
-/* Accessoires & Consoles */
-.affil-btns-home {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  padding: 0 20px 24px;
-}
-.affil-home {
+.divider { height: 1px; background: linear-gradient(90deg, transparent, var(--purple), transparent); margin: 4px 20px 24px; position: relative; z-index: 1; }
+ 
+/* ── PLATFORMS BAR ── */
+.platforms-bar {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 14px;
-  padding: 16px 18px;
-  border-radius: 14px;
-  text-decoration: none;
-  border: 1px solid;
-  transition: transform 0.2s, box-shadow 0.2s;
+  gap: 10px;
+  padding: 6px 20px 16px;
+  position: relative;
+  z-index: 1;
 }
-.affil-home:hover { transform: translateY(-3px); }
-.affil-home-pc {
-  background: #9900ff11;
-  border-color: #9900ff44;
-}
-.affil-home-pc:hover {
-  box-shadow: 0 8px 24px #9900ff44;
-  border-color: #9900ff;
-}
-.affil-home-acc {
-  background: #00f0ff11;
-  border-color: #00f0ff44;
-}
-.affil-home-acc:hover {
-  box-shadow: 0 8px 24px #00f0ff44;
-  border-color: #00f0ff;
-}
-.affil-home-ico { font-size: 28px; flex-shrink: 0; }
-.affil-home-title {
+.platform-badge {
   font-family: 'Orbitron', sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  margin-bottom: 3px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 1px;
 }
-.affil-home-title-pc { color: #cc55ff; }
-.affil-home-title-acc { color: #00f0ff; }
-.affil-home-sub { font-size: 11px; color: #888; }
-
-@media(max-width:480px) {
-  .affil-btns-home { grid-template-columns: 1fr; }
-}
-
+.platform-badge.android { color: #34a853; border: 1px solid #34a85344; background: #34a85311; }
+.platform-badge.ios { color: #5da9ff; border: 1px solid #007aff44; background: #007aff11; }
+.platform-badge.pc { color: #cc55ff; border: 1px solid #9900ff44; background: #9900ff11; }
+.platform-sep { color: #333; font-size: 12px; }
+.stat-number.static { font-size: 22px; -webkit-text-fill-color: unset; background: none; }
+.mg-icon { display: block; font-size: 22px; margin-bottom: 6px; }
+ 
 /* ── FOOTER ── */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: var(--bg2);
-  font-size: 12px;
-  color: #555;
-  border-top: 1px solid #9900ff22;
-}
-footer a {
-  color: #9900ff88;
-  text-decoration: none;
-  margin: 0 8px;
-}
+footer { text-align: center; padding: 20px; background: var(--bg2); font-size: 12px; color: #555; border-top: 1px solid #9900ff22; position: relative; z-index: 1; }
+footer a { color: #9900ff88; text-decoration: none; margin: 0 8px; }
 footer a:hover { color: var(--purple); }
-footer .credit { color: var(--purple); font-weight: 600; }
-
+ 
+/* ── SCROLL REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+ 
 /* ── RESPONSIVE ── */
 @media (max-width: 480px) {
-  .logo { font-size: 24px; }
+  .logo { font-size: 20px; }
   .header-nav { gap: 6px; }
-  .nav-btn { font-size: 9px; padding: 6px 10px; }
-  .card-lg { width: 240px; }
+  .nav-btn { font-size: 9px; padding: 6px 8px; }
+  .card-lg { width: 250px; }
 }
 </style>
 </head>
 <body>
-  
- <!-- WELCOME BANNER -->
-<div id="welcome-msg">🎮 Bienvenue sur MLG XGame — Télécharge, joue et découvre !</div>
-
+ 
+<!-- PARTICLES -->
+<canvas id="particles-canvas"></canvas>
+ 
+<!-- WELCOME BANNER -->
+<div id="welcome-msg">🎮 MLG XGame — Ton univers gaming est ici !</div>
+ 
 <!-- HEADER -->
 <header>
- <a class="logo" href="index.html">MLG XGame</a>
+  <a class="logo" href="index.html">MLG XGame</a>
   <nav class="header-nav">
     <a href="android-games.html" class="nav-btn purple">📱 Jeux</a>
     <a href="jeux-online.html" class="nav-btn">🎮 Play</a>
     <a href="application.html" class="nav-btn purple">📦 Apps</a>
   </nav>
 </header>
-<!-- TOP DES JEUX (scroll horizontal) -->
-<div class="section-header">
+ 
+<!-- STATS BAR -->
+<div class="stats-bar reveal">
+  <div class="stat-item">
+    <div class="stat-number" data-target="100" data-suffix="+">0</div>
+    <div class="stat-label">JEUX</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number" data-target="10" data-suffix="">0</div>
+    <div class="stat-label">CATÉGORIES</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number" data-target="3" data-suffix="">0</div>
+    <div class="stat-label">PLATEFORMES</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number static">🆓</div>
+    <div class="stat-label">GRATUIT</div>
+  </div>
+</div>
+<!-- PLATFORMS BADGE -->
+<div class="platforms-bar reveal">
+  <span class="platform-badge android">🤖 Android</span>
+  <span class="platform-sep">•</span>
+  <span class="platform-badge ios">🍎 iOS</span>
+  <span class="platform-sep">•</span>
+  <span class="platform-badge pc">🖥️ PC</span>
+</div>
+ 
+<!-- TOP DES JEUX CAROUSEL -->
+<div class="section-header reveal">
   <h2>🎮 Top des jeux</h2>
 </div>
-<div class="scroll-row">
-
-<a href="android-games/sport/fifa-mobile.html" class="card-lg">
-  <img src="img/fifa-mobile.jpg" alt="FC Mobile">
-  <div class="overlay">
-    <h4>FC Mobile</h4>
-    <p>Football réaliste avec équipes officielles.</p>
+<div class="carousel-wrap">
+  <div class="carousel-track" id="carouselTrack">
+    <a href="android-games/sport/fifa-mobile.html" class="card-lg">
+      <img src="img/fifa-mobile.jpg" alt="FC Mobile">
+      <div class="overlay"><h4>FC Mobile</h4><p>Football réaliste avec équipes officielles.</p></div>
+    </a>
+    <a href="android-games/aventure/minecraft.html" class="card-lg">
+      <img src="img/minecraft.jpg" alt="Minecraft">
+      <div class="overlay"><h4>Minecraft</h4><p>Jeu créatif et survie multijoueur.</p></div>
+    </a>
+    <a href="android-games/course/asphalt-nitro.html" class="card-lg">
+      <img src="img/asphalt-nitro.jpg" alt="Asphalt Nitro">
+      <div class="overlay"><h4>Asphalt Nitro</h4><p>Course intense avec voitures de luxe.</p></div>
+    </a>
+    <a href="android-games/casual/my-talking-tom.html" class="card-lg">
+      <img src="img/my-talking-tom.jpg" alt="My Talking Tom">
+      <div class="overlay"><h4>My Talking Tom</h4><p>Parcours les niveaux avec Tom et ses amis.</p></div>
+    </a>
+    <a href="android-games/multijoueur/among-us.html" class="card-lg">
+      <img src="img/among-us.jpg" alt="Among Us">
+      <div class="overlay"><h4>Among Us</h4><p>Trouve l'imposteur, ne fais confiance à personne.</p></div>
+    </a>
   </div>
-</a>
-
-<a href="android-games/aventure/minecraft.html" class="card-lg">
-  <img src="img/minecraft.jpg" alt="Minecraft">
-  <div class="overlay">
-    <h4>Minecraft</h4>
-    <p>Jeu créatif et survie multijoueur.</p>
-  </div>
-</a>
-
-<a href="android-games/course/asphalt-nitro.html" class="card-lg">
-  <img src="img/asphalt-nitro.jpg" alt="Asphalt Nitro">
-  <div class="overlay">
-    <h4>Asphalt Nitro</h4>
-    <p>Course intense avec voitures de luxe.</p>
-  </div>
-</a>
-
-<a href="android-games/casual/my-talking-tom.html" class="card-lg">
-  <img src="img/my-talking-tom.jpg" alt="My Talking Tom">
-  <div class="overlay">
-    <h4>My Talking Tom</h4>
-    <p>Parcours les niveaux avec Tom et ses amis.</p>
-  </div>
-</a>
-
-<a href="android-games/multijoueur/among-us.html" class="card-lg">
-  <img src="img/among-us.jpg" alt="Among Us">
-  <div class="overlay">
-    <h4>Among Us</h4>
-    <p>Trouve l'imposteur, ne fais confiance à personne.</p>
-  </div>
-</a>
+  <div class="carousel-dots" id="carouselDots"></div>
 </div>
+ 
 <!-- TOP POPULAIRES -->
-<div class="section-header">
+<div class="section-header reveal">
   <h2>🔥 Jeux populaires</h2>
 </div>
 <div class="top-list">
   <a href="android-games/sport/dream-league-soccer.html" class="top-item">
-    <span class="top-rank">1</span>
-    <span class="top-name">Dream League Soccer</span>
-    <span class="top-arrow">›</span>
+    <span class="top-rank">1</span><span class="top-name">Dream League Soccer</span><span class="top-arrow">›</span>
   </a>
   <a href="android-games/strategie/clash-of-clans.html" class="top-item">
-    <span class="top-rank">2</span>
-    <span class="top-name">Clash of Clans</span>
-    <span class="top-arrow">›</span>
+    <span class="top-rank">2</span><span class="top-name">Clash of Clans</span><span class="top-arrow">›</span>
   </a>
   <a href="android-games/multijoueur/roblox.html" class="top-item">
-    <span class="top-rank">3</span>
-    <span class="top-name">Roblox</span>
-    <span class="top-arrow">›</span>
+    <span class="top-rank">3</span><span class="top-name">Roblox</span><span class="top-arrow">›</span>
   </a>
   <a href="android-games/casual/subway-surfers.html" class="top-item">
-    <span class="top-rank">4</span>
-    <span class="top-name">Subway Surfers</span>
-    <span class="top-arrow">›</span>
+    <span class="top-rank">4</span><span class="top-name">Subway Surfers</span><span class="top-arrow">›</span>
   </a>
 </div>
-  
+ 
 <div class="divider"></div>
-
+ 
 <!-- NAVIGATION CARDS -->
-<!-- NAVIGATION CARDS -->
-<div class="section-header">
+<div class="section-header reveal">
   <h2>Explorer</h2>
 </div>
-<div class="nav-cards">
+<div class="nav-cards reveal">
   <a href="jeux-online.html" class="nav-card nav-cyan">
-    <span class="icon">🎮</span>
-    <span>Jouer en ligne</span>
+    <span class="icon">🎮</span><span>Jouer en ligne</span>
   </a>
   <a href="android-games.html" class="nav-card nav-purple">
-    <span class="icon">📱</span>
-    <span>Jeux Android</span>
+    <span class="icon">📱</span><span>Jeux Android</span>
   </a>
   <a href="pc-games.html" class="nav-card nav-blue">
-    <span class="icon">🖥️</span>
-    <span>Jeux PC</span>
+    <span class="icon">🖥️</span><span>Jeux PC</span>
   </a>
   <a href="application.html" class="nav-card nav-green">
-    <span class="icon">📦</span>
-    <span>Meilleures Apps</span>
+    <span class="icon">📦</span><span>Meilleures Apps</span>
   </a>
 </div>
-
+ 
 <!-- ACCESSOIRES & CONSOLES -->
-<div class="affil-btns-home">
+<div class="affil-btns-home reveal">
   <a href="pc-consoles.html" class="affil-home affil-home-pc">
     <span class="affil-home-ico">🕹️</span>
     <div>
@@ -889,97 +693,49 @@ footer .credit { color: var(--purple); font-weight: 600; }
     </div>
   </a>
 </div>
-  
+ 
 <div class="divider"></div>
-
+ 
 <!-- JOUER EN LIGNE -->
-<div class="section-header">
+<div class="section-header reveal">
   <h2>🕹️ Jouer maintenant</h2>
 </div>
 <div class="scroll-row">
-
-  <div class="card-sm">
-    <img src="https://business.gamezop.com/img/gamezop/H1Wzaf1wqyQ/cover.jpg?w=300&q=50" alt="Hipster Tennis">
-    <div class="overlay">
-      <h4>Hipster Tennis</h4>
-      <button class="play-btn" onclick="openIframeGame(6)">▶ JOUER</button>
-    </div>
-  </div>
-
-  <div class="card-sm">
-    <img src="https://business.gamezop.com/img/gamezop/Skz4pzkDqyX/cover.jpg?w=300&q=50" alt="Escape Run">
-    <div class="overlay">
-      <h4>Escape Run</h4>
-      <button class="play-btn" onclick="openIframeGame(3)">▶ JOUER</button>
-    </div>
-  </div>
-
-  <div class="card-sm">
-    <img src="https://business.gamezop.com/img/gamezop/SkhljT2fdgb/cover.jpg?w=300&q=50" alt="Ludo">
-    <div class="overlay">
-      <h4>Ludo With Friends</h4>
-      <button class="play-btn" onclick="openIframeGame(1)">▶ JOUER</button>
-    </div>
-  </div>
-
-  <div class="card-sm">
-    <img src="https://business.gamezop.com/img/gamezop/BkdJhTX50B/cover.jpg?w=300&q=50" alt="Bowling">
-    <div class="overlay">
-      <h4>Stars du Bowling</h4>
-      <button class="play-btn" onclick="openIframeGame(7)">▶ JOUER</button>
-    </div>
-  </div>
-
-  <div class="card-sm">
-    <img src="https://static.gamezop.com/hgempP8Sc/brick.png" alt="Pool Master">
-    <div class="overlay">
-      <h4>Pool Master</h4>
-      <button class="play-btn" onclick="openIframeGame(5)">▶ JOUER</button>
-    </div>
-  </div>
-
-  <div class="card-sm">
-    <img src="https://business.gamezop.com/img/gamezop/yVywAGBQ6/cover.jpg?w=300&q=50" alt="Bubble Shooter">
-    <div class="overlay">
-      <h4>Bubble Shooter</h4>
-      <button class="play-btn" onclick="openIframeGame(4)">▶ JOUER</button>
-    </div>
-  </div>
-
-  <div class="card-sm">
-    <img src="https://business.gamezop.com/img/gamezop/UCS62KJ8c/cover.jpg?w=300&q=50" alt="Blocks Adventure">
-    <div class="overlay">
-      <h4>Blocks Adventure</h4>
-      <button class="play-btn" onclick="openIframeGame(2)">▶ JOUER</button>
-    </div>
-  </div>
-
+  <div class="card-sm"><img src="https://business.gamezop.com/img/gamezop/H1Wzaf1wqyQ/cover.jpg?w=300&q=50" alt="Hipster Tennis"><div class="overlay"><h4>Hipster Tennis</h4><button class="play-btn" onclick="openIframeGame(6)">▶ JOUER</button></div></div>
+  <div class="card-sm"><img src="https://business.gamezop.com/img/gamezop/Skz4pzkDqyX/cover.jpg?w=300&q=50" alt="Escape Run"><div class="overlay"><h4>Escape Run</h4><button class="play-btn" onclick="openIframeGame(3)">▶ JOUER</button></div></div>
+  <div class="card-sm"><img src="https://business.gamezop.com/img/gamezop/SkhljT2fdgb/cover.jpg?w=300&q=50" alt="Ludo"><div class="overlay"><h4>Ludo With Friends</h4><button class="play-btn" onclick="openIframeGame(1)">▶ JOUER</button></div></div>
+  <div class="card-sm"><img src="https://business.gamezop.com/img/gamezop/BkdJhTX50B/cover.jpg?w=300&q=50" alt="Bowling"><div class="overlay"><h4>Stars du Bowling</h4><button class="play-btn" onclick="openIframeGame(7)">▶ JOUER</button></div></div>
+  <div class="card-sm"><img src="https://static.gamezop.com/hgempP8Sc/brick.png" alt="Pool Master"><div class="overlay"><h4>Pool Master</h4><button class="play-btn" onclick="openIframeGame(5)">▶ JOUER</button></div></div>
+  <div class="card-sm"><img src="https://business.gamezop.com/img/gamezop/yVywAGBQ6/cover.jpg?w=300&q=50" alt="Bubble Shooter"><div class="overlay"><h4>Bubble Shooter</h4><button class="play-btn" onclick="openIframeGame(4)">▶ JOUER</button></div></div>
+  <div class="card-sm"><img src="https://business.gamezop.com/img/gamezop/UCS62KJ8c/cover.jpg?w=300&q=50" alt="Blocks Adventure"><div class="overlay"><h4>Blocks Adventure</h4><button class="play-btn" onclick="openIframeGame(2)">▶ JOUER</button></div></div>
 </div>
-<a href="jouer.html" style="display:block;text-align:right;padding:0 22px 20px;color:var(--purple);font-family:'Orbitron',sans-serif;font-size:11px;text-decoration:none;">Plus de jeux →</a>
-
+<div style="text-align:center;padding:0 20px 20px;position:relative;z-index:1;">
+  <a href="jouer.html" style="display:inline-block;padding:12px 28px;background:linear-gradient(90deg,var(--purple),#6600cc);color:#fff;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;border-radius:25px;text-decoration:none;box-shadow:0 0 20px #9900ff44;transition:0.25s;" onmouseover="this.style.boxShadow='0 0 30px #9900ff88';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='0 0 20px #9900ff44';this.style.transform=''">🎮 Voir tous les jeux en ligne →</a>
+</div>
+ 
 <div class="divider"></div>
-
+ 
 <!-- MINI JEUX -->
-<div class="section-header">
+<div class="section-header reveal">
   <h2>🎲 Mini Jeux</h2>
 </div>
-<div class="minigame-grid">
-  <div class="minigame-btn" onclick="openGame('tictactoe')">Tic Tac Toe</div>
-  <div class="minigame-btn" onclick="openGame('pong')">Pong</div>
-  <div class="minigame-btn" onclick="openGame('snake')">Snake</div>
-  <div class="minigame-btn" onclick="openGame('memory')">Memory</div>
+<div class="minigame-grid reveal">
+  <div class="minigame-btn" onclick="openGame('tictactoe')"><span class="mg-icon">🎯</span>Tic Tac Toe</div>
+  <div class="minigame-btn" onclick="openGame('pong')"><span class="mg-icon">🏓</span>Pong</div>
+  <div class="minigame-btn" onclick="openGame('snake')"><span class="mg-icon">🐍</span>Snake</div>
+  <div class="minigame-btn" onclick="openGame('memory')"><span class="mg-icon">🧠</span>Memory</div>
 </div>
-
+ 
 <div class="divider"></div>
-
+ 
 <!-- NOTRE MISSION -->
-<div class="mission-box">
+<div class="mission-box reveal">
   <h3>Notre Mission</h3>
-  <p>Proposer les meilleurs jeux et applications sur toutes les plateformes. MLG XGame est un univers de rêve pour chaque gamer — ici tu peux jouer et télécharger gratuitement des centaines de jeux et applications. Tout est fait pour le confort du gaming.</p>
+  <p>MLG XGame c'est ton univers gaming ultime — des centaines de jeux gratuits sur Android, iOS et PC. Joue en ligne, télécharge, explore et reviens toujours pour du neuf. Tout est fait pour toi, gamer. 🎮</p>
 </div>
-
+ 
 <!-- COMMENTAIRES -->
-<div class="comments-section">
+<div class="comments-section reveal">
   <h2>💬 Commentaires</h2>
   <div class="comment-form">
     <input type="text" id="comment-input" placeholder="Écris ton commentaire..." />
@@ -987,18 +743,18 @@ footer .credit { color: var(--purple); font-weight: 600; }
   </div>
   <div id="comments-list"></div>
 </div>
-
+ 
 <!-- FOOTER CREDIT -->
-<div style="text-align:center;padding:10px;background:#0a0a1a;font-size:12px;color:#555;border-top:1px solid #9900ff11;">
+<div style="text-align:center;padding:10px;background:#0a0a1a;font-size:12px;color:#555;border-top:1px solid #9900ff11;position:relative;z-index:1;">
   Créé par un passionné de jeux vidéos : {MLG} <strong style="color:#9900ff">Malonga - Brayan</strong>
 </div>
-
-  <!-- SEO TEXT CONTENT -->
-<div style="padding: 20px 16px; color: #555; font-size: 13px; line-height: 1.8; font-family: 'Rajdhani', sans-serif;">
-  <h2 style="font-family:'Orbitron',sans-serif; font-size:13px; color:#9900ff55; letter-spacing:2px; margin-bottom:10px;">MLG XGAME — JEUX GRATUITS 2026</h2>
-  <p>MLG XGame est votre destination gaming pour télécharger et jouer aux meilleurs jeux gratuits sur Android, iOS et PC. Retrouvez des centaines de jeux dans toutes les catégories : jeux de sport, aventure, course, stratégie, multijoueur, simulation et bien plus. Jouez directement en ligne sans téléchargement ou obtenez vos jeux préférés comme Minecraft, PUBG Mobile, Fortnite, Clash of Clans, Subway Surfers et bien d'autres. MLG XGame c'est aussi des mini jeux gratuits, des applications mobiles et des accessoires gaming.</p>
+ 
+<!-- SEO TEXT -->
+<div style="padding:20px 16px;color:#333;font-size:13px;line-height:1.8;font-family:'Rajdhani',sans-serif;position:relative;z-index:1;">
+  <h2 style="font-family:'Orbitron',sans-serif;font-size:13px;color:#9900ff33;letter-spacing:2px;margin-bottom:10px;">MLG XGAME — JEUX GRATUITS 2026</h2>
+  <p>MLG XGame est votre destination gaming pour télécharger et jouer aux meilleurs jeux gratuits sur Android, iOS et PC. Retrouvez des centaines de jeux dans toutes les catégories : jeux de sport, aventure, course, stratégie, multijoueur, simulation et bien plus. Jouez directement en ligne sans téléchargement ou obtenez vos jeux préférés comme Minecraft, PUBG Mobile, Fortnite, Clash of Clans, Subway Surfers et bien d'autres.</p>
 </div>
-  
+ 
 <!-- FOOTER -->
 <footer>
   <p style="margin-bottom:10px;">&copy; 2026 <strong style="color:#9900ff">MLG XGame</strong>. Tous droits réservés.</p>
@@ -1009,7 +765,7 @@ footer .credit { color: var(--purple); font-weight: 600; }
     <a href="contact.html">Contact</a>
   </p>
 </footer>
-
+ 
 <!-- IFRAME OVERLAY -->
 <div id="iframeOverlay">
   <div class="iframePanel">
@@ -1017,7 +773,7 @@ footer .credit { color: var(--purple); font-weight: 600; }
     <iframe id="iframeViewer" allowfullscreen></iframe>
   </div>
 </div>
-
+ 
 <!-- MINI GAME OVERLAY -->
 <div id="overlay">
   <div class="panel">
@@ -1051,31 +807,123 @@ footer .credit { color: var(--purple); font-weight: 600; }
     </div>
   </div>
 </div>
-
+ 
 <!-- AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7572845165323582" crossorigin="anonymous"></script>
-
+ 
 <script>
+/* ── PARTICLES ── */
+(function() {
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  for (let i = 0; i < 60; i++) {
+    particles.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      r: Math.random() * 1.5 + 0.3,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      color: Math.random() > 0.5 ? '#9900ff' : '#00f0ff',
+      alpha: Math.random() * 0.5 + 0.1
+    });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.alpha;
+      ctx.fill();
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+ 
 /* ── WELCOME ── */
 window.addEventListener("load", () => {
   const msg = document.getElementById("welcome-msg");
-  msg.style.opacity = "1";
-  setTimeout(() => { msg.style.opacity = "0"; }, 5000);
+  setTimeout(() => msg.classList.add('show'), 300);
+  setTimeout(() => msg.classList.remove('show'), 5000);
 });
-
-/* ── DOWNLOAD TOGGLE ── */
-function toggleDownload(btn) {
-  const menu = btn.nextElementSibling;
-  const isOpen = menu.style.display === "block";
-  document.querySelectorAll('.dl-menu').forEach(m => m.style.display = "none");
-  menu.style.display = isOpen ? "none" : "block";
-}
-document.addEventListener("click", function(e) {
-  if (!e.target.closest('.dl-wrap')) {
-    document.querySelectorAll('.dl-menu').forEach(m => m.style.display = "none");
+ 
+/* ── CAROUSEL AUTO ── */
+(function() {
+  const track = document.getElementById('carouselTrack');
+  const dotsContainer = document.getElementById('carouselDots');
+  if (!track) return;
+  const cards = track.querySelectorAll('.card-lg');
+  const total = cards.length;
+  let current = 0;
+  let autoTimer;
+ 
+  // Create dots
+  cards.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goTo(i);
+    dotsContainer.appendChild(dot);
+  });
+ 
+  function goTo(index) {
+    current = index;
+    const cardW = cards[0].offsetWidth + 14;
+    const offset = 20 + index * cardW;
+    track.style.transform = `translateX(-${offset - 20}px)`;
+    dotsContainer.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
   }
-});
-
+ 
+  function next() {
+    goTo((current + 1) % total);
+  }
+ 
+  autoTimer = setInterval(next, 3000);
+ 
+  track.addEventListener('mouseenter', () => clearInterval(autoTimer));
+  track.addEventListener('mouseleave', () => { autoTimer = setInterval(next, 3000); });
+})();
+ 
+/* ── SCROLL REVEAL ── */
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+ 
+/* ── COUNTER ANIMATION ── */
+(function() {
+  const counters = document.querySelectorAll('.stat-number[data-target]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !e.target.dataset.done) {
+        e.target.dataset.done = true;
+        const target = parseInt(e.target.dataset.target);
+        const suffix = e.target.dataset.suffix || '+';
+        let count = 0;
+        const step = Math.ceil(target / 40);
+        const timer = setInterval(() => {
+          count = Math.min(count + step, target);
+          e.target.textContent = count + (count === target ? suffix : '');
+          if (count >= target) clearInterval(timer);
+        }, 30);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => observer.observe(c));
+})();
+ 
 /* ── IFRAME GAMES ── */
 const iframeLinks = {
   1: "https://zv1y2i8p.play.gamezop.com/g/SkhljT2fdgb",
@@ -1086,15 +934,9 @@ const iframeLinks = {
   6: "https://zv1y2i8p.play.gamezop.com/g/H1Wzaf1wqyQ",
   7: "https://zv1y2i8p.play.gamezop.com/g/BkdJhTX50B"
 };
-function openIframeGame(id) {
-  document.getElementById("iframeViewer").src = iframeLinks[id];
-  document.getElementById("iframeOverlay").style.display = "flex";
-}
-function closeIframeGame() {
-  document.getElementById("iframeOverlay").style.display = "none";
-  document.getElementById("iframeViewer").src = "";
-}
-
+function openIframeGame(id) { document.getElementById("iframeViewer").src = iframeLinks[id]; document.getElementById("iframeOverlay").style.display = "flex"; }
+function closeIframeGame() { document.getElementById("iframeOverlay").style.display = "none"; document.getElementById("iframeViewer").src = ""; }
+ 
 /* ── COMMENTS ── */
 function addComment() {
   const input = document.getElementById("comment-input");
@@ -1106,7 +948,7 @@ function addComment() {
   document.getElementById("comments-list").prepend(div);
   input.value = "";
 }
-
+ 
 /* ── MINI GAMES ── */
 const overlay = document.getElementById('overlay');
 let currentGame = null;
@@ -1136,7 +978,7 @@ function stopAll() {
   if (window._snakeInterval) clearInterval(window._snakeInterval);
   pongRunning = false; snakeRunning = false;
 }
-
+ 
 /* TIC TAC TOE */
 let tt = { scoreX: 0, scoreO: 0, turn: 'X', locked: false, cells: [] };
 function initTic(resetScores = false) {
@@ -1167,7 +1009,7 @@ function checkTic() {
   const s = tt.cells.map(c => c.textContent || '');
   return [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]].some(([a,b,c]) => s[a] && s[a] === s[b] && s[b] === s[c]);
 }
-
+ 
 /* PONG */
 let pong = {}, pongRunning = false;
 function initPong(reset = false) {
@@ -1197,7 +1039,7 @@ function pongLoop() {
   if(pong.playerScore>=pong.maxScore||pong.aiScore>=pong.maxScore){document.getElementById('pong-status').textContent=`${pong.playerScore>=pong.maxScore?'Toi':'IA'} a gagné !`;pongRunning=false;return;}
   window._pongRAF=requestAnimationFrame(pongLoop);
 }
-
+ 
 /* SNAKE */
 let snake = {}, snakeRunning = false;
 function initSnake(reset = false) {
@@ -1220,7 +1062,7 @@ function initSnake(reset = false) {
   window._snakeInterval=setInterval(gameStep,snake.speed);
 }
 function placeFood(){let x=Math.floor(Math.random()*snake.cols);let y=Math.floor(Math.random()*snake.rows);while(snake.cells.some(c=>c.x===x&&c.y===y)){x=Math.floor(Math.random()*snake.cols);y=Math.floor(Math.random()*snake.rows);}snake.food={x,y};}
-
+ 
 /* MEMORY */
 let memory = {};
 function initMemory(reset = false){
@@ -1240,39 +1082,9 @@ function initMemory(reset = false){
     };grid.appendChild(card);
   });
 }
-
+ 
 function clamp(v,min,max){return v<min?min:v>max?max:v;}
 function fitCanvas(canvas,w,h){canvas.width=window.innerWidth*w;canvas.height=window.innerHeight*h;}
 </script>
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
