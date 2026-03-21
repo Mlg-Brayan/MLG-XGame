@@ -32,7 +32,6 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 
 <style>
-/* ── VARIABLES ── */
 :root {
   --purple: #9900ff;
   --cyan: #00f0ff;
@@ -41,9 +40,7 @@
   --bg3: #1a0a2e;
   --text: #ccc;
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
   font-family: 'Rajdhani', sans-serif;
   background: linear-gradient(135deg, #000, #0a0a1a);
@@ -52,11 +49,22 @@ body {
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
 }
-
+ 
+/* ── PARTICLES ── */
+#particles-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.3;
+}
+ 
 /* ── HEADER ── */
 header {
-  background: #000;
-  box-shadow: 0 0 25px #9900ff55;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px #9900ff33;
   padding: 14px 18px;
   display: flex;
   align-items: center;
@@ -65,7 +73,6 @@ header {
   top: 0;
   z-index: 100;
 }
-
 .logo {
   font-family: 'Orbitron', sans-serif;
   font-size: 20px;
@@ -75,8 +82,13 @@ header {
   -webkit-text-fill-color: transparent;
   letter-spacing: 2px;
   text-decoration: none;
+  animation: logoPulse 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px #9900ff33);
 }
-
+@keyframes logoPulse {
+  0%, 100% { filter: drop-shadow(0 0 4px #9900ff22); }
+  50% { filter: drop-shadow(0 0 12px #9900ff55); }
+}
 .back-btn {
   font-family: 'Orbitron', sans-serif;
   font-size: 10px;
@@ -91,35 +103,67 @@ header {
   display: flex;
   align-items: center;
 }
-.back-btn:hover, .back-btn:active {
-  background: var(--cyan);
-  color: #000;
+.back-btn:hover, .back-btn:active { background: var(--cyan); color: #000; }
+ 
+/* ── GAME COUNT BANNER ── */
+.game-count-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 16px 4px;
+  position: relative;
+  z-index: 1;
 }
-
+.game-count-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  color: #555;
+  letter-spacing: 1px;
+}
+.game-count-num {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  background: linear-gradient(90deg, var(--purple), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+ 
 /* ── SEARCH ── */
 .search-wrap {
-  padding: 14px 16px 8px;
+  padding: 10px 16px 8px;
+  position: relative;
+  z-index: 1;
 }
-
 .search-wrap input {
   width: 100%;
-  padding: 12px 16px;
-  border: 1px solid #9900ff44;
-  border-radius: 10px;
+  padding: 12px 16px 12px 42px;
+  border: 1px solid #9900ff33;
+  border-radius: 12px;
   font-size: 15px;
   font-family: 'Rajdhani', sans-serif;
   outline: none;
   background: #0a0a1a;
   color: #fff;
   -webkit-appearance: none;
-  transition: 0.2s;
+  transition: 0.3s;
 }
 .search-wrap input:focus {
   border-color: var(--purple);
-  box-shadow: 0 0 12px #9900ff33;
+  box-shadow: 0 0 16px #9900ff22;
+  background: #0f0f22;
 }
-.search-wrap input::placeholder { color: #666; }
-
+.search-wrap input::placeholder { color: #444; }
+.search-icon {
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+}
+ 
 /* ── CATEGORIES ── */
 .categories {
   display: flex;
@@ -128,9 +172,10 @@ header {
   padding: 10px 16px;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
+  position: relative;
+  z-index: 1;
 }
 .categories::-webkit-scrollbar { display: none; }
-
 .cat-btn {
   font-family: 'Orbitron', sans-serif;
   font-size: 10px;
@@ -139,7 +184,7 @@ header {
   border-radius: 20px;
   border: 1px solid var(--purple);
   color: #cc55ff;
-  background: #9900ff15;
+  background: #9900ff0f;
   white-space: nowrap;
   cursor: pointer;
   transition: 0.2s;
@@ -152,15 +197,17 @@ header {
 .cat-btn:hover, .cat-btn.active, .cat-btn:active {
   background: var(--purple);
   color: #fff;
-  box-shadow: 0 0 14px #9900ff55;
+  box-shadow: 0 0 14px #9900ff44;
 }
-
+ 
 /* ── SECTION TITLE ── */
 .section-header {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 16px 16px 10px;
+  position: relative;
+  z-index: 1;
 }
 .section-header h2 {
   font-family: 'Orbitron', sans-serif;
@@ -177,57 +224,61 @@ header {
   height: 1px;
   background: linear-gradient(90deg, var(--purple), transparent);
 }
-
+ 
 /* ── GAMES GRID ── */
 .games {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-  gap: 12px;
-  padding: 0 12px 20px;
+  gap: 16px;
+  padding: 0 12px 24px;
+  position: relative;
+  z-index: 1;
 }
-
+ 
 /* ── CARD ── */
 .card {
   position: relative;
-  height: 215px;
+  height: 225px;
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid #9900ff33;
-  box-shadow: 0 0 10px #00000088;
-  transition: transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 4px 15px #00000066;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
   cursor: pointer;
   background: var(--bg3);
   -webkit-tap-highlight-color: transparent;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s, opacity 0.45s ease, transform 0.45s ease;
 }
-
-.card:active {
-  transform: scale(0.97);
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
-
+.card:active { transform: scale(0.97); }
 @media (hover: hover) {
   .card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 20px #9900ff55;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 25px #9900ff44;
     border-color: var(--purple);
   }
+  .card:hover img { transform: scale(1.06); }
 }
-
 .card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.4s ease;
 }
-
 .card-content {
   position: absolute;
   bottom: 0;
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
-  background: linear-gradient(to top, rgba(0,0,0,0.95) 60%, rgba(0,0,0,0.4));
+  background: linear-gradient(to top, rgba(0,0,0,0.97) 55%, rgba(0,0,0,0.5) 80%, transparent);
 }
-
 .card h3 {
   margin: 0 0 2px 0;
   font-family: 'Orbitron', sans-serif;
@@ -237,11 +288,10 @@ header {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .card p {
   font-size: 11px;
-  margin: 0 0 6px 0;
-  color: #bbb;
+  margin: 0 0 4px 0;
+  color: #aaa;
   text-align: left;
   line-height: 1.3;
   display: -webkit-box;
@@ -249,8 +299,8 @@ header {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
-/* ── BADGE CATEGORIE ── */
+ 
+/* ── BADGES ── */
 .badge-cat {
   display: inline-block;
   font-family: 'Orbitron', sans-serif;
@@ -258,144 +308,10 @@ header {
   letter-spacing: 1px;
   padding: 2px 8px;
   border-radius: 10px;
-  border: 1px solid #9900ff55;
-  color: #cc55ff;
-  background: #9900ff15;
-  margin-bottom: 4px;
-}
-
-/* ── DOWNLOAD BUTTON ── */
-.download-btn {
-  width: 100%;
-  padding: 9px;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(90deg, var(--purple), #6600cc);
-  color: #fff;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  cursor: pointer;
-  letter-spacing: 0.5px;
-  transition: 0.2s;
-  min-height: 36px;
-}
-.download-btn:active { filter: brightness(1.3); transform: scale(0.98); }
-
-/* ── DOWNLOAD MENU ── */
-.download-menu {
-  display: none;
-  position: absolute;
-  bottom: 62px;
-  left: 8px;
-  right: 8px;
-  flex-direction: column;
-  background: #0a0a1a;
-  border: 1px solid #9900ff55;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 20px #9900ff44, 0 8px 20px #000;
-  z-index: 20;
-  animation: pop 0.15s ease;
-}
-
-@keyframes pop {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.download-menu a {
-  padding: 10px 12px;
-  color: #ccc;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 600;
-  border-bottom: 1px solid #ffffff0a;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 40px;
-  transition: 0.15s;
-}
-.download-menu a:last-child { border-bottom: none; }
-.download-menu a:hover, .download-menu a:active {
-  background: var(--purple);
-  color: #fff;
-}
-
-/* ── LINK TO GAME PAGE ── */
-.card-link {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: calc(100% - 90px);
-  z-index: 5;
-  text-decoration: none;
-}
-
-/* ── EMPTY STATE ── */
-.empty {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 40px 20px;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 13px;
-  color: #555;
-  letter-spacing: 2px;
-}
-
-/* ── COMMENTS ── */
-.comments-section {
-  background: var(--bg3);
-  padding: 16px;
-  border-radius: 12px;
-  margin: 0 12px 24px;
-  border: 1px solid #9900ff22;
-}
-.comments-section h2 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 13px;
-  color: #fff;
-  letter-spacing: 2px;
-  margin-bottom: 14px;
-}
-.comment-form {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-.comment-form input {
-  flex: 1;
-  padding: 10px 12px;
-  border-radius: 8px;
   border: 1px solid #9900ff44;
-  background: #000;
-  color: #fff;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 14px;
-  outline: none;
-  min-height: 42px;
-}
-.comment-form input:focus { border-color: var(--purple); }
-.comment-form button {
-  padding: 10px 16px;
-  border: none;
-  border-radius: 8px;
-  background: var(--purple);
-  color: #fff;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  cursor: pointer;
-  min-height: 42px;
-  white-space: nowrap;
-}
-#comments-list .comment {
-  background: #000;
-  padding: 10px 12px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  font-size: 13px;
-  border-left: 3px solid var(--purple);
+  color: #cc55ff;
+  background: #9900ff11;
+  margin-bottom: 3px;
 }
 .badge-top {
   position: absolute;
@@ -410,25 +326,133 @@ header {
   letter-spacing: 0.5px;
   background: linear-gradient(90deg, #9900ff, #00f0ff);
   color: #fff;
-  box-shadow: 0 0 8px #9900ff88;
+  box-shadow: 0 0 8px #9900ff66;
 }
-
+ 
+/* ── CARD NOTE ── */
 .card-note {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 6px;
+  gap: 5px;
+  margin-bottom: 5px;
 }
-
-.stars {
-  font-size: 10px;
-}
-
+.stars { font-size: 9px; }
 .note-val {
   font-family: 'Orbitron', sans-serif;
   font-size: 9px;
   color: var(--cyan);
 }
+ 
+/* ── DOWNLOAD BUTTON ── */
+.download-btn {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--purple), #6600cc);
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: 0.2s;
+  min-height: 34px;
+  position: relative;
+  overflow: hidden;
+}
+.download-btn::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transition: left 0.4s;
+}
+.download-btn:hover::after { left: 100%; }
+.download-btn:active { filter: brightness(1.3); transform: scale(0.98); }
+ 
+/* ── CARD LINK ── */
+.card-link {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: calc(100% - 90px);
+  z-index: 5;
+  text-decoration: none;
+}
+ 
+/* ── EMPTY STATE ── */
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  color: #333;
+  letter-spacing: 2px;
+}
+ 
+/* ── COMMENTS ── */
+.comments-section {
+  background: var(--bg3);
+  padding: 16px;
+  border-radius: 12px;
+  margin: 0 12px 24px;
+  border: 1px solid #9900ff22;
+  position: relative;
+  z-index: 1;
+}
+.comments-section h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  color: #fff;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+.comment-form { display: flex; gap: 8px; margin-bottom: 14px; }
+.comment-form input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #9900ff33;
+  background: #000;
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  outline: none;
+  min-height: 42px;
+  transition: 0.2s;
+}
+.comment-form input:focus { border-color: var(--purple); box-shadow: 0 0 10px #9900ff22; }
+.comment-form button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--purple);
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 42px;
+  white-space: nowrap;
+  transition: 0.2s;
+}
+.comment-form button:hover { filter: brightness(1.2); }
+#comments-list .comment {
+  background: #000;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  border-left: 3px solid var(--purple);
+  animation: commentIn 0.3s ease;
+}
+@keyframes commentIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+ 
 /* ── FOOTER ── */
 footer {
   text-align: center;
@@ -437,14 +461,12 @@ footer {
   font-size: 12px;
   color: #555;
   border-top: 1px solid #9900ff22;
+  position: relative;
+  z-index: 1;
 }
-footer a {
-  color: #9900ff88;
-  text-decoration: none;
-  margin: 0 6px;
-}
+footer a { color: #9900ff88; text-decoration: none; margin: 0 6px; }
 footer a:hover { color: var(--purple); }
-
+ 
 /* ── RESPONSIVE ── */
 @media (max-width: 360px) {
   .games { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 10px 16px; }
@@ -458,20 +480,30 @@ footer a:hover { color: var(--purple); }
 }
 </style>
 </head>
-
 <body>
-
+ 
+<!-- PARTICLES -->
+<canvas id="particles-canvas"></canvas>
+ 
 <!-- HEADER -->
 <header>
   <a class="logo" href="index.html">MLG XGame</a>
   <a class="back-btn" href="index.html">← Accueil</a>
 </header>
-
+ 
+<!-- GAME COUNT BANNER -->
+<div class="game-count-banner">
+  <span class="game-count-text">🎮</span>
+  <span class="game-count-num" id="gameCountNum">0</span>
+  <span class="game-count-text">jeux disponibles</span>
+</div>
+ 
 <!-- SEARCH -->
 <div class="search-wrap">
-  <input type="text" placeholder="🔍 Rechercher un jeu..." oninput="searchGame()" id="search" autocomplete="off" autocorrect="off" spellcheck="false">
+  <span class="search-icon">🔍</span>
+  <input type="text" placeholder="Rechercher un jeu..." oninput="searchGame()" id="search" autocomplete="off" autocorrect="off" spellcheck="false">
 </div>
-
+ 
 <!-- CATEGORIES -->
 <div class="categories" id="catStrip">
   <div class="cat-btn active" onclick="filter('all', this)">Tous</div>
@@ -486,15 +518,15 @@ footer a:hover { color: var(--purple); }
   <div class="cat-btn" onclick="filter('Mode', this)">👗 Mode</div>
   <div class="cat-btn" onclick="filter('Casual', this)">🎲 Casual</div>
 </div>
-
+ 
 <!-- SECTION TITLE -->
 <div class="section-header">
   <h2 id="section-title">Tous les jeux</h2>
 </div>
-
+ 
 <!-- GAMES GRID -->
 <div class="games" id="games"></div>
-
+ 
 <!-- COMMENTS -->
 <div class="comments-section">
   <h2>💬 Commentaires</h2>
@@ -504,14 +536,13 @@ footer a:hover { color: var(--purple); }
   </div>
   <div id="comments-list"></div>
 </div>
-
-  <!-- SEO TEXT CONTENT -->
-<div style="padding: 20px 16px; color: #555; font-size: 13px; line-height: 1.8; font-family: 'Rajdhani', sans-serif;">
-  <h2 style="font-family:'Orbitron',sans-serif; font-size:13px; color:#9900ff55; letter-spacing:2px; margin-bottom:10px;">À PROPOS DES JEUX ANDROID</h2>
-  <p>MLG XGame propose les meilleurs jeux Android gratuits de 2026. Découvrez des centaines de jeux mobiles dans toutes les catégories : jeux de sport comme FIFA Mobile et Dream League Soccer, jeux d'aventure comme Minecraft et Genshin Impact, jeux de course comme Asphalt Nitro et Real Racing 3, jeux de stratégie comme Clash of Clans et Clash Royale, jeux multijoueur comme PUBG Mobile, Free Fire et Fortnite, ainsi que des jeux casual comme Subway Surfers et Temple Run 2.</p>
-  <p style="margin-top:10px;">Tous nos jeux sont disponibles gratuitement sur Android et iOS. Trouvez votre prochain jeu préféré parmi notre sélection de jeux de réflexion, jeux de simulation, jeux gourmands et jeux de mode. MLG XGame est la référence pour télécharger et jouer aux meilleurs jeux mobiles gratuits.</p>
+ 
+<!-- SEO TEXT -->
+<div style="padding:20px 16px;color:#333;font-size:13px;line-height:1.8;font-family:'Rajdhani',sans-serif;position:relative;z-index:1;">
+  <h2 style="font-family:'Orbitron',sans-serif;font-size:13px;color:#9900ff22;letter-spacing:2px;margin-bottom:10px;">À PROPOS DES JEUX ANDROID & IOS</h2>
+  <p>MLG XGame propose les meilleurs jeux Android et iOS gratuits de 2026. Découvrez des centaines de jeux mobiles dans toutes les catégories : jeux de sport comme FIFA Mobile et Dream League Soccer, jeux d'aventure comme Minecraft et Genshin Impact, jeux de course comme Asphalt Nitro et Real Racing 3, jeux de stratégie comme Clash of Clans et Clash Royale, jeux multijoueur comme PUBG Mobile, Free Fire et Fortnite, ainsi que des jeux casual comme Subway Surfers et Temple Run 2.</p>
 </div>
-  
+ 
 <!-- FOOTER -->
 <footer>
   <p style="margin-bottom:8px;">&copy; 2026 <strong style="color:#9900ff">MLG XGame</strong>. Tous droits réservés.</p>
@@ -522,17 +553,51 @@ footer a:hover { color: var(--purple); }
     <a href="contact.html">Contact</a>
   </p>
 </footer>
-
+ 
 <!-- AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7572845165323582" crossorigin="anonymous"></script>
-
+ 
 <script>
-/* ═══════════════════════════════════════
-   DONNÉES DES JEUX
-   Chaque jeu a un "slug" qui correspond
-   au fichier HTML dans jeux/
-═══════════════════════════════════════ */
-
+/* ── PARTICLES ── */
+(function() {
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  const stars = [];
+  for (let i = 0; i < 120; i++) {
+    stars.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*1.2+0.2, a: Math.random(), aSpeed: (Math.random()*0.01+0.003)*(Math.random()>0.5?1:-1), aMin:0.05, aMax:0.9 });
+  }
+  const nebula = [];
+  for (let j = 0; j < 35; j++) {
+    nebula.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*2.5+0.8, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, col: Math.random()>0.5?'#9900ff':'#00f0ff', a: Math.random()*0.5+0.15 });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(s => {
+      s.a += s.aSpeed;
+      if (s.a >= s.aMax || s.a <= s.aMin) s.aSpeed *= -1;
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fillStyle = '#ffffff'; ctx.globalAlpha = s.a; ctx.fill();
+    });
+    nebula.forEach(p => {
+      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r*3);
+      grad.addColorStop(0, p.col); grad.addColorStop(1, 'transparent');
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r*3, 0, Math.PI*2);
+      ctx.fillStyle = grad; ctx.globalAlpha = p.a*0.6; ctx.fill();
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.col; ctx.globalAlpha = p.a; ctx.fill();
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+ 
 const androidGames = [
   // ⚽ SPORT
 { nom:"FIFA Mobile", slug:"fifa-mobile", img:"img/fifa-mobile.jpg", description:"Football réaliste et compétitif.", categorie:"Sport", lien:"android-games/sport/fifa-mobile.html", note:4.5, badge:"Populaire 🔥" },
@@ -552,48 +617,48 @@ const androidGames = [
 { nom:"Stardew Valley", slug:"stardew-valley", img:"img/stardew-valley.jpg", description:"Gestion de ferme et exploration.", categorie:"Aventure", lien:"android-games/aventure/stardew-valley.html", note:4.6, badge:null },
 { nom:"Grimvalor", slug:"grimvalor", img:"img/grimvalor.jpg", description:"Platformer aventureux et challenge.", categorie:"Aventure", lien:"android-games/aventure/grimvalor.html", note:4.5, badge:null },
 { nom:"Oddmar", slug:"oddmar", img:"img/oddmar.jpg", description:"Aventure viking stylée.", categorie:"Aventure", lien:"android-games/aventure/oddmar.html", note:4.6, badge:null },
-{ nom:"Dungeon Hunter 5", slug:"dungeon-hunter-5", img:"img/dungeon-hunter-5.jpg", description:"RPG d'action où tu explores des donjons et combats des monstres.", categorie:"Aventure", lien:"android-games/aventure/dungeon-hunter-5.html", note:4.1, badge:null },
-{ nom:"Legends of Kingdom Rush", slug:"legends-of-kingdom-rush", img:"img/legends-of-kingdom-rush.jpg", description:"Aventure stratégique dans l'univers Kingdom Rush avec des héros puissants.", categorie:"Aventure", lien:"android-games/aventure/legends-of-kingdom-rush.html", note:4.3, badge:null },
+{ nom:"Dungeon Hunter 5", slug:"dungeon-hunter-5", img:"img/dungeon-hunter-5.jpg", description:"RPG d'action où tu explores des donjons.", categorie:"Aventure", lien:"android-games/aventure/dungeon-hunter-5.html", note:4.1, badge:null },
+{ nom:"Legends of Kingdom Rush", slug:"legends-of-kingdom-rush", img:"img/legends-of-kingdom-rush.jpg", description:"Aventure stratégique avec des héros puissants.", categorie:"Aventure", lien:"android-games/aventure/legends-of-kingdom-rush.html", note:4.3, badge:null },
 { nom:"Monster Hunter Stories", slug:"monster-hunter-stories", img:"img/monster-hunter-stories.jpg", description:"Aventure RPG avec créatures fantastiques.", categorie:"Aventure", lien:"android-games/aventure/monster-hunter-stories.html", note:4.4, badge:null },
 { nom:"Oddworld: Munch's Oddysee", slug:"oddworld-munchs-oddysee", img:"img/oddworld-munchs-oddysee.jpg", description:"Aventure fun et non violente.", categorie:"Aventure", lien:"android-games/aventure/oddworld-munchs-oddysee.html", note:4.2, badge:null },
   // 🧠 STRATÉGIE
 { nom:"Clash of Clans", slug:"clash-of-clans", img:"img/clash-of-clans.jpg", description:"Construis ton village et combats stratégiques.", categorie:"Stratégie", lien:"android-games/strategie/clash-of-clans.html", note:4.7, badge:"Top 10 🏆" },
 { nom:"Clash Royale", slug:"clash-royale", img:"img/clash-royale.jpg", description:"Stratégie rapide en temps réel.", categorie:"Stratégie", lien:"android-games/strategie/clash-royale.html", note:4.5, badge:"Populaire 🔥" },
 { nom:"Age of Civilizations", slug:"age-of-civilizations", img:"img/age-of-civilizations.jpg", description:"Stratégie et diplomatie globale.", categorie:"Stratégie", lien:"android-games/strategie/age-of-civilizations.html", note:4.2, badge:null },
-{ nom:"Plants vs Zombies 2", slug:"plants-vs-zombies-2", img:"img/plants-vs-zombies-2.jpg", description:"Défends ton jardin contre des zombies fun.", categorie:"Stratégie", lien:"android-games/strategie/plants-vs-zombies-2.html", note:4.4, badge:"Gratuit 🆓" },
+{ nom:"Plants vs Zombies 2", slug:"plants-vs-zombies-2", img:"img/plants-vs-zombies-2.jpg", description:"Défends ton jardin contre des zombies fun.", categorie:"Stratégie", lien:"android-games/strategie/plants-vs-zombies-2.html", note:4.4, badge:null },
 { nom:"Rise of Kingdoms", slug:"rise-of-kingdoms", img:"img/rise-of-kingdoms.jpg", description:"Gestion de royaume et combats stratégiques.", categorie:"Stratégie", lien:"android-games/strategie/rise-of-kingdoms.html", note:4.4, badge:"Populaire 🔥" },
 { nom:"Civilization VI", slug:"civilization-vi", img:"img/civilization-vi.jpg", description:"Stratégie globale au tour par tour.", categorie:"Stratégie", lien:"android-games/strategie/civilization-vi.html", note:4.5, badge:null },
 { nom:"Bloons TD 6", slug:"bloons-td-6", img:"img/bloons-td-6.jpg", description:"Tower defense fun et coloré.", categorie:"Stratégie", lien:"android-games/strategie/bloons-td-6.html", note:4.7, badge:null },
 { nom:"Chess.com", slug:"chesscom", img:"img/chesscom.jpg", description:"Joue aux échecs contre des joueurs du monde.", categorie:"Stratégie", lien:"android-games/strategie/chesscom.html", note:4.6, badge:"Populaire 🔥" },
-{ nom:"SimCity BuildIt", slug:"simcity-buildit", img:"img/simcity-buildit.jpg", description:"Construis et gère ta ville.", categorie:"Stratégie", lien:"android-games/strategie/simcity-buildit.html", note:4.3, badge:"Gratuit 🆓" },
+{ nom:"SimCity BuildIt", slug:"simcity-buildit", img:"img/simcity-buildit.jpg", description:"Construis et gère ta ville.", categorie:"Stratégie", lien:"android-games/strategie/simcity-buildit.html", note:4.3, badge:null },
 { nom:"Plague Inc", slug:"plague-inc", img:"img/plague-inc.jpg", description:"Stratégie de simulation pandémique.", categorie:"Stratégie", lien:"android-games/strategie/plague-inc.html", note:4.5, badge:null },
   // 🕹️ RÉFLEXION
-{ nom:"Brain Out", slug:"brain-out", img:"img/brain-out.jpg", description:"Défis et énigmes amusantes.", categorie:"Réflexion", lien:"android-games/reflexion/brain-out.html", note:4.2, badge:"Gratuit 🆓" },
+{ nom:"Brain Out", slug:"brain-out", img:"img/brain-out.jpg", description:"Défis et énigmes amusantes.", categorie:"Réflexion", lien:"android-games/reflexion/brain-out.html", note:4.2, badge:null },
 { nom:"Monument Valley", slug:"monument-valley", img:"img/monument-valley.jpg", description:"Puzzle et architecture stylée.", categorie:"Réflexion", lien:"android-games/reflexion/monument-valley.html", note:4.6, badge:null },
 { nom:"The Room", slug:"the-room", img:"img/the-room.jpg", description:"Résous des énigmes mystérieuses.", categorie:"Réflexion", lien:"android-games/reflexion/the-room.html", note:4.7, badge:null },
-{ nom:"Cut the Rope", slug:"cut-the-rope", img:"img/cut-the-rope.jpg", description:"Puzzle fun et addictif.", categorie:"Réflexion", lien:"android-games/reflexion/cut-the-rope.html", note:4.5, badge:"Gratuit 🆓" },
-{ nom:"Flow Free", slug:"flow-free", img:"img/flow-free.jpg", description:"Relie les couleurs sans croiser les tuyaux.", categorie:"Réflexion", lien:"android-games/reflexion/flow-free.html", note:4.4, badge:"Gratuit 🆓" },
+{ nom:"Cut the Rope", slug:"cut-the-rope", img:"img/cut-the-rope.jpg", description:"Puzzle fun et addictif.", categorie:"Réflexion", lien:"android-games/reflexion/cut-the-rope.html", note:4.5, badge:null },
+{ nom:"Flow Free", slug:"flow-free", img:"img/flow-free.jpg", description:"Relie les couleurs sans croiser les tuyaux.", categorie:"Réflexion", lien:"android-games/reflexion/flow-free.html", note:4.4, badge:null },
 { nom:"Sudoku.com", slug:"sudokucom", img:"img/sudokucom.jpg", description:"Sudoku classique pour tous.", categorie:"Réflexion", lien:"android-games/reflexion/sudokucom.html", note:4.7, badge:null },
-{ nom:"2048", slug:"2048", img:"img/2048.jpg", description:"Puzzle de chiffres addictif.", categorie:"Réflexion", lien:"android-games/reflexion/2048.html", note:4.4, badge:"Gratuit 🆓" },
+{ nom:"2048", slug:"2048", img:"img/2048.jpg", description:"Puzzle de chiffres addictif.", categorie:"Réflexion", lien:"android-games/reflexion/2048.html", note:4.4, badge:null },
 { nom:"Candy Crush Saga", slug:"candy-crush-saga", img:"img/candy-crush-saga.jpg", description:"Match 3 coloré et fun.", categorie:"Réflexion", lien:"android-games/reflexion/candy-crush-saga.html", note:4.6, badge:"Top 10 🏆" },
-{ nom:"Brain Test", slug:"brain-test", img:"img/brain-test.jpg", description:"Énigmes et défis intelligents.", categorie:"Réflexion", lien:"android-games/reflexion/brain-test.html", note:4.3, badge:"Gratuit 🆓" },
+{ nom:"Brain Test", slug:"brain-test", img:"img/brain-test.jpg", description:"Énigmes et défis intelligents.", categorie:"Réflexion", lien:"android-games/reflexion/brain-test.html", note:4.3, badge:null },
 { nom:"Lara Croft GO", slug:"lara-croft-go", img:"img/lara-croft-go.jpg", description:"Puzzle aventure avec Lara Croft.", categorie:"Réflexion", lien:"android-games/reflexion/lara-croft-go.html", note:4.5, badge:null },
   // 🏎️ COURSE
-{ nom:"need-for-speed-no-limits", slug:"need-for-speed-no-limits", img:"img/need-for-speed-no-limits.jpg", description:"Plonge dans la scène du street racing underground de Blackridge et construis la voiture de tes rêves.", categorie:"Course", lien:"android-games/course/need-for-speed-no-limits.html", note:4.5, badge:null },
+{ nom:"Need for Speed No Limits", slug:"need-for-speed-no-limits", img:"img/need-for-speed-no-limits.jpg", description:"Street racing underground intense.", categorie:"Course", lien:"android-games/course/need-for-speed-no-limits.html", note:4.5, badge:"Populaire 🔥" },
 { nom:"MotoGP Racing", slug:"motogp-racing", img:"img/motogp-racing.jpg", description:"Courses motos fun et immersives.", categorie:"Course", lien:"android-games/course/motogp-racing.html", note:4.2, badge:null },
-{ nom:"Drift Max Pro", slug:"drift-max-pro", img:"img/drift-max-pro.jpg", description:"Courses de drift fun.", categorie:"Course", lien:"android-games/course/drift-max-pro.html", note:4.3, badge:"Gratuit 🆓" },
-{ nom:"asphalt-legends-unite", slug:"asphalt-legends-unite", img:"img/asphalt-legends-unite.jpg", description:"Course réaliste mais fun.", categorie:"Course", lien:"android-games/course/asphalt-legends-unite.html", note:4.7, badge:"Populaire 🔥" },
+{ nom:"Drift Max Pro", slug:"drift-max-pro", img:"img/drift-max-pro.jpg", description:"Courses de drift fun.", categorie:"Course", lien:"android-games/course/drift-max-pro.html", note:4.3, badge:null },
+{ nom:"Asphalt Legends Unite", slug:"asphalt-legends-unite", img:"img/asphalt-legends-unite.jpg", description:"Course arcade avec voitures de légende.", categorie:"Course", lien:"android-games/course/asphalt-legends-unite.html", note:4.7, badge:"Top 10 🏆" },
 { nom:"Rocket League Sideswipe", slug:"rocket-league-sideswipe", img:"img/rocket-league-sideswipe.jpg", description:"Course et football automobile fun.", categorie:"Course", lien:"android-games/course/rocket-league-sideswipe.html", note:4.3, badge:null },
 { nom:"Asphalt Nitro", slug:"asphalt-nitro", img:"img/asphalt-nitro.jpg", description:"Courses fun et arcade.", categorie:"Course", lien:"android-games/course/asphalt-nitro.html", note:4.4, badge:"Populaire 🔥" },
-{ nom:"Traffic Rider", slug:"traffic-rider", img:"img/traffic-rider.jpg", description:"Course moto en trafic intense.", categorie:"Course", lien:"android-games/course/traffic-rider.html", note:4.5, badge:"Gratuit 🆓" },
+{ nom:"Traffic Rider", slug:"traffic-rider", img:"img/traffic-rider.jpg", description:"Course moto en trafic intense.", categorie:"Course", lien:"android-games/course/traffic-rider.html", note:4.5, badge:null },
 { nom:"Beach Buggy Racing 2", slug:"beach-buggy-racing-2", img:"img/beach-buggy-racing-2.jpg", description:"Course arcade fun sur la plage.", categorie:"Course", lien:"android-games/course/beach-buggy-racing-2.html", note:4.4, badge:null },
 { nom:"Mario Kart Tour", slug:"mario-kart-tour", img:"img/mario-kart-tour.jpg", description:"Courses fun avec Mario et ses amis.", categorie:"Course", lien:"android-games/course/mario-kart-tour.html", note:4.2, badge:null },
 { nom:"Hill Climb Racing 2", slug:"hill-climb-racing-2", img:"img/hill-climb-racing-2.jpg", description:"Course fun sur terrains accidentés.", categorie:"Course", lien:"android-games/course/hill-climb-racing-2.html", note:4.5, badge:"Populaire 🔥" },
   // 🛠️ SIMULATION
 { nom:"The Sims Mobile", slug:"the-sims-mobile", img:"img/the-sims-mobile.jpg", description:"Crée et gère tes Sims.", categorie:"Simulation", lien:"android-games/simulation/the-sims-mobile.html", note:4.3, badge:"Populaire 🔥" },
 { nom:"Farming Simulator 20", slug:"farming-simulator-20", img:"img/farming-simulator-20.jpg", description:"Gère ta ferme et cultive tes champs.", categorie:"Simulation", lien:"android-games/simulation/farming-simulator-20.html", note:4.3, badge:null },
-{ nom:"Car Simulator 2", slug:"car-simulator-2", img:"img/car-simulator-2.jpg", description:"Conduis et explore librement.", categorie:"Simulation", lien:"android-games/simulation/car-simulator-2.html", note:4.2, badge:"Gratuit 🆓" },
-{ nom:"Bus Simulator: Ultimate", slug:"bus-simulator-ultimate", img:"img/bus-simulator-ultimate.jpg", description:"Conduis ton bus dans la ville.", categorie:"Simulation", lien:"android-games/simulation/bus-simulator-ultimate.html", note:4.4, badge:"Gratuit 🆓" },
+{ nom:"Car Simulator 2", slug:"car-simulator-2", img:"img/car-simulator-2.jpg", description:"Conduis et explore librement.", categorie:"Simulation", lien:"android-games/simulation/car-simulator-2.html", note:4.2, badge:null },
+{ nom:"Bus Simulator: Ultimate", slug:"bus-simulator-ultimate", img:"img/bus-simulator-ultimate.jpg", description:"Conduis ton bus dans la ville.", categorie:"Simulation", lien:"android-games/simulation/bus-simulator-ultimate.html", note:4.4, badge:null },
 { nom:"Goat Simulator", slug:"goat-simulator", img:"img/goat-simulator.jpg", description:"Fais le chaos avec une chèvre.", categorie:"Simulation", lien:"android-games/simulation/goat-simulator.html", note:4.2, badge:null },
 { nom:"Pocket City", slug:"pocket-city", img:"img/pocket-city.jpg", description:"Construis et gère ta ville mobile.", categorie:"Simulation", lien:"android-games/simulation/pocket-city.html", note:4.5, badge:null },
 { nom:"Airport City", slug:"airport-city", img:"img/airport-city.jpg", description:"Gère ton aéroport et tes vols.", categorie:"Simulation", lien:"android-games/simulation/airport-city.html", note:4.3, badge:null },
@@ -606,7 +671,7 @@ const androidGames = [
 { nom:"My Cafe", slug:"my-cafe", img:"img/my-cafe.jpg", description:"Gère ton café et rencontres clients.", categorie:"Gourmand", lien:"android-games/gourmand/my-cafe.html", note:4.4, badge:null },
 { nom:"Burger Shop 2", slug:"burger-shop-2", img:"img/burger-shop-2.jpg", description:"Cuisine rapide et gestion fun.", categorie:"Gourmand", lien:"android-games/gourmand/burger-shop-2.html", note:4.2, badge:null },
 { nom:"Chef Wars", slug:"chef-wars", img:"img/chef-wars.jpg", description:"Compète en cuisine contre d'autres chefs.", categorie:"Gourmand", lien:"android-games/gourmand/chef-wars.html", note:4.1, badge:null },
-{ nom:"Pizza Maker", slug:"pizza-maker", img:"img/pizza-maker.jpg", description:"Prépare des pizzas délicieuses.", categorie:"Gourmand", lien:"android-games/gourmand/pizza-maker.html", note:4.0, badge:"Gratuit 🆓" },
+{ nom:"Pizza Maker", slug:"pizza-maker", img:"img/pizza-maker.jpg", description:"Prépare des pizzas délicieuses.", categorie:"Gourmand", lien:"android-games/gourmand/pizza-maker.html", note:4.0, badge:null },
 { nom:"Cooking Mama", slug:"cooking-mama", img:"img/cooking-mama.jpg", description:"Cuisine interactive et fun.", categorie:"Gourmand", lien:"android-games/gourmand/cooking-mama.html", note:4.3, badge:null },
 { nom:"Diner DASH Adventures", slug:"diner-dash-adventures", img:"img/diner-dash-adventures.jpg", description:"Gère ton restaurant et sers les clients.", categorie:"Gourmand", lien:"android-games/gourmand/diner-dash-adventures.html", note:4.4, badge:"Populaire 🔥" },
   // 🌐 MULTIJOUEUR
@@ -626,7 +691,7 @@ const androidGames = [
 { nom:"Love Nikki", slug:"love-nikki", img:"img/love-nikki.jpg", description:"Dress-up et aventures mode.", categorie:"Mode", lien:"android-games/mode/love-nikki.html", note:4.5, badge:"Populaire 🔥" },
 { nom:"Stardoll", slug:"stardoll", img:"img/stardoll.jpg", description:"Jeu de mode et créativité.", categorie:"Mode", lien:"android-games/mode/stardoll.html", note:4.0, badge:null },
 { nom:"Kim Kardashian: Hollywood", slug:"kim-kardashian-hollywood", img:"img/kim-kardashian-hollywood.jpg", description:"Crée ton personnage et vis la vie de star.", categorie:"Mode", lien:"android-games/mode/kim-kardashian-hollywood.html", note:4.2, badge:null },
-{ nom:"Dress Up Diary", slug:"dress-up-diary", img:"img/dress-up-diary.jpg", description:"Habille tes personnages et décore.", categorie:"Mode", lien:"android-games/mode/dress-up-diary.html", note:4.3, badge:"Gratuit 🆓" },
+{ nom:"Dress Up Diary", slug:"dress-up-diary", img:"img/dress-up-diary.jpg", description:"Habille tes personnages et décore.", categorie:"Mode", lien:"android-games/mode/dress-up-diary.html", note:4.3, badge:null },
 { nom:"Style Me Girl", slug:"style-me-girl", img:"img/style-me-girl.jpg", description:"Mode et dress-up fun.", categorie:"Mode", lien:"android-games/mode/style-me-girl.html", note:4.2, badge:null },
 { nom:"Fashion Fantasy", slug:"fashion-fantasy", img:"img/fashion-fantasy.jpg", description:"Jeu de mode créatif.", categorie:"Mode", lien:"android-games/mode/fashion-fantasy.html", note:4.3, badge:null },
 { nom:"Fashion Diva", slug:"fashion-diva", img:"img/fashion-diva.jpg", description:"Crée ton style unique.", categorie:"Mode", lien:"android-games/mode/fashion-diva.html", note:4.1, badge:null },
@@ -635,26 +700,51 @@ const androidGames = [
 { nom:"Subway Surfers", slug:"subway-surfers", img:"img/subway-surfers.jpg", description:"Course infinie fun et rapide.", categorie:"Casual", lien:"android-games/casual/subway-surfers.html", note:4.6, badge:"Top 10 🏆" },
 { nom:"Temple Run 2", slug:"temple-run-2", img:"img/temple-run-2.jpg", description:"Course infinie dans des temples anciens.", categorie:"Casual", lien:"android-games/casual/temple-run-2.html", note:4.4, badge:"Populaire 🔥" },
 { nom:"Angry Birds 2", slug:"angry-birds-2", img:"img/angry-birds-2.jpg", description:"Catapulte les oiseaux pour gagner.", categorie:"Casual", lien:"android-games/casual/angry-birds-2.html", note:4.4, badge:"Populaire 🔥" },
-{ nom:"Crossy Road", slug:"crossy-road", img:"img/crossy-road.jpg", description:"Traverse la route sans te faire écraser.", categorie:"Casual", lien:"android-games/casual/crossy-road.html", note:4.3, badge:"Gratuit 🆓" },
-{ nom:"Pou", slug:"pou", img:"img/pou.jpg", description:"Prends soin de ton petit alien.", categorie:"Casual", lien:"android-games/casual/pou.html", note:4.3, badge:"Gratuit 🆓" },
+{ nom:"Crossy Road", slug:"crossy-road", img:"img/crossy-road.jpg", description:"Traverse la route sans te faire écraser.", categorie:"Casual", lien:"android-games/casual/crossy-road.html", note:4.3, badge:null },
+{ nom:"Pou", slug:"pou", img:"img/pou.jpg", description:"Prends soin de ton petit alien.", categorie:"Casual", lien:"android-games/casual/pou.html", note:4.3, badge:null },
 { nom:"My Talking Tom", slug:"my-talking-tom", img:"img/my-talking-tom.jpg", description:"Parle et joue avec Tom.", categorie:"Casual", lien:"android-games/casual/my-talking-tom.html", note:4.4, badge:"Populaire 🔥" },
 { nom:"Hill Climb Racing", slug:"hill-climb-racing", img:"img/hill-climb-racing.jpg", description:"Course amusante et déjantée.", categorie:"Casual", lien:"android-games/casual/hill-climb-racing.html", note:4.5, badge:"Populaire 🔥" },
 { nom:"Fruit Ninja", slug:"fruit-ninja", img:"img/fruit-ninja.jpg", description:"Tranche des fruits rapidement.", categorie:"Casual", lien:"android-games/casual/fruit-ninja.html", note:4.3, badge:"Populaire 🔥" },
 { nom:"Jetpack Joyride", slug:"jetpack-joyride", img:"img/jetpack-joyride.jpg", description:"Cours et évite les obstacles avec ton jetpack.", categorie:"Casual", lien:"android-games/casual/jetpack-joyride.html", note:4.4, badge:"Populaire 🔥" },
 ];
-/* ═══════════════════════════════════════
-   RENDER — chaque carte clique → jeux/slug.html
-═══════════════════════════════════════ */
+ 
+/* ── GAME COUNT ANIMATION ── */
+function animateCount(target) {
+  const el = document.getElementById('gameCountNum');
+  let count = 0;
+  const step = Math.ceil(target / 30);
+  const timer = setInterval(() => {
+    count = Math.min(count + step, target);
+    el.textContent = count;
+    if (count >= target) clearInterval(timer);
+  }, 30);
+}
+ 
+/* ── SCROLL REVEAL OBSERVER ── */
+const cardObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    } else {
+      e.target.classList.remove('visible');
+    }
+  });
+}, { threshold: 0.1 });
+ 
+/* ── RENDER ── */
 function render(list) {
   const container = document.getElementById("games");
   container.innerHTML = "";
   if (list.length === 0) {
     container.innerHTML = '<div class="empty">Aucun jeu trouvé 😕</div>';
+    document.getElementById('gameCountNum').textContent = '0';
     return;
   }
-  list.forEach((game) => {
+  animateCount(list.length);
+  list.forEach((game, i) => {
     const div = document.createElement('div');
     div.className = 'card';
+    div.style.transitionDelay = `${Math.min(i * 0.04, 0.6)}s`;
     const stars = '⭐'.repeat(Math.floor(game.note)) + (game.note % 1 >= 0.5 ? '½' : '');
     div.innerHTML = `
       <a class="card-link" href="${game.lien}" aria-label="Voir ${game.nom}"></a>
@@ -672,13 +762,18 @@ function render(list) {
       </div>
     `;
     container.appendChild(div);
+    cardObserver.observe(div);
   });
 }
 render(androidGames);
-/* FILTER */
+ 
+/* ── FILTER ── */
 function filter(cat, btn) {
   document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
+  if (btn) {
+    btn.classList.add('active');
+    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
   const title = document.getElementById('section-title');
   if (cat === 'all') {
     title.textContent = 'Tous les jeux';
@@ -687,19 +782,27 @@ function filter(cat, btn) {
     title.textContent = cat;
     render(androidGames.filter(g => g.categorie === cat));
   }
+  // Reset delay after animation
+  setTimeout(() => {
+    document.querySelectorAll('.card').forEach(c => c.style.transitionDelay = '0s');
+  }, 800);
 }
-/* SEARCH */
+ 
+/* ── SEARCH ── */
 function searchGame() {
   const text = document.getElementById("search").value.toLowerCase().trim();
   document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
   document.querySelector('.cat-btn').classList.add('active');
+  document.getElementById('section-title').textContent = text ? `Résultats pour "${text}"` : 'Tous les jeux';
   if (!text) { render(androidGames); return; }
   render(androidGames.filter(g =>
     g.nom.toLowerCase().includes(text) ||
-    g.categorie.toLowerCase().includes(text)
+    g.categorie.toLowerCase().includes(text) ||
+    g.description.toLowerCase().includes(text)
   ));
 }
-/* COMMENTS */
+ 
+/* ── COMMENTS ── */
 function addComment() {
   const input = document.getElementById("comment-input");
   const text = input.value.trim();
@@ -711,15 +814,5 @@ function addComment() {
   input.value = "";
 }
 </script>
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
