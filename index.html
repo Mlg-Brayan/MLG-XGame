@@ -97,11 +97,12 @@ header { background:rgba(0,0,0,0.92); backdrop-filter:blur(12px); -webkit-backdr
 .divider { height:1px; background:linear-gradient(90deg,transparent,#9900ff1a,transparent); margin:4px 20px 20px; position:relative; z-index:1; }
  
 .nav-cards { display:flex; gap:10px; padding:0 20px 14px; flex-wrap:wrap; position:relative; z-index:1; }
-.nav-card { flex:1; min-width:70px; padding:14px 8px; background: #0a0a1a; border:1px solid #9900ff33; border-radius:12px; text-decoration:none; text-align:center; transition:0.25s; display:flex; flex-direction:column; align-items:center; gap:6px; }
+.nav-card { flex:1; min-width:70px; padding:14px 8px; border:1px solid #9900ff33; border-radius:12px; text-decoration:none; text-align:center; transition:0.25s; display:flex; flex-direction:column; align-items:center; gap:6px; }
 .nav-card:hover { transform:translateY(-4px); }
 .nav-card .icon { font-size:20px; }
 .nav-card span { font-family:'Orbitron',sans-serif; font-size:9px; letter-spacing:0.5px; }
-.nav-card.nav-cyan:hover { border-color:#00f0ff66; box-shadow:0 0 20px #00f0ff33; }
+.nav-card.nav-cyan {background:#00f0ff11; border-color:#00f0ff44;}
+.nav-card.nav-cyan:hover {background:#00f0ff11; border-color:#00f0ff66; box-shadow:0 0 20px #00f0ff33; }
 .nav-card.nav-cyan span { color:#00f0ff; }
 .nav-card.nav-purple:hover { border-color:#9900ff66; box-shadow:0 0 20px #9900ff33; }
 .nav-card.nav-purple span { color:#cc55ff; }
