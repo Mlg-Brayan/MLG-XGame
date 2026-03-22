@@ -16,1125 +16,439 @@
 <meta name="google-adsense-account" content="ca-pub-7572845165323582">
 <meta name="google-site-verification" content="yA45UlS88pUffG-kGibZKK4ndiL8uMgLlWhm181nnkI" />
   
-<title>MLG XGame — Applications</title>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Télécharge les meilleures applications gratuites sur MLG XGame. Gaming, streaming, musique, éducation, messagerie et productivité sur Android, iOS et PC.">
+<meta name="keywords" content="applications gratuites, meilleures apps Android, apps iOS gratuites, Discord, Spotify, Netflix, WhatsApp, applications gaming, MLG XGame 2026">
+<meta name="robots" content="index, follow">
+<meta name="author" content="MLG XGame">
+<meta name="google-adsense-account" content="ca-pub-7572845165323582">
+<meta name="google-site-verification" content="yA45UlS88pUffG-kGibZKK4ndiL8uMgLlWhm181nnkI" />
+<meta property="og:title" content="MLG XGame — Meilleures Applications Gratuites">
+<meta property="og:description" content="Télécharge les meilleures applications gratuites sur Android, iOS et PC.">
+<meta property="og:url" content="https://mlgxgame.vercel.app/application.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mlgxgame.vercel.app/img/og-image.jpg">
+<title>Meilleures Applications Gratuites 2026 — MLG XGame</title>
+<link rel="canonical" href="https://mlgxgame.vercel.app/application.html">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
-
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:linear-gradient(135deg,#000,#0a0a1a);
-color:white;
+:root { --green:#00ff88; --purple:#9900ff; --bg:#000; --bg2:#0a0a1a; --text:#ccc; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Rajdhani',sans-serif; background:#000; color:var(--text); min-height:100vh; overflow-x:hidden; -webkit-tap-highlight-color:transparent; }
+ 
+#particles-canvas { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+ 
+header { background:rgba(0,0,0,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 0 30px #00ff8833; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+.logo { font-family:'Orbitron',sans-serif; font-size:20px; font-weight:900; background:linear-gradient(90deg,var(--purple),var(--green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:2px; text-decoration:none; animation:logoPulse 4s ease-in-out infinite; }
+@keyframes logoPulse { 0%,100% { filter:drop-shadow(0 0 6px #00ff8833); } 50% { filter:drop-shadow(0 0 14px #00ff8877); } }
+.back-btn { font-family:'Orbitron',sans-serif; font-size:10px; color:var(--green); text-decoration:none; border:1px solid #00ff8855; padding:8px 14px; border-radius:6px; letter-spacing:1px; transition:0.25s; min-height:36px; display:flex; align-items:center; background:#00ff8811; }
+.back-btn:hover,.back-btn:active { background:var(--green); color:#000; box-shadow:0 0 16px #00ff8844; }
+ 
+.app-count-banner { display:flex; align-items:center; justify-content:center; gap:10px; padding:10px 16px 4px; position:relative; z-index:1; }
+.app-count-text { font-family:'Orbitron',sans-serif; font-size:11px; color:#555; letter-spacing:1px; }
+.app-count-num { font-family:'Orbitron',sans-serif; font-size:13px; font-weight:900; background:linear-gradient(90deg,var(--green),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+ 
+.search-wrap { padding:10px 16px 8px; position:relative; z-index:1; }
+.search-wrap input { width:100%; padding:12px 40px 12px 42px; border:1px solid #00ff8822; border-radius:12px; font-size:15px; font-family:'Rajdhani',sans-serif; outline:none; background:#0a0a1a; color:#fff; -webkit-appearance:none; transition:0.3s; }
+.search-wrap input:focus { border-color:var(--green); box-shadow:0 0 16px #00ff8818; }
+.search-wrap input::placeholder { color:#444; }
+.search-icon { position:absolute; left:30px; top:50%; transform:translateY(-50%); font-size:16px; pointer-events:none; }
+.search-clear { position:absolute; right:28px; top:50%; transform:translateY(-50%); font-size:16px; cursor:pointer; color:#555; display:none; z-index:2; transition:0.2s; }
+.search-clear:hover { color:#fff; }
+ 
+.categories { display:flex; overflow-x:auto; gap:8px; padding:10px 16px; scrollbar-width:none; -webkit-overflow-scrolling:touch; position:relative; z-index:1; }
+.categories::-webkit-scrollbar { display:none; }
+.cat-btn { font-family:'Orbitron',sans-serif; font-size:10px; letter-spacing:1px; padding:9px 16px; border-radius:20px; border:1px solid #00ff8833; color:var(--green); background:#00ff8811; white-space:nowrap; cursor:pointer; transition:0.2s; min-height:36px; display:flex; align-items:center; user-select:none; -webkit-user-select:none; }
+.cat-btn:hover,.cat-btn.active,.cat-btn:active { background:var(--green); color:#000; box-shadow:0 0 14px #00ff8844; border-color:var(--green); font-weight:700; }
+ 
+.section-header { display:flex; align-items:center; gap:10px; padding:14px 16px 10px; position:relative; z-index:1; }
+.section-header h2 { font-family:'Orbitron',sans-serif; font-size:13px; font-weight:700; color:#fff; letter-spacing:2px; text-transform:uppercase; white-space:nowrap; text-shadow:0 0 20px #00ff8844; }
+.section-header::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,var(--green),transparent); }
+ 
+.apps { display:grid; grid-template-columns:repeat(auto-fill,minmax(155px,1fr)); gap:16px; padding:0 12px 24px; position:relative; z-index:1; }
+ 
+.card {
+  position:relative; border-radius:14px; overflow:hidden;
+  border:1px solid #00ff8822; box-shadow:0 4px 15px #00000066;
+  cursor:pointer; background:#0a0a1a;
+  -webkit-tap-highlight-color:transparent;
+  opacity:0; transform:translateY(16px);
+  transition:opacity 0.45s ease, transform 0.45s ease, box-shadow 0.25s, border-color 0.25s;
+  display:flex; flex-direction:column;
 }
-
-/* HEADER */
-
-header{
-padding:18px;
-text-align:center;
-background:#000;
-box-shadow:0 0 15px #00ff;
+.card.visible { opacity:1; transform:translateY(0); }
+.card:active { transform:scale(0.97); }
+@media(hover:hover) {
+  .card:hover { box-shadow:0 8px 25px #00ff8833; border-color:#00ff8855; transform:translateY(-4px); }
+  .card:hover .card-img img { transform:scale(1.06); }
 }
-
-header h1{
-margin:0;
-color:#00ff;
-font-size:24px;
+ 
+.card-img { width:100%; height:130px; overflow:hidden; background:#001a0d; display:flex; align-items:center; justify-content:center; }
+.card-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s; }
+ 
+.card-content { padding:10px 10px 8px; display:flex; flex-direction:column; gap:5px; flex:1; }
+.card h3 { margin:0; font-family:'Orbitron',sans-serif; font-size:10px; color:var(--green); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.card p { font-size:10px; margin:0; color:#777; line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+ 
+.badge-cat { display:inline-block; font-family:'Orbitron',sans-serif; font-size:8px; letter-spacing:1px; padding:2px 8px; border-radius:10px; border:1px solid #00ff8833; color:var(--green); background:#00ff8811; }
+ 
+.platform-tags { display:flex; gap:4px; flex-wrap:wrap; }
+.ptag { font-family:'Orbitron',sans-serif; font-size:7px; padding:2px 6px; border-radius:6px; letter-spacing:0.5px; }
+.ptag.android { color:#34a853; border:1px solid #34a85333; background:#34a8530d; }
+.ptag.ios { color:#5da9ff; border:1px solid #007aff33; background:#007aff0d; }
+.ptag.windows { color:#00f0ff; border:1px solid #00f0ff33; background:#00f0ff0d; }
+ 
+.dl-btn {
+  width:100%; padding:8px; border:none; border-radius:8px;
+  background:linear-gradient(90deg,var(--green),#00cc66);
+  color:#000; font-family:'Orbitron',sans-serif; font-size:10px;
+  font-weight:900; cursor:pointer; letter-spacing:0.5px;
+  transition:0.2s; min-height:34px; margin-top:auto;
+  position:relative; overflow:hidden;
 }
-
-/* SEARCH */
-
-.search{
-padding:15px;
-text-align:center;
+.dl-btn::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent); transition:left 0.4s; }
+.dl-btn:hover::after { left:100%; }
+.dl-btn:active { filter:brightness(1.2); transform:scale(0.98); }
+ 
+.dl-menu {
+  display:none; position:absolute; bottom:48px; left:8px; right:8px;
+  flex-direction:column; background:#0a0a1a; border:1px solid #00ff8833;
+  border-radius:10px; overflow:hidden; box-shadow:0 0 20px #00ff8822; z-index:20;
+  animation:pop 0.15s ease;
 }
-
-.search input{
-width:90%;
-padding:12px;
-border:none;
-border-radius:10px;
-font-size:15px;
-outline:none;
-}
-
-/* CATEGORIES */
-
-.categories{
-display:flex;
-overflow-x:auto;
-gap:10px;
-padding:10px;
-}
-
-.cat-btn{
-background:#00ff;
-padding:8px 14px;
-border-radius:8px;
-white-space:nowrap;
-cursor:pointer;
-transition:0.25s;
-font-size: 13px;
-}
-
-.cat-btn:hover{
-background:#00ff;
-color:black;
-}
-
-/* GRID */
-
-.apps{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-gap:15px;
-padding:15px;
-}
-
-/* CARD */
-
-.card{
-background:#0a0a1a;
-border-radius:14px;
-overflow:hidden;
-transition:0.3s;
-box-shadow:0 0 10px #000;
-position:relative;
-}
-
-.card:hover{
-transform:scale(1.05);
-box-shadow:0 0 15px #38bdf888;
-}
-
-.card img{
-width:100%;
-height:120px;
-object-fit:cover;
-}
-
-.card-content{
-padding:8px;
-}
-
-.card h3{
-margin:5px 0;
-font-size:14px;
-}
-
-.card p{
-font-size:12px;
-opacity:0.8;
-}
-
-/* DOWNLOAD BUTTON */
-
-.download-btn{
-width:100%;
-margin-top:6px;
-padding:8px;
-border:none;
-border-radius:6px;
-background:#00ff;
-color:black;
-font-weight:bold;
-cursor:pointer;
-}
-
-/* POPUP MENU */
-
-.download-menu{
-display:none;
-position:absolute;
-bottom:60px;
-left:10px;
-right:10px;
-
-flex-direction:column;
-background:#0a0a1a;
-border-radius:8px;
-overflow:hidden;
-
-box-shadow:0 8px 20px #000;
-z-index:10;
-
-animation:pop 0.15s ease;
-}
-
-.download-menu a{
-padding:8px;
-color:white;
-text-decoration:none;
-font-size:13px;
-border-top:1px solid #0a0a1a;
-}
-
-.download-menu a:hover{
-background:#38bdf8;
-color:black;
-}
-
-@keyframes pop{
-from{
-opacity:0;
-transform:translateY(10px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-/* FOOTER */
-
-footer{
-text-align:center;
-padding:12px;
-background:#020617;
-font-size:12px;
-}
-
+@keyframes pop { from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);} }
+.dl-menu a { padding:10px 12px; color:#ccc; text-decoration:none; font-size:12px; font-family:'Rajdhani',sans-serif; font-weight:600; border-bottom:1px solid #ffffff08; display:flex; align-items:center; gap:8px; min-height:38px; transition:0.15s; }
+.dl-menu a:last-child { border-bottom:none; }
+.dl-menu a:hover,.dl-menu a:active { background:var(--green); color:#000; }
+.dl-menu a.disabled { opacity:0.3; pointer-events:none; }
+ 
+.empty { grid-column:1/-1; text-align:center; padding:60px 20px; font-family:'Orbitron',sans-serif; font-size:13px; color:#333; letter-spacing:2px; }
+ 
+.comments-section { background:#0a0a1a; padding:16px; border-radius:12px; margin:0 12px 24px; border:1px solid #00ff8822; position:relative; z-index:1; }
+.comments-section h2 { font-family:'Orbitron',sans-serif; font-size:13px; color:#fff; letter-spacing:2px; margin-bottom:14px; }
+.comment-form { display:flex; gap:8px; margin-bottom:14px; }
+.comment-form input { flex:1; padding:10px 12px; border-radius:8px; border:1px solid #00ff8822; background:#000; color:#fff; font-family:'Rajdhani',sans-serif; font-size:14px; outline:none; min-height:42px; transition:0.2s; }
+.comment-form input:focus { border-color:#00ff8855; }
+.comment-form button { padding:10px 16px; border:none; border-radius:8px; background:var(--green); color:#000; font-family:'Orbitron',sans-serif; font-size:10px; font-weight:700; cursor:pointer; min-height:42px; white-space:nowrap; }
+#comments-list .comment { background:#000; padding:10px 12px; border-radius:8px; margin-bottom:8px; font-size:13px; border-left:3px solid var(--green); }
+ 
+footer { text-align:center; padding:16px; background:#0a0a1a; font-size:12px; color:#444; border-top:1px solid #00ff8822; position:relative; z-index:1; }
+footer a { color:#00ff8866; text-decoration:none; margin:0 6px; }
+footer a:hover { color:var(--green); }
+ 
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+ 
+@media(max-width:360px) { .apps { grid-template-columns:repeat(2,1fr); gap:10px; padding:0 10px 16px; } }
+@media(min-width:600px) { .apps { grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); } }
+@media(min-width:900px) { .apps { grid-template-columns:repeat(auto-fill,minmax(185px,1fr)); } }
 </style>
 </head>
-
 <body>
-
+ 
+<canvas id="particles-canvas"></canvas>
+ 
 <header>
-<h1>📱💻 Applications — MLG XGame</h1>
+  <a class="logo" href="index.html">MLG XGame</a>
+  <a class="back-btn" href="index.html">← Accueil</a>
 </header>
-
-<div class="search">
-<input type="text" placeholder="Rechercher une application..." id="search" onkeyup="searchApp()">
+ 
+<div class="app-count-banner reveal">
+  <span class="app-count-text">📦</span>
+  <span class="app-count-num" id="appCountNum">0</span>
+  <span class="app-count-text">applications disponibles</span>
 </div>
-
+ 
+<div class="search-wrap">
+  <span class="search-icon">🔍</span>
+  <input type="text" placeholder="Rechercher une application..." id="search" oninput="searchApp()" autocomplete="off" autocorrect="off" spellcheck="false">
+  <span class="search-clear" id="searchClear" onclick="clearSearch()">✕</span>
+</div>
+ 
 <div class="categories">
-
-<div class="cat-btn" onclick="filter('all')">Toutes</div>
-<div class="cat-btn" onclick="filter('Gaming')">Gaming</div>
-<div class="cat-btn" onclick="filter('Divertissement')">Divertissement</div>
-<div class="cat-btn" onclick="filter('Utilitaire')">Utilitaire</div>
-<div class="cat-btn" onclick="filter('Internet')">Internet</div>
-<div class="cat-btn" onclick="filter('Musique')">Musique</div>
-<div class="cat-btn" onclick="filter('Education')">Education</div>
-<div class="cat-btn" onclick="filter('Communication')">Communication</div>
-<div class="cat-btn" onclick="filter('Productivite')">Productivité</div>
-
+  <div class="cat-btn active" onclick="filter('Toutes',this)">Toutes</div>
+  <div class="cat-btn" onclick="filter('Gaming',this)">🎮 Gaming</div>
+  <div class="cat-btn" onclick="filter('Streaming',this)">🎬 Streaming</div>
+  <div class="cat-btn" onclick="filter('Messagerie',this)">💬 Messagerie</div>
+  <div class="cat-btn" onclick="filter('Musique',this)">🎵 Musique</div>
+  <div class="cat-btn" onclick="filter('Navigateurs',this)">🌐 Navigateurs</div>
+  <div class="cat-btn" onclick="filter('Éducation',this)">📚 Éducation</div>
+  <div class="cat-btn" onclick="filter('Utilitaires',this)">🛠️ Utilitaires</div>
+  <div class="cat-btn" onclick="filter('Productivité',this)">💼 Productivité</div>
 </div>
-
+ 
+<div class="section-header reveal">
+  <h2 id="section-title">Toutes les applications</h2>
+</div>
+ 
 <div class="apps" id="apps"></div>
-
- <!-- ====== SECTION COMMENTAIRES ====== -->
-<div class="comments-section">
+ 
+<div class="comments-section reveal">
   <h2>💬 Commentaires</h2>
-  
   <div class="comment-form">
     <input type="text" id="comment-input" placeholder="Écris ton commentaire..." />
     <button onclick="addComment()">Publier</button>
   </div>
-  
   <div id="comments-list"></div>
 </div>
-
-<style>
-.comments-section{
-  background:#1e293b;
-  padding:15px;
-  border-radius:12px;
-  margin:20px 0;
-}
-
-.comments-section h2{
-  color:#a855f7;
-  margin-bottom:10px;
-}
-
-.comment-form{
-  display:flex;
-  gap:10px;
-  margin-bottom:15px;
-}
-
-.comment-form input{
-  flex:1;
-  padding:8px;
-  border-radius:8px;
-  border:none;
-  outline:none;
-}
-
-.comment-form button{
-  padding:8px 12px;
-  border:none;
-  border-radius:8px;
-  background:#a855f7;
-  color:black;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-#comments-list .comment{
-  background:#0f172a;
-  padding:8px 12px;
-  border-radius:8px;
-  margin-bottom:8px;
-  font-size:13px;
-}
-</style>
-
-<script>
-function addComment(){
-  const input=document.getElementById("comment-input");
-  const text=input.value.trim();
-  if(!text) return;
-
-  const commentList=document.getElementById("comments-list");
-  const div=document.createElement("div");
-  div.className="comment";
-  div.textContent=text;
-  commentList.prepend(div);
-
-  input.value="";
-}
-</script>
-
-<script>
-
-/* ========= AJOUTE TES APPS ICI ========= */
-
-const apps=[
- // 🎭 Divertissement
-  { 
-    nom:"Netflix",
-    categorie:"Divertissement",
-    desc:"Streaming films et séries.",
-    img:"https://via.placeholder.com/120x150/E50914/ffffff?text=Netflix",
-    playstore:"https://play.google.com/store/apps/details?id=com.netflix.mediaclient",
-    appstore:"https://apps.apple.com/app/netflix/id363590051",
-    windows:"https://netflix.en.softonic.com/download"
-  },
-  { 
-    nom:"Disney+",
-    categorie:"Divertissement",
-    desc:"Films et séries Disney, Marvel, Pixar.",
-    img:"https://via.placeholder.com/120x150/113CCF/ffffff?text=Disney+",
-    playstore:"https://play.google.com/store/apps/details?id=com.disney.disneyplus",
-    appstore:"https://apps.apple.com/app/disney/id1446075923",
-    windows:"https://disney-plus.en.softonic.com/download"
-  },
-  { 
-    nom:"Twitch",
-    categorie:"Divertissement",
-    desc:"Streaming jeux vidéo en direct.",
-    img:"https://via.placeholder.com/120x150/6441A4/ffffff?text=Twitch",
-    playstore:"https://play.google.com/store/apps/details?id=tv.twitch.android.app",
-    appstore:"https://apps.apple.com/app/twitch/id460177396",
-    windows:"https://twitch.en.softonic.com/download"
-  },
-  { 
-    nom:"TikTok",
-    categorie:"Divertissement",
-    desc:"Vidéos courtes et fun.",
-    img:"https://via.placeholder.com/120x150/010101/ffffff?text=TikTok",
-    playstore:"https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically",
-    appstore:"https://apps.apple.com/app/tiktok/id835599320",
-    windows:"https://tiktok.en.softonic.com/download"
-  },
-  { 
-    nom:"YouTube",
-    categorie:"Divertissement",
-    desc:"Plateforme vidéo.",
-    img:"https://via.placeholder.com/120x150/FF0000/ffffff?text=YouTube",
-    playstore:"https://play.google.com/store/apps/details?id=com.google.android.youtube",
-    appstore:"https://apps.apple.com/app/youtube-watch-listen-stream/id544007664",
-    windows:null
-  },
-  { 
-    nom:"VLC Media Player",
-    categorie:"Divertissement",
-    desc:"Lecteur multimédia universel.",
-    img:"https://via.placeholder.com/120x150/FF9900/ffffff?text=VLC",
-    playstore:"https://play.google.com/store/apps/details?id=org.videolan.vlc",
-    appstore:"https://apps.apple.com/app/vlc-for-mobile/id650377962",
-    windows:"https://vlc-media-player.en.softonic.com/download"
-  },
-  { 
-    nom:"Kodi",
-    categorie:"Divertissement",
-    desc:"Média center open source.",
-    img:"https://via.placeholder.com/120x150/000000/ffffff?text=Kodi",
-    playstore:"https://play.google.com/store/apps/details?id=org.xbmc.kodi",
-    appstore:null,
-    windows:"https://kodi.en.softonic.com/download"
-  },
-  { 
-    nom:"MX Player",
-    categorie:"Divertissement",
-    desc:"Lecteur vidéo Android puissant.",
-    img:"https://via.placeholder.com/120x150/009688/ffffff?text=MX+Player",
-    playstore:"https://play.google.com/store/apps/details?id=com.mxtech.videoplayer.ad",
-    appstore:"https://apps.apple.com/app/mx-player/id1500626190",
-    windows:null
-  },
-  { 
-    nom:"Crunchyroll",
-    categorie:"Divertissement",
-    desc:"Anime en streaming légal.",
-    img:"https://via.placeholder.com/120x150/FF6600/ffffff?text=Crunchyroll",
-    playstore:"https://play.google.com/store/apps/details?id=com.crunchyroll.crunchyroid",
-    appstore:"https://apps.apple.com/app/crunchyroll/id329913454",
-    windows:null
-  },
-  { 
-    nom:"Spotify",
-    categorie:"Divertissement",
-    desc:"Musique et podcasts.",
-    img:"https://via.placeholder.com/120x150/1DB954/ffffff?text=Spotify",
-    playstore:"https://play.google.com/store/apps/details?id=com.spotify.music",
-    appstore:"https://apps.apple.com/app/spotify-music/id324684580",
-    windows:"https://spotify.en.softonic.com/download"
-  },
-
-  // 🎮 Gaming
-  { 
-    nom:"PPSSPP Free",
-    categorie:"Gaming",
-    desc:"Émulateur PSP gratuit.",
-    img:"https://via.placeholder.com/120x150/9900ff/ffffff?text=PPSSPP",
-    playstore:"https://play.google.com/store/apps/details?id=org.ppsspp.ppsspp",
-    appstore:null,
-    windows:"https://ppsspp.en.softonic.com/download"
-  },
-  { 
-    nom:"DraStic DS Emulator",
-    categorie:"Gaming",
-    desc:"Émulateur Nintendo DS performant.",
-    img:"https://via.placeholder.com/120x150/ff6600/ffffff?text=DraStic+DS",
-    playstore:"https://play.google.com/store/apps/details?id=com.dsemu.drastic",
-    appstore:null,
-    windows:null
-  },
-  { 
-    nom:"My Boy!",
-    categorie:"Gaming",
-    desc:"Émulateur Game Boy Advance rapide.",
-    img:"https://via.placeholder.com/120x150/008000/ffffff?text=My+Boy",
-    playstore:"https://play.google.com/store/apps/details?id=com.fastemulator.gba",
-    appstore:null,
-    windows:null
-  },
-  { 
-    nom:"ePSXe",
-    categorie:"Gaming",
-    desc:"Émulateur PlayStation pour Android et Windows.",
-    img:"https://via.placeholder.com/120x150/000000/ffffff?text=ePSXe",
-    playstore:"https://play.google.com/store/apps/details?id=com.epsxe.ePSXe",
-    appstore:null,
-    windows:"https://epsxe.en.softonic.com/download"
-  },
-  { 
-    nom:"RetroArch",
-    categorie:"Gaming",
-    desc:"Émulateur multi-plateforme.",
-    img:"https://via.placeholder.com/120x150/FF0000/ffffff?text=RetroArch",
-    playstore:"https://play.google.com/store/apps/details?id=com.retroarch",
-    appstore:null,
-    windows:"https://retroarch.en.softonic.com/download"
-  },
-  { 
-    nom:"NDS4Droid",
-    categorie:"Gaming",
-    desc:"Émulateur Nintendo DS pour Android.",
-    img:"https://via.placeholder.com/120x150/00FFFF/ffffff?text=NDS4Droid",
-    playstore:"https://play.google.com/store/apps/details?id=com.nds4droid",
-    appstore:null,
-    windows:null
-  },
-  { 
-    nom:"MAME4droid",
-    categorie:"Gaming",
-    desc:"Émulateur arcade classique.",
-    img:"https://via.placeholder.com/120x150/FF00FF/ffffff?text=MAME4droid",
-    playstore:"https://play.google.com/store/apps/details?id=com.seleuco.mame4droid",
-    appstore:null,
-    windows:null
-  },
-  { 
-    nom:"SuperRetro16",
-    categorie:"Gaming",
-    desc:"Émulateur SNES pour Android.",
-    img:"https://via.placeholder.com/120x150/FFFF00/ffffff?text=SuperRetro16",
-    playstore:"https://play.google.com/store/apps/details?id=com.snes9xplus",
-    appstore:null,
-    windows:null
-  },
-  { 
-    nom:"John GBA",
-    categorie:"Gaming",
-    desc:"Émulateur Game Boy Advance.",
-    img:"https://via.placeholder.com/120x150/FFA500/ffffff?text=John+GBA",
-    playstore:"https://play.google.com/store/apps/details?id=com.johnemulators.johngba",
-    appstore:null,
-    windows:null
-  },
-  { 
-    nom:"ClassicBoy",
-    categorie:"Gaming",
-    desc:"Émulateur multi-console Android.",
-    img:"https://via.placeholder.com/120x150/808080/ffffff?text=ClassicBoy",
-    playstore:"https://play.google.com/store/apps/details?id=com.portableandroid.classicboy",
-    appstore:null,
-    windows:null
-  },
-  // 🛠 Utilitaires
-  { 
-    nom:"Google Drive",
-    categorie:"Utilitaire",
-    desc:"Stockage et partage de fichiers dans le cloud.",
-    img:"https://via.placeholder.com/120x150/4285F4/ffffff?text=Drive",
-    playstore:"https://play.google.com/store/apps/details?id=com.google.android.apps.docs",
-    appstore:"https://apps.apple.com/app/google-drive/id507874739",
-    windows:"https://google-drive.en.softonic.com/download"
-  },
-  { 
-    nom:"Dropbox",
-    categorie:"Utilitaire",
-    desc:"Gestion simple de fichiers dans le cloud.",
-    img:"https://via.placeholder.com/120x150/0061FF/ffffff?text=Dropbox",
-    playstore:"https://play.google.com/store/apps/details?id=com.dropbox.android",
-    appstore:"https://apps.apple.com/app/dropbox/id327630330",
-    windows:"https://dropbox.en.softonic.com/download"
-  },
-  { 
-    nom:"ES File Explorer",
-    categorie:"Utilitaire",
-    desc:"Gestionnaire de fichiers complet pour Android.",
-    img:"https://via.placeholder.com/120x150/FF5722/ffffff?text=ES+File",
-    playstore:"https://play.google.com/store/apps/details?id=com.estrongs.android.pop",
-    appstore:null,
-    windows:"https://es-file-explorer-en.softonic.com/download"
-  },
-  { 
-    nom:"CamScanner",
-    categorie:"Utilitaire",
-    desc:"Scanner de docs et PDF à partir de votre appareil.",
-    img:"https://via.placeholder.com/120x150/FF9800/ffffff?text=CamScanner",
-    playstore:"https://play.google.com/store/apps/details?id=com.intsig.camscanner",
-    appstore:"https://apps.apple.com/app/camscanner/id388627783",
-    windows:"https://camscanner.en.softonic.com/download"
-  },
-  { 
-    nom:"ShareIt",
-    categorie:"Utilitaire",
-    desc:"Transfert de fichiers rapide entre appareils.",
-    img:"https://via.placeholder.com/120x150/FFC107/ffffff?text=ShareIt",
-    playstore:"https://play.google.com/store/apps/details?id=com.lenovo.anyshare.gps",
-    appstore:"https://apps.apple.com/app/shareit-file-transfer/id725215120",
-    windows:"https://shareit-en.softonic.com/download"
-  },
-  { 
-    nom:"ZArchiver",
-    categorie:"Utilitaire",
-    desc:"Application pour gérer les fichiers compressés.",
-    img:"https://via.placeholder.com/120x150/795548/ffffff?text=ZArchiver",
-    playstore:"https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver",
-    appstore:null,
-    windows:"https://zarchiver-en.softonic.com/download"
-  },
-  { 
-    nom:"Speedtest by Ookla",
-    categorie:"Utilitaire",
-    desc:"Tester la vitesse de votre connexion internet.",
-    img:"https://via.placeholder.com/120x150/03A9F4/ffffff?text=Speedtest",
-    playstore:"https://play.google.com/store/apps/details?id=org.zwanoo.android.speedtest",
-    appstore:"https://apps.apple.com/app/speedtest-by-ookla/id300704847",
-    windows:"https://speedtest-en.softonic.com/download"
-  },
-  { 
-    nom:"LastPass",
-    categorie:"Utilitaire",
-    desc:"Gestionnaire de mots de passe sécurisé et pratique.",
-    img:"https://via.placeholder.com/120x150/673AB7/ffffff?text=LastPass",
-    playstore:"https://play.google.com/store/apps/details?id=com.lastpass.lpandroid",
-    appstore:"https://apps.apple.com/app/lastpass-password-manager/id324613447",
-    windows:"https://lastpass-en.softonic.com/download"
-  },
-  { 
-    nom:"QR & Barcode Scanner",
-    categorie:"Utilitaire",
-    desc:"Scanner rapide pour QR codes et codes-barres.",
-    img:"https://via.placeholder.com/120x150/009688/ffffff?text=QR+Scanner",
-    playstore:"https://play.google.com/store/apps/details?id=com.gamma.scan",
-    appstore:"https://apps.apple.com/app/qr-code-reader/id1200318119",
-    windows:"https://qr-code-scanner-en.softonic.com/download"
-  },
-  { 
-    nom:"Tiny Scanner",
-    categorie:"Utilitaire",
-    desc:"Scanner portable pour documents avec sauvegarde PDF.",
-    img:"https://via.placeholder.com/120x150/607D8B/ffffff?text=Tiny+Scanner",
-    playstore:"https://play.google.com/store/apps/details?id=com.appxy.tinyscanner",
-    appstore:"https://apps.apple.com/app/tiny-scanner/id595563753",
-    windows:"https://tiny-scanner-en.softonic.com/download"
-  },
-
-  // 🌐 Internet
-  { 
-    nom:"Google Chrome",
-    categorie:"Internet",
-    desc:"Navigateur web rapide et sécurisé.",
-    img:"https://via.placeholder.com/120x150/4285F4/ffffff?text=Chrome",
-    playstore:"https://play.google.com/store/apps/details?id=com.android.chrome",
-    appstore:"https://apps.apple.com/app/google-chrome/id535886823",
-    windows:"https://google-chrome.en.softonic.com/download"
-  },
-  { 
-    nom:"Mozilla Firefox",
-    categorie:"Internet",
-    desc:"Navigateur web rapide et respectueux de la vie privée.",
-    img:"https://via.placeholder.com/120x150/FF9400/ffffff?text=Firefox",
-    playstore:"https://play.google.com/store/apps/details?id=org.mozilla.firefox",
-    appstore:"https://apps.apple.com/app/firefox-web-browser/id989804926",
-    windows:"https://mozilla-firefox.en.softonic.com/download"
-  },
-  { 
-    nom:"Opera Mini",
-    categorie:"Internet",
-    desc:"Navigateur léger et rapide pour mobiles.",
-    img:"https://via.placeholder.com/120x150/FF1B2D/ffffff?text=Opera+Mini",
-    playstore:"https://play.google.com/store/apps/details?id=com.opera.mini.native",
-    appstore:"https://apps.apple.com/app/opera-mini-web-browser/id363729560",
-    windows:"https://opera-mini.en.softonic.com/download"
-  },
-  { 
-    nom:"DuckDuckGo Browser",
-    categorie:"Internet",
-    desc:"Navigateur sécurisé qui respecte votre vie privée.",
-    img:"https://via.placeholder.com/120x150/DE5833/ffffff?text=DuckDuckGo",
-    playstore:"https://play.google.com/store/apps/details?id=com.duckduckgo.mobile.android",
-    appstore:"https://apps.apple.com/app/duckduckgo-private-browser/id663592361",
-    windows:"https://duckduckgo-browser.en.softonic.com/download"
-  },
-  { 
-    nom:"Brave Browser",
-    categorie:"Internet",
-    desc:"Navigateur avec bloqueur de publicités intégré.",
-    img:"https://via.placeholder.com/120x150/00A652/ffffff?text=Brave",
-    playstore:"https://play.google.com/store/apps/details?id=com.brave.browser",
-    appstore:"https://apps.apple.com/app/brave-private-web-browser/id1052879175",
-    windows:"https://brave-browser.en.softonic.com/download"
-  },
-  { 
-    nom:"Tor Browser",
-    categorie:"Internet",
-    desc:"Navigation internet anonyme et sécurisée.",
-    img:"https://via.placeholder.com/120x150/4B0082/ffffff?text=Tor",
-    playstore:"https://play.google.com/store/apps/details?id=org.torproject.torbrowser",
-    appstore:null,
-    windows:"https://tor-browser.en.softonic.com/download"
-  },
-  { 
-    nom:"Snap VPN",
-    categorie:"Internet",
-    desc:"VPN gratuit pour sécuriser votre connexion.",
-    img:"https://via.placeholder.com/120x150/FF4081/ffffff?text=Snap+VPN",
-    playstore:"https://play.google.com/store/apps/details?id=com.vpn.safervpn",
-    appstore:null,
-    windows:"https://snap-vpn.en.softonic.com/download"
-  },
-  { 
-    nom:"Hotspot Shield",
-    categorie:"Internet",
-    desc:"VPN sécurisé pour protéger votre réseau.",
-    img:"https://via.placeholder.com/120x150/007BFF/ffffff?text=Hotspot+Shield",
-    playstore:"https://play.google.com/store/apps/details?id=hotspotshield.android.vpn",
-    appstore:"https://apps.apple.com/app/hotspot-shield-vpn-proxy/id443369807",
-    windows:"https://hotspot-shield-vpn.en.softonic.com/download"
-  },
-  { 
-    nom:"Microsoft Edge",
-    categorie:"Internet",
-    desc:"Navigateur web polyvalent.",
-    img:"https://via.placeholder.com/120x150/0078D7/ffffff?text=Edge",
-    playstore:"https://play.google.com/store/apps/details?id=com.microsoft.emmx",
-    appstore:"https://apps.apple.com/app/microsoft-edge/id1288723196",
-    windows:"https://microsoft-edge.en.softonic.com/download"
-  },
-  { 
-    nom:"Kiwi Browser",
-    categorie:"Internet",
-    desc:"Navigateur Android basé sur Chrome avec extensions.",
-    img:"https://via.placeholder.com/120x150/00BCD4/ffffff?text=Kiwi",
-    playstore:"https://play.google.com/store/apps/details?id=com.kiwibrowser.browser",
-    appstore:null,
-    windows:"https://kiwi-browser.en.softonic.com/download"
-  },
-
-  // 🎵 Musique
-  { 
-    nom:"Spotify",
-    categorie:"Musique",
-    desc:"Streaming musical et playlists illimitées.",
-    img:"https://via.placeholder.com/120x150/1DB954/ffffff?text=Spotify",
-    playstore:"https://play.google.com/store/apps/details?id=com.spotify.music",
-    appstore:"https://apps.apple.com/app/spotify-music/id324684580",
-    windows:"https://spotify.en.softonic.com/download"
-  },
-  { 
-    nom:"SoundCloud",
-    categorie:"Musique",
-    desc:"Découverte d’artistes et musiques indépendantes.",
-    img:"https://via.placeholder.com/120x150/FF5500/ffffff?text=SoundCloud",
-    playstore:"https://play.google.com/store/apps/details?id=com.soundcloud.android",
-    appstore:"https://apps.apple.com/app/soundcloud/id336353151",
-    windows:"https://soundcloud.en.softonic.com/download"
-  },
-  { 
-    nom:"Deezer",
-    categorie:"Musique",
-    desc:"Streaming musical et radios en ligne.",
-    img:"https://via.placeholder.com/120x150/FF0000/ffffff?text=Deezer",
-    playstore:"https://play.google.com/store/apps/details?id=deezer.android.app",
-    appstore:"https://apps.apple.com/app/deezer-music-podcast-player/id292738169",
-    windows:"https://deezer.en.softonic.com/download"
-  },
-  { 
-    nom:"Shazam",
-    categorie:"Musique",
-    desc:"Identifier instantanément n’importe quelle musique.",
-    img:"https://via.placeholder.com/120x150/00F0FF/ffffff?text=Shazam",
-    playstore:"https://play.google.com/store/apps/details?id=com.shazam.android",
-    appstore:"https://apps.apple.com/app/shazam/id284993459",
-    windows:"https://shazam.en.softonic.com/download"
-  },
-  { 
-    nom:"YouTube Music",
-    categorie:"Musique",
-    desc:"Streaming musical avec intégration YouTube.",
-    img:"https://via.placeholder.com/120x150/FF0000/ffffff?text=YT+Music",
-    playstore:"https://play.google.com/store/apps/details?id=com.google.android.apps.youtube.music",
-    appstore:"https://apps.apple.com/app/youtube-music/id1017492454",
-    windows:"https://youtube-music.en.softonic.com/download"
-  },
-  { 
-    nom:"Bandcamp",
-    categorie:"Musique",
-    desc:"Plateforme de musique indépendante.",
-    img:"https://via.placeholder.com/120x150/007FFF/ffffff?text=Bandcamp",
-    playstore:"https://play.google.com/store/apps/details?id=com.bandcamp.bandcamp",
-    appstore:"https://apps.apple.com/app/bandcamp/id435142918",
-    windows:"https://bandcamp.en.softonic.com/download"
-  },
-  { 
-    nom:"Tidal",
-    categorie:"Musique",
-    desc:"Streaming musical en haute qualité audio.",
-    img:"https://via.placeholder.com/120x150/000000/ffffff?text=Tidal",
-    playstore:"https://play.google.com/store/apps/details?id=com.aspiro.tidal",
-    appstore:"https://apps.apple.com/app/tidal/id913943275",
-    windows:"https://tidal.en.softonic.com/download"
-  },
-  { 
-    nom:"Musicolet",
-    categorie:"Musique",
-    desc:"Lecteur MP3 offline simple.",
-    img:"https://via.placeholder.com/120x150/FF5722/ffffff?text=Musicolet",
-    playstore:"https://play.google.com/store/apps/details?id=in.krosbits.musicolet",
-    appstore:null,
-    windows:"https://musicolet.en.softonic.com/download"
-  },
-  { 
-    nom:"Audiomack",
-    categorie:"Musique",
-    desc:"Streaming hip-hop et rap.",
-    img:"https://via.placeholder.com/120x150/FF0000/ffffff?text=Audiomack",
-    playstore:"https://play.google.com/store/apps/details?id=com.audiomack",
-    appstore:"https://apps.apple.com/app/audiomack/id921765888",
-    windows:"https://audiomack.en.softonic.com/download"
-  },
-  { 
-    nom:"Jiosaavn",
-    categorie:"Musique",
-    desc:"Streaming musical international.",
-    img:"https://via.placeholder.com/120x150/008000/ffffff?text=JioSaavn",
-    playstore:"https://play.google.com/store/apps/details?id=com.jio.media.jiobeats",
-    appstore:"https://apps.apple.com/app/saavn-music-podcasts/id434613896",
-    windows:"https://jiosaavn.en.softonic.com/download"
-  },
-  // 📚 Education
-  { 
-    nom:"Khan Academy",
-    categorie:"Education",
-    desc:"Cours gratuits sur de nombreux sujets.",
-    img:"https://via.placeholder.com/120x150/0F9D58/ffffff?text=Khan+Academy",
-    playstore:"https://play.google.com/store/apps/details?id=org.khanacademy.android",
-    appstore:"https://apps.apple.com/app/khan-academy/id469863705",
-    windows:null
-  },
-  { 
-    nom:"Duolingo",
-    categorie:"Education",
-    desc:"Apprendre des langues facilement.",
-    img:"https://via.placeholder.com/120x150/34A853/ffffff?text=Duolingo",
-    playstore:"https://play.google.com/store/apps/details?id=com.duolingo",
-    appstore:"https://apps.apple.com/app/duolingo-language-lessons/id570060128",
-    windows:"https://duolingo.en.softonic.com/download"
-  },
-  { 
-    nom:"Coursera",
-    categorie:"Education",
-    desc:"Cours universitaires en ligne.",
-    img:"https://via.placeholder.com/120x150/0056D2/ffffff?text=Coursera",
-    playstore:"https://play.google.com/store/apps/details?id=org.coursera.android",
-    appstore:"https://apps.apple.com/app/coursera-learn-new-skills/id736535961",
-    windows:null
-  },
-  { 
-    nom:"Udemy",
-    categorie:"Education",
-    desc:"Plateforme de formation en ligne.",
-    img:"https://via.placeholder.com/120x150/EC5252/ffffff?text=Udemy",
-    playstore:"https://play.google.com/store/apps/details?id=com.udemy.android",
-    appstore:"https://apps.apple.com/app/udemy-online-courses/id562413829",
-    windows:null
-  },
-  { 
-    nom:"Photomath",
-    categorie:"Education",
-    desc:"Résolution de maths via la caméra.",
-    img:"https://via.placeholder.com/120x150/FFB300/ffffff?text=Photomath",
-    playstore:"https://play.google.com/store/apps/details?id=com.microblink.photomath",
-    appstore:"https://apps.apple.com/app/photomath/id919087726",
-    windows:"https://photomath.en.softonic.com/download"
-  },
-  { 
-    nom:"Quizlet",
-    categorie:"Education",
-    desc:"Cartes mémoire pour réviser facilement.",
-    img:"https://via.placeholder.com/120x150/9C27B0/ffffff?text=Quizlet",
-    playstore:"https://play.google.com/store/apps/details?id=com.quizlet.quizletandroid",
-    appstore:"https://apps.apple.com/app/quizlet-learn-with-flashcards/id546473125",
-    windows:null
-  },
-  { 
-    nom:"edX",
-    categorie:"Education",
-    desc:"Cours en ligne de grandes universités.",
-    img:"https://via.placeholder.com/120x150/002D72/ffffff?text=edX",
-    playstore:"https://play.google.com/store/apps/details?id=org.edx.mobile",
-    appstore:"https://apps.apple.com/app/edx-courses/id945480667",
-    windows:null
-  },
-  { 
-    nom:"Brilliant",
-    categorie:"Education",
-    desc:"Cours interactifs de maths et logique.",
-    img:"https://via.placeholder.com/120x150/FF6F00/ffffff?text=Brilliant",
-    playstore:"https://play.google.com/store/apps/details?id=com.brilliant.android",
-    appstore:"https://apps.apple.com/app/brilliant/id913366187",
-    windows:null
-  },
-  { 
-    nom:"Babbel",
-    categorie:"Education",
-    desc:"Apprentissage des langues facile.",
-    img:"https://via.placeholder.com/120x150/0071BC/ffffff?text=Babbel",
-    playstore:"https://play.google.com/store/apps/details?id=com.babbel.mobile.android.en",
-    appstore:"https://apps.apple.com/app/babbel-learn-languages/id829587759",
-    windows:null
-  },
-  { 
-    nom:"Memrise",
-    categorie:"Education",
-    desc:"Apprendre les langues avec des jeux.",
-    img:"https://via.placeholder.com/120x150/4CAF50/ffffff?text=Memrise",
-    playstore:"https://play.google.com/store/apps/details?id=com.memrise.android.memrisecompanion",
-    appstore:"https://apps.apple.com/app/memrise-easy-language-learning/id635966718",
-    windows:null
-  },
-
-  // 💬 Communication
-  { 
-    nom:"WhatsApp",
-    categorie:"Communication",
-    desc:"Messagerie instantanée très populaire.",
-    img:"https://via.placeholder.com/120x150/25D366/ffffff?text=WhatsApp",
-    playstore:"https://play.google.com/store/apps/details?id=com.whatsapp",
-    appstore:"https://apps.apple.com/app/whatsapp-messenger/id310633997",
-    windows:"https://whatsapp-for-pc.en.softonic.com/download"
-  },
-  { 
-    nom:"Telegram",
-    categorie:"Communication",
-    desc:"Chat sécurisé et groupes puissants.",
-    img:"https://via.placeholder.com/120x150/0088CC/ffffff?text=Telegram",
-    playstore:"https://play.google.com/store/apps/details?id=org.telegram.messenger",
-    appstore:"https://apps.apple.com/app/telegram-messenger/id686449807",
-    windows:"https://telegram.org/windows"
-  },
-  { 
-    nom:"Messenger",
-    categorie:"Communication",
-    desc:"Messagerie Facebook avec appels vidéo.",
-    img:"https://via.placeholder.com/120x150/0084FF/ffffff?text=Messenger",
-    playstore:"https://play.google.com/store/apps/details?id=com.facebook.orca",
-    appstore:"https://apps.apple.com/app/messenger/id454638411",
-    windows:"https://messenger-pro.en.softonic.com/download"
-  },
-  { 
-    nom:"Signal",
-    categorie:"Communication",
-    desc:"Messagerie extrêmement sécurisée.",
-    img:"https://via.placeholder.com/120x150/3A76F0/ffffff?text=Signal",
-    playstore:"https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms",
-    appstore:"https://apps.apple.com/app/signal-private-messenger/id874139669",
-    windows:"https://signal.en.softonic.com/download"
-  },
-  { 
-    nom:"Discord",
-    categorie:"Communication",
-    desc:"Chat vocal et texte pour communautés.",
-    img:"https://via.placeholder.com/120x150/7289DA/ffffff?text=Discord",
-    playstore:"https://play.google.com/store/apps/details?id=com.discord",
-    appstore:"https://apps.apple.com/app/discord/id985746746",
-    windows:"https://discord.en.softonic.com/download"
-  },
-  { 
-    nom:"Skype",
-    categorie:"Communication",
-    desc:"Appels vidéo et messages.",
-    img:"https://via.placeholder.com/120x150/00AFF0/ffffff?text=Skype",
-    playstore:"https://play.google.com/store/apps/details?id=com.skype.raider",
-    appstore:"https://apps.apple.com/app/skype-for-iphone/id304878510",
-    windows:"https://skype.en.softonic.com/download"
-  },
-  { 
-    nom:"Zoom",
-    categorie:"Communication",
-    desc:"Réunions vidéo professionnelles.",
-    img:"https://via.placeholder.com/120x150/2D8CFF/ffffff?text=Zoom",
-    playstore:"https://play.google.com/store/apps/details?id=us.zoom.videomeetings",
-    appstore:"https://apps.apple.com/app/zoom-cloud-meetings/id546505307",
-    windows:"https://zoom.en.softonic.com/download"
-  },
-  { 
-    nom:"Slack",
-    categorie:"Communication",
-    desc:"Communication professionnelle en équipe.",
-    img:"https://via.placeholder.com/120x150/4A154B/ffffff?text=Slack",
-    playstore:"https://play.google.com/store/apps/details?id=com.Slack",
-    appstore:"https://apps.apple.com/app/slack/id618783545",
-    windows:"https://slack.en.softonic.com/download"
-  },
-  { 
-    nom:"Viber",
-    categorie:"Communication",
-    desc:"Appels et messagerie gratuits.",
-    img:"https://via.placeholder.com/120x150/665CAC/ffffff?text=Viber",
-    playstore:"https://play.google.com/store/apps/details?id=com.viber.voip",
-    appstore:"https://apps.apple.com/app/viber-messenger-chats-calls/id382617920",
-    windows:"https://viber.en.softonic.com/download"
-  },
-  { 
-    nom:"Line",
-    categorie:"Communication",
-    desc:"Chat, appels et stickers fun.",
-    img:"https://via.placeholder.com/120x150/00C300/ffffff?text=Line",
-    playstore:"https://play.google.com/store/apps/details?id=jp.naver.line.android",
-    appstore:"https://apps.apple.com/app/line/id443904275",
-    windows:"https://line.en.softonic.com/download"
-  },
-
-  // 🧠 Productivité
-  { 
-    nom:"Notion",
-    categorie:"Productivité",
-    desc:"Organisation, notes, bases de données.",
-    img:"https://via.placeholder.com/120x150/000000/ffffff?text=Notion",
-    playstore:"https://play.google.com/store/apps/details?id=com.not‎ion.so",
-    appstore:"https://apps.apple.com/app/notion-notes-tasks-wiki/id1232780281",
-    windows:"https://notion.en.softonic.com/download"
-  },
-  { 
-    nom:"Trello",
-    categorie:"Productivité",
-    desc:"Gestion de projets facile et visuelle.",
-    img:"https://via.placeholder.com/120x150/0079BF/ffffff?text=Trello",
-    playstore:"https://play.google.com/store/apps/details?id=com.trello",
-    appstore:"https://apps.apple.com/app/trello-organize-anything/id461504587",
-    windows:"https://trello.en.softonic.com/download"
-  },
-  { 
-    nom:"Evernote",
-    categorie:"Productivité",
-    desc:"Notes, mémos et organisation personnelle.",
-    img:"https://via.placeholder.com/120x150/2DAD00/ffffff?text=Evernote",
-    playstore:"https://play.google.com/store/apps/details?id=com.evernote",
-    appstore:"https://apps.apple.com/app/evernote-notes-organizer/id281796108",
-    windows:"https://evernote.en.softonic.com/download"
-  },
-  { 
-    nom:"Microsoft To Do",
-    categorie:"Productivité",
-    desc:"Listes de tâches et rappels.",
-    img:"https://via.placeholder.com/120x150/0078D7/ffffff?text=MS+To+Do",
-    playstore:"https://play.google.com/store/apps/details?id=com.microsoft.todos",
-    appstore:"https://apps.apple.com/app/microsoft-to-do/id1212616790",
-    windows:"https://microsoft-to-do.en.softonic.com/download"
-  },
-  { 
-    nom:"Google Keep",
-    categorie:"Productivité",
-    desc:"Prise de notes rapide et fluide.",
-    img:"https://via.placeholder.com/120x150/FBBC05/ffffff?text=Google+Keep",
-    playstore:"https://play.google.com/store/apps/details?id=com.google.android.keep",
-    appstore:"https://apps.apple.com/app/google-keep-notes-and-lists/id1029207872",
-    windows:null
-  },
-  { 
-    nom:"Todoist",
-    categorie:"Productivité",
-    desc:"Gestion des tâches intelligente.",
-    img:"https://via.placeholder.com/120x150/E44332/ffffff?text=Todoist",
-    playstore:"https://play.google.com/store/apps/details?id=com.todoist",
-    appstore:"https://apps.apple.com/app/todoist-to-do-list-tasks/id572688855",
-    windows:"https://todoist.en.softonic.com/download"
-  },
-  { 
-    nom:"Asana",
-    categorie:"Productivité",
-    desc:"Organisez facilement le travail en équipe.",
-    img:"https://via.placeholder.com/120x150/F56060/ffffff?text=Asana",
-    playstore:"https://play.google.com/store/apps/details?id=com.asana.app",
-    appstore:"https://apps.apple.com/app/asana-work-in-one-place/id489969512",
-    windows:"https://asana.en.softonic.com/download"
-  },
-  { 
-    nom:"ClickUp",
-    categorie:"Productivité",
-    desc:"Plateforme tout-en-un pour projets.",
-    img:"https://via.placeholder.com/120x150/7B68EE/ffffff?text=ClickUp",
-    playstore:"https://play.google.com/store/apps/details?id=co.clickup.android",
-    appstore:"https://apps.apple.com/app/clickup/id1206382062",
-    windows:"https://clickup.en.softonic.com/download"
-  },
-  { 
-    nom:"Forest",
-    categorie:"Productivité",
-    desc:"Restez concentré avec un timer fun.",
-    img:"https://via.placeholder.com/120x150/4CAF50/ffffff?text=Forest",
-    playstore:"https://play.google.com/store/apps/details?id=cc.forestapp",
-    appstore:"https://apps.apple.com/app/forest-stay-focused/id866450515",
-    windows:null
-  },
-  { 
-    nom:"TickTick",
-    categorie:"Productivité",
-    desc:"Tâches, calendrier et rappels.",
-    img:"https://via.placeholder.com/120x150/FF6D00/ffffff?text=TickTick",
-    playstore:"https://play.google.com/store/apps/details?id=com.ticktick.task",
-    appstore:"https://apps.apple.com/app/ticktick-to-do-list-calendar/id962673148",
-    windows:"https://ticktick.en.softonic.com/download"
-  },
-];
-
-/* ========= RENDER ========= */
-
-function render(list){
-const container=document.getElementById("apps");
-container.innerHTML="";
-
-list.forEach((app,index)=>{
-container.innerHTML+=`
-<div class="card">
-<img src="${app.img}">
-<div class="card-content">
-
-<h3>${app.nom}</h3>
-<p>${app.desc}</p>
-
-<button class="download-btn"
-onclick="toggleMenu(event,'menu${index}')">
-Download
-</button>
-
-<div class="download-menu" id="menu${index}">
-<a href="${app.playstore}" target="_blank">Play Store</a>
-<a href="${app.appstore}" target="_blank">App Store</a>
-<a href="${app.windows}" target="_blank">Windows</a>
+ 
+<div style="padding:16px;color:#1a1a1a;font-size:12px;line-height:1.8;font-family:'Rajdhani',sans-serif;position:relative;z-index:1;">
+  <h2 style="font-family:'Orbitron',sans-serif;font-size:12px;color:#00ff8811;letter-spacing:2px;margin-bottom:8px;">MEILLEURES APPLICATIONS 2026 — MLG XGAME</h2>
+  <p>MLG XGame propose une sélection des meilleures applications gratuites pour Android, iOS et PC. Découvrez des applications de gaming comme Discord et PPSSPP, des apps de streaming comme Netflix et Disney+, des applications de messagerie comme WhatsApp et Telegram, des apps de musique comme Spotify et Deezer, et bien plus encore.</p>
 </div>
-
-</div>
-</div>
-`;
-});
-}
-
-render(apps);
-
-/* ========= FILTER ========= */
-
-function filter(cat){
-if(cat==="all") return render(apps);
-
-render(apps.filter(a=>a.categorie===cat));
-}
-
-/* ========= SEARCH ========= */
-
-function searchApp(){
-let text=document.getElementById("search").value.toLowerCase();
-
-render(apps.filter(a=>
-a.nom.toLowerCase().includes(text)
-));
-}
-
-/* ========= POPUP ========= */
-
-function toggleMenu(event,id){
-
-event.stopPropagation();
-
-document.querySelectorAll(".download-menu")
-.forEach(menu=>menu.style.display="none");
-
-const menu=document.getElementById(id);
-
-menu.style.display=
-menu.style.display==="flex" ? "none" : "flex";
-}
-
-document.addEventListener("click",()=>{
-document.querySelectorAll(".download-menu")
-.forEach(menu=>menu.style.display="none");
-});
-
-</script>
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7572845165323582"
-     crossorigin="anonymous"></script>
-  
-  <footer>
-  <p>&copy; 2026 MLG XGame. Tous droits réservés.</p>
+ 
+<footer>
+  <p style="margin-bottom:8px;">&copy; 2026 <strong style="color:#00ff8866">MLG XGame</strong>. Tous droits réservés.</p>
   <p>
-    <a href="apropos.html">À propos</a> |
-    <a href="politique.html">Politique de confidentialité</a> |
-    <a href="conditions.html">Conditions d'utilisation</a> |
+    <a href="apropos.html">À propos</a>
+    <a href="politique.html">Confidentialité</a>
+    <a href="conditions.html">Conditions</a>
     <a href="contact.html">Contact</a>
   </p>
 </footer>
-  
+ 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7572845165323582" crossorigin="anonymous"></script>
+ 
+<script>
+/* PARTICLES */
+window.addEventListener('load', function() {
+  var canvas = document.getElementById('particles-canvas');
+  var ctx = canvas.getContext('2d');
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  var stars = [];
+  for (var i = 0; i < 120; i++) {
+    stars.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*1.2+0.2, a: Math.random(), aSpeed: (Math.random()*0.01+0.003)*(Math.random()>0.5?1:-1), aMin:0.05, aMax:0.9 });
+  }
+  var nebula = [];
+  for (var j = 0; j < 35; j++) {
+    nebula.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*2.5+0.8, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, col: Math.random()>0.5?'#00ff88':'#9900ff', a: Math.random()*0.4+0.1 });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(function(s) {
+      s.a += s.aSpeed;
+      if (s.a >= s.aMax || s.a <= s.aMin) s.aSpeed *= -1;
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fillStyle = '#ffffff'; ctx.globalAlpha = s.a; ctx.fill();
+    });
+    nebula.forEach(function(p) {
+      var grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r*3);
+      grad.addColorStop(0, p.col); grad.addColorStop(1, 'transparent');
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r*3, 0, Math.PI*2);
+      ctx.fillStyle = grad; ctx.globalAlpha = p.a*0.6; ctx.fill();
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.col; ctx.globalAlpha = p.a; ctx.fill();
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+});
+ 
+/* SCROLL REVEAL */
+var ro = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) e.target.classList.add('visible');
+    else e.target.classList.remove('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(function(el) { ro.observe(el); });
+ 
+/* CARD OBSERVER */
+var cardObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) e.target.classList.add('visible');
+    else e.target.classList.remove('visible');
+  });
+}, { threshold: 0.1 });
+ 
+/* DATA */
+const apps = [
+  // 🎮 GAMING
+  { nom:"Discord", slug:"discord", cat:"Gaming", desc:"Chat vocal et texte pour communautés gaming.", img:"https://via.placeholder.com/300x200/7289DA/ffffff?text=Discord", android:"https://play.google.com/store/apps/details?id=com.discord", ios:"https://apps.apple.com/app/discord/id985746746", windows:"https://discord.en.softonic.com/download", lien:"apps/gaming/discord.html" },
+  { nom:"PPSSPP", slug:"ppsspp", cat:"Gaming", desc:"Émulateur PSP gratuit et performant.", img:"https://via.placeholder.com/300x200/9900ff/ffffff?text=PPSSPP", android:"https://play.google.com/store/apps/details?id=org.ppsspp.ppsspp", ios:null, windows:"https://ppsspp.en.softonic.com/download", lien:"apps/gaming/ppsspp.html" },
+  { nom:"RetroArch", slug:"retroarch", cat:"Gaming", desc:"Émulateur multi-plateforme tout-en-un.", img:"https://via.placeholder.com/300x200/FF0000/ffffff?text=RetroArch", android:"https://play.google.com/store/apps/details?id=com.retroarch", ios:null, windows:"https://retroarch.en.softonic.com/download", lien:"apps/gaming/retroarch.html" },
+  { nom:"DraStic DS", slug:"drastic-ds", cat:"Gaming", desc:"Émulateur Nintendo DS performant.", img:"https://via.placeholder.com/300x200/ff6600/ffffff?text=DraStic+DS", android:"https://play.google.com/store/apps/details?id=com.dsemu.drastic", ios:null, windows:null, lien:"apps/gaming/drastic-ds.html" },
+  { nom:"My Boy! GBA", slug:"my-boy-gba", cat:"Gaming", desc:"Émulateur Game Boy Advance rapide.", img:"https://via.placeholder.com/300x200/008000/ffffff?text=My+Boy", android:"https://play.google.com/store/apps/details?id=com.fastemulator.gba", ios:null, windows:null, lien:"apps/gaming/my-boy-gba.html" },
+  { nom:"ePSXe", slug:"epsxe", cat:"Gaming", desc:"Émulateur PlayStation pour Android et Windows.", img:"https://via.placeholder.com/300x200/000080/ffffff?text=ePSXe", android:"https://play.google.com/store/apps/details?id=com.epsxe.ePSXe", ios:null, windows:"https://epsxe.en.softonic.com/download", lien:"apps/gaming/epsxe.html" },
+  { nom:"Twitch", slug:"twitch", cat:"Gaming", desc:"Streaming jeux vidéo en direct.", img:"https://via.placeholder.com/300x200/6441A4/ffffff?text=Twitch", android:"https://play.google.com/store/apps/details?id=tv.twitch.android.app", ios:"https://apps.apple.com/app/twitch/id460177396", windows:"https://twitch.en.softonic.com/download", lien:"apps/gaming/twitch.html" },
+  { nom:"Steam", slug:"steam", cat:"Gaming", desc:"La plus grande plateforme de jeux PC.", img:"https://via.placeholder.com/300x200/1b2838/ffffff?text=Steam", android:"https://play.google.com/store/apps/details?id=com.valvesoftware.android.steam.community", ios:"https://apps.apple.com/app/steam-mobile/id495369748", windows:"https://store.steampowered.com/about/", lien:"apps/gaming/steam.html" },
+ 
+  // 🎬 STREAMING
+  { nom:"Netflix", slug:"netflix", cat:"Streaming", desc:"Streaming films et séries.", img:"https://via.placeholder.com/300x200/E50914/ffffff?text=Netflix", android:"https://play.google.com/store/apps/details?id=com.netflix.mediaclient", ios:"https://apps.apple.com/app/netflix/id363590051", windows:"https://netflix.en.softonic.com/download", lien:"apps/streaming/netflix.html" },
+  { nom:"Disney+", slug:"disney-plus", cat:"Streaming", desc:"Films et séries Disney, Marvel, Pixar.", img:"https://via.placeholder.com/300x200/113CCF/ffffff?text=Disney+", android:"https://play.google.com/store/apps/details?id=com.disney.disneyplus", ios:"https://apps.apple.com/app/disney/id1446075923", windows:"https://disney-plus.en.softonic.com/download", lien:"apps/streaming/disney-plus.html" },
+  { nom:"YouTube", slug:"youtube", cat:"Streaming", desc:"Plateforme vidéo numéro 1 au monde.", img:"https://via.placeholder.com/300x200/FF0000/ffffff?text=YouTube", android:"https://play.google.com/store/apps/details?id=com.google.android.youtube", ios:"https://apps.apple.com/app/youtube/id544007664", windows:null, lien:"apps/streaming/youtube.html" },
+  { nom:"TikTok", slug:"tiktok", cat:"Streaming", desc:"Vidéos courtes et fun.", img:"https://via.placeholder.com/300x200/010101/ffffff?text=TikTok", android:"https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically", ios:"https://apps.apple.com/app/tiktok/id835599320", windows:"https://tiktok.en.softonic.com/download", lien:"apps/streaming/tiktok.html" },
+  { nom:"Crunchyroll", slug:"crunchyroll", cat:"Streaming", desc:"Anime en streaming légal.", img:"https://via.placeholder.com/300x200/FF6600/ffffff?text=Crunchyroll", android:"https://play.google.com/store/apps/details?id=com.crunchyroll.crunchyroid", ios:"https://apps.apple.com/app/crunchyroll/id329913454", windows:null, lien:"apps/streaming/crunchyroll.html" },
+  { nom:"VLC", slug:"vlc", cat:"Streaming", desc:"Lecteur multimédia universel et gratuit.", img:"https://via.placeholder.com/300x200/FF9900/ffffff?text=VLC", android:"https://play.google.com/store/apps/details?id=org.videolan.vlc", ios:"https://apps.apple.com/app/vlc-for-mobile/id650377962", windows:"https://vlc-media-player.en.softonic.com/download", lien:"apps/streaming/vlc.html" },
+  { nom:"Kodi", slug:"kodi", cat:"Streaming", desc:"Média center open source.", img:"https://via.placeholder.com/300x200/17B2E7/ffffff?text=Kodi", android:"https://play.google.com/store/apps/details?id=org.xbmc.kodi", ios:null, windows:"https://kodi.en.softonic.com/download", lien:"apps/streaming/kodi.html" },
+ 
+  // 💬 MESSAGERIE
+  { nom:"WhatsApp", slug:"whatsapp", cat:"Messagerie", desc:"Messagerie instantanée très populaire.", img:"https://via.placeholder.com/300x200/25D366/ffffff?text=WhatsApp", android:"https://play.google.com/store/apps/details?id=com.whatsapp", ios:"https://apps.apple.com/app/whatsapp-messenger/id310633997", windows:"https://whatsapp-for-pc.en.softonic.com/download", lien:"apps/messagerie/whatsapp.html" },
+  { nom:"Telegram", slug:"telegram", cat:"Messagerie", desc:"Chat sécurisé et groupes puissants.", img:"https://via.placeholder.com/300x200/0088CC/ffffff?text=Telegram", android:"https://play.google.com/store/apps/details?id=org.telegram.messenger", ios:"https://apps.apple.com/app/telegram-messenger/id686449807", windows:"https://telegram.org/windows", lien:"apps/messagerie/telegram.html" },
+  { nom:"Signal", slug:"signal", cat:"Messagerie", desc:"Messagerie extrêmement sécurisée.", img:"https://via.placeholder.com/300x200/3A76F0/ffffff?text=Signal", android:"https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms", ios:"https://apps.apple.com/app/signal-private-messenger/id874139669", windows:"https://signal.en.softonic.com/download", lien:"apps/messagerie/signal.html" },
+  { nom:"Messenger", slug:"messenger", cat:"Messagerie", desc:"Messagerie Facebook avec appels vidéo.", img:"https://via.placeholder.com/300x200/0084FF/ffffff?text=Messenger", android:"https://play.google.com/store/apps/details?id=com.facebook.orca", ios:"https://apps.apple.com/app/messenger/id454638411", windows:"https://messenger-pro.en.softonic.com/download", lien:"apps/messagerie/messenger.html" },
+  { nom:"Zoom", slug:"zoom", cat:"Messagerie", desc:"Réunions vidéo professionnelles.", img:"https://via.placeholder.com/300x200/2D8CFF/ffffff?text=Zoom", android:"https://play.google.com/store/apps/details?id=us.zoom.videomeetings", ios:"https://apps.apple.com/app/zoom-cloud-meetings/id546505307", windows:"https://zoom.en.softonic.com/download", lien:"apps/messagerie/zoom.html" },
+  { nom:"Skype", slug:"skype", cat:"Messagerie", desc:"Appels vidéo et messages.", img:"https://via.placeholder.com/300x200/00AFF0/ffffff?text=Skype", android:"https://play.google.com/store/apps/details?id=com.skype.raider", ios:"https://apps.apple.com/app/skype-for-iphone/id304878510", windows:"https://skype.en.softonic.com/download", lien:"apps/messagerie/skype.html" },
+  { nom:"Slack", slug:"slack", cat:"Messagerie", desc:"Communication professionnelle en équipe.", img:"https://via.placeholder.com/300x200/4A154B/ffffff?text=Slack", android:"https://play.google.com/store/apps/details?id=com.Slack", ios:"https://apps.apple.com/app/slack/id618783545", windows:"https://slack.en.softonic.com/download", lien:"apps/messagerie/slack.html" },
+  { nom:"Viber", slug:"viber", cat:"Messagerie", desc:"Appels et messagerie gratuits.", img:"https://via.placeholder.com/300x200/665CAC/ffffff?text=Viber", android:"https://play.google.com/store/apps/details?id=com.viber.voip", ios:"https://apps.apple.com/app/viber-messenger/id382617920", windows:"https://viber.en.softonic.com/download", lien:"apps/messagerie/viber.html" },
+ 
+  // 🎵 MUSIQUE
+  { nom:"Spotify", slug:"spotify", cat:"Musique", desc:"Streaming musical et playlists illimitées.", img:"https://via.placeholder.com/300x200/1DB954/ffffff?text=Spotify", android:"https://play.google.com/store/apps/details?id=com.spotify.music", ios:"https://apps.apple.com/app/spotify-music/id324684580", windows:"https://spotify.en.softonic.com/download", lien:"apps/musique/spotify.html" },
+  { nom:"Deezer", slug:"deezer", cat:"Musique", desc:"Streaming musical et radios en ligne.", img:"https://via.placeholder.com/300x200/A238FF/ffffff?text=Deezer", android:"https://play.google.com/store/apps/details?id=deezer.android.app", ios:"https://apps.apple.com/app/deezer-music-podcast-player/id292738169", windows:"https://deezer.en.softonic.com/download", lien:"apps/musique/deezer.html" },
+  { nom:"SoundCloud", slug:"soundcloud", cat:"Musique", desc:"Découverte d'artistes et musiques indépendantes.", img:"https://via.placeholder.com/300x200/FF5500/ffffff?text=SoundCloud", android:"https://play.google.com/store/apps/details?id=com.soundcloud.android", ios:"https://apps.apple.com/app/soundcloud/id336353151", windows:"https://soundcloud.en.softonic.com/download", lien:"apps/musique/soundcloud.html" },
+  { nom:"Shazam", slug:"shazam", cat:"Musique", desc:"Identifie instantanément n'importe quelle musique.", img:"https://via.placeholder.com/300x200/0088FF/ffffff?text=Shazam", android:"https://play.google.com/store/apps/details?id=com.shazam.android", ios:"https://apps.apple.com/app/shazam/id284993459", windows:"https://shazam.en.softonic.com/download", lien:"apps/musique/shazam.html" },
+  { nom:"YouTube Music", slug:"youtube-music", cat:"Musique", desc:"Streaming musical avec intégration YouTube.", img:"https://via.placeholder.com/300x200/FF0000/ffffff?text=YT+Music", android:"https://play.google.com/store/apps/details?id=com.google.android.apps.youtube.music", ios:"https://apps.apple.com/app/youtube-music/id1017492454", windows:"https://youtube-music.en.softonic.com/download", lien:"apps/musique/youtube-music.html" },
+  { nom:"Audiomack", slug:"audiomack", cat:"Musique", desc:"Streaming hip-hop et rap gratuit.", img:"https://via.placeholder.com/300x200/FF6600/ffffff?text=Audiomack", android:"https://play.google.com/store/apps/details?id=com.audiomack", ios:"https://apps.apple.com/app/audiomack/id921765888", windows:null, lien:"apps/musique/audiomack.html" },
+  { nom:"Tidal", slug:"tidal", cat:"Musique", desc:"Streaming musical en haute qualité audio.", img:"https://via.placeholder.com/300x200/000000/ffffff?text=Tidal", android:"https://play.google.com/store/apps/details?id=com.aspiro.tidal", ios:"https://apps.apple.com/app/tidal/id913943275", windows:"https://tidal.en.softonic.com/download", lien:"apps/musique/tidal.html" },
+ 
+  // 🌐 NAVIGATEURS
+  { nom:"Google Chrome", slug:"chrome", cat:"Navigateurs", desc:"Navigateur web rapide et sécurisé.", img:"https://via.placeholder.com/300x200/4285F4/ffffff?text=Chrome", android:"https://play.google.com/store/apps/details?id=com.android.chrome", ios:"https://apps.apple.com/app/google-chrome/id535886823", windows:"https://google-chrome.en.softonic.com/download", lien:"apps/navigateurs/chrome.html" },
+  { nom:"Mozilla Firefox", slug:"firefox", cat:"Navigateurs", desc:"Navigateur rapide et respectueux de la vie privée.", img:"https://via.placeholder.com/300x200/FF9400/ffffff?text=Firefox", android:"https://play.google.com/store/apps/details?id=org.mozilla.firefox", ios:"https://apps.apple.com/app/firefox-web-browser/id989804926", windows:"https://mozilla-firefox.en.softonic.com/download", lien:"apps/navigateurs/firefox.html" },
+  { nom:"Brave Browser", slug:"brave", cat:"Navigateurs", desc:"Navigateur avec bloqueur de pubs intégré.", img:"https://via.placeholder.com/300x200/FF6B35/ffffff?text=Brave", android:"https://play.google.com/store/apps/details?id=com.brave.browser", ios:"https://apps.apple.com/app/brave-private-web-browser/id1052879175", windows:"https://brave-browser.en.softonic.com/download", lien:"apps/navigateurs/brave.html" },
+  { nom:"Opera Mini", slug:"opera-mini", cat:"Navigateurs", desc:"Navigateur léger et rapide pour mobiles.", img:"https://via.placeholder.com/300x200/FF1B2D/ffffff?text=Opera", android:"https://play.google.com/store/apps/details?id=com.opera.mini.native", ios:"https://apps.apple.com/app/opera-mini-web-browser/id363729560", windows:"https://opera-mini.en.softonic.com/download", lien:"apps/navigateurs/opera-mini.html" },
+  { nom:"DuckDuckGo", slug:"duckduckgo", cat:"Navigateurs", desc:"Navigateur sécurisé qui respecte ta vie privée.", img:"https://via.placeholder.com/300x200/DE5833/ffffff?text=DuckDuckGo", android:"https://play.google.com/store/apps/details?id=com.duckduckgo.mobile.android", ios:"https://apps.apple.com/app/duckduckgo-private-browser/id663592361", windows:"https://duckduckgo-browser.en.softonic.com/download", lien:"apps/navigateurs/duckduckgo.html" },
+  { nom:"Microsoft Edge", slug:"edge", cat:"Navigateurs", desc:"Navigateur web polyvalent de Microsoft.", img:"https://via.placeholder.com/300x200/0078D7/ffffff?text=Edge", android:"https://play.google.com/store/apps/details?id=com.microsoft.emmx", ios:"https://apps.apple.com/app/microsoft-edge/id1288723196", windows:"https://microsoft-edge.en.softonic.com/download", lien:"apps/navigateurs/edge.html" },
+ 
+  // 📚 ÉDUCATION
+  { nom:"Duolingo", slug:"duolingo", cat:"Éducation", desc:"Apprendre des langues facilement et gratuitement.", img:"https://via.placeholder.com/300x200/34A853/ffffff?text=Duolingo", android:"https://play.google.com/store/apps/details?id=com.duolingo", ios:"https://apps.apple.com/app/duolingo/id570060128", windows:"https://duolingo.en.softonic.com/download", lien:"apps/education/duolingo.html" },
+  { nom:"Khan Academy", slug:"khan-academy", cat:"Éducation", desc:"Cours gratuits sur de nombreux sujets.", img:"https://via.placeholder.com/300x200/0F9D58/ffffff?text=Khan+Academy", android:"https://play.google.com/store/apps/details?id=org.khanacademy.android", ios:"https://apps.apple.com/app/khan-academy/id469863705", windows:null, lien:"apps/education/khan-academy.html" },
+  { nom:"Photomath", slug:"photomath", cat:"Éducation", desc:"Résolution de maths via la caméra.", img:"https://via.placeholder.com/300x200/FFB300/ffffff?text=Photomath", android:"https://play.google.com/store/apps/details?id=com.microblink.photomath", ios:"https://apps.apple.com/app/photomath/id919087726", windows:null, lien:"apps/education/photomath.html" },
+  { nom:"Coursera", slug:"coursera", cat:"Éducation", desc:"Cours universitaires en ligne.", img:"https://via.placeholder.com/300x200/0056D2/ffffff?text=Coursera", android:"https://play.google.com/store/apps/details?id=org.coursera.android", ios:"https://apps.apple.com/app/coursera/id736535961", windows:null, lien:"apps/education/coursera.html" },
+  { nom:"Udemy", slug:"udemy", cat:"Éducation", desc:"Plateforme de formation en ligne.", img:"https://via.placeholder.com/300x200/EC5252/ffffff?text=Udemy", android:"https://play.google.com/store/apps/details?id=com.udemy.android", ios:"https://apps.apple.com/app/udemy/id562413829", windows:null, lien:"apps/education/udemy.html" },
+  { nom:"Quizlet", slug:"quizlet", cat:"Éducation", desc:"Cartes mémoire pour réviser facilement.", img:"https://via.placeholder.com/300x200/9C27B0/ffffff?text=Quizlet", android:"https://play.google.com/store/apps/details?id=com.quizlet.quizletandroid", ios:"https://apps.apple.com/app/quizlet/id546473125", windows:null, lien:"apps/education/quizlet.html" },
+ 
+  // 🛠️ UTILITAIRES
+  { nom:"Google Drive", slug:"google-drive", cat:"Utilitaires", desc:"Stockage et partage de fichiers dans le cloud.", img:"https://via.placeholder.com/300x200/4285F4/ffffff?text=Drive", android:"https://play.google.com/store/apps/details?id=com.google.android.apps.docs", ios:"https://apps.apple.com/app/google-drive/id507874739", windows:"https://google-drive.en.softonic.com/download", lien:"apps/utilitaires/google-drive.html" },
+  { nom:"Speedtest", slug:"speedtest", cat:"Utilitaires", desc:"Teste la vitesse de ta connexion internet.", img:"https://via.placeholder.com/300x200/03A9F4/ffffff?text=Speedtest", android:"https://play.google.com/store/apps/details?id=org.zwanoo.android.speedtest", ios:"https://apps.apple.com/app/speedtest-by-ookla/id300704847", windows:"https://speedtest-en.softonic.com/download", lien:"apps/utilitaires/speedtest.html" },
+  { nom:"ZArchiver", slug:"zarchiver", cat:"Utilitaires", desc:"Application pour gérer les fichiers compressés.", img:"https://via.placeholder.com/300x200/795548/ffffff?text=ZArchiver", android:"https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver", ios:null, windows:null, lien:"apps/utilitaires/zarchiver.html" },
+  { nom:"CamScanner", slug:"camscanner", cat:"Utilitaires", desc:"Scanner de documents et PDF depuis ton appareil.", img:"https://via.placeholder.com/300x200/FF9800/ffffff?text=CamScanner", android:"https://play.google.com/store/apps/details?id=com.intsig.camscanner", ios:"https://apps.apple.com/app/camscanner/id388627783", windows:null, lien:"apps/utilitaires/camscanner.html" },
+  { nom:"Dropbox", slug:"dropbox", cat:"Utilitaires", desc:"Gestion simple de fichiers dans le cloud.", img:"https://via.placeholder.com/300x200/0061FF/ffffff?text=Dropbox", android:"https://play.google.com/store/apps/details?id=com.dropbox.android", ios:"https://apps.apple.com/app/dropbox/id327630330", windows:"https://dropbox.en.softonic.com/download", lien:"apps/utilitaires/dropbox.html" },
+  { nom:"Hotspot Shield", slug:"hotspot-shield", cat:"Utilitaires", desc:"VPN sécurisé pour protéger ta connexion.", img:"https://via.placeholder.com/300x200/007BFF/ffffff?text=Hotspot+Shield", android:"https://play.google.com/store/apps/details?id=hotspotshield.android.vpn", ios:"https://apps.apple.com/app/hotspot-shield-vpn/id443369807", windows:"https://hotspot-shield-vpn.en.softonic.com/download", lien:"apps/utilitaires/hotspot-shield.html" },
+ 
+  // 💼 PRODUCTIVITÉ
+  { nom:"Notion", slug:"notion", cat:"Productivité", desc:"Organisation, notes, bases de données.", img:"https://via.placeholder.com/300x200/000000/ffffff?text=Notion", android:"https://play.google.com/store/apps/details?id=notion.id", ios:"https://apps.apple.com/app/notion/id1232780281", windows:"https://notion.en.softonic.com/download", lien:"apps/productivite/notion.html" },
+  { nom:"Trello", slug:"trello", cat:"Productivité", desc:"Gestion de projets facile et visuelle.", img:"https://via.placeholder.com/300x200/0079BF/ffffff?text=Trello", android:"https://play.google.com/store/apps/details?id=com.trello", ios:"https://apps.apple.com/app/trello/id461504587", windows:"https://trello.en.softonic.com/download", lien:"apps/productivite/trello.html" },
+  { nom:"Evernote", slug:"evernote", cat:"Productivité", desc:"Notes, mémos et organisation personnelle.", img:"https://via.placeholder.com/300x200/2DAD00/ffffff?text=Evernote", android:"https://play.google.com/store/apps/details?id=com.evernote", ios:"https://apps.apple.com/app/evernote/id281796108", windows:"https://evernote.en.softonic.com/download", lien:"apps/productivite/evernote.html" },
+  { nom:"Google Keep", slug:"google-keep", cat:"Productivité", desc:"Prise de notes rapide et fluide.", img:"https://via.placeholder.com/300x200/FBBC05/ffffff?text=Keep", android:"https://play.google.com/store/apps/details?id=com.google.android.keep", ios:"https://apps.apple.com/app/google-keep/id1029207872", windows:null, lien:"apps/productivite/google-keep.html" },
+  { nom:"Todoist", slug:"todoist", cat:"Productivité", desc:"Gestion des tâches intelligente.", img:"https://via.placeholder.com/300x200/E44332/ffffff?text=Todoist", android:"https://play.google.com/store/apps/details?id=com.todoist", ios:"https://apps.apple.com/app/todoist/id572688855", windows:"https://todoist.en.softonic.com/download", lien:"apps/productivite/todoist.html" },
+  { nom:"Forest", slug:"forest", cat:"Productivité", desc:"Reste concentré avec un timer fun.", img:"https://via.placeholder.com/300x200/4CAF50/ffffff?text=Forest", android:"https://play.google.com/store/apps/details?id=cc.forestapp", ios:"https://apps.apple.com/app/forest-stay-focused/id866450515", windows:null, lien:"apps/productivite/forest.html" },
+];
+ 
+/* ANIMATE COUNT */
+function animateCount(target) {
+  const el = document.getElementById('appCountNum');
+  let count = 0;
+  const step = Math.ceil(target / 30);
+  const timer = setInterval(() => {
+    count = Math.min(count + step, target);
+    el.textContent = count;
+    if (count >= target) clearInterval(timer);
+  }, 30);
+}
+ 
+/* RENDER */
+function render(list) {
+  const container = document.getElementById("apps");
+  container.innerHTML = "";
+  if (!list.length) {
+    container.innerHTML = '<div class="empty">Aucune application trouvée 😕</div>';
+    document.getElementById('appCountNum').textContent = '0';
+    return;
+  }
+  animateCount(list.length);
+  list.forEach((app, i) => {
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.style.transitionDelay = `${Math.min(i * 0.04, 0.6)}s`;
+ 
+    let platforms = '';
+    if (app.android) platforms += `<span class="ptag android">🤖 Android</span>`;
+    if (app.ios) platforms += `<span class="ptag ios">🍎 iOS</span>`;
+    if (app.windows) platforms += `<span class="ptag windows">🖥️ PC</span>`;
+ 
+    let menuLinks = '';
+    if (app.android) menuLinks += `<a href="${app.android}" target="_blank" rel="noopener">🤖 Android (Play Store)</a>`;
+    if (app.ios) menuLinks += `<a href="${app.ios}" target="_blank" rel="noopener">🍎 iPhone (App Store)</a>`;
+    if (app.windows) menuLinks += `<a href="${app.windows}" target="_blank" rel="noopener">🖥️ Windows (PC)</a>`;
+ 
+    div.innerHTML = `
+      <div class="card-img">
+        <img src="${app.img}" alt="${app.nom}" loading="lazy">
+      </div>
+      <div class="card-content">
+        <span class="badge-cat">${app.cat}</span>
+        <h3>${app.nom}</h3>
+        <p>${app.desc}</p>
+        <div class="platform-tags">${platforms}</div>
+        <button class="dl-btn" onclick="toggleMenu(event,'menu-${i}')">⬇ Télécharger</button>
+        <div class="dl-menu" id="menu-${i}">${menuLinks}</div>
+      </div>
+    `;
+    container.appendChild(div);
+    cardObs.observe(div);
+  });
+}
+render(apps);
+ 
+/* FILTER */
+function filter(cat, btn) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  if (btn) {
+    btn.classList.add('active');
+    btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+  }
+  const t = document.getElementById('section-title');
+  if (cat === 'Toutes') { t.textContent = 'Toutes les applications'; render(apps); }
+  else { t.textContent = cat; render(apps.filter(a => a.cat === cat)); }
+  setTimeout(() => { document.querySelectorAll('.card').forEach(c => c.style.transitionDelay = '0s'); }, 800);
+}
+ 
+/* SEARCH */
+function searchApp() {
+  const text = document.getElementById("search").value.toLowerCase().trim();
+  const clearBtn = document.getElementById('searchClear');
+  clearBtn.style.display = text ? 'block' : 'none';
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.cat-btn').classList.add('active');
+  document.getElementById('section-title').textContent = text ? `Résultats pour "${text}"` : 'Toutes les applications';
+  if (!text) { render(apps); return; }
+  render(apps.filter(a => a.nom.toLowerCase().includes(text) || a.desc.toLowerCase().includes(text) || a.cat.toLowerCase().includes(text)));
+}
+ 
+function clearSearch() {
+  document.getElementById('search').value = '';
+  document.getElementById('searchClear').style.display = 'none';
+  document.getElementById('section-title').textContent = 'Toutes les applications';
+  render(apps);
+}
+ 
+/* TOGGLE MENU */
+function toggleMenu(event, id) {
+  event.stopPropagation();
+  document.querySelectorAll('.dl-menu').forEach(m => { if (m.id !== id) m.style.display = 'none'; });
+  const menu = document.getElementById(id);
+  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+document.addEventListener('click', () => { document.querySelectorAll('.dl-menu').forEach(m => m.style.display = 'none'); });
+ 
+/* COMMENTS */
+function addComment() {
+  const input = document.getElementById("comment-input");
+  const text = input.value.trim();
+  if (!text) return;
+  const div = document.createElement("div");
+  div.className = "comment"; div.textContent = text;
+  document.getElementById("comments-list").prepend(div);
+  input.value = "";
+}
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
