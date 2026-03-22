@@ -13,91 +13,149 @@
   
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Télécharge les meilleurs jeux PC gratuits sur MLG XGame. Sport, aventure, simulation, stratégie, course, construction, puzzle, musique et éducation.">
+<meta name="keywords" content="jeux PC gratuits, télécharger jeux PC, meilleurs jeux PC 2026, jeux PC aventure, jeux PC stratégie, Minecraft PC, Forza Horizon, Civilization VI, MLG XGame">
+<meta name="robots" content="index, follow">
+<meta name="author" content="MLG XGame">
 <meta name="google-adsense-account" content="ca-pub-7572845165323582">
 <meta name="google-site-verification" content="yA45UlS88pUffG-kGibZKK4ndiL8uMgLlWhm181nnkI" />
-  
-<title>MLG XGame — Jeux PC</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet"/>
+<meta property="og:title" content="MLG XGame — Meilleurs Jeux PC Gratuits">
+<meta property="og:description" content="Télécharge les meilleurs jeux PC gratuits. Sport, aventure, stratégie, course et bien plus sur MLG XGame.">
+<meta property="og:url" content="https://mlgxgame.vercel.app/pc-games.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mlgxgame.vercel.app/img/og-image.jpg">
+<title>Meilleurs Jeux PC Gratuits 2026 — MLG XGame</title>
+<link rel="canonical" href="https://mlgxgame.vercel.app/pc-games.html">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
-:root{--purple:#9900ff;--cyan:#00f0ff;--bg:#000;--bg2:#0a0a1a;--bg3:#1a0a2e;--text:#ccc;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Rajdhani',sans-serif;background:linear-gradient(135deg,#000,#0a0a1a);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-tap-highlight-color:transparent;}
-
-/* HEADER */
-header{background:#000;box-shadow:0 0 25px #9900ff55;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
-.logo{font-family:'Orbitron',sans-serif;font-size:20px;font-weight:900;background:linear-gradient(90deg,var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px;text-decoration:none;}
-.back-btn{font-family:'Orbitron',sans-serif;font-size:10px;color:var(--cyan);text-decoration:none;border:1px solid var(--cyan);padding:8px 14px;border-radius:6px;letter-spacing:1px;transition:0.25s;min-height:36px;display:flex;align-items:center;}
-.back-btn:hover,.back-btn:active{background:var(--cyan);color:#000;}
-
-/* SEARCH */
-.search-wrap{padding:14px 16px 8px;}
-.search-wrap input{width:100%;padding:12px 16px;border:1px solid #9900ff44;border-radius:10px;font-size:15px;font-family:'Rajdhani',sans-serif;outline:none;background:#0a0a1a;color:#fff;-webkit-appearance:none;transition:0.2s;}
-.search-wrap input:focus{border-color:var(--purple);box-shadow:0 0 12px #9900ff33;}
-.search-wrap input::placeholder{color:#555;}
-
-/* CATEGORIES */
-.categories{display:flex;overflow-x:auto;gap:8px;padding:10px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
-.categories::-webkit-scrollbar{display:none;}
-.cat-btn{font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:1px;padding:9px 16px;border-radius:20px;border:1px solid var(--purple);color:#cc55ff;background:#9900ff15;white-space:nowrap;cursor:pointer;transition:0.2s;min-height:36px;display:flex;align-items:center;user-select:none;-webkit-user-select:none;}
-.cat-btn:hover,.cat-btn.active,.cat-btn:active{background:var(--purple);color:#fff;box-shadow:0 0 14px #9900ff55;}
-
-/* SECTION TITLE */
-.section-header{display:flex;align-items:center;gap:10px;padding:14px 16px 10px;}
-.section-header h2{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;color:#fff;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;}
-.section-header::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--purple),transparent);}
-
-/* GRID — cartes PC plus larges */
-.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:14px;padding:0 12px 20px;}
-
-/* CARD */
-.card{position:relative;height:190px;border-radius:14px;overflow:hidden;border:1px solid #9900ff33;box-shadow:0 0 10px #00000088;transition:transform 0.25s,box-shadow 0.25s;background:var(--bg3);}
-.card:active{transform:scale(0.97);}
-@media(hover:hover){.card:hover{transform:scale(1.03);box-shadow:0 0 20px #9900ff55;border-color:var(--purple);}}
-.card img{width:100%;height:100%;object-fit:cover;display:block;}
-.card-content{position:absolute;bottom:0;width:100%;background:linear-gradient(to top,rgba(0,0,0,0.95) 55%,rgba(0,0,0,0.3));padding:8px;box-sizing:border-box;}
-.card h3{font-family:'Orbitron',sans-serif;font-size:10px;color:var(--purple);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.card p{font-size:10px;color:#bbb;margin:0 0 7px 0;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.badge-cat{display:inline-block;font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:1px;padding:2px 7px;border-radius:10px;border:1px solid #9900ff55;color:#cc55ff;background:#9900ff15;margin-bottom:4px;}
-
-/* DL BUTTON */
-.dl-btn{display:block;width:100%;padding:9px;border:none;border-radius:8px;background:linear-gradient(90deg,var(--purple),#6600cc);color:#fff;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;cursor:pointer;letter-spacing:0.5px;transition:0.2s;min-height:36px;text-align:center;text-decoration:none;}
-.dl-btn:active{filter:brightness(1.3);transform:scale(0.98);}
-
-/* EMPTY */
-.empty{grid-column:1/-1;text-align:center;padding:40px 20px;font-family:'Orbitron',sans-serif;font-size:13px;color:#555;letter-spacing:2px;}
-
-/* COMMENTS */
-.comments-section{background:var(--bg3);padding:16px;border-radius:12px;margin:0 12px 24px;border:1px solid #9900ff22;}
-.comments-section h2{font-family:'Orbitron',sans-serif;font-size:13px;color:#fff;letter-spacing:2px;margin-bottom:14px;}
-.comment-form{display:flex;gap:8px;margin-bottom:14px;}
-.comment-form input{flex:1;padding:10px 12px;border-radius:8px;border:1px solid #9900ff44;background:#000;color:#fff;font-family:'Rajdhani',sans-serif;font-size:14px;outline:none;min-height:42px;}
-.comment-form input:focus{border-color:var(--purple);}
-.comment-form button{padding:10px 16px;border:none;border-radius:8px;background:var(--purple);color:#fff;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;cursor:pointer;min-height:42px;white-space:nowrap;}
-#comments-list .comment{background:#000;padding:10px 12px;border-radius:8px;margin-bottom:8px;font-size:13px;border-left:3px solid var(--purple);}
-
-/* FOOTER */
-footer{text-align:center;padding:16px;background:var(--bg2);font-size:12px;color:#555;border-top:1px solid #9900ff22;}
-footer a{color:#9900ff88;text-decoration:none;margin:0 6px;}
-footer a:hover{color:var(--purple);}
-
-/* RESPONSIVE */
-@media(max-width:360px){.games{grid-template-columns:repeat(2,1fr);gap:10px;padding:0 10px 16px;}.card{height:175px;}}
-@media(min-width:600px){.games{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));}}
-@media(min-width:900px){.games{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));}}
+:root { --green:#00ff88; --purple:#9900ff; --bg:#000; --bg2:#0a0a1a; --text:#ccc; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Rajdhani',sans-serif; background:#000; color:var(--text); min-height:100vh; overflow-x:hidden; -webkit-tap-highlight-color:transparent; }
+ 
+#particles-canvas { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+ 
+header { background:rgba(0,0,0,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 0 30px #00ff8833; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+.logo { font-family:'Orbitron',sans-serif; font-size:20px; font-weight:900; background:linear-gradient(90deg,var(--purple),var(--green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:2px; text-decoration:none; animation:logoPulse 4s ease-in-out infinite; }
+@keyframes logoPulse { 0%,100% { filter:drop-shadow(0 0 6px #00ff8833); } 50% { filter:drop-shadow(0 0 14px #00ff8877); } }
+.back-btn { font-family:'Orbitron',sans-serif; font-size:10px; color:var(--green); text-decoration:none; border:1px solid #00ff8855; padding:8px 14px; border-radius:6px; letter-spacing:1px; transition:0.25s; min-height:36px; display:flex; align-items:center; background:#00ff8811; }
+.back-btn:hover,.back-btn:active { background:var(--green); color:#000; box-shadow:0 0 16px #00ff8844; }
+ 
+.count-banner { display:flex; align-items:center; justify-content:center; gap:10px; padding:10px 16px 4px; position:relative; z-index:1; }
+.count-text { font-family:'Orbitron',sans-serif; font-size:11px; color:#555; letter-spacing:1px; }
+.count-num { font-family:'Orbitron',sans-serif; font-size:13px; font-weight:900; background:linear-gradient(90deg,var(--green),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+ 
+.search-wrap { padding:10px 16px 8px; position:relative; z-index:1; }
+.search-wrap input { width:100%; padding:12px 40px 12px 42px; border:1px solid #00ff8822; border-radius:12px; font-size:15px; font-family:'Rajdhani',sans-serif; outline:none; background:#0a0a1a; color:#fff; -webkit-appearance:none; transition:0.3s; }
+.search-wrap input:focus { border-color:var(--green); box-shadow:0 0 16px #00ff8818; }
+.search-wrap input::placeholder { color:#444; }
+.search-icon { position:absolute; left:30px; top:50%; transform:translateY(-50%); font-size:16px; pointer-events:none; }
+.search-clear { position:absolute; right:28px; top:50%; transform:translateY(-50%); font-size:16px; cursor:pointer; color:#555; display:none; z-index:2; transition:0.2s; }
+.search-clear:hover { color:#fff; }
+ 
+.categories { display:flex; overflow-x:auto; gap:8px; padding:10px 16px; scrollbar-width:none; -webkit-overflow-scrolling:touch; position:relative; z-index:1; }
+.categories::-webkit-scrollbar { display:none; }
+.cat-btn { font-family:'Orbitron',sans-serif; font-size:10px; letter-spacing:1px; padding:9px 16px; border-radius:20px; border:1px solid #00ff8833; color:var(--green); background:#00ff8811; white-space:nowrap; cursor:pointer; transition:0.2s; min-height:36px; display:flex; align-items:center; user-select:none; -webkit-user-select:none; }
+.cat-btn:hover,.cat-btn.active,.cat-btn:active { background:var(--green); color:#000; box-shadow:0 0 14px #00ff8844; border-color:var(--green); font-weight:700; }
+ 
+.section-header { display:flex; align-items:center; gap:10px; padding:14px 16px 10px; position:relative; z-index:1; }
+.section-header h2 { font-family:'Orbitron',sans-serif; font-size:13px; font-weight:700; color:#fff; letter-spacing:2px; text-transform:uppercase; white-space:nowrap; text-shadow:0 0 20px #00ff8844; }
+.section-header::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,var(--green),transparent); }
+ 
+.games { display:grid; grid-template-columns:repeat(auto-fill,minmax(155px,1fr)); gap:16px; padding:0 12px 24px; position:relative; z-index:1; }
+ 
+.card {
+  position:relative; border-radius:14px; overflow:hidden;
+  border:1px solid #00ff8822; box-shadow:0 4px 15px #00000066;
+  cursor:pointer; background:#0a0a1a;
+  -webkit-tap-highlight-color:transparent;
+  opacity:0; transform:translateY(16px);
+  transition:opacity 0.45s ease, transform 0.45s ease, box-shadow 0.25s, border-color 0.25s;
+  display:flex; flex-direction:column;
+}
+.card.visible { opacity:1; transform:translateY(0); }
+.card:active { transform:scale(0.97); }
+@media(hover:hover) {
+  .card:hover { box-shadow:0 8px 25px #00ff8833; border-color:#00ff8855; transform:translateY(-4px); }
+  .card:hover .card-img img { transform:scale(1.06); }
+}
+ 
+.card-img { width:100%; height:130px; overflow:hidden; background:#001a0d; display:flex; align-items:center; justify-content:center; }
+.card-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s; }
+ 
+.card-content { padding:10px 10px 8px; display:flex; flex-direction:column; gap:5px; flex:1; }
+.card h3 { margin:0; font-family:'Orbitron',sans-serif; font-size:10px; color:var(--green); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.card p { font-size:10px; margin:0; color:#777; line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+ 
+.badge-cat { display:inline-block; font-family:'Orbitron',sans-serif; font-size:8px; letter-spacing:1px; padding:2px 8px; border-radius:10px; border:1px solid #00ff8833; color:var(--green); background:#00ff8811; }
+ 
+/* CSS STARS */
+.card-note { display:flex; align-items:center; gap:5px; }
+.stars-css { display:flex; gap:2px; }
+.star-css { width:10px; height:10px; clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); background:#2a2a2a; }
+.star-css.filled { background:#f5c518; box-shadow:0 0 4px #f5c51866; }
+.star-css.half { background:linear-gradient(90deg,#f5c518 50%,#2a2a2a 50%); }
+.note-val { font-family:'Orbitron',sans-serif; font-size:9px; color:#666; }
+ 
+.dl-btn {
+  display:block; width:100%; padding:8px; border:none; border-radius:8px;
+  background:linear-gradient(90deg,var(--green),#00cc66);
+  color:#000; font-family:'Orbitron',sans-serif; font-size:10px;
+  font-weight:900; cursor:pointer; letter-spacing:0.5px;
+  transition:0.2s; min-height:34px; text-align:center;
+  text-decoration:none; margin-top:auto;
+  position:relative; overflow:hidden;
+}
+.dl-btn::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent); transition:left 0.4s; }
+.dl-btn:hover::after { left:100%; }
+.dl-btn:active { filter:brightness(1.2); transform:scale(0.98); }
+ 
+.badge-free { position:absolute; top:8px; right:8px; z-index:10; font-family:'Orbitron',sans-serif; font-size:8px; padding:3px 8px; border-radius:10px; font-weight:700; background:#00ff8822; border:1px solid #00ff8866; color:var(--green); }
+.badge-pop { position:absolute; top:8px; left:8px; z-index:10; font-family:'Orbitron',sans-serif; font-size:8px; padding:3px 8px; border-radius:10px; font-weight:700; background:linear-gradient(90deg,#9900ff,#00ff88); color:#fff; box-shadow:0 0 8px #9900ff44; }
+ 
+.empty { grid-column:1/-1; text-align:center; padding:60px 20px; font-family:'Orbitron',sans-serif; font-size:13px; color:#333; letter-spacing:2px; }
+ 
+.comments-section { background:#0a0a1a; padding:16px; border-radius:12px; margin:0 12px 24px; border:1px solid #00ff8822; position:relative; z-index:1; }
+.comments-section h2 { font-family:'Orbitron',sans-serif; font-size:13px; color:#fff; letter-spacing:2px; margin-bottom:14px; }
+.comment-form { display:flex; gap:8px; margin-bottom:14px; }
+.comment-form input { flex:1; padding:10px 12px; border-radius:8px; border:1px solid #00ff8822; background:#000; color:#fff; font-family:'Rajdhani',sans-serif; font-size:14px; outline:none; min-height:42px; transition:0.2s; }
+.comment-form input:focus { border-color:#00ff8855; }
+.comment-form button { padding:10px 16px; border:none; border-radius:8px; background:var(--green); color:#000; font-family:'Orbitron',sans-serif; font-size:10px; font-weight:700; cursor:pointer; min-height:42px; white-space:nowrap; }
+#comments-list .comment { background:#000; padding:10px 12px; border-radius:8px; margin-bottom:8px; font-size:13px; border-left:3px solid var(--green); }
+ 
+footer { text-align:center; padding:16px; background:#0a0a1a; font-size:12px; color:#444; border-top:1px solid #00ff8822; position:relative; z-index:1; }
+footer a { color:#00ff8866; text-decoration:none; margin:0 6px; }
+footer a:hover { color:var(--green); }
+ 
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+ 
+@media(max-width:360px) { .games { grid-template-columns:repeat(2,1fr); gap:10px; padding:0 10px 16px; } }
+@media(min-width:600px) { .games { grid-template-columns:repeat(auto-fill,minmax(175px,1fr)); } }
+@media(min-width:900px) { .games { grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); } }
 </style>
 </head>
 <body>
-
+ 
+<canvas id="particles-canvas"></canvas>
+ 
 <header>
   <a class="logo" href="index.html">MLG XGame</a>
   <a class="back-btn" href="index.html">← Accueil</a>
 </header>
-
-<div class="search-wrap">
-  <input type="text" id="search" placeholder="🔍 Rechercher un jeu PC..." oninput="searchGame()" autocomplete="off" autocorrect="off" spellcheck="false">
+ 
+<div class="count-banner reveal">
+  <span class="count-text">🖥️</span>
+  <span class="count-num" id="countNum">0</span>
+  <span class="count-text">jeux PC disponibles</span>
 </div>
-
+ 
+<div class="search-wrap">
+  <span class="search-icon">🔍</span>
+  <input type="text" id="search" placeholder="Rechercher un jeu PC..." oninput="searchGame()" autocomplete="off" autocorrect="off" spellcheck="false">
+  <span class="search-clear" id="searchClear" onclick="clearSearch()">✕</span>
+</div>
+ 
 <div class="categories">
   <div class="cat-btn active" onclick="filter('all',this)">Tous</div>
   <div class="cat-btn" onclick="filter('Sport',this)">⚽ Sport</div>
@@ -110,14 +168,14 @@ footer a:hover{color:var(--purple);}
   <div class="cat-btn" onclick="filter('Musique',this)">🎵 Musique</div>
   <div class="cat-btn" onclick="filter('Education',this)">📚 Éducation</div>
 </div>
-
-<div class="section-header">
+ 
+<div class="section-header reveal">
   <h2 id="section-title">Tous les jeux PC</h2>
 </div>
-
+ 
 <div class="games" id="games"></div>
-
-<div class="comments-section">
+ 
+<div class="comments-section reveal">
   <h2>💬 Commentaires</h2>
   <div class="comment-form">
     <input type="text" id="comment-input" placeholder="Écris ton commentaire..."/>
@@ -125,9 +183,14 @@ footer a:hover{color:var(--purple);}
   </div>
   <div id="comments-list"></div>
 </div>
-
+ 
+<div style="padding:16px;color:#1a1a1a;font-size:12px;line-height:1.8;font-family:'Rajdhani',sans-serif;position:relative;z-index:1;">
+  <h2 style="font-family:'Orbitron',sans-serif;font-size:12px;color:#00ff8811;letter-spacing:2px;margin-bottom:8px;">MEILLEURS JEUX PC 2026 — MLG XGAME</h2>
+  <p>MLG XGame propose une sélection des meilleurs jeux PC gratuits et payants de 2026. Découvrez des jeux de sport comme FIFA, Rocket League et NBA 2K, des jeux d'aventure comme Minecraft et Stardew Valley, des jeux de simulation comme Euro Truck Simulator et Microsoft Flight Simulator, des jeux de stratégie comme Civilization VI et Age of Empires, et bien plus encore.</p>
+</div>
+ 
 <footer>
-  <p style="margin-bottom:8px;">&copy; 2026 <strong style="color:#9900ff">MLG XGame</strong>. Tous droits réservés.</p>
+  <p style="margin-bottom:8px;">&copy; 2026 <strong style="color:#00ff8866">MLG XGame</strong>. Tous droits réservés.</p>
   <p>
     <a href="apropos.html">À propos</a>
     <a href="politique.html">Confidentialité</a>
@@ -135,152 +198,275 @@ footer a:hover{color:var(--purple);}
     <a href="contact.html">Contact</a>
   </p>
 </footer>
-
+ 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7572845165323582" crossorigin="anonymous"></script>
-
+ 
 <script>
-const pcGames=[
-// ⚽ SPORT
-{nom:"FIFA 23",img:"images/pc/fifa23.jpg",description:"Simulation de football réaliste.",lien:"https://fifa-23.en.softonic.com/download",categorie:"Sport"},
-{nom:"eFootball PES 2021",img:"images/pc/pes2021.jpg",description:"Football fluide et compétitif.",lien:"https://pes-2021.en.softonic.com/download",categorie:"Sport"},
-{nom:"NBA 2K23",img:"images/pc/nba2k23.jpg",description:"Simulation officielle de basketball.",lien:"https://nba-2k23.en.softonic.com/download",categorie:"Sport"},
-{nom:"WWE 2K22",img:"images/pc/wwe2k22.jpg",description:"Combat sportif spectaculaire.",lien:"https://wwe-2k22.en.softonic.com/download",categorie:"Sport"},
-{nom:"Football Manager 2023",img:"images/pc/fm2023.jpg",description:"Gestion complète d'équipe de foot.",lien:"https://football-manager-2023.en.softonic.com/download",categorie:"Sport"},
-{nom:"Tony Hawk's Pro Skater",img:"images/pc/tonyhawk.jpg",description:"Skate arcade fun.",lien:"https://tony-hawks-pro-skater.en.softonic.com/download",categorie:"Sport"},
-{nom:"Rocket League",img:"images/pc/rocketleague.jpg",description:"Football avec voitures.",lien:"https://rocket-league.en.softonic.com/download",categorie:"Sport"},
-{nom:"AO Tennis 2",img:"images/pc/aotennis.jpg",description:"Simulation de tennis réaliste.",lien:"https://ao-tennis-2.en.softonic.com/download",categorie:"Sport"},
-{nom:"Golf It!",img:"images/pc/golfit.jpg",description:"Mini golf multijoueur fun.",lien:"https://golf-it.en.softonic.com/download",categorie:"Sport"},
-{nom:"Pro Cycling Manager",img:"images/pc/cycling.jpg",description:"Gestion de cyclisme professionnel.",lien:"https://pro-cycling-manager.en.softonic.com/download",categorie:"Sport"},
-// 🏹 AVENTURE
-{nom:"Minecraft",img:"images/pc/minecraft.jpg",description:"Exploration et construction en monde ouvert.",lien:"https://minecraft.en.softonic.com/download",categorie:"Aventure"},
-{nom:"Terraria",img:"images/pc/terraria.jpg",description:"Aventure sandbox en 2D.",lien:"https://terraria.en.softonic.com/download",categorie:"Aventure"},
-{nom:"Stardew Valley",img:"images/pc/stardew.jpg",description:"Vie à la ferme et exploration relaxante.",lien:"https://stardew-valley.en.softonic.com/download",categorie:"Aventure"},
-{nom:"Portal 2",img:"images/pc/portal2.jpg",description:"Puzzle aventure intelligent.",lien:"https://portal-2.en.softonic.com/download",categorie:"Aventure"},
-{nom:"Journey",img:"images/pc/journey.jpg",description:"Aventure poétique et visuelle.",lien:"https://journey.en.softonic.com/download",categorie:"Aventure"},
-{nom:"Firewatch",img:"images/pc/firewatch.jpg",description:"Exploration narrative immersive.",lien:"https://firewatch.en.softonic.com/download",categorie:"Aventure"},
-{nom:"Subnautica",img:"images/pc/subnautica.jpg",description:"Exploration sous-marine fascinante.",lien:"https://subnautica.en.softonic.com/download",categorie:"Aventure"},
-{nom:"Ori and the Blind Forest",img:"images/pc/ori.jpg",description:"Plateforme aventure artistique.",lien:"https://ori-and-the-blind-forest.en.softonic.com/download",categorie:"Aventure"},
-{nom:"The Witness",img:"images/pc/witness.jpg",description:"Aventure puzzle en monde ouvert.",lien:"https://the-witness.en.softonic.com/download",categorie:"Aventure"},
-{nom:"Life is Strange",img:"images/pc/lifeisstrange.jpg",description:"Aventure narrative émotionnelle.",lien:"https://life-is-strange.en.softonic.com/download",categorie:"Aventure"},
-// 🛠️ SIMULATION
-{nom:"The Sims 4",img:"images/pc/sims4.jpg",description:"Simulation de vie complète.",lien:"https://the-sims-4.en.softonic.com/download",categorie:"Simulation"},
-{nom:"Euro Truck Simulator 2",img:"images/pc/trucksim.jpg",description:"Conduite de camions réaliste.",lien:"https://euro-truck-simulator-2.en.softonic.com/download",categorie:"Simulation"},
-{nom:"Microsoft Flight Simulator",img:"images/pc/flightsim.jpg",description:"Simulation de vol ultra réaliste.",lien:"https://microsoft-flight-simulator.en.softonic.com/download",categorie:"Simulation"},
-{nom:"House Flipper",img:"images/pc/houseflipper.jpg",description:"Rénovation et décoration de maisons.",lien:"https://house-flipper.en.softonic.com/download",categorie:"Simulation"},
-{nom:"Farming Simulator 22",img:"images/pc/farmingsim.jpg",description:"Gestion agricole immersive.",lien:"https://farming-simulator-22.en.softonic.com/download",categorie:"Simulation"},
-{nom:"PC Building Simulator",img:"images/pc/pcbuild.jpg",description:"Construis ton PC virtuel.",lien:"https://pc-building-simulator.en.softonic.com/download",categorie:"Simulation"},
-{nom:"Car Mechanic Simulator",img:"images/pc/mechanic.jpg",description:"Réparation automobile réaliste.",lien:"https://car-mechanic-simulator.en.softonic.com/download",categorie:"Simulation"},
-{nom:"Planet Zoo",img:"images/pc/planetzoo.jpg",description:"Gestion d'un zoo moderne.",lien:"https://planet-zoo.en.softonic.com/download",categorie:"Simulation"},
-{nom:"Train Simulator",img:"images/pc/trainsim.jpg",description:"Simulation ferroviaire détaillée.",lien:"https://train-simulator.en.softonic.com/download",categorie:"Simulation"},
-{nom:"Cooking Simulator",img:"images/pc/cookingsim.jpg",description:"Cuisine réaliste et fun.",lien:"https://cooking-simulator.en.softonic.com/download",categorie:"Simulation"},
-// 🧠 STRATÉGIE
-{nom:"Civilization VI",img:"images/pc/civ6.jpg",description:"Construis un empire à travers l'histoire.",lien:"https://civilization-vi.en.softonic.com/download",categorie:"Strategie"},
-{nom:"Age of Empires II",img:"images/pc/aoe2.jpg",description:"Stratégie historique en temps réel.",lien:"https://age-of-empires-ii.en.softonic.com/download",categorie:"Strategie"},
-{nom:"Cities Skylines",img:"images/pc/citiessky.jpg",description:"Planifie et gère ta ville.",lien:"https://cities-skylines.en.softonic.com/download",categorie:"Strategie"},
-{nom:"StarCraft II",img:"images/pc/starcraft2.jpg",description:"Stratégie futuriste compétitive.",lien:"https://starcraft-2.en.softonic.com/download",categorie:"Strategie"},
-{nom:"Command & Conquer",img:"images/pc/cnc.jpg",description:"Stratégie classique modernisée.",lien:"https://command-and-conquer-remastered.en.softonic.com/download",categorie:"Strategie"},
-{nom:"Total War Rome II",img:"images/pc/rome2.jpg",description:"Gestion militaire et empire antique.",lien:"https://total-war-rome-2.en.softonic.com/download",categorie:"Strategie"},
-{nom:"Factorio",img:"images/pc/factorio.jpg",description:"Optimisation et automatisation stratégique.",lien:"https://factorio.en.softonic.com/download",categorie:"Strategie"},
-{nom:"Northgard",img:"images/pc/northgard.jpg",description:"Stratégie viking accessible.",lien:"https://northgard.en.softonic.com/download",categorie:"Strategie"},
-{nom:"Stronghold Crusader",img:"images/pc/stronghold.jpg",description:"Construction de forteresses médiévales.",lien:"https://stronghold-crusader.en.softonic.com/download",categorie:"Strategie"},
-{nom:"Plague Inc Evolved",img:"images/pc/plagueinc.jpg",description:"Simulation stratégique originale.",lien:"https://plague-inc-evolved.en.softonic.com/download",categorie:"Strategie"},
-// 🏎️ COURSE
-{nom:"Forza Horizon 5",img:"images/pc/forza5.jpg",description:"Courses arcade en monde ouvert.",lien:"https://forza-horizon-5.en.softonic.com/download",categorie:"Course"},
-{nom:"Need for Speed Heat",img:"images/pc/nfsheat.jpg",description:"Courses urbaines rapides.",lien:"https://need-for-speed-heat.en.softonic.com/download",categorie:"Course"},
-{nom:"Trackmania",img:"images/pc/trackmania.jpg",description:"Circuits arcade ultra rapides.",lien:"https://trackmania.en.softonic.com/download",categorie:"Course"},
-{nom:"F1 22",img:"images/pc/f122.jpg",description:"Simulation officielle de F1.",lien:"https://f1-22.en.softonic.com/download",categorie:"Course"},
-{nom:"Dirt Rally 2.0",img:"images/pc/dirt2.jpg",description:"Rallye réaliste et exigeant.",lien:"https://dirt-rally-2.en.softonic.com/download",categorie:"Course"},
-{nom:"Assetto Corsa",img:"images/pc/assettocorsa.jpg",description:"Simulation de conduite avancée.",lien:"https://assetto-corsa.en.softonic.com/download",categorie:"Course"},
-{nom:"Burnout Paradise",img:"images/pc/burnout.jpg",description:"Arcade et cascades explosives.",lien:"https://burnout-paradise.en.softonic.com/download",categorie:"Course"},
-{nom:"Project Cars 3",img:"images/pc/projectcars.jpg",description:"Simulation de course moderne.",lien:"https://project-cars-3.en.softonic.com/download",categorie:"Course"},
-{nom:"MotoGP 22",img:"images/pc/motogp22.jpg",description:"Courses de motos officielles.",lien:"https://motogp-22.en.softonic.com/download",categorie:"Course"},
-{nom:"The Crew 2",img:"images/pc/crew2.jpg",description:"Courses variées air-terre-mer.",lien:"https://the-crew-2.en.softonic.com/download",categorie:"Course"},
-// 🏗️ CONSTRUCTION
-{nom:"Minecraft",img:"images/pc/minecraft.jpg",description:"Construction libre dans un monde infini.",lien:"https://minecraft.en.softonic.com/download",categorie:"Construction"},
-{nom:"Planet Coaster",img:"images/pc/planetcoaster.jpg",description:"Crée ton parc d'attractions.",lien:"https://planet-coaster.en.softonic.com/download",categorie:"Construction"},
-{nom:"Satisfactory",img:"images/pc/satisfactory.jpg",description:"Construction d'usines futuristes.",lien:"https://satisfactory.en.softonic.com/download",categorie:"Construction"},
-{nom:"SimCity",img:"images/pc/simcity.jpg",description:"Simulation de construction urbaine.",lien:"https://simcity.en.softonic.com/download",categorie:"Construction"},
-{nom:"Tropico 6",img:"images/pc/tropico6.jpg",description:"Développe ton île tropicale.",lien:"https://tropico-6.en.softonic.com/download",categorie:"Construction"},
-{nom:"Banished",img:"images/pc/banished.jpg",description:"Survie et gestion de village.",lien:"https://banished.en.softonic.com/download",categorie:"Construction"},
-{nom:"RollerCoaster Tycoon 3",img:"images/pc/rct3.jpg",description:"Création de parcs fun.",lien:"https://rollercoaster-tycoon-3.en.softonic.com/download",categorie:"Construction"},
-{nom:"Factorio",img:"images/pc/factorio.jpg",description:"Automatisation et industrie stratégique.",lien:"https://factorio.en.softonic.com/download",categorie:"Construction"},
-{nom:"Cities Skylines",img:"images/pc/citiessky.jpg",description:"Gestion et construction de ville.",lien:"https://cities-skylines.en.softonic.com/download",categorie:"Construction"},
-{nom:"Planet Zoo",img:"images/pc/planetzoo.jpg",description:"Construis et gère un zoo moderne.",lien:"https://planet-zoo.en.softonic.com/download",categorie:"Construction"},
-// 🧩 PUZZLE
-{nom:"Portal 2",img:"images/pc/portal2.jpg",description:"Puzzle intelligent en 3D.",lien:"https://portal-2.en.softonic.com/download",categorie:"Puzzle"},
-{nom:"The Witness",img:"images/pc/witness.jpg",description:"Exploration et énigmes visuelles.",lien:"https://the-witness.en.softonic.com/download",categorie:"Puzzle"},
-{nom:"Tetris Effect",img:"images/pc/tetris.jpg",description:"Puzzle musical hypnotique.",lien:"https://tetris-effect.en.softonic.com/download",categorie:"Puzzle"},
-{nom:"Human Fall Flat",img:"images/pc/humanfall.jpg",description:"Physique drôle et puzzles.",lien:"https://human-fall-flat.en.softonic.com/download",categorie:"Puzzle"},
-{nom:"Braid",img:"images/pc/braid.jpg",description:"Puzzle plateforme original.",lien:"https://braid.en.softonic.com/download",categorie:"Puzzle"},
-{nom:"Limbo",img:"images/pc/limbo.jpg",description:"Puzzle sombre et artistique.",lien:"https://limbo.en.softonic.com/download",categorie:"Puzzle"},
-{nom:"Inside",img:"images/pc/inside.jpg",description:"Énigmes atmosphériques.",lien:"https://inside.en.softonic.com/download",categorie:"Puzzle"},
-{nom:"Fez",img:"images/pc/fez.jpg",description:"Puzzle en dimension changeante.",lien:"https://fez.en.softonic.com/download",categorie:"Puzzle"},
-{nom:"Monument Valley",img:"images/pc/monument.jpg",description:"Architecture impossible à résoudre.",lien:"https://monument-valley.en.softonic.com/download",categorie:"Puzzle"},
-{nom:"World of Goo",img:"images/pc/goo.jpg",description:"Construction puzzle créatif.",lien:"https://world-of-goo.en.softonic.com/download",categorie:"Puzzle"},
-// 🎵 MUSIQUE
-{nom:"Friday Night Funkin",img:"images/pc/fnf.jpg",description:"Jeu de rythme fun et rapide.",lien:"https://friday-night-funkin.en.softonic.com/download",categorie:"Musique"},
-{nom:"Osu!",img:"images/pc/osu.jpg",description:"Rythme musical compétitif.",lien:"https://osu.en.softonic.com/download",categorie:"Musique"},
-{nom:"StepMania",img:"images/pc/stepmania.jpg",description:"Danse et rythme personnalisable.",lien:"https://stepmania.en.softonic.com/download",categorie:"Musique"},
-{nom:"Audiosurf",img:"images/pc/audiosurf.jpg",description:"Courses basées sur ta musique.",lien:"https://audiosurf.en.softonic.com/download",categorie:"Musique"},
-{nom:"Beat Hazard",img:"images/pc/beathazard.jpg",description:"Shoot musical dynamique.",lien:"https://beat-hazard.en.softonic.com/download",categorie:"Musique"},
-{nom:"Melody Escape",img:"images/pc/melodyescape.jpg",description:"Plateforme rythmique colorée.",lien:"https://melody-escape.en.softonic.com/download",categorie:"Musique"},
-{nom:"Frets on Fire",img:"images/pc/fretsonfire.jpg",description:"Guitare rythmique arcade.",lien:"https://frets-on-fire.en.softonic.com/download",categorie:"Musique"},
-{nom:"Soundodger",img:"images/pc/soundodger.jpg",description:"Esquive au rythme de la musique.",lien:"https://soundodger.en.softonic.com/download",categorie:"Musique"},
-{nom:"Rhythm Castle",img:"images/pc/rhythmcastle.jpg",description:"Mini-jeux musicaux délirants.",lien:"https://super-crazy-rhythm-castle.en.softonic.com/download",categorie:"Musique"},
-{nom:"Rhythm Doctor",img:"images/pc/rhythmdoctor.jpg",description:"Timing musical précis.",lien:"https://rhythm-doctor.en.softonic.com/download",categorie:"Musique"},
-// 📚 ÉDUCATION
-{nom:"GeoGebra",img:"images/pc/geogebra.jpg",description:"Mathématiques interactives.",lien:"https://geogebra.en.softonic.com/download",categorie:"Education"},
-{nom:"TuxMath",img:"images/pc/tuxmath.jpg",description:"Calcul mental amusant.",lien:"https://tuxmath.en.softonic.com/download",categorie:"Education"},
-{nom:"GCompris",img:"images/pc/gcompris.jpg",description:"Suite éducative pour enfants.",lien:"https://gcompris.en.softonic.com/download",categorie:"Education"},
-{nom:"Scratch",img:"images/pc/scratch.jpg",description:"Apprendre la programmation.",lien:"https://scratch.en.softonic.com/download",categorie:"Education"},
-{nom:"Celestia",img:"images/pc/celestia.jpg",description:"Exploration éducative de l'espace.",lien:"https://celestia.en.softonic.com/download",categorie:"Education"},
-{nom:"Stellarium",img:"images/pc/stellarium.jpg",description:"Planétarium réaliste.",lien:"https://stellarium.en.softonic.com/download",categorie:"Education"},
-{nom:"TypingClub",img:"images/pc/typingclub.jpg",description:"Apprendre à taper au clavier.",lien:"https://typingclub.en.softonic.com/download",categorie:"Education"},
-{nom:"Childsplay",img:"images/pc/childsplay.jpg",description:"Mini-jeux éducatifs.",lien:"https://childsplay.en.softonic.com/download",categorie:"Education"},
-{nom:"TuxTyping",img:"images/pc/tuxtyping.jpg",description:"Apprentissage de frappe rapide.",lien:"https://tuxtyping.en.softonic.com/download",categorie:"Education"},
-{nom:"Kalzium",img:"images/pc/kalzium.jpg",description:"Découverte interactive de la chimie.",lien:"https://kalzium.en.softonic.com/download",categorie:"Education"},
+/* PARTICLES */
+window.addEventListener('load', function() {
+  var canvas = document.getElementById('particles-canvas');
+  var ctx = canvas.getContext('2d');
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  var stars = [];
+  for (var i = 0; i < 120; i++) {
+    stars.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*1.2+0.2, a: Math.random(), aSpeed: (Math.random()*0.01+0.003)*(Math.random()>0.5?1:-1), aMin:0.05, aMax:0.9 });
+  }
+  var nebula = [];
+  for (var j = 0; j < 35; j++) {
+    nebula.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*2.5+0.8, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, col: Math.random()>0.5?'#00ff88':'#9900ff', a: Math.random()*0.4+0.1 });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(function(s) {
+      s.a += s.aSpeed;
+      if (s.a >= s.aMax || s.a <= s.aMin) s.aSpeed *= -1;
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fillStyle = '#ffffff'; ctx.globalAlpha = s.a; ctx.fill();
+    });
+    nebula.forEach(function(p) {
+      var grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r*3);
+      grad.addColorStop(0, p.col); grad.addColorStop(1, 'transparent');
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r*3, 0, Math.PI*2);
+      ctx.fillStyle = grad; ctx.globalAlpha = p.a*0.6; ctx.fill();
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.col; ctx.globalAlpha = p.a; ctx.fill();
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+});
+ 
+/* SCROLL REVEAL */
+var ro = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) e.target.classList.add('visible');
+    else e.target.classList.remove('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(function(el) { ro.observe(el); });
+ 
+/* CARD OBSERVER */
+var cardObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) e.target.classList.add('visible');
+    else e.target.classList.remove('visible');
+  });
+}, { threshold: 0.1 });
+ 
+const pcGames = [
+  // ⚽ SPORT
+  { nom:"FIFA 23", slug:"fifa-23", img:"images/pc/fifa23.jpg", desc:"Simulation de football réaliste.", cat:"Sport", note:4.3, pop:true, free:false, lien:"pc-games/sport/fifa-23.html", dl:"https://store.steampowered.com/app/1811260/EA_SPORTS_FIFA_23/" },
+  { nom:"eFootball PES 2021", slug:"efootball-2021", img:"images/pc/pes2021.jpg", desc:"Football fluide et compétitif.", cat:"Sport", note:4.1, pop:false, free:true, lien:"pc-games/sport/efootball-2021.html", dl:"https://store.steampowered.com/app/1665460/eFootball_2022/" },
+  { nom:"NBA 2K23", slug:"nba-2k23", img:"images/pc/nba2k23.jpg", desc:"Simulation officielle de basketball.", cat:"Sport", note:4.2, pop:true, free:false, lien:"pc-games/sport/nba-2k23.html", dl:"https://store.steampowered.com/app/2082680/NBA_2K23/" },
+  { nom:"Rocket League", slug:"rocket-league", img:"images/pc/rocketleague.jpg", desc:"Football spectaculaire avec des voitures.", cat:"Sport", note:4.7, pop:true, free:true, lien:"pc-games/sport/rocket-league.html", dl:"https://store.steampowered.com/app/252950/Rocket_League/" },
+  { nom:"Football Manager 2023", slug:"football-manager-2023", img:"images/pc/fm2023.jpg", desc:"Gestion complète d'équipe de foot.", cat:"Sport", note:4.5, pop:false, free:false, lien:"pc-games/sport/football-manager-2023.html", dl:"https://store.steampowered.com/app/1904540/Football_Manager_2023/" },
+  { nom:"Trackmania", slug:"trackmania", img:"images/pc/trackmania.jpg", desc:"Circuits arcade ultra rapides gratuit.", cat:"Sport", note:4.4, pop:false, free:true, lien:"pc-games/sport/trackmania.html", dl:"https://www.ubisoft.com/en-us/game/trackmania/trackmania" },
+  { nom:"Golf It!", slug:"golf-it", img:"images/pc/golfit.jpg", desc:"Mini golf multijoueur fun.", cat:"Sport", note:4.3, pop:false, free:false, lien:"pc-games/sport/golf-it.html", dl:"https://store.steampowered.com/app/571740/Golf_It/" },
+  { nom:"WWE 2K22", slug:"wwe-2k22", img:"images/pc/wwe2k22.jpg", desc:"Combat sportif spectaculaire.", cat:"Sport", note:4.0, pop:false, free:false, lien:"pc-games/sport/wwe-2k22.html", dl:"https://store.steampowered.com/app/1255630/WWE_2K22/" },
+  { nom:"Tony Hawk's Pro Skater", slug:"tony-hawk", img:"images/pc/tonyhawk.jpg", desc:"Skate arcade fun et nostalgique.", cat:"Sport", note:4.5, pop:false, free:false, lien:"pc-games/sport/tony-hawk.html", dl:"https://store.steampowered.com/app/1395720/Tony_Hawks_Pro_Skater_1__2/" },
+  { nom:"Pro Cycling Manager", slug:"pro-cycling-manager", img:"images/pc/cycling.jpg", desc:"Gestion de cyclisme professionnel.", cat:"Sport", note:4.0, pop:false, free:false, lien:"pc-games/sport/pro-cycling-manager.html", dl:"https://store.steampowered.com/app/1898820/Pro_Cycling_Manager_2022/" },
+ 
+  // 🏹 AVENTURE
+  { nom:"Minecraft", slug:"minecraft-pc", img:"images/pc/minecraft.jpg", desc:"Exploration et construction en monde ouvert.", cat:"Aventure", note:4.8, pop:true, free:false, lien:"pc-games/aventure/minecraft-pc.html", dl:"https://www.minecraft.net/fr-fr/download" },
+  { nom:"Terraria", slug:"terraria-pc", img:"images/pc/terraria.jpg", desc:"Aventure sandbox en 2D addictive.", cat:"Aventure", note:4.7, pop:true, free:false, lien:"pc-games/aventure/terraria-pc.html", dl:"https://store.steampowered.com/app/105600/Terraria/" },
+  { nom:"Stardew Valley", slug:"stardew-valley-pc", img:"images/pc/stardew.jpg", desc:"Vie à la ferme et exploration relaxante.", cat:"Aventure", note:4.8, pop:true, free:false, lien:"pc-games/aventure/stardew-valley-pc.html", dl:"https://store.steampowered.com/app/413150/Stardew_Valley/" },
+  { nom:"Portal 2", slug:"portal-2", img:"images/pc/portal2.jpg", desc:"Puzzle aventure intelligent.", cat:"Aventure", note:4.9, pop:true, free:false, lien:"pc-games/aventure/portal-2.html", dl:"https://store.steampowered.com/app/620/Portal_2/" },
+  { nom:"Subnautica", slug:"subnautica", img:"images/pc/subnautica.jpg", desc:"Exploration sous-marine fascinante.", cat:"Aventure", note:4.7, pop:true, free:false, lien:"pc-games/aventure/subnautica.html", dl:"https://store.steampowered.com/app/264710/Subnautica/" },
+  { nom:"Firewatch", slug:"firewatch", img:"images/pc/firewatch.jpg", desc:"Exploration narrative immersive.", cat:"Aventure", note:4.5, pop:false, free:false, lien:"pc-games/aventure/firewatch.html", dl:"https://store.steampowered.com/app/383870/Firewatch/" },
+  { nom:"Ori and the Blind Forest", slug:"ori-blind-forest", img:"images/pc/ori.jpg", desc:"Plateforme aventure artistique.", cat:"Aventure", note:4.8, pop:false, free:false, lien:"pc-games/aventure/ori-blind-forest.html", dl:"https://store.steampowered.com/app/261570/Ori_and_the_Blind_Forest/" },
+  { nom:"Journey", slug:"journey-pc", img:"images/pc/journey.jpg", desc:"Aventure poétique et visuelle.", cat:"Aventure", note:4.7, pop:false, free:false, lien:"pc-games/aventure/journey-pc.html", dl:"https://store.steampowered.com/app/638230/Journey/" },
+  { nom:"Life is Strange", slug:"life-is-strange", img:"images/pc/lifeisstrange.jpg", desc:"Aventure narrative émotionnelle.", cat:"Aventure", note:4.6, pop:false, free:false, lien:"pc-games/aventure/life-is-strange.html", dl:"https://store.steampowered.com/app/319630/Life_is_Strange__Episode_1/" },
+  { nom:"The Witness", slug:"the-witness", img:"images/pc/witness.jpg", desc:"Aventure puzzle en monde ouvert.", cat:"Aventure", note:4.4, pop:false, free:false, lien:"pc-games/aventure/the-witness.html", dl:"https://store.steampowered.com/app/210970/The_Witness/" },
+ 
+  // 🛠️ SIMULATION
+  { nom:"The Sims 4", slug:"sims-4", img:"images/pc/sims4.jpg", desc:"Simulation de vie complète.", cat:"Simulation", note:4.2, pop:true, free:true, lien:"pc-games/simulation/sims-4.html", dl:"https://store.steampowered.com/app/1222670/The_Sims_4/" },
+  { nom:"Euro Truck Simulator 2", slug:"euro-truck-simulator-2", img:"images/pc/trucksim.jpg", desc:"Conduite de camions réaliste.", cat:"Simulation", note:4.7, pop:true, free:false, lien:"pc-games/simulation/euro-truck-simulator-2.html", dl:"https://store.steampowered.com/app/227300/Euro_Truck_Simulator_2/" },
+  { nom:"Microsoft Flight Simulator", slug:"flight-simulator", img:"images/pc/flightsim.jpg", desc:"Simulation de vol ultra réaliste.", cat:"Simulation", note:4.5, pop:true, free:false, lien:"pc-games/simulation/flight-simulator.html", dl:"https://www.xbox.com/en-US/games/microsoft-flight-simulator" },
+  { nom:"Farming Simulator 22", slug:"farming-simulator-22", img:"images/pc/farmingsim.jpg", desc:"Gestion agricole immersive.", cat:"Simulation", note:4.3, pop:false, free:false, lien:"pc-games/simulation/farming-simulator-22.html", dl:"https://store.steampowered.com/app/1248130/Farming_Simulator_22/" },
+  { nom:"House Flipper", slug:"house-flipper", img:"images/pc/houseflipper.jpg", desc:"Rénovation et décoration de maisons.", cat:"Simulation", note:4.4, pop:false, free:false, lien:"pc-games/simulation/house-flipper.html", dl:"https://store.steampowered.com/app/613100/House_Flipper/" },
+  { nom:"Planet Zoo", slug:"planet-zoo", img:"images/pc/planetzoo.jpg", desc:"Gestion d'un zoo moderne.", cat:"Simulation", note:4.5, pop:false, free:false, lien:"pc-games/simulation/planet-zoo.html", dl:"https://store.steampowered.com/app/703080/Planet_Zoo/" },
+  { nom:"Car Mechanic Simulator", slug:"car-mechanic-simulator", img:"images/pc/mechanic.jpg", desc:"Réparation automobile réaliste.", cat:"Simulation", note:4.3, pop:false, free:false, lien:"pc-games/simulation/car-mechanic-simulator.html", dl:"https://store.steampowered.com/app/1190000/Car_Mechanic_Simulator_2021/" },
+  { nom:"Cooking Simulator", slug:"cooking-simulator", img:"images/pc/cookingsim.jpg", desc:"Cuisine réaliste et fun.", cat:"Simulation", note:4.2, pop:false, free:false, lien:"pc-games/simulation/cooking-simulator.html", dl:"https://store.steampowered.com/app/641320/Cooking_Simulator/" },
+  { nom:"PC Building Simulator", slug:"pc-building-simulator", img:"images/pc/pcbuild.jpg", desc:"Construis ton PC virtuel.", cat:"Simulation", note:4.3, pop:false, free:false, lien:"pc-games/simulation/pc-building-simulator.html", dl:"https://store.steampowered.com/app/621060/PC_Building_Simulator/" },
+  { nom:"Train Simulator", slug:"train-simulator", img:"images/pc/trainsim.jpg", desc:"Simulation ferroviaire détaillée.", cat:"Simulation", note:4.1, pop:false, free:true, lien:"pc-games/simulation/train-simulator.html", dl:"https://store.steampowered.com/app/24010/Train_Simulator_Classic/" },
+ 
+  // 🧠 STRATÉGIE
+  { nom:"Civilization VI", slug:"civilization-vi-pc", img:"images/pc/civ6.jpg", desc:"Construis un empire à travers l'histoire.", cat:"Strategie", note:4.7, pop:true, free:false, lien:"pc-games/strategie/civilization-vi-pc.html", dl:"https://store.steampowered.com/app/289070/Sid_Meiers_Civilization_VI/" },
+  { nom:"Age of Empires II", slug:"age-of-empires-2", img:"images/pc/aoe2.jpg", desc:"Stratégie historique en temps réel.", cat:"Strategie", note:4.8, pop:true, free:false, lien:"pc-games/strategie/age-of-empires-2.html", dl:"https://store.steampowered.com/app/813780/Age_of_Empires_II_Definitive_Edition/" },
+  { nom:"Cities Skylines", slug:"cities-skylines", img:"images/pc/citiessky.jpg", desc:"Planifie et gère ta ville.", cat:"Strategie", note:4.7, pop:true, free:false, lien:"pc-games/strategie/cities-skylines.html", dl:"https://store.steampowered.com/app/255710/Cities_Skylines/" },
+  { nom:"StarCraft II", slug:"starcraft-2", img:"images/pc/starcraft2.jpg", desc:"Stratégie futuriste compétitive.", cat:"Strategie", note:4.6, pop:true, free:true, lien:"pc-games/strategie/starcraft-2.html", dl:"https://starcraft2.blizzard.com/fr-fr/" },
+  { nom:"Factorio", slug:"factorio", img:"images/pc/factorio.jpg", desc:"Optimisation et automatisation stratégique.", cat:"Strategie", note:4.9, pop:true, free:false, lien:"pc-games/strategie/factorio.html", dl:"https://store.steampowered.com/app/427520/Factorio/" },
+  { nom:"Total War Rome II", slug:"total-war-rome-2", img:"images/pc/rome2.jpg", desc:"Gestion militaire et empire antique.", cat:"Strategie", note:4.4, pop:false, free:false, lien:"pc-games/strategie/total-war-rome-2.html", dl:"https://store.steampowered.com/app/214950/Total_War_ROME_II__Emperor_Edition/" },
+  { nom:"Northgard", slug:"northgard", img:"images/pc/northgard.jpg", desc:"Stratégie viking accessible.", cat:"Strategie", note:4.5, pop:false, free:false, lien:"pc-games/strategie/northgard.html", dl:"https://store.steampowered.com/app/466560/Northgard/" },
+  { nom:"Plague Inc Evolved", slug:"plague-inc-evolved", img:"images/pc/plagueinc.jpg", desc:"Simulation stratégique originale.", cat:"Strategie", note:4.5, pop:false, free:false, lien:"pc-games/strategie/plague-inc-evolved.html", dl:"https://store.steampowered.com/app/246620/Plague_Inc_Evolved/" },
+  { nom:"Stronghold Crusader", slug:"stronghold-crusader", img:"images/pc/stronghold.jpg", desc:"Construction de forteresses médiévales.", cat:"Strategie", note:4.4, pop:false, free:false, lien:"pc-games/strategie/stronghold-crusader.html", dl:"https://store.steampowered.com/app/40970/Stronghold_Crusader_HD/" },
+  { nom:"Command & Conquer", slug:"command-conquer", img:"images/pc/cnc.jpg", desc:"Stratégie classique modernisée.", cat:"Strategie", note:4.3, pop:false, free:true, lien:"pc-games/strategie/command-conquer.html", dl:"https://store.steampowered.com/app/1229760/Command__Conquer_Remastered_Collection/" },
+ 
+  // 🏎️ COURSE
+  { nom:"Forza Horizon 5", slug:"forza-horizon-5", img:"images/pc/forza5.jpg", desc:"Courses arcade en monde ouvert.", cat:"Course", note:4.8, pop:true, free:false, lien:"pc-games/course/forza-horizon-5.html", dl:"https://store.steampowered.com/app/1551360/Forza_Horizon_5/" },
+  { nom:"Need for Speed Heat", slug:"nfs-heat", img:"images/pc/nfsheat.jpg", desc:"Courses urbaines nocturnes rapides.", cat:"Course", note:4.3, pop:true, free:false, lien:"pc-games/course/nfs-heat.html", dl:"https://store.steampowered.com/app/1222680/Need_for_Speed_Heat/" },
+  { nom:"F1 22", slug:"f1-22", img:"images/pc/f122.jpg", desc:"Simulation officielle de Formule 1.", cat:"Course", note:4.3, pop:false, free:false, lien:"pc-games/course/f1-22.html", dl:"https://store.steampowered.com/app/1708520/F1_22/" },
+  { nom:"Dirt Rally 2.0", slug:"dirt-rally-2", img:"images/pc/dirt2.jpg", desc:"Rallye réaliste et exigeant.", cat:"Course", note:4.6, pop:false, free:false, lien:"pc-games/course/dirt-rally-2.html", dl:"https://store.steampowered.com/app/690790/DiRT_Rally_20/" },
+  { nom:"Assetto Corsa", slug:"assetto-corsa", img:"images/pc/assettocorsa.jpg", desc:"Simulation de conduite avancée.", cat:"Course", note:4.7, pop:true, free:false, lien:"pc-games/course/assetto-corsa.html", dl:"https://store.steampowered.com/app/244210/Assetto_Corsa/" },
+  { nom:"The Crew 2", slug:"the-crew-2", img:"images/pc/crew2.jpg", desc:"Courses variées air-terre-mer.", cat:"Course", note:4.2, pop:false, free:false, lien:"pc-games/course/the-crew-2.html", dl:"https://store.ubisoft.com/fr/the-crew-2/5ae398c94e016524888b4568.html" },
+  { nom:"Burnout Paradise", slug:"burnout-paradise", img:"images/pc/burnout.jpg", desc:"Arcade et cascades explosives.", cat:"Course", note:4.5, pop:false, free:false, lien:"pc-games/course/burnout-paradise.html", dl:"https://store.steampowered.com/app/807080/Burnout_Paradise_Remastered/" },
+  { nom:"Project Cars 3", slug:"project-cars-3", img:"images/pc/projectcars.jpg", desc:"Simulation de course moderne.", cat:"Course", note:4.1, pop:false, free:false, lien:"pc-games/course/project-cars-3.html", dl:"https://store.steampowered.com/app/869840/Project_CARS_3/" },
+  { nom:"MotoGP 22", slug:"motogp-22", img:"images/pc/motogp22.jpg", desc:"Courses de motos officielles.", cat:"Course", note:4.2, pop:false, free:false, lien:"pc-games/course/motogp-22.html", dl:"https://store.steampowered.com/app/1659420/MotoGP_22/" },
+  { nom:"Trackmania", slug:"trackmania-pc", img:"images/pc/trackmania.jpg", desc:"Circuits arcade ultra rapides.", cat:"Course", note:4.4, pop:false, free:true, lien:"pc-games/course/trackmania-pc.html", dl:"https://www.ubisoft.com/en-us/game/trackmania/trackmania" },
+ 
+  // 🏗️ CONSTRUCTION
+  { nom:"Planet Coaster", slug:"planet-coaster", img:"images/pc/planetcoaster.jpg", desc:"Crée ton parc d'attractions.", cat:"Construction", note:4.6, pop:false, free:false, lien:"pc-games/construction/planet-coaster.html", dl:"https://store.steampowered.com/app/493340/Planet_Coaster/" },
+  { nom:"Satisfactory", slug:"satisfactory", img:"images/pc/satisfactory.jpg", desc:"Construction d'usines futuristes.", cat:"Construction", note:4.8, pop:true, free:false, lien:"pc-games/construction/satisfactory.html", dl:"https://store.steampowered.com/app/526870/Satisfactory/" },
+  { nom:"RollerCoaster Tycoon 3", slug:"rct3", img:"images/pc/rct3.jpg", desc:"Création de parcs amusement fun.", cat:"Construction", note:4.5, pop:false, free:false, lien:"pc-games/construction/rct3.html", dl:"https://store.steampowered.com/app/1368820/RollerCoaster_Tycoon_3_Complete_Edition/" },
+  { nom:"Tropico 6", slug:"tropico-6", img:"images/pc/tropico6.jpg", desc:"Développe ton île tropicale.", cat:"Construction", note:4.4, pop:false, free:false, lien:"pc-games/construction/tropico-6.html", dl:"https://store.steampowered.com/app/492720/Tropico_6/" },
+  { nom:"Banished", slug:"banished", img:"images/pc/banished.jpg", desc:"Survie et gestion de village.", cat:"Construction", note:4.5, pop:false, free:false, lien:"pc-games/construction/banished.html", dl:"https://store.steampowered.com/app/242920/Banished/" },
+  { nom:"SimCity", slug:"simcity", img:"images/pc/simcity.jpg", desc:"Simulation de construction urbaine.", cat:"Construction", note:4.0, pop:false, free:false, lien:"pc-games/construction/simcity.html", dl:"https://www.ea.com/games/simcity" },
+  { nom:"Minecraft PC", slug:"minecraft-construction", img:"images/pc/minecraft.jpg", desc:"Construction libre dans un monde infini.", cat:"Construction", note:4.8, pop:true, free:false, lien:"pc-games/construction/minecraft-construction.html", dl:"https://www.minecraft.net/fr-fr/download" },
+  { nom:"Planet Zoo", slug:"planet-zoo-construction", img:"images/pc/planetzoo.jpg", desc:"Construis et gère un zoo moderne.", cat:"Construction", note:4.5, pop:false, free:false, lien:"pc-games/construction/planet-zoo-construction.html", dl:"https://store.steampowered.com/app/703080/Planet_Zoo/" },
+  { nom:"Cities Skylines", slug:"cities-skylines-construction", img:"images/pc/citiessky.jpg", desc:"Gestion et construction de ville.", cat:"Construction", note:4.7, pop:true, free:false, lien:"pc-games/construction/cities-skylines-construction.html", dl:"https://store.steampowered.com/app/255710/Cities_Skylines/" },
+  { nom:"Factorio Construction", slug:"factorio-construction", img:"images/pc/factorio.jpg", desc:"Automatisation et industrie stratégique.", cat:"Construction", note:4.9, pop:true, free:false, lien:"pc-games/construction/factorio-construction.html", dl:"https://store.steampowered.com/app/427520/Factorio/" },
+ 
+  // 🧩 PUZZLE
+  { nom:"Portal 2 Puzzle", slug:"portal-2-puzzle", img:"images/pc/portal2.jpg", desc:"Puzzle intelligent en 3D.", cat:"Puzzle", note:4.9, pop:true, free:false, lien:"pc-games/puzzle/portal-2-puzzle.html", dl:"https://store.steampowered.com/app/620/Portal_2/" },
+  { nom:"Tetris Effect", slug:"tetris-effect", img:"images/pc/tetris.jpg", desc:"Puzzle musical hypnotique.", cat:"Puzzle", note:4.7, pop:false, free:false, lien:"pc-games/puzzle/tetris-effect.html", dl:"https://store.steampowered.com/app/1003590/Tetris_Effect_Connected/" },
+  { nom:"Human Fall Flat", slug:"human-fall-flat", img:"images/pc/humanfall.jpg", desc:"Physique drôle et puzzles.", cat:"Puzzle", note:4.6, pop:true, free:false, lien:"pc-games/puzzle/human-fall-flat.html", dl:"https://store.steampowered.com/app/477160/Human_Fall_Flat/" },
+  { nom:"Limbo", slug:"limbo-pc", img:"images/pc/limbo.jpg", desc:"Puzzle sombre et artistique.", cat:"Puzzle", note:4.6, pop:false, free:false, lien:"pc-games/puzzle/limbo-pc.html", dl:"https://store.steampowered.com/app/48000/LIMBO/" },
+  { nom:"Inside", slug:"inside-pc", img:"images/pc/inside.jpg", desc:"Énigmes atmosphériques.", cat:"Puzzle", note:4.8, pop:false, free:false, lien:"pc-games/puzzle/inside-pc.html", dl:"https://store.steampowered.com/app/304430/INSIDE/" },
+  { nom:"Braid", slug:"braid-pc", img:"images/pc/braid.jpg", desc:"Puzzle plateforme original.", cat:"Puzzle", note:4.5, pop:false, free:false, lien:"pc-games/puzzle/braid-pc.html", dl:"https://store.steampowered.com/app/26800/Braid/" },
+  { nom:"Fez", slug:"fez-pc", img:"images/pc/fez.jpg", desc:"Puzzle en dimension changeante.", cat:"Puzzle", note:4.4, pop:false, free:false, lien:"pc-games/puzzle/fez-pc.html", dl:"https://store.steampowered.com/app/224760/FEZ/" },
+  { nom:"World of Goo", slug:"world-of-goo", img:"images/pc/goo.jpg", desc:"Construction puzzle créatif.", cat:"Puzzle", note:4.5, pop:false, free:false, lien:"pc-games/puzzle/world-of-goo.html", dl:"https://store.steampowered.com/app/22000/World_of_Goo/" },
+  { nom:"The Witness", slug:"the-witness-puzzle", img:"images/pc/witness.jpg", desc:"Exploration et énigmes visuelles.", cat:"Puzzle", note:4.4, pop:false, free:false, lien:"pc-games/puzzle/the-witness-puzzle.html", dl:"https://store.steampowered.com/app/210970/The_Witness/" },
+  { nom:"Monument Valley", slug:"monument-valley-pc", img:"images/pc/monument.jpg", desc:"Architecture impossible à résoudre.", cat:"Puzzle", note:4.6, pop:false, free:false, lien:"pc-games/puzzle/monument-valley-pc.html", dl:"https://www.monumentvalleygame.com/" },
+ 
+  // 🎵 MUSIQUE
+  { nom:"Friday Night Funkin", slug:"friday-night-funkin", img:"images/pc/fnf.jpg", desc:"Jeu de rythme fun et rapide.", cat:"Musique", note:4.5, pop:true, free:true, lien:"pc-games/musique/friday-night-funkin.html", dl:"https://ninja-muffin24.itch.io/funkin" },
+  { nom:"Osu!", slug:"osu", img:"images/pc/osu.jpg", desc:"Rythme musical compétitif gratuit.", cat:"Musique", note:4.7, pop:true, free:true, lien:"pc-games/musique/osu.html", dl:"https://osu.ppy.sh/home/download" },
+  { nom:"Beat Hazard", slug:"beat-hazard", img:"images/pc/beathazard.jpg", desc:"Shoot musical dynamique.", cat:"Musique", note:4.3, pop:false, free:false, lien:"pc-games/musique/beat-hazard.html", dl:"https://store.steampowered.com/app/49600/Beat_Hazard/" },
+  { nom:"StepMania", slug:"stepmania", img:"images/pc/stepmania.jpg", desc:"Danse et rythme personnalisable.", cat:"Musique", note:4.4, pop:false, free:true, lien:"pc-games/musique/stepmania.html", dl:"https://www.stepmania.com/" },
+  { nom:"Audiosurf", slug:"audiosurf", img:"images/pc/audiosurf.jpg", desc:"Courses basées sur ta musique.", cat:"Musique", note:4.4, pop:false, free:false, lien:"pc-games/musique/audiosurf.html", dl:"https://store.steampowered.com/app/12900/AudioSurf/" },
+  { nom:"Melody Escape", slug:"melody-escape", img:"images/pc/melodyescape.jpg", desc:"Plateforme rythmique colorée.", cat:"Musique", note:4.2, pop:false, free:false, lien:"pc-games/musique/melody-escape.html", dl:"https://store.steampowered.com/app/1265550/Melody_Escape/" },
+  { nom:"Frets on Fire", slug:"frets-on-fire", img:"images/pc/fretsonfire.jpg", desc:"Guitare rythmique arcade.", cat:"Musique", note:4.1, pop:false, free:true, lien:"pc-games/musique/frets-on-fire.html", dl:"https://frets-on-fire.sourceforge.net/" },
+  { nom:"Rhythm Doctor", slug:"rhythm-doctor", img:"images/pc/rhythmdoctor.jpg", desc:"Timing musical précis.", cat:"Musique", note:4.5, pop:false, free:false, lien:"pc-games/musique/rhythm-doctor.html", dl:"https://store.steampowered.com/app/774181/Rhythm_Doctor/" },
+  { nom:"Soundodger", slug:"soundodger", img:"images/pc/soundodger.jpg", desc:"Esquive au rythme de la musique.", cat:"Musique", note:4.2, pop:false, free:false, lien:"pc-games/musique/soundodger.html", dl:"https://store.steampowered.com/app/269770/Soundodger/" },
+  { nom:"Rhythm Castle", slug:"rhythm-castle", img:"images/pc/rhythmcastle.jpg", desc:"Mini-jeux musicaux délirants.", cat:"Musique", note:4.3, pop:false, free:false, lien:"pc-games/musique/rhythm-castle.html", dl:"https://store.steampowered.com/app/1985990/Super_Crazy_Rhythm_Castle/" },
+ 
+  // 📚 ÉDUCATION
+  { nom:"GeoGebra", slug:"geogebra", img:"images/pc/geogebra.jpg", desc:"Mathématiques interactives.", cat:"Education", note:4.6, pop:false, free:true, lien:"pc-games/education/geogebra.html", dl:"https://www.geogebra.org/download" },
+  { nom:"Scratch", slug:"scratch-pc", img:"images/pc/scratch.jpg", desc:"Apprendre la programmation facilement.", cat:"Education", note:4.7, pop:true, free:true, lien:"pc-games/education/scratch-pc.html", dl:"https://scratch.mit.edu/download" },
+  { nom:"Stellarium", slug:"stellarium", img:"images/pc/stellarium.jpg", desc:"Planétarium réaliste et gratuit.", cat:"Education", note:4.7, pop:false, free:true, lien:"pc-games/education/stellarium.html", dl:"https://stellarium.org/" },
+  { nom:"Celestia", slug:"celestia", img:"images/pc/celestia.jpg", desc:"Exploration éducative de l'espace.", cat:"Education", note:4.5, pop:false, free:true, lien:"pc-games/education/celestia.html", dl:"https://celestia.space/" },
+  { nom:"GCompris", slug:"gcompris", img:"images/pc/gcompris.jpg", desc:"Suite éducative pour enfants.", cat:"Education", note:4.4, pop:false, free:true, lien:"pc-games/education/gcompris.html", dl:"https://gcompris.net/index-fr.html" },
+  { nom:"TuxMath", slug:"tuxmath", img:"images/pc/tuxmath.jpg", desc:"Calcul mental amusant pour enfants.", cat:"Education", note:4.3, pop:false, free:true, lien:"pc-games/education/tuxmath.html", dl:"https://sourceforge.net/projects/tuxmath/" },
+  { nom:"TypingClub", slug:"typingclub", img:"images/pc/typingclub.jpg", desc:"Apprendre à taper au clavier.", cat:"Education", note:4.5, pop:false, free:true, lien:"pc-games/education/typingclub.html", dl:"https://www.typingclub.com/" },
+  { nom:"TuxTyping", slug:"tuxtyping", img:"images/pc/tuxtyping.jpg", desc:"Apprentissage de frappe rapide.", cat:"Education", note:4.2, pop:false, free:true, lien:"pc-games/education/tuxtyping.html", dl:"https://sourceforge.net/projects/tuxtype/" },
+  { nom:"Childsplay", slug:"childsplay", img:"images/pc/childsplay.jpg", desc:"Mini-jeux éducatifs pour enfants.", cat:"Education", note:4.1, pop:false, free:true, lien:"pc-games/education/childsplay.html", dl:"https://childsplay.sourceforge.net/" },
+  { nom:"Kalzium", slug:"kalzium", img:"images/pc/kalzium.jpg", desc:"Découverte interactive de la chimie.", cat:"Education", note:4.2, pop:false, free:true, lien:"pc-games/education/kalzium.html", dl:"https://apps.kde.org/kalzium/" },
 ];
-
-function renderGames(list){
-  const c=document.getElementById("games");c.innerHTML="";
-  if(!list.length){c.innerHTML='<div class="empty">Aucun jeu trouvé 😕</div>';return;}
-  list.forEach(g=>{
-    const d=document.createElement('div');d.className='card';
-    d.innerHTML=`<img src="${g.img}" alt="${g.nom}" loading="lazy" onerror="this.style.background='#1a0a2e';this.src=''">
-    <div class="card-content">
-      <span class="badge-cat">${g.categorie}</span>
-      <h3>${g.nom}</h3>
-      <p>${g.description}</p>
-      <a class="dl-btn" href="${g.lien}" target="_blank" rel="noopener">⬇ Télécharger</a>
-    </div>`;
+ 
+/* ANIMATE COUNT */
+function animateCount(target) {
+  const el = document.getElementById('countNum');
+  let count = 0;
+  const step = Math.ceil(target / 30);
+  const timer = setInterval(() => {
+    count = Math.min(count + step, target);
+    el.textContent = count;
+    if (count >= target) clearInterval(timer);
+  }, 30);
+}
+ 
+/* RENDER */
+function renderGames(list) {
+  const c = document.getElementById("games");
+  c.innerHTML = "";
+  if (!list.length) {
+    c.innerHTML = '<div class="empty">Aucun jeu trouvé 😕</div>';
+    document.getElementById('countNum').textContent = '0';
+    return;
+  }
+  animateCount(list.length);
+  list.forEach((g, i) => {
+    const d = document.createElement('div');
+    d.className = 'card';
+    d.style.transitionDelay = `${Math.min(i * 0.04, 0.6)}s`;
+ 
+    const fullStars = Math.floor(g.note);
+    const hasHalf = g.note % 1 >= 0.5;
+    let starsHTML = '';
+    for (let s = 1; s <= 5; s++) {
+      if (s <= fullStars) starsHTML += '<div class="star-css filled"></div>';
+      else if (s === fullStars + 1 && hasHalf) starsHTML += '<div class="star-css half"></div>';
+      else starsHTML += '<div class="star-css"></div>';
+    }
+ 
+    d.innerHTML = `
+      <div class="card-img">
+        ${g.pop ? '<span class="badge-pop">Populaire 🔥</span>' : ''}
+        ${g.free ? '<span class="badge-free">Gratuit 🆓</span>' : ''}
+        <img src="${g.img}" alt="${g.nom}" loading="lazy" onerror="this.style.background='#001a0d';this.src=''">
+      </div>
+      <div class="card-content">
+        <span class="badge-cat">${g.cat}</span>
+        <h3>${g.nom}</h3>
+        <p>${g.desc}</p>
+        <div class="card-note">
+          <div class="stars-css">${starsHTML}</div>
+          <span class="note-val">${g.note}</span>
+        </div>
+        <a class="dl-btn" href="${g.dl}" target="_blank" rel="noopener">⬇ Télécharger</a>
+      </div>
+    `;
     c.appendChild(d);
+    cardObs.observe(d);
   });
 }
 renderGames(pcGames);
-
-function filter(cat,btn){
-  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
-  if(btn)btn.classList.add('active');
-  const t=document.getElementById('section-title');
-  if(cat==='all'){t.textContent='Tous les jeux PC';renderGames(pcGames);}
-  else{t.textContent=cat;renderGames(pcGames.filter(g=>g.categorie===cat));}
+ 
+function filter(cat, btn) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  if (btn) {
+    btn.classList.add('active');
+    btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+  }
+  const t = document.getElementById('section-title');
+  if (cat === 'all') { t.textContent = 'Tous les jeux PC'; renderGames(pcGames); }
+  else { t.textContent = cat; renderGames(pcGames.filter(g => g.cat === cat)); }
+  setTimeout(() => { document.querySelectorAll('.card').forEach(c => c.style.transitionDelay = '0s'); }, 800);
 }
-
-function searchGame(){
-  const v=document.getElementById("search").value.toLowerCase().trim();
-  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+ 
+function searchGame() {
+  const v = document.getElementById("search").value.toLowerCase().trim();
+  const clearBtn = document.getElementById('searchClear');
+  clearBtn.style.display = v ? 'block' : 'none';
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
   document.querySelector('.cat-btn').classList.add('active');
-  if(!v){renderGames(pcGames);return;}
-  renderGames(pcGames.filter(g=>g.nom.toLowerCase().includes(v)||g.description.toLowerCase().includes(v)));
+  document.getElementById('section-title').textContent = v ? `Résultats pour "${v}"` : 'Tous les jeux PC';
+  if (!v) { renderGames(pcGames); return; }
+  renderGames(pcGames.filter(g => g.nom.toLowerCase().includes(v) || g.desc.toLowerCase().includes(v) || g.cat.toLowerCase().includes(v)));
 }
-
-function addComment(){
-  const input=document.getElementById("comment-input");
-  const text=input.value.trim();if(!text)return;
-  const div=document.createElement("div");div.className="comment";div.textContent=text;
-  document.getElementById("comments-list").prepend(div);input.value="";
+ 
+function clearSearch() {
+  document.getElementById('search').value = '';
+  document.getElementById('searchClear').style.display = 'none';
+  document.getElementById('section-title').textContent = 'Tous les jeux PC';
+  renderGames(pcGames);
+}
+ 
+function addComment() {
+  const input = document.getElementById("comment-input");
+  const text = input.value.trim();
+  if (!text) return;
+  const div = document.createElement("div");
+  div.className = "comment"; div.textContent = text;
+  document.getElementById("comments-list").prepend(div);
+  input.value = "";
 }
 </script>
 </body>
 </html>
-
