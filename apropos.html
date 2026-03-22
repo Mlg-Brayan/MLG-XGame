@@ -13,59 +13,123 @@
   
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-adsense-account" content="ca-pub-7572845165323582">
-<meta name="google-site-verification" content="yA45UlS88pUffG-kGibZKK4ndiL8uMgLlWhm181nnkI" />
-  
-<title>À propos - MLG XGame</title>
-
+<meta name="description" content="À propos de MLG XGame — Découvrez notre mission, notre équipe et notre engagement envers la communauté gaming. Plateforme gratuite de jeux Android, iOS et PC.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="MLG XGame">
+<meta property="og:title" content="À propos — MLG XGame">
+<meta property="og:url" content="https://mlgxgame.vercel.app/apropos.html">
+<meta property="og:type" content="website">
+<title>À propos — MLG XGame</title>
+<link rel="canonical" href="https://mlgxgame.vercel.app/apropos.html">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
-body {
- font-family: 'Orbitron', sans-serif;
-  background-color: black;
-  color: #9900ff;
-  margin: 0;
-  padding: 20px;
-}
-
-h1, h2 {
-  color: #ffffff;
-}
-
-.container {
-  max-width: 900px;
-  margin: auto;
-}
-
-a {
-  color: #9900ff;
-  text-decoration: none;
-}
+:root { --purple:#9900ff; --cyan:#00f0ff; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html { background:#000; }
+body { font-family:'Rajdhani',sans-serif; background:transparent; color:#ccc; min-height:100vh; overflow-x:hidden; }
+header { background:rgba(0,0,0,0.95); box-shadow:0 0 25px #9900ff55; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+.logo { font-family:'Orbitron',sans-serif; font-size:20px; font-weight:900; background:linear-gradient(90deg,var(--purple),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:2px; text-decoration:none; }
+.back-btn { font-family:'Orbitron',sans-serif; font-size:10px; color:var(--cyan); text-decoration:none; border:1px solid #00f0ff55; padding:8px 14px; border-radius:6px; letter-spacing:1px; transition:0.25s; min-height:36px; display:flex; align-items:center; background:#00f0ff0d; }
+.back-btn:hover { background:var(--cyan); color:#000; }
+.container { max-width:780px; margin:0 auto; padding:40px 20px 60px; }
+.page-title { font-family:'Orbitron',sans-serif; font-size:22px; font-weight:900; background:linear-gradient(90deg,var(--purple),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:2px; margin-bottom:8px; }
+.page-subtitle { font-size:14px; color:#555; margin-bottom:40px; letter-spacing:1px; }
+.section { margin-bottom:36px; }
+.section h2 { font-family:'Orbitron',sans-serif; font-size:14px; color:#fff; letter-spacing:2px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #9900ff33; }
+.section p { font-size:15px; line-height:1.9; color:#aaa; margin-bottom:12px; }
+.section ul { padding-left:20px; }
+.section ul li { font-size:15px; line-height:1.9; color:#aaa; margin-bottom:6px; }
+.highlight-box { background:rgba(153,0,255,0.08); border:1px solid #9900ff33; border-radius:12px; padding:20px 24px; margin:20px 0; }
+.highlight-box p { color:#cc55ff; font-size:15px; line-height:1.8; margin:0; }
+.team-card { background:rgba(10,10,26,0.8); border:1px solid #9900ff33; border-radius:12px; padding:20px; margin-bottom:14px; display:flex; align-items:center; gap:16px; }
+.team-avatar { width:50px; height:50px; border-radius:50%; background:linear-gradient(135deg,var(--purple),var(--cyan)); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+.team-name { font-family:'Orbitron',sans-serif; font-size:12px; color:#fff; margin-bottom:4px; }
+.team-role { font-size:13px; color:#666; }
+.stat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:20px 0; }
+.stat-item { background:rgba(10,10,26,0.8); border:1px solid #9900ff22; border-radius:10px; padding:16px; text-align:center; }
+.stat-num { font-family:'Orbitron',sans-serif; font-size:20px; font-weight:900; background:linear-gradient(90deg,var(--purple),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.stat-label { font-size:11px; color:#555; letter-spacing:1px; margin-top:4px; font-family:'Orbitron',sans-serif; }
+footer { text-align:center; padding:20px; background:rgba(10,10,26,0.95); font-size:12px; color:#444; border-top:1px solid #9900ff22; }
+footer a { color:#9900ff88; text-decoration:none; margin:0 8px; }
+footer a:hover { color:var(--purple); }
+@media(max-width:480px) { .stat-grid { grid-template-columns:repeat(2,1fr); } }
 </style>
 </head>
-
 <body>
-
+<header>
+  <a class="logo" href="index.html">MLG XGame</a>
+  <a class="back-btn" href="index.html">← Accueil</a>
+</header>
 <div class="container">
-
-<h1>À propos de MLG XGame</h1>
-
-<p>Bienvenue sur <strong>MLG XGame</strong>, votre plateforme ultime pour découvrir et jouer à une multitude de jeux vidéo directement en ligne, et aussi à acheter du matériel gaming en toute sécurité</p>
-
-<h2>Notre mission</h2>
-<p>Notre objectif est de rassembler tous les passionnés de gaming dans un seul endroit. Nous voulons offrir une expérience ludique et sûre, avec des jeux de qualité et des contenus interactifs pour tous. 
-Nous proposons également du matériel gaming en affiliation, comme des PC, manettes, casques et accessoires, afin de permettre à nos utilisateurs de profiter pleinement de leur expérience de jeu.</p>
-
-<h2>Notre vision</h2>
-<p>Nous souhaitons devenir la référence pour tous les gamers, en offrant un site moderne, interactif et toujours en évolution pour suivre les tendances du monde du jeu vidéo.  
-Notre vision inclut de créer un écosystème complet où le joueur peut découvrir des jeux, interagir avec la communauté, et accéder facilement au meilleur matériel gaming grâce à nos liens d’affiliation.</p>
-  
-<h2>Contact</h2>
-<p>Pour toute question ou suggestion, vous pouvez nous contacter via notre page <a href="contact.html">Contact</a>.</p>
-
+  <div class="page-title">À propos</div>
+  <p class="page-subtitle">Notre histoire, notre mission, notre passion</p>
+ 
+  <div class="highlight-box">
+    <p>🎮 MLG XGame est une plateforme gaming 100% gratuite dédiée aux passionnés de jeux vidéo sur Android, iOS et PC. Notre objectif : rendre le gaming accessible à tous.</p>
+  </div>
+ 
+  <div class="section">
+    <h2>Notre Mission</h2>
+    <p>MLG XGame est né d'une passion simple et sincère pour les jeux vidéo. Notre mission est de proposer une plateforme complète, gratuite et accessible où chaque gamer peut découvrir, télécharger et jouer aux meilleurs jeux mobiles et PC sans barrières.</p>
+    <p>Nous croyons que le gaming doit être accessible à tous, partout dans le monde, sans avoir à payer pour accéder aux informations ou aux recommandations.</p>
+  </div>
+ 
+  <div class="section">
+    <h2>Ce que nous proposons</h2>
+    <ul>
+      <li>Plus de <strong style="color:#cc55ff">100 jeux Android et iOS</strong> sélectionnés avec soin</li>
+      <li>Une bibliothèque de <strong style="color:#cc55ff">jeux PC</strong> couvrant tous les genres</li>
+      <li>Des <strong style="color:#cc55ff">jeux en ligne</strong> jouables directement dans le navigateur</li>
+      <li>Une sélection des <strong style="color:#cc55ff">meilleures applications</strong> gratuites</li>
+      <li>Des <strong style="color:#cc55ff">mini-jeux</strong> intégrés pour jouer directement sur le site</li>
+      <li>Des fiches détaillées avec notes, descriptions et liens de téléchargement</li>
+    </ul>
+  </div>
+ 
+  <div class="section">
+    <h2>Nos chiffres</h2>
+    <div class="stat-grid">
+      <div class="stat-item"><div class="stat-num">100+</div><div class="stat-label">Jeux Android</div></div>
+      <div class="stat-item"><div class="stat-num">90+</div><div class="stat-label">Jeux PC</div></div>
+      <div class="stat-item"><div class="stat-num">60+</div><div class="stat-label">Jeux en ligne</div></div>
+      <div class="stat-item"><div class="stat-num">50+</div><div class="stat-label">Applications</div></div>
+      <div class="stat-item"><div class="stat-num">10</div><div class="stat-label">Catégories</div></div>
+      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Gratuit</div></div>
+    </div>
+  </div>
+ 
+  <div class="section">
+    <h2>L'équipe</h2>
+    <div class="team-card">
+      <div class="team-avatar">👾</div>
+      <div>
+        <div class="team-name">{MLG} Malonga - Brayan</div>
+        <div class="team-role">Fondateur & Développeur — Passionné de jeux vidéo depuis toujours. Créateur et architecte de MLG XGame.</div>
+      </div>
+    </div>
+ 
+  <div class="section">
+    <h2>Nos valeurs</h2>
+    <p><strong style="color:#cc55ff">Gratuité :</strong> Toutes nos ressources et recommandations sont accessibles gratuitement. Nous ne faisons jamais payer pour accéder à nos contenus.</p>
+    <p><strong style="color:#cc55ff">Transparence :</strong> Nous sommes honnêtes sur les jeux que nous recommandons. Nos notes et avis sont basés sur la qualité réelle des jeux.</p>
+    <p><strong style="color:#cc55ff">Passion :</strong> Chaque jeu ajouté sur MLG XGame est sélectionné avec passion et amour du gaming. Nous jouons à ce que nous recommandons.</p>
+    <p><strong style="color:#cc55ff">Accessibilité :</strong> Notre site est conçu pour fonctionner sur tous les appareils — Android, iOS, PC — pour que personne ne soit laissé de côté.</p>
+  </div>
+ 
+  <div class="section">
+    <h2>Nous contacter</h2>
+    <p>Tu as une question, une suggestion ou tu veux signaler un lien cassé ? N'hésite pas à nous contacter via notre <a href="contact.html" style="color:var(--cyan);text-decoration:none;">page de contact</a>. Nous lisons tous les messages et nous répondons dans les meilleurs délais.</p>
+  </div>
 </div>
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7572845165323582"
-     crossorigin="anonymous"></script>
-  
+<footer>
+  <p style="margin-bottom:8px;">&copy; 2026 <strong style="color:#9900ff88">MLG XGame</strong>. Tous droits réservés.</p>
+  <p>
+    <a href="apropos.html">À propos</a>
+    <a href="politique.html">Confidentialité</a>
+    <a href="conditions.html">Conditions</a>
+    <a href="contact.html">Contact</a>
+  </p>
+</footer>
 </body>
 </html>
