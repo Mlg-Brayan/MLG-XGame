@@ -238,62 +238,65 @@ header {
 /* ── CARD ── */
 .card {
   position: relative;
-  height: 225px;
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid #9900ff33;
   box-shadow: 0 4px 15px #00000066;
-  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
   cursor: pointer;
-  background: var(--bg3);
+  background: #0a0a1a;
   -webkit-tap-highlight-color: transparent;
   opacity: 0;
   transform: translateY(16px);
-  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s, opacity 0.45s ease, transform 0.45s ease;
+  transition: opacity 0.45s ease, transform 0.45s ease, box-shadow 0.25s, border-color 0.25s;
+  display: flex;
+  flex-direction: column;
 }
-.card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.card.visible { opacity: 1; transform: translateY(0); }
 .card:active { transform: scale(0.97); }
 @media (hover: hover) {
-  .card:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 8px 25px #9900ff44;
-    border-color: var(--purple);
-  }
-  .card:hover img { transform: scale(1.06); }
+  .card:hover { box-shadow: 0 8px 25px #9900ff44; border-color: var(--purple); transform: translateY(-4px); }
+  .card:hover .card-img img { transform: scale(1.06); }
 }
-.card img {
+ 
+/* Image section */
+.card-img {
+  width: 100%;
+  height: 130px;
+  overflow: hidden;
+  position: relative;
+  background: #1a0a2e;
+}
+.card-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 0.4s ease;
 }
+ 
+/* Content section */
 .card-content {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-  background: linear-gradient(to top, rgba(0,0,0,0.97) 55%, rgba(0,0,0,0.5) 80%, transparent);
+  padding: 10px 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
 }
 .card h3 {
-  margin: 0 0 2px 0;
+  margin: 0;
   font-family: 'Orbitron', sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   color: var(--cyan);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .card p {
-  font-size: 11px;
-  margin: 0 0 4px 0;
-  color: #aaa;
+  font-size: 10px;
+  margin: 0;
+  color: #777;
   text-align: left;
-  line-height: 1.3;
+  line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -311,7 +314,6 @@ header {
   border: 1px solid #9900ff44;
   color: #cc55ff;
   background: #9900ff11;
-  margin-bottom: 3px;
 }
 .badge-top {
   position: absolute;
@@ -328,20 +330,32 @@ header {
   color: #fff;
   box-shadow: 0 0 8px #9900ff66;
 }
- 
-/* ── CARD NOTE ── */
-.card-note {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-bottom: 5px;
-}
-.stars { font-size: 9px; }
-.note-val {
+.badge-new {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
   font-family: 'Orbitron', sans-serif;
-  font-size: 9px;
+  font-size: 8px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-weight: 700;
+  background: #00f0ff22;
+  border: 1px solid #00f0ff66;
   color: var(--cyan);
 }
+ 
+/* ── CSS STARS ── */
+.card-note { display: flex; align-items: center; gap: 5px; margin: 2px 0; }
+.stars-css { display: flex; gap: 2px; }
+.star-css {
+  width: 10px; height: 10px;
+  clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  background: #2a2a2a;
+}
+.star-css.filled { background: #f5c518; box-shadow: 0 0 4px #f5c51866; }
+.star-css.half { background: linear-gradient(90deg, #f5c518 50%, #2a2a2a 50%); }
+.note-val { font-family: 'Orbitron', sans-serif; font-size: 9px; color: #666; }
  
 /* ── DOWNLOAD BUTTON ── */
 .download-btn {
@@ -360,6 +374,7 @@ header {
   min-height: 34px;
   position: relative;
   overflow: hidden;
+  margin-top: auto;
 }
 .download-btn::after {
   content: '';
@@ -376,10 +391,25 @@ header {
 .card-link {
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: calc(100% - 90px);
+  height: 130px;
   z-index: 5;
   text-decoration: none;
 }
+ 
+/* ── CLEAR SEARCH ── */
+.search-clear {
+  position: absolute;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  cursor: pointer;
+  color: #555;
+  display: none;
+  z-index: 2;
+  transition: 0.2s;
+}
+.search-clear:hover { color: #fff; }
  
 /* ── EMPTY STATE ── */
 .empty {
@@ -502,6 +532,7 @@ footer a:hover { color: var(--purple); }
 <div class="search-wrap">
   <span class="search-icon">🔍</span>
   <input type="text" placeholder="Rechercher un jeu..." oninput="searchGame()" id="search" autocomplete="off" autocorrect="off" spellcheck="false">
+  <span class="search-clear" id="searchClear" onclick="clearSearch()">✕</span>
 </div>
  
 <!-- CATEGORIES -->
@@ -741,22 +772,41 @@ function render(list) {
     return;
   }
   animateCount(list.length);
+ 
+  // Jeux "nouveaux" — les 15 derniers de chaque catégorie
+  const newSlugs = ['need-for-speed-no-limits','asphalt-legends-unite','legends-of-kingdom-rush','dungeon-hunter-5','minecraft-multiplayer'];
+ 
   list.forEach((game, i) => {
     const div = document.createElement('div');
     div.className = 'card';
     div.style.transitionDelay = `${Math.min(i * 0.04, 0.6)}s`;
-    const stars = '⭐'.repeat(Math.floor(game.note)) + (game.note % 1 >= 0.5 ? '½' : '');
+ 
+    // CSS stars
+    const fullStars = Math.floor(game.note);
+    const hasHalf = game.note % 1 >= 0.5;
+    let starsHTML = '';
+    for (let s = 1; s <= 5; s++) {
+      if (s <= fullStars) starsHTML += '<div class="star-css filled"></div>';
+      else if (s === fullStars + 1 && hasHalf) starsHTML += '<div class="star-css half"></div>';
+      else starsHTML += '<div class="star-css"></div>';
+    }
+ 
+    const isNew = newSlugs.includes(game.slug);
+ 
     div.innerHTML = `
       <a class="card-link" href="${game.lien}" aria-label="Voir ${game.nom}"></a>
-      ${game.badge ? `<span class="badge-top">${game.badge}</span>` : ''}
-      <img src="${game.img}" alt="${game.nom}" loading="lazy" onerror="this.style.background='#1a0a2e';this.src=''">
+      <div class="card-img">
+        ${game.badge ? `<span class="badge-top">${game.badge}</span>` : ''}
+        ${isNew ? `<span class="badge-new">Nouveau ✨</span>` : ''}
+        <img src="${game.img}" alt="${game.nom}" loading="lazy" onerror="this.style.background='#1a0a2e';this.src=''">
+      </div>
       <div class="card-content">
         <span class="badge-cat">${game.categorie}</span>
         <h3>${game.nom}</h3>
         <p>${game.description}</p>
         <div class="card-note">
-          <span class="stars">${stars}</span>
-          <span class="note-val">${game.note}/5</span>
+          <div class="stars-css">${starsHTML}</div>
+          <span class="note-val">${game.note}</span>
         </div>
         <button class="download-btn" onclick="window.location.href='${game.lien}'">&#11015; Obtenir le jeu</button>
       </div>
@@ -791,6 +841,8 @@ function filter(cat, btn) {
 /* ── SEARCH ── */
 function searchGame() {
   const text = document.getElementById("search").value.toLowerCase().trim();
+  const clearBtn = document.getElementById('searchClear');
+  clearBtn.style.display = text ? 'block' : 'none';
   document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
   document.querySelector('.cat-btn').classList.add('active');
   document.getElementById('section-title').textContent = text ? `Résultats pour "${text}"` : 'Tous les jeux';
@@ -800,6 +852,13 @@ function searchGame() {
     g.categorie.toLowerCase().includes(text) ||
     g.description.toLowerCase().includes(text)
   ));
+}
+ 
+function clearSearch() {
+  document.getElementById('search').value = '';
+  document.getElementById('searchClear').style.display = 'none';
+  document.getElementById('section-title').textContent = 'Tous les jeux';
+  render(androidGames);
 }
  
 /* ── COMMENTS ── */
