@@ -171,9 +171,9 @@ footer a:hover { color:var(--green); }
   <div class="cat-btn" onclick="filter('Strategie',this)">🧠 Stratégie</div>
   <div class="cat-btn" onclick="filter('Course',this)">🏎️ Course</div>
   <div class="cat-btn" onclick="filter('Construction',this)">🏗️ Construction</div>
-  <div class="cat-btn" onclick="filter('Puzzle',this)">🧩 Puzzle</div>
-  <div class="cat-btn" onclick="filter('Musique',this)">🎵 Musique</div>
-  <div class="cat-btn" onclick="filter('Education',this)">📚 Éducation</div>
+  <div class="cat-btn" onclick="filter('Multijoueur',this)">👥 Multijoueur</div>
+  <div class="cat-btn" onclick="filter('Horreur',this)">👻 Horreur</div>
+  <div class="cat-btn" onclick="filter('Arcade',this)">🕹️ Arcade</div>
 </div>
  
 <div class="section-header reveal">
@@ -339,41 +339,41 @@ const pcGames = [
   { nom:"Cities Skylines", slug:"cities-skylines-construction", img:"images/pc/citiessky.jpg", desc:"Gestion et construction de ville.", cat:"Construction", note:4.7, pop:true, free:false, lien:"pc-games/construction/cities-skylines-construction.html", dl:"https://store.steampowered.com/app/255710/Cities_Skylines/" },
   { nom:"Factorio Construction", slug:"factorio-construction", img:"images/pc/factorio.jpg", desc:"Automatisation et industrie stratégique.", cat:"Construction", note:4.9, pop:true, free:false, lien:"pc-games/construction/factorio-construction.html", dl:"https://store.steampowered.com/app/427520/Factorio/" },
  
-  // 🧩 PUZZLE
-  { nom:"Portal 2 Puzzle", slug:"portal-2-puzzle", img:"images/pc/portal2.jpg", desc:"Puzzle intelligent en 3D.", cat:"Puzzle", note:4.9, pop:true, free:false, lien:"pc-games/puzzle/portal-2-puzzle.html", dl:"https://store.steampowered.com/app/620/Portal_2/" },
-  { nom:"Tetris Effect", slug:"tetris-effect", img:"images/pc/tetris.jpg", desc:"Puzzle musical hypnotique.", cat:"Puzzle", note:4.7, pop:false, free:false, lien:"pc-games/puzzle/tetris-effect.html", dl:"https://store.steampowered.com/app/1003590/Tetris_Effect_Connected/" },
-  { nom:"Human Fall Flat", slug:"human-fall-flat", img:"images/pc/humanfall.jpg", desc:"Physique drôle et puzzles.", cat:"Puzzle", note:4.6, pop:true, free:false, lien:"pc-games/puzzle/human-fall-flat.html", dl:"https://store.steampowered.com/app/477160/Human_Fall_Flat/" },
-  { nom:"Limbo", slug:"limbo-pc", img:"images/pc/limbo.jpg", desc:"Puzzle sombre et artistique.", cat:"Puzzle", note:4.6, pop:false, free:false, lien:"pc-games/puzzle/limbo-pc.html", dl:"https://store.steampowered.com/app/48000/LIMBO/" },
-  { nom:"Inside", slug:"inside-pc", img:"images/pc/inside.jpg", desc:"Énigmes atmosphériques.", cat:"Puzzle", note:4.8, pop:false, free:false, lien:"pc-games/puzzle/inside-pc.html", dl:"https://store.steampowered.com/app/304430/INSIDE/" },
-  { nom:"Braid", slug:"braid-pc", img:"images/pc/braid.jpg", desc:"Puzzle plateforme original.", cat:"Puzzle", note:4.5, pop:false, free:false, lien:"pc-games/puzzle/braid-pc.html", dl:"https://store.steampowered.com/app/26800/Braid/" },
-  { nom:"Fez", slug:"fez-pc", img:"images/pc/fez.jpg", desc:"Puzzle en dimension changeante.", cat:"Puzzle", note:4.4, pop:false, free:false, lien:"pc-games/puzzle/fez-pc.html", dl:"https://store.steampowered.com/app/224760/FEZ/" },
-  { nom:"World of Goo", slug:"world-of-goo", img:"images/pc/goo.jpg", desc:"Construction puzzle créatif.", cat:"Puzzle", note:4.5, pop:false, free:false, lien:"pc-games/puzzle/world-of-goo.html", dl:"https://store.steampowered.com/app/22000/World_of_Goo/" },
-  { nom:"The Witness", slug:"the-witness-puzzle", img:"images/pc/witness.jpg", desc:"Exploration et énigmes visuelles.", cat:"Puzzle", note:4.4, pop:false, free:false, lien:"pc-games/puzzle/the-witness-puzzle.html", dl:"https://store.steampowered.com/app/210970/The_Witness/" },
-  { nom:"Monument Valley", slug:"monument-valley-pc", img:"images/pc/monument.jpg", desc:"Architecture impossible à résoudre.", cat:"Puzzle", note:4.6, pop:false, free:false, lien:"pc-games/puzzle/monument-valley-pc.html", dl:"https://www.monumentvalleygame.com/" },
- 
-  // 🎵 MUSIQUE
-  { nom:"Friday Night Funkin", slug:"friday-night-funkin", img:"images/pc/fnf.jpg", desc:"Jeu de rythme fun et rapide.", cat:"Musique", note:4.5, pop:true, free:true, lien:"pc-games/musique/friday-night-funkin.html", dl:"https://ninja-muffin24.itch.io/funkin" },
-  { nom:"Osu!", slug:"osu", img:"images/pc/osu.jpg", desc:"Rythme musical compétitif gratuit.", cat:"Musique", note:4.7, pop:true, free:true, lien:"pc-games/musique/osu.html", dl:"https://osu.ppy.sh/home/download" },
-  { nom:"Beat Hazard", slug:"beat-hazard", img:"images/pc/beathazard.jpg", desc:"Shoot musical dynamique.", cat:"Musique", note:4.3, pop:false, free:false, lien:"pc-games/musique/beat-hazard.html", dl:"https://store.steampowered.com/app/49600/Beat_Hazard/" },
-  { nom:"StepMania", slug:"stepmania", img:"images/pc/stepmania.jpg", desc:"Danse et rythme personnalisable.", cat:"Musique", note:4.4, pop:false, free:true, lien:"pc-games/musique/stepmania.html", dl:"https://www.stepmania.com/" },
-  { nom:"Audiosurf", slug:"audiosurf", img:"images/pc/audiosurf.jpg", desc:"Courses basées sur ta musique.", cat:"Musique", note:4.4, pop:false, free:false, lien:"pc-games/musique/audiosurf.html", dl:"https://store.steampowered.com/app/12900/AudioSurf/" },
-  { nom:"Melody Escape", slug:"melody-escape", img:"images/pc/melodyescape.jpg", desc:"Plateforme rythmique colorée.", cat:"Musique", note:4.2, pop:false, free:false, lien:"pc-games/musique/melody-escape.html", dl:"https://store.steampowered.com/app/1265550/Melody_Escape/" },
-  { nom:"Frets on Fire", slug:"frets-on-fire", img:"images/pc/fretsonfire.jpg", desc:"Guitare rythmique arcade.", cat:"Musique", note:4.1, pop:false, free:true, lien:"pc-games/musique/frets-on-fire.html", dl:"https://frets-on-fire.sourceforge.net/" },
-  { nom:"Rhythm Doctor", slug:"rhythm-doctor", img:"images/pc/rhythmdoctor.jpg", desc:"Timing musical précis.", cat:"Musique", note:4.5, pop:false, free:false, lien:"pc-games/musique/rhythm-doctor.html", dl:"https://store.steampowered.com/app/774181/Rhythm_Doctor/" },
-  { nom:"Soundodger", slug:"soundodger", img:"images/pc/soundodger.jpg", desc:"Esquive au rythme de la musique.", cat:"Musique", note:4.2, pop:false, free:false, lien:"pc-games/musique/soundodger.html", dl:"https://store.steampowered.com/app/269770/Soundodger/" },
-  { nom:"Rhythm Castle", slug:"rhythm-castle", img:"images/pc/rhythmcastle.jpg", desc:"Mini-jeux musicaux délirants.", cat:"Musique", note:4.3, pop:false, free:false, lien:"pc-games/musique/rhythm-castle.html", dl:"https://store.steampowered.com/app/1985990/Super_Crazy_Rhythm_Castle/" },
- 
-  // 📚 ÉDUCATION
-  { nom:"GeoGebra", slug:"geogebra", img:"images/pc/geogebra.jpg", desc:"Mathématiques interactives.", cat:"Education", note:4.6, pop:false, free:true, lien:"pc-games/education/geogebra.html", dl:"https://www.geogebra.org/download" },
-  { nom:"Scratch", slug:"scratch-pc", img:"images/pc/scratch.jpg", desc:"Apprendre la programmation facilement.", cat:"Education", note:4.7, pop:true, free:true, lien:"pc-games/education/scratch-pc.html", dl:"https://scratch.mit.edu/download" },
-  { nom:"Stellarium", slug:"stellarium", img:"images/pc/stellarium.jpg", desc:"Planétarium réaliste et gratuit.", cat:"Education", note:4.7, pop:false, free:true, lien:"pc-games/education/stellarium.html", dl:"https://stellarium.org/" },
-  { nom:"Celestia", slug:"celestia", img:"images/pc/celestia.jpg", desc:"Exploration éducative de l'espace.", cat:"Education", note:4.5, pop:false, free:true, lien:"pc-games/education/celestia.html", dl:"https://celestia.space/" },
-  { nom:"GCompris", slug:"gcompris", img:"images/pc/gcompris.jpg", desc:"Suite éducative pour enfants.", cat:"Education", note:4.4, pop:false, free:true, lien:"pc-games/education/gcompris.html", dl:"https://gcompris.net/index-fr.html" },
-  { nom:"TuxMath", slug:"tuxmath", img:"images/pc/tuxmath.jpg", desc:"Calcul mental amusant pour enfants.", cat:"Education", note:4.3, pop:false, free:true, lien:"pc-games/education/tuxmath.html", dl:"https://sourceforge.net/projects/tuxmath/" },
-  { nom:"TypingClub", slug:"typingclub", img:"images/pc/typingclub.jpg", desc:"Apprendre à taper au clavier.", cat:"Education", note:4.5, pop:false, free:true, lien:"pc-games/education/typingclub.html", dl:"https://www.typingclub.com/" },
-  { nom:"TuxTyping", slug:"tuxtyping", img:"images/pc/tuxtyping.jpg", desc:"Apprentissage de frappe rapide.", cat:"Education", note:4.2, pop:false, free:true, lien:"pc-games/education/tuxtyping.html", dl:"https://sourceforge.net/projects/tuxtype/" },
-  { nom:"Childsplay", slug:"childsplay", img:"images/pc/childsplay.jpg", desc:"Mini-jeux éducatifs pour enfants.", cat:"Education", note:4.1, pop:false, free:true, lien:"pc-games/education/childsplay.html", dl:"https://childsplay.sourceforge.net/" },
-  { nom:"Kalzium", slug:"kalzium", img:"images/pc/kalzium.jpg", desc:"Découverte interactive de la chimie.", cat:"Education", note:4.2, pop:false, free:true, lien:"pc-games/education/kalzium.html", dl:"https://apps.kde.org/kalzium/" },
+   // 👥 MULTIJOUEUR
+  { nom:"Among Us", slug:"among-us", img:"images/pc/among-us.jpg", desc:"Jeu de déduction sociale en ligne.", cat:"Multijoueur", note:4.5, pop:true, free:true, lien:"pc-games/multijoueur/among-us.html", dl:"https://store.steampowered.com/app/945360/Among_Us/" },
+  { nom:"Valheim", slug:"valheim", img:"images/pc/valheim.jpg", desc:"Survie viking en monde ouvert coopératif.", cat:"Multijoueur", note:4.7, pop:true, free:false, lien:"pc-games/multijoueur/valheim.html", dl:"https://store.steampowered.com/app/892970/Valheim/" },
+  { nom:"Warframe", slug:"warframe", img:"images/pc/warframe.jpg", desc:"Action coopérative sci-fi gratuit.", cat:"Multijoueur", note:4.5, pop:true, free:true, lien:"pc-games/multijoueur/warframe.html", dl:"https://store.steampowered.com/app/230410/Warframe/" },
+  { nom:"Deep Rock Galactic", slug:"deep-rock-galactic", img:"images/pc/deeprock.jpg", desc:"Coopératif souterrain avec des nains.", cat:"Multijoueur", note:4.8, pop:true, free:false, lien:"pc-games/multijoueur/deep-rock-galactic.html", dl:"https://store.steampowered.com/app/548430/Deep_Rock_Galactic/" },
+  { nom:"Phasmophobia", slug:"phasmophobia", img:"images/pc/phasmophobia.jpg", desc:"Chasse aux fantômes coopérative.", cat:"Multijoueur", note:4.6, pop:false, free:false, lien:"pc-games/multijoueur/phasmophobia.html", dl:"https://store.steampowered.com/app/739630/Phasmophobia/" },
+  { nom:"Sea of Thieves", slug:"sea-of-thieves", img:"images/pc/seaofthieves.jpg", desc:"Aventure pirate multijoueur gratuit.", cat:"Multijoueur", note:4.4, pop:true, free:true, lien:"pc-games/multijoueur/sea-of-thieves.html", dl:"https://store.steampowered.com/app/1172620/Sea_of_Thieves/" },
+  { nom:"Garry's Mod", slug:"garrys-mod", img:"images/pc/garrysmod.jpg", desc:"Sandbox créatif multijoueur.", cat:"Multijoueur", note:4.6, pop:false, free:false, lien:"pc-games/multijoueur/garrys-mod.html", dl:"https://store.steampowered.com/app/4000/Garrys_Mod/" },
+  { nom:"Left 4 Dead 2", slug:"left-4-dead-2", img:"images/pc/l4d2.jpg", desc:"Survie zombie coopérative intense.", cat:"Multijoueur", note:4.7, pop:false, free:false, lien:"pc-games/multijoueur/left-4-dead-2.html", dl:"https://store.steampowered.com/app/550/Left_4_Dead_2/" },
+  { nom:"Fall Guys", slug:"fall-guys", img:"images/pc/fallguys.jpg", desc:"Battle royale festif et coloré.", cat:"Multijoueur", note:4.3, pop:true, free:true, lien:"pc-games/multijoueur/fall-guys.html", dl:"https://store.steampowered.com/app/1097150/Fall_Guys/" },
+  { nom:"Paladins", slug:"paladins", img:"images/pc/paladins.jpg", desc:"Shooter héros gratuit compétitif.", cat:"Multijoueur", note:4.2, pop:false, free:true, lien:"pc-games/multijoueur/paladins.html", dl:"https://store.steampowered.com/app/444090/Paladins/" },
+
+  // 👻 HORREUR
+  { nom:"Resident Evil 2 Remake", slug:"resident-evil-2", img:"images/pc/re2.jpg", desc:"Survival horror culte modernisé.", cat:"Horreur", note:4.8, pop:true, free:false, lien:"pc-games/horreur/resident-evil-2.html", dl:"https://store.steampowered.com/app/883710/Resident_Evil_2/" },
+  { nom:"Outlast", slug:"outlast", img:"images/pc/outlast.jpg", desc:"Horreur en caméra première personne.", cat:"Horreur", note:4.6, pop:true, free:false, lien:"pc-games/horreur/outlast.html", dl:"https://store.steampowered.com/app/238320/Outlast/" },
+  { nom:"Amnesia: The Dark Descent", slug:"amnesia-dark-descent", img:"images/pc/amnesia.jpg", desc:"Horreur psychologique culte gratuit.", cat:"Horreur", note:4.5, pop:false, free:true, lien:"pc-games/horreur/amnesia-dark-descent.html", dl:"https://store.steampowered.com/app/57300/Amnesia_The_Dark_Descent/" },
+  { nom:"SOMA", slug:"soma-pc", img:"images/pc/soma.jpg", desc:"Horreur sci-fi philosophique.", cat:"Horreur", note:4.7, pop:false, free:false, lien:"pc-games/horreur/soma-pc.html", dl:"https://store.steampowered.com/app/282140/SOMA/" },
+  { nom:"Alien Isolation", slug:"alien-isolation", img:"images/pc/alien.jpg", desc:"Survie terrifiante face à l'alien.", cat:"Horreur", note:4.7, pop:true, free:false, lien:"pc-games/horreur/alien-isolation.html", dl:"https://store.steampowered.com/app/214490/Alien_Isolation/" },
+  { nom:"Layers of Fear", slug:"layers-of-fear", img:"images/pc/layersoffear.jpg", desc:"Horreur psychologique artistique.", cat:"Horreur", note:4.3, pop:false, free:false, lien:"pc-games/horreur/layers-of-fear.html", dl:"https://store.steampowered.com/app/391720/Layers_of_Fear/" },
+  { nom:"Dead Space", slug:"dead-space", img:"images/pc/deadspace.jpg", desc:"Survival horror spatial culte.", cat:"Horreur", note:4.7, pop:true, free:false, lien:"pc-games/horreur/dead-space.html", dl:"https://store.steampowered.com/app/1693980/Dead_Space/" },
+  { nom:"Little Nightmares", slug:"little-nightmares", img:"images/pc/littlenightmares.jpg", desc:"Aventure horreur atmosphérique.", cat:"Horreur", note:4.6, pop:false, free:false, lien:"pc-games/horreur/little-nightmares.html", dl:"https://store.steampowered.com/app/424840/Little_Nightmares/" },
+  { nom:"Observer", slug:"observer-pc", img:"images/pc/observer.jpg", desc:"Cyberpunk horreur narratif.", cat:"Horreur", note:4.3, pop:false, free:false, lien:"pc-games/horreur/observer-pc.html", dl:"https://store.steampowered.com/app/514900/observer_/" },
+  { nom:"Visage", slug:"visage-pc", img:"images/pc/visage.jpg", desc:"Horreur psychologique oppressante.", cat:"Horreur", note:4.4, pop:false, free:false, lien:"pc-games/horreur/visage-pc.html", dl:"https://store.steampowered.com/app/594330/Visage/" },
+
+  // 🕹️ ARCADE
+  { nom:"Pac-Man Championship", slug:"pacman-championship", img:"images/pc/pacman.jpg", desc:"Arcade légendaire remasterisé.", cat:"Arcade", note:4.5, pop:true, free:false, lien:"pc-games/arcade/pacman-championship.html", dl:"https://store.steampowered.com/app/394690/PAC-MAN_Championship_Edition_2/" },
+  { nom:"Cuphead", slug:"cuphead", img:"images/pc/cuphead.jpg", desc:"Run and gun artistique et difficile.", cat:"Arcade", note:4.7, pop:true, free:false, lien:"pc-games/arcade/cuphead.html", dl:"https://store.steampowered.com/app/268910/Cuphead/" },
+  { nom:"Geometry Dash", slug:"geometry-dash", img:"images/pc/geodash.jpg", desc:"Plateforme rythmique ultra addictif.", cat:"Arcade", note:4.6, pop:true, free:false, lien:"pc-games/arcade/geometry-dash.html", dl:"https://store.steampowered.com/app/322170/Geometry_Dash/" },
+  { nom:"Brotato", slug:"brotato", img:"images/pc/brotato.jpg", desc:"Roguelite arcade frénétique.", cat:"Arcade", note:4.7, pop:true, free:false, lien:"pc-games/arcade/brotato.html", dl:"https://store.steampowered.com/app/1942280/Brotato/" },
+  { nom:"Vampire Survivors", slug:"vampire-survivors", img:"images/pc/vampiresurvivors.jpg", desc:"Survival arcade roguelite gratuit.", cat:"Arcade", note:4.8, pop:true, free:true, lien:"pc-games/arcade/vampire-survivors.html", dl:"https://store.steampowered.com/app/1794680/Vampire_Survivors/" },
+  { nom:"Hollow Knight", slug:"hollow-knight", img:"images/pc/hollowknight.jpg", desc:"Metroidvania sombre et sublime.", cat:"Arcade", note:4.9, pop:true, free:false, lien:"pc-games/arcade/hollow-knight.html", dl:"https://store.steampowered.com/app/367520/Hollow_Knight/" },
+  { nom:"Shovel Knight", slug:"shovel-knight", img:"images/pc/shovelknight.jpg", desc:"Plateforme retro de grande qualité.", cat:"Arcade", note:4.7, pop:false, free:false, lien:"pc-games/arcade/shovel-knight.html", dl:"https://store.steampowered.com/app/250760/Shovel_Knight_Treasure_Trove/" },
+  { nom:"Celeste", slug:"celeste", img:"images/pc/celeste.jpg", desc:"Plateforme précis et touchant.", cat:"Arcade", note:4.8, pop:true, free:false, lien:"pc-games/arcade/celeste.html", dl:"https://store.steampowered.com/app/504230/Celeste/" },
+  { nom:"Dead Cells", slug:"dead-cells", img:"images/pc/deadcells.jpg", desc:"Roguelite action fluide et intense.", cat:"Arcade", note:4.7, pop:false, free:false, lien:"pc-games/arcade/dead-cells.html", dl:"https://store.steampowered.com/app/588650/Dead_Cells/" },
+  { nom:"Hades", slug:"hades", img:"images/pc/hades.jpg", desc:"Roguelite mythologique parfait.", cat:"Arcade", note:4.9, pop:true, free:false, lien:"pc-games/arcade/hades.html", dl:"https://store.steampowered.com/app/1145360/Hades/" },
 ];
  
 /* ANIMATE COUNT */
